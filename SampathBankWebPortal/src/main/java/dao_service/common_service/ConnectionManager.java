@@ -9,7 +9,7 @@ public class ConnectionManager {
 	private static String username = "ITP";
 	private static String password = "thisstuff";
 	
-	private static Connection connect() {
+	public static Connection connect() {
 		Connection con = null;
 		
 		try {

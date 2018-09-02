@@ -2,6 +2,7 @@ package pojo_model.user_management;
 
 import java.sql.Date;
 
+import pojo_model.employee_hr_payroll_management.Branch;
 import pojo_model.employee_hr_payroll_management.converters.DateConverter;
 import pojo_model.employee_hr_payroll_management.managers.CommonEntityManager;
 
@@ -18,13 +19,14 @@ public abstract class Person {
 	private Date dateOfBirth;
 	private Role role; //Entity
 	private Permission permission; //Entity
+	private Branch branch; //Entity
 	private OnlineSecurityKey onlineSecurityKey; //Entity //Auto Generated
 	
 	public Person() {}
 
 	public Person(String personId, String firstName, String middleName, String lastName, String otherNames, String addStreet01, String addStreet02, String addCity,
 			String addProvince, int zipCode, Date phyRegDate, Date onlineRegDate, String personalEmail, String contactNumberHome, String contactNumberMobile, Gender gender,
-			String nic, Nationality nationality, Date dateOfBirth, Role role, Permission permission, OnlineSecurityKey onlineSecurityKey) {
+			String nic, Nationality nationality, Date dateOfBirth, Role role, Permission permission, Branch branch, OnlineSecurityKey onlineSecurityKey) {
 		this.setPersonId(personId.trim());
 		this.setName(firstName, middleName, lastName, otherNames);
 		this.setAddress(addStreet01, addStreet02, addCity, addProvince, zipCode);
@@ -36,6 +38,8 @@ public abstract class Person {
 		this.setDateOfBirth(dateOfBirth);
 		this.setRole(role);
 		this.setPermission(permission);
+		this.setBranch(branch);
+		this.setOnlineSecurityKey(onlineSecurityKey);
 	}
 
 	/*
@@ -44,7 +48,7 @@ public abstract class Person {
 	 * */
 	public Person(String firstName, String middleName, String lastName, String otherNames, String addStreet01, String addStreet02, String addCity,
 			String addProvince, int zipCode, String personalEmail, String contactNumberHome, String contactNumberMobile, String gender,
-			String nic, String nationality, String dateOfBirth, String role) {
+			String nic, String nationality, String dateOfBirth, String role, String branch) {
 		this.setName(firstName, middleName, lastName, otherNames);
 		this.setAddress(addStreet01, addStreet02, addCity, addProvince, zipCode);
 		this.setContact(personalEmail, contactNumberHome, contactNumberMobile);
@@ -53,6 +57,7 @@ public abstract class Person {
 		this.setNationality(nationality.trim());
 		this.setDateOfBirth(dateOfBirth.trim());
 		this.setRole(role.trim());
+		this.setBranch(branch);
 	}
 	
 	public Person(String nic) {
@@ -119,6 +124,14 @@ public abstract class Person {
 		this.permission = permission;
 	}
 
+	public void setBranch(String branch) {
+		this.branch = new CommonEntityManager().getBranch(branch);
+	}
+
+	public void setBranch(Branch branch) {
+		this.branch = branch;
+	}
+	
 	public void setOnlineSecurityKey(OnlineSecurityKey onlineSecurityKey) {
 		this.onlineSecurityKey = onlineSecurityKey;
 	}
@@ -168,15 +181,11 @@ public abstract class Person {
 		return permission;
 	}
 	
+	public Branch getBranch() {
+		return branch;
+	}
+	
 	public OnlineSecurityKey getOnlineSecurityKey() {
 		return onlineSecurityKey;
 	}
-
-	public abstract void setCompanyEmail(String companyEmail);
-	
-	public abstract void setDesignation(String designation);
-	
-	public abstract String getCompanyEmail();
-	
-	public abstract String getDesignation();
 }

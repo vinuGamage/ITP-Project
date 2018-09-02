@@ -10,9 +10,19 @@
   	<description>Human Resource Recruitment officer recuits new employees</description>
   	<servlet-class>controller_servlet.employee_hr_payroll_management.recruitment_officer.EmployeeRecruitment</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>CommonEntityFetcher</servlet-name>
+  	<display-name>CommonEntityFetcher</display-name>
+  	<description>This servlet will fetch and initialize the common entities</description>
+  	<servlet-class>controller_servlet.employee_hr_payroll_management.common_entity_fetcher.CommonEntityFetcher</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>EmployeeRecruitment</servlet-name>
   	<url-pattern>/EmployeeRecruitment</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CommonEntityFetcher</servlet-name>
+  	<url-pattern>/CommonEntityFetcher</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
   	<welcome-file>UM_Homepage_Common.jsp</welcome-file>

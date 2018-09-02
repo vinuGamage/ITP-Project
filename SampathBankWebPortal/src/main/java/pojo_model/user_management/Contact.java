@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class Contact {
-	private String personalEmail;
+	private String email;
 	private Collection<ContactNumber> contactNumberList = new ArrayList<ContactNumber>();
 	
 	public Contact() {}
 	
-	public Contact(String personalEmail, String contactNumberHome, String contactNumberMobile) {
-		this.setPersonalEmail(personalEmail.trim());
+	public Contact(String email, String contactNumberHome, String contactNumberMobile) {
+		this.setPersonalEmail(email.trim());
 		this.setContactNumber(contactNumberHome.trim(), contactNumberMobile.trim());
 	}
 	
-	public void setPersonalEmail(String personalEmail) {
-		this.personalEmail = personalEmail;
+	public void setPersonalEmail(String email) {
+		this.email = email;
 	}
 	
 	public void setContactNumber(String contactNumberHome, String contactNumberMobile) {
@@ -32,8 +32,8 @@ public class Contact {
 		}	
 	}
 	
-	public String getPersonalEmail() {
-		return this.personalEmail;
+	public String getEmail() {
+		return this.email;
 	}
 	
 	public Collection<ContactNumber> getContactNumberList() {

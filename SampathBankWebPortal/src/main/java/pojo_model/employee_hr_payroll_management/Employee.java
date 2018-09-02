@@ -5,7 +5,6 @@ import pojo_model.user_management.Person;
 
 //Entity
 public class Employee extends Person {
-	private Branch branch; //Entity
 	private Department department; //Entity
 	private String designation;
 	private String companyEmail; //Auto Generated
@@ -19,18 +18,9 @@ public class Employee extends Person {
 			String contactNumberMobile, String gender, String nic, String nationality, String dateOfBirth, String role, String branch, 
 			String department, String designation) {
 		super(firstName, middleName, lastName, otherNames, addStreet01, addStreet02, addCity, addProvince, zipCode, personalEmail, 
-				contactNumberHome, contactNumberMobile, gender, nic, nationality, dateOfBirth, role);
-		this.setBranch(branch);
+				contactNumberHome, contactNumberMobile, gender, nic, nationality, dateOfBirth, role, branch);
 		this.setDepartment(department);
 		this.setDesignation(designation);
-	}
-
-	public void setBranch(String branch) {
-		this.branch = new CommonEntityManager().getBranch(branch);
-	}
-
-	public void setBranch(Branch branch) {
-		this.branch = branch;
 	}
 
 	public void setDepartment(String department) {
@@ -47,10 +37,6 @@ public class Employee extends Person {
 
 	public void setCompanyEmail(String companyEmail) {
 		this.companyEmail = companyEmail;
-	}
-	
-	public Branch getBranch() {
-		return branch;
 	}
 
 	public Department getDepartment() {

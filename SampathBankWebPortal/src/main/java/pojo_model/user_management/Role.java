@@ -5,16 +5,16 @@ import java.util.Collection;
 
 public class Role {
 	private int roleId;
-	private String role;
 	private String roleGroup;
+	private String role;
 	private Collection<Person> person = new ArrayList<Person>();
 	
 	public Role() {}
 
-	public Role(int roleId, String role, String roleGroup) {
+	public Role(int roleId,  String roleGroup, String role) {
 		this.setRoleId(roleId);
-		this.setRole(role);
 		this.setRoleGroup(roleGroup);
+		this.setRole(role);
 	}
 	
 	public Role(String role, String roleGroup) {
