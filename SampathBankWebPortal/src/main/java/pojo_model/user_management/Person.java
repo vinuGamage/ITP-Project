@@ -11,131 +11,35 @@ public abstract class Person {
 	private String personId; //Auto Generated
 	private Name name;
 	private Address address;
-	private RegistrationDates registrationDates; //Auto Assigned
-	private Contact contact;
-	private Gender gender; //Entity
+	private Date physicalRegistrationDate;
+	private Date onlineRegistrationDate;
+	private String emailPersonal;
+	private int genderId; //Entity
 	private String nic;
-	private Nationality nationality; //Entity
+	private int nationalityId; //Entity
 	private Date dateOfBirth;
-	private Role role; //Entity
-	private Permission permission; //Entity
-	private Branch branch; //Entity
-	private OnlineSecurityKey onlineSecurityKey; //Entity //Auto Generated
+	private String branchId;
+	private String onlineSecurityId;
 	
 	public Person() {}
 
-	public Person(String personId, String firstName, String middleName, String lastName, String otherNames, String addStreet01, String addStreet02, String addCity,
-			String addProvince, int zipCode, Date phyRegDate, Date onlineRegDate, String personalEmail, String contactNumberHome, String contactNumberMobile, Gender gender,
-			String nic, Nationality nationality, Date dateOfBirth, Role role, Permission permission, Branch branch, OnlineSecurityKey onlineSecurityKey) {
-		this.setPersonId(personId.trim());
-		this.setName(firstName, middleName, lastName, otherNames);
-		this.setAddress(addStreet01, addStreet02, addCity, addProvince, zipCode);
-		this.setRegistrationDates(phyRegDate, onlineRegDate);
-		this.setContact(personalEmail, contactNumberHome, contactNumberMobile);
-		this.setGender(gender);
-		this.setNic(nic.trim());
-		this.setNationality(nationality);
-		this.setDateOfBirth(dateOfBirth);
-		this.setRole(role);
-		this.setPermission(permission);
-		this.setBranch(branch);
-		this.setOnlineSecurityKey(onlineSecurityKey);
-	}
-
-	/*
-	 * @Author Samarasekara S.A.M.I.D.
-	 * 
-	 * */
-	public Person(String firstName, String middleName, String lastName, String otherNames, String addStreet01, String addStreet02, String addCity,
-			String addProvince, int zipCode, String personalEmail, String contactNumberHome, String contactNumberMobile, String gender,
-			String nic, String nationality, String dateOfBirth, String role, String branch) {
-		this.setName(firstName, middleName, lastName, otherNames);
-		this.setAddress(addStreet01, addStreet02, addCity, addProvince, zipCode);
-		this.setContact(personalEmail, contactNumberHome, contactNumberMobile);
-		this.setGender(gender.trim());
-		this.setNic(nic.trim());
-		this.setNationality(nationality.trim());
-		this.setDateOfBirth(dateOfBirth.trim());
-		this.setRole(role.trim());
-		this.setBranch(branch);
-	}
-	
-	public Person(String nic) {
-		this.setNic(nic);
-	}
-	
-	public void setPersonId(String personId) {
-		this.personId = personId;
-	}
-
-	public void setName(String firstName, String middleName, String lastName, String otherNames) {
-		this.name = new Name(firstName, middleName, lastName, otherNames); //Composition
-	}
-
-	public void setAddress(String addStreet01, String addStreet02, String addCity, String addProvince, int zipCode) {
-		this.address = new Address(addStreet01, addStreet02, addCity, addProvince, zipCode); //Composition
-	}
-
-	public void setRegistrationDates(Date phyRegDate, Date onlineRegDate) {
-		this.registrationDates = new RegistrationDates(phyRegDate, onlineRegDate); //Composition
-	}
-
-	public void setContact(String personalEmail, String contactNumberHome, String contactNumberMobile) {
-		this.contact = new Contact(personalEmail, contactNumberHome, contactNumberMobile); //Composition
-	}
-
-	public void setGender(String gender) {
-		this.gender = new CommonEntityManager().getGender(gender);
-	}
-	
-	public void setGender(Gender gender) {
-		this.gender = gender;
-	}
-
-	public void setNic(String nic) {
+	public Person(String personId, Name name, Address address, Date physicalRegistrationDate, Date onlineRegistrationDate,
+			String emailPersonal, int genderId, String nic, int nationalityId,
+			Date dateOfBirth, String branchId, String onlineSecurityId) {
+		this.setPersonId(personId);
+		this.setName(name);
+		this.setAddress(address);
+		this.setRegistrationDates(registrationDates);
+		this.emailPersonal = emailPersonal;
+		this.contactNumberHome = contactNumberHome;
+		this.genderId = genderId;
 		this.nic = nic;
-	}
-
-	public void setNationality(String nationality) {
-		this.nationality = new CommonEntityManager().getNationality(nationality);
-	}
-	
-	public void setNationality(Nationality nationality) {
-		this.nationality = nationality;
-	}
-
-	public void setDateOfBirth(String dateOfBirth) {
-		this.dateOfBirth = new DateConverter().getSqlDate(dateOfBirth);
-	}
-	
-	public void setDateOfBirth(Date dateOfBirth) {
+		this.nationalityId = nationalityId;
 		this.dateOfBirth = dateOfBirth;
+		this.branchId = branchId;
+		this.onlineSecurityId = onlineSecurityId;
 	}
 
-	public void setRole(String role) {
-		this.role = new CommonEntityManager().getRole(role);
-	}
-	
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
-	public void setPermission(Permission permission) {
-		this.permission = permission;
-	}
-
-	public void setBranch(String branch) {
-		this.branch = new CommonEntityManager().getBranch(branch);
-	}
-
-	public void setBranch(Branch branch) {
-		this.branch = branch;
-	}
-	
-	public void setOnlineSecurityKey(OnlineSecurityKey onlineSecurityKey) {
-		this.onlineSecurityKey = onlineSecurityKey;
-	}
-	
 	public String getPersonId() {
 		return personId;
 	}
@@ -152,40 +56,83 @@ public abstract class Person {
 		return registrationDates;
 	}
 
-	public Contact getContact() {
-		return contact;
+	public String getEmailPersonal() {
+		return emailPersonal;
 	}
 
-	public Gender getGender() {
-		return gender;
+	public String getContactNumberHome() {
+		return contactNumberHome;
+	}
+
+	public int getGenderId() {
+		return genderId;
 	}
 
 	public String getNic() {
 		return nic;
 	}
 
-	public Nationality getNationality() {
-		return nationality;
+	public int getNationalityId() {
+		return nationalityId;
 	}
-
 
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public Role getRole() {
-		return role;
+	public String getBranchId() {
+		return branchId;
 	}
 
-	public Permission getPermission() {
-		return permission;
+	public String getOnlineSecurityId() {
+		return onlineSecurityId;
 	}
-	
-	public Branch getBranch() {
-		return branch;
+
+	public void setPersonId(String personId) {
+		this.personId = personId;
 	}
-	
-	public OnlineSecurityKey getOnlineSecurityKey() {
-		return onlineSecurityKey;
+
+	public void setName(Name name) {
+		this.name = name;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public void setRegistrationDates(RegistrationDates registrationDates) {
+		this.registrationDates = registrationDates;
+	}
+
+	public void setEmailPersonal(String emailPersonal) {
+		this.emailPersonal = emailPersonal;
+	}
+
+	public void setContactNumberHome(String contactNumberHome) {
+		this.contactNumberHome = contactNumberHome;
+	}
+
+	public void setGenderId(int genderId) {
+		this.genderId = genderId;
+	}
+
+	public void setNic(String nic) {
+		this.nic = nic;
+	}
+
+	public void setNationalityId(int nationalityId) {
+		this.nationalityId = nationalityId;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public void setBranchId(String branchId) {
+		this.branchId = branchId;
+	}
+
+	public void setOnlineSecurityId(String onlineSecurityId) {
+		this.onlineSecurityId = onlineSecurityId;
 	}
 }

@@ -1,64 +1,64 @@
 package pojo_model.user_management;
 
 public class Address {
-	private String addStreet01;
-	private String addStreet02;
-	private String addCity;
-	private String addProvince;
-	private int zipCode;
+	private String addressStreet01;
+	private String addressStreet02;
+	private String addressCity;
+	private String addressProvince;
+	private int addressZipCode;
 	
 	public Address() {}
 	
-	public Address(String addStreet01, String addStreet02, String addCity, String addProvince, int zipCode) {
-		this.setAddStreet01(addStreet01.trim());
+	public Address(String addressStreet01, String addressStreet02, String addressCity, String addressProvince, int addressZipCode) {
+		this.setAddStreet01(addressStreet01.trim());
 		
-		if(addStreet02 == null || addStreet02.trim().length() == 0)
+		if(addressStreet02 == null || addressStreet02.trim().length() == 0)
 			this.setAddStreet02(null);
 		else
-			this.setAddStreet02(addStreet02.trim());
+			this.setAddStreet02(addressStreet02.trim());
 		
-		this.setAddCity(addCity.trim());
-		this.setAddProvince(addProvince.trim());
-		this.setZipCode(zipCode);
+		this.setAddressCity(addressCity.trim());
+		this.setAddressProvince(addressProvince.trim());
+		this.setAddressZipCode(addressZipCode);
 	}
 	
-	public void setAddStreet01(String addStreet01) {
-		this.addStreet01 = addStreet01;
+	public void setAddStreet01(String addressStreet01) {
+		this.addressStreet01 = addressStreet01;
 	}
 	
-	public void setAddStreet02(String addStreet02) {
-		this.addStreet02 = addStreet02;
+	public void setAddStreet02(String addressStreet02) {
+		this.addressStreet02 = addressStreet02;
 	}
 	
-	public void setAddCity(String addCity) {
-		this.addCity = addCity;
+	public void setAddressCity(String addressCity) {
+		this.addressCity = addressCity;
 	}
 	
-	public void setAddProvince(String addProvince) {
-		this.addProvince = addProvince;
+	public void setAddressProvince(String addressProvince) {
+		this.addressProvince = addressProvince;
 	}
 	
-	public void setZipCode(int zipCode) {
-		this.zipCode = zipCode;
+	public void setAddressZipCode(int addressZipCode) {
+		this.addressZipCode = addressZipCode;
 	}
 	
-	public String getAddStreet01() {
-		return this.addStreet01;
+	public String getAddressStreet01() {
+		return this.addressStreet01;
 	}
 	
-	public String getAddStreet02() {
-		return this.addStreet02;
+	public String getAddressStreet02() {
+		return this.addressStreet02;
 	}
 	
-	public String getAddCity() {
-		return this.addCity;
+	public String getAddressCity() {
+		return this.addressCity;
 	}
 	
-	public String getAddProvince() {
-		return this.addProvince;
+	public String getAddressProvince() {
+		return this.addressProvince;
 	}
 	
-	public int getZIPCode() {
-		return this.zipCode;
+	public int getAddressZIPCode() {
+		return this.addressZipCode;
 	}
 }

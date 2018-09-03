@@ -3,29 +3,29 @@ package pojo_model.user_management;
 import java.sql.Date;
 
 public class RegistrationDates {
-	private Date phyRegDate;
-	private Date onlineRegDate;
+	private Date physicalRegistrationDate;
+	private Date onlineRegistrationDate;
 	
 	public RegistrationDates() {}
 	
-	public RegistrationDates(Date phyRegDate, Date onlineRegDate) {
-		this.setPhyRegDate(phyRegDate);
-		this.setOnlineRegDate(onlineRegDate);
-	}
-
-	public void setPhyRegDate(Date phyRegDate) {
-		this.phyRegDate = phyRegDate;
-	}
-
-	public void setOnlineRegDate(Date onlineRegDate) {
-		this.onlineRegDate = onlineRegDate;
+	public RegistrationDates(Date physicalRegistrationDate, Date onlineRegistrationDate) {
+		this.setPhysicalRegistrationDate(physicalRegistrationDate);
+		this.setOnlineRegistrationDate(onlineRegistrationDate);
 	}
 	
-	public Date getPhyRegDate() {
-		return this.phyRegDate;
+	public void setPhysicalRegistrationDate(Date physicalRegistrationDate) {
+		this.physicalRegistrationDate = physicalRegistrationDate;
 	}
 
-	public Date getOnlineRegDate() {
-		return this.onlineRegDate;
+	public void setOnlineRegistrationDate(Date onlineRegistrationDate) {
+		this.onlineRegistrationDate = onlineRegistrationDate;
+	}
+
+	public Date getPhysicalRegistrationDate() {
+		return physicalRegistrationDate;
+	}
+
+	public Date getOnlineRegistrationDate() {
+		return onlineRegistrationDate;
 	}
 }

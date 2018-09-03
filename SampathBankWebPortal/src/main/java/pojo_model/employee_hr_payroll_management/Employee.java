@@ -4,7 +4,7 @@ import pojo_model.employee_hr_payroll_management.managers.CommonEntityManager;
 import pojo_model.user_management.Person;
 
 //Entity
-public class Employee extends Person {
+public abstract class Employee extends Person {
 	private Department department; //Entity
 	private String designation;
 	private String companyEmail; //Auto Generated
