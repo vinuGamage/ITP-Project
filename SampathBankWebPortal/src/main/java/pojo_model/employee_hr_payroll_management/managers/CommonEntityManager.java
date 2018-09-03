@@ -45,7 +45,7 @@ public class CommonEntityManager {
 	
 	public Branch getBranch(String branch) {
 		if(branch.equalsIgnoreCase("MAHARAGAMA"))
-			return new Branch("ABCD0001", "87", "abc", "maharagama", "western", 10280);
+			return new Branch("ABCD0001", "87", "abc", "maharagama", "western", 10280, "as");
 		else
 			return new Branch();
 	}
