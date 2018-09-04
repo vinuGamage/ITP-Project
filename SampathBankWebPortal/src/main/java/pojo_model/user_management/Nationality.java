@@ -43,13 +43,13 @@ public class Nationality {
 		return person;
 	}
 	
-	public void setSinglePerson(Person person) {
-		person.setNationality(this);
-	}
-	
-	public void setMultiplePersons(Person... persons) {
-		for(Person person: persons) {
-			person.setNationality(this);
-		}
-	}
+//	public void setSinglePerson(Person person) {
+//		person.setNationality(this);
+//	}
+//	
+//	public void setMultiplePersons(Person... persons) {
+//		for(Person person: persons) {
+//			person.setNationality(this);
+//		}
+//	}
 }

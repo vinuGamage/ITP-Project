@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import="pojo_model.employee_hr_payroll_management.managers.CommonEntityManager,
+     pojo_model.user_management.Gender, java.util.Collection, pojo_model.user_management.Nationality, pojo_model.employee_hr_payroll_management.Branch
+     , pojo_model.employee_hr_payroll_management.Department, pojo_model.user_management.Role"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -15,6 +17,8 @@
     </head>
 
     <body>
+    <%	CommonEntityManager cem = (CommonEntityManager) session.getAttribute("cem");
+    %>
         <nav class="navbar fixed-top navbar-expand-md navbar-dark fixed-stuff">
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav mr-auto">
@@ -73,7 +77,7 @@
                     <li class="nav-item dropdown" title="Click to See Your Duties">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Recruit an Employee</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HrRecruitmentOfficer_RecruitAnEmployee.jsp" style="color:white">Recruit an Employee</a>
                             <a class="dropdown-item" href="#" style="color:white">Create Employee Online Account</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave Request Management</a>
@@ -190,9 +194,10 @@
                                 <label class="col-4 col-form-label" for="EmpForm01BasicDetails06">Gender:</label>
                                 <div class="col-8">
                                     <select class="custom-select mr-sm-2" id="EmpForm01BasicDetails06" name="empGender" required>
-                                        <option value="" disabled selected hidden>Choose...</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
+                                        <option value="" disabled selected hidden="true">Choose...</option>
+                                        <%for(Gender gender : (Collection<Gender>) cem.getGenderList()) {%>
+                                        <option value="<%=gender.getGender()%>"><%=gender.getGender()%></option>
+                                        <%} %>
                                     </select>
                                 </div>
                             </div>
@@ -221,7 +226,7 @@
                                 <label class="col-2 col-form-label" for="EmpForm01ContactDetails04">Province:</label>
                                 <div class="col-4">
                                     <select class="custom-select mr-sm-2" id="EmpForm01ContactDetails04" name="empAddProvince" required>
-                                        <option value="" disabled selected hidden>Choose...</option>
+                                        <option value="" disabled selected hidden="ture">Choose...</option>
                                         <option value="western">Western</option>
                                         <option value="eastern">Eastern</option>
                                         <option value="central">Central</option>
@@ -275,9 +280,9 @@
                                 <div class="col-8">
                                     <select class="custom-select mr-sm-2" id="EmpForm01Identification03" name="empNationality" required>
                                         <option value="" disabled selected hidden>Choose...</option>
-                                        <option value="sinhalese">Sinhalese</option>
-                                        <option value="tamil">Tamil</option>
-                                        <option value="muslim">Muslim</option>
+                                        <%for(Nationality nationality : (Collection<Nationality>) cem.getNationalityList()) {%>
+                                        <option value="<%=nationality.getNationality()%>"><%=nationality.getNationality()%></option>
+                                        <%} %>
                                     </select>
                                 </div>
                             </div>
@@ -314,14 +319,9 @@
                                 <div class="col-8">
                                     <select class="custom-select mr-sm-2" id="EmpForm01CompanyRelated01" name="empBranch" required>
                                         <option value="" disabled selected hidden>Choose...</option>
-                                        <option value="maharagama">Maharagama</option>
-                                        <option value="malabe">Malabe</option>
-                                        <option value="wellawatte">Wellawatte</option>
-                                        <option value="kottawa">Kottawa</option>
-                                        <option value="homagama">Homagama</option>
-                                        <option value="nugegoda">Nugegoda</option>
-                                        <option value="kaduwela">Kaduwela</option>
-                                        <option value="kadawatha">Kadawatha</option>
+                                        <%for(Branch branch : (Collection<Branch>) cem.getBranchList()) {%>
+                                        <option value="<%=branch.getBranchAddress().getAddressCity()%>"><%=branch.getBranchAddress().getAddressCity()%></option>
+                                        <%} %>
                                     </select>
                                 </div>
                             </div>
@@ -330,11 +330,9 @@
                                 <div class="col-8">
                                     <select class="custom-select mr-sm-2" id="EmpForm01CompanyRelated02" name="empDepartment" required>
                                         <option value="" disabled selected hidden>Choose...</option>
-                                        <option value="finance">Finance</option>
-                                        <option value="cardCente">Card Center</option>
-                                        <option value="it">IT</option>
-                                        <option value="loan">Loan</option>
-                                        <option value="lease">Lease</option>
+                                        <%for(Department department: (Collection<Department>) cem.getDepartmentList()) {%>
+                                        <option value="<%=department.getDepartmentName()%>"><%=department.getDepartmentName()%></option>
+                                        <%} %>
                                     </select>
                                 </div>
                             </div>
@@ -349,13 +347,16 @@
                                 <div class="col-8">
                                     <select class="custom-select mr-sm-2" id="EmpForm01CompanyRelated04" name="empRole" required>
                                         <option value="" disabled selected hidden>Choose...</option>
-                                        <option value="nrmlIntern">Normal Employee (Intern)</option>
-                                        <option value="nrmlJunior">Normal Employee (Junior)</option>
-                                        <option value="nrmlSenior">Normal Employee (Senior)</option>
-                                        <option value="admin">Administrator</option>
-                                        <option value="branchHead">Branch Head</option>
-                                        <option value="manager">Manager</option>
+                                        <%for(Role role: (Collection<Role>) cem.getRoleList()) {%>
+                                        <option value="<%=role.getRole()%>"><%=role.getRole()%></option>
+                                        <%} %>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" style="padding: 4px; padding-left: 16px">
+                                <label class="col-4 col-form-label" for="EmpForm01BasicDetails01">Recruitment Date:</label>
+                                <div class="col-8">
+                                    <input type="date" class="form-control" id="EmpForm01CompanyRelated05" name="empPhyRegDate">
                                 </div>
                             </div>
                         </div>

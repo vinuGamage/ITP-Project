@@ -39,13 +39,13 @@ public class Gender {
 		return this.person;
 	}
 	
-	public void setSinglePerson(Person person) {
-		person.setGender(this);
-	}
-	
-	public void setMultiplePersons(Person... persons) {
-		for(Person person: persons) {
-			person.setGender(this);
-		}
-	}
+//	public void setSinglePerson(Person person) {
+//		person.setGender(this);
+//	}
+//	
+//	public void setMultiplePersons(Person... persons) {
+//		for(Person person: persons) {
+//			person.setGender(this);
+//		}
+//	}
 }

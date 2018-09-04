@@ -10,6 +10,11 @@ public class Permission {
 	
 	public Permission() {}
 	
+	public Permission(int permissionLevel, String permissionType) {
+		this.setPermissionLevel(permissionLevel);
+		this.setPermissionType(permissionType);
+	}
+	
 	public Permission(String permissionType) {
 		this.setPermissionType(permissionType);
 	}
@@ -38,13 +43,13 @@ public class Permission {
 		return person;
 	}
 
-	public void setSinglePerson(Person person) {
-		person.setPermission(this);
-	}
-	
-	public void setMultiplePersons(Person... persons) {
-		for(Person person: persons) {
-			person.setPermission(this);
-		}
-	}
+//	public void setSinglePerson(Person person) {
+//		person.setPermission(this);
+//	}
+//	
+//	public void setMultiplePersons(Person... persons) {
+//		for(Person person: persons) {
+//			person.setPermission(this);
+//		}
+//	}
 }

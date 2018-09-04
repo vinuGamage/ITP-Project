@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 
 public class DateConverter {
 	
-	public Date getSqlDate(String date) {
+	public static Date getSqlDate(String date) {
 		java.util.Date date1 = null;
 		try {
 			date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
@@ -18,7 +18,13 @@ public class DateConverter {
 		return date01;
 	}
 	
-	public int getIntFromString(String number) {
+	public static Date getSqlCurrentTime() {
+		java.util.Date utilDate = new java.util.Date();
+	    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+	    return sqlDate;
+	}
+	
+	public static int getIntFromString(String number) {
 		int i = Integer.parseInt(number);
 		
 		return i;

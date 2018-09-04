@@ -26,7 +26,7 @@ public class Branch {
 	}
 
 	public void setBranchAddress(String addStreet01, String addStreet02, String addCity, String addProvince, int zipCode) {
-		this.branchAddress = new Address(addStreet01, addStreet02, addCity, addProvince, zipCode);
+		this.setBranchAddress(new Address(addStreet01, addStreet02, addCity, addProvince, zipCode));
 	}
 	
 	public void setBranchAddress(Address branchAddress) {

@@ -7,14 +7,16 @@ public class Role {
 	private int roleId;
 	private String roleGroup;
 	private String role;
+	private int permissionId;
 	private Collection<Person> person = new ArrayList<Person>();
 	
 	public Role() {}
 
-	public Role(int roleId,  String roleGroup, String role) {
+	public Role(int roleId,  String roleGroup, String role, int permissionId) {
 		this.setRoleId(roleId);
 		this.setRoleGroup(roleGroup);
 		this.setRole(role);
+		this.setPermissionId(permissionId);
 	}
 	
 	public Role(String role, String roleGroup) {
@@ -26,37 +28,49 @@ public class Role {
 		this.roleId = roleId;
 	}
 	
+	public void setRoleGroup(String roleGroup) {
+		this.roleGroup = roleGroup;
+	}
+	
 	public void setRole(String role) {
 		this.role = role;
 	}
-
-	public void setRoleGroup(String roleGroup) {
-		this.roleGroup = roleGroup;
+	
+	public void setPermissionId(int permissionId) {
+		this.permissionId = permissionId;
 	}
 	
 	public void setPerson(Collection<Person> person) {
 		this.person = person;
 	}
-	
-	public String getRole() {
-		return this.role;
+
+	public int getRoleId() {
+		return roleId;
 	}
 
 	public String getRoleGroup() {
 		return this.roleGroup;
 	}
 	
+	public String getRole() {
+		return this.role;
+	}
+	
+	public int getPermissionId() {
+		return permissionId;
+	}
+	
 	public Collection<Person> getPerson() {
 		return person;
 	}
 	
-	public void setSinglePerson(Person person) {
-		person.setRole(this);
-	}
-	
-	public void setMultiplePersons(Person... persons) {
-		for(Person person: persons) {
-			person.setRole(this);
-		}
-	}
+//	public void setSinglePerson(Person person) {
+//		person.setRole(this);
+//	}
+//	
+//	public void setMultiplePersons(Person... persons) {
+//		for(Person person: persons) {
+//			person.setRole(this);
+//		}
+//	}
 }

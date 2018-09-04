@@ -7,10 +7,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import dao_service.CommonEntityAccessorDAO;
+import dao_service.UpdateDAO;
 import pojo_model.employee_hr_payroll_management.Validator.Validator;
+import pojo_model.employee_hr_payroll_management.converters.DateConverter;
 import pojo_model.employee_hr_payroll_management.Employee;
 import pojo_model.employee_hr_payroll_management.exceptions.EmployeeRegistrationException;
+import pojo_model.employee_hr_payroll_management.managers.CommonEntityManager;
 
 
 public class EmployeeRecruitment extends HttpServlet {
@@ -41,6 +46,7 @@ public class EmployeeRecruitment extends HttpServlet {
 		String empDepartment = request.getParameter("empDepartment");
 		String empDesignation = request.getParameter("empDesignation");
 		String empRole = request.getParameter("empRole");
+		String empPhyRegDate = request.getParameter("empRole");
 		
 		//Testing......
 		boolean validated = false;
@@ -54,13 +60,19 @@ public class EmployeeRecruitment extends HttpServlet {
 			String error = e.getDescription();
 			   out.println("<script type=\"text/javascript\">");
 			   out.println("alert('" + error + "');");
-			   out.println("location='/SampathBankWebPortal/jsp/employee_hr_payroll_management/trials/EHPM_HrRecruitmentOfficer_RecruitAnEmployee.jsp';");
+			   out.println("location='/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HrRecruitmentOfficer_RecruitAnEmployee.jsp';");
 			   out.println("</script>");
 		}
 		System.out.println(validated);
 		
-		Employee employee = new Employee(empFirstName, empMiddleName, empLastName, empOtherNames, empAddLine01, empAddLine02, empAddCity, 
-				empAddProvince, Integer.parseInt(empAddZip.trim()), empPersonalEmail, empHomeContact, empMobileContact, empGender, empNic, empNationality, 
-				empDob, empRole, empBranch, empDepartment, empDesignation);
+		HttpSession session = request.getSession();
+		CommonEntityManager cem = (CommonEntityManager) session.getAttribute("cem");
+		
+		Employee employee = new Employee(empFirstName, empMiddleName, empLastName, empOtherNames,empAddLine01, 
+				empAddLine02, empAddCity, empAddProvince, empAddZip, empPhyRegDate, empPersonalEmail, empGender, empNic, empNationality, 
+				empDob, empBranch, empRole, empHomeContact, empMobileContact, empDepartment, empDesignation, cem);
+		
+		if(UpdateDAO.storeEmployee(employee))
+			response.sendRedirect("UM_Homepage_Common.jsp");
 	}
 }

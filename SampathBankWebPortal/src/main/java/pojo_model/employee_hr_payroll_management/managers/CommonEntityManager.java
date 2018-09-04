@@ -3,57 +3,107 @@ package pojo_model.employee_hr_payroll_management.managers;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import dao_service.CommonEntityAccessorDAO;
 import pojo_model.employee_hr_payroll_management.Branch;
 import pojo_model.employee_hr_payroll_management.Department;
 import pojo_model.user_management.Gender;
 import pojo_model.user_management.Nationality;
+import pojo_model.user_management.Permission;
 import pojo_model.user_management.Role;
 
 public class CommonEntityManager {
-	private Collection<Gender> genderList = new ArrayList<Gender> ();
-	private Collection<Nationality> nationalityList = new ArrayList<Nationality> ();
-	private Collection<Role> roleList = new ArrayList<Role> ();
-	private Collection<Branch> BranchList = new ArrayList<Branch> ();
-	private Collection<Department> DepartmentList = new ArrayList<Department> ();
+	private static Collection<Gender> genderList = new ArrayList<Gender> ();
+	private static Collection<Nationality> nationalityList = new ArrayList<Nationality> ();
+	private static Collection<Role> roleList = new ArrayList<Role> ();
+	private static Collection<Permission> permissionList = new ArrayList<Permission> ();
+	private static Collection<Branch> branchList = new ArrayList<Branch> ();
+	private static Collection<Department> departmentList = new ArrayList<Department> ();
 	
-	public Gender getGender(String gender) {
-		if(gender.equalsIgnoreCase("MALE"))
-			return new Gender(1, "male");
-		else if(gender.equalsIgnoreCase("FEMALE"))
-			return new Gender(2, "female");
-		else
-			return new Gender();
+	public CommonEntityManager() {
+		CommonEntityAccessorDAO.initializeCommonPojoClasses();
+		genderList = CommonEntityAccessorDAO.getGenderList();
+		nationalityList = CommonEntityAccessorDAO.getNationalityList();
+		roleList = CommonEntityAccessorDAO.getRoleList();
+		permissionList = CommonEntityAccessorDAO.getPermissionList();
+		branchList = CommonEntityAccessorDAO.getBranchList();
+		departmentList = CommonEntityAccessorDAO.getDepartmentList();
+		for(Nationality nationality : getNationalityList())
+			System.out.println(nationality.getNationality());
 	}
 	
-	public Nationality getNationality(String nationality) {
-		if(nationality.equalsIgnoreCase("SINHALESE"))
-			return new Nationality(1, "sinhala");
-		else if(nationality.equalsIgnoreCase("TAMIL"))
-			return new Nationality(2, "tamil");
-		else if(nationality.equalsIgnoreCase("MUSLIM"))
-			return new Nationality(3, "muslim");
-		else
-			return new Nationality();	
+	public int getGenderId(String gender) {
+		for(Gender genderObj : genderList) {
+			if(gender.equalsIgnoreCase(genderObj.getGender()))
+				return genderObj.getGenderId();
+		}
+		return 0;
 	}
 	
-	public Role getRole(String role) {
-		if(role.equalsIgnoreCase("NORMAL EMPLOYEE"))
-			return new Role(1, "normal employee", "employee");
-		else
-			return new Role();
+	public int getNationalityId(String nationality) {
+		for(Nationality nationalityObj : nationalityList) {
+			if(nationality.equalsIgnoreCase(nationalityObj.getNationality()))
+				return nationalityObj.getNationalityId();
+		}
+		
+		return 0;
 	}
 	
-	public Branch getBranch(String branch) {
-		if(branch.equalsIgnoreCase("MAHARAGAMA"))
-			return new Branch("ABCD0001", "87", "abc", "maharagama", "western", 10280, "as");
-		else
-			return new Branch();
+	public int getRoleId(String role) {
+		for(Role roleObj : roleList) {
+			if(role.equalsIgnoreCase(roleObj.getRole()))
+				return roleObj.getRoleId();
+		}
+		
+		return 0;
 	}
 	
-	public Department getDepartment(String department) {
-		if(department.equalsIgnoreCase("IT"))
-				return new Department("it");
-		else
-			return new Department();
+	public String getRoleGroup(String role) {
+		for(Role roleObj : roleList) {
+			if(role.equalsIgnoreCase(roleObj.getRole()))
+				return roleObj.getRoleGroup();
+		}
+		
+		return null;
+	}
+	
+	public String getBranchId(String branchCity) {
+		for(Branch branchObj : branchList) {
+			if(branchCity.equalsIgnoreCase(branchObj.getBranchAddress().getAddressCity()))
+				return branchObj.getBranchId();
+		}
+		
+		return null;
+	}
+	
+	public String getDepartmentId(String department, String branchId) {
+		for(Department deptObj : departmentList) {
+			if(branchId.equals(deptObj.getBranchId()) && department.equalsIgnoreCase(deptObj.getDepartmentName()))
+				return deptObj.getDepartmentId();
+		}
+		return null;
+	}
+	
+	public Collection<Gender> getGenderList() {
+		return genderList;
+	}
+	
+	public Collection<Nationality> getNationalityList() {
+		return nationalityList;
+	}
+	
+	public Collection<Role> getRoleList() {
+		return roleList;
+	}
+	
+	public Collection<Permission> getPermissionList() {
+		return permissionList;
+	}
+	
+	public Collection<Branch> getBranchList() {
+		return branchList;
+	}
+	
+	public Collection<Department> getDepartmentList() {
+		return departmentList;
 	}
 }

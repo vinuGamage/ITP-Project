@@ -5,16 +5,16 @@ import java.util.Collection;
 
 public class Department {
 	private String departmentId;
-	private Branch branch;
+	private String branchId;
 	private String departmentName;
 	private Collection<Employee> employeeList = new ArrayList<Employee> ();
 	private Collection<String> contactNumber = new ArrayList<String> ();
 
 	public Department() {}
 	
-	public Department(String departmentId, Branch branch, String departmentName) {
+	public Department(String departmentId, String branchId, String departmentName) {
 		this.setDepartmentId(departmentId);
-		this.setBranch(branch);
+		this.setBranchId(branchId);
 		this.setDepartmentName(departmentName);
 	}
 
@@ -26,8 +26,8 @@ public class Department {
 		this.setDepartmentName(departmentName);
 	}
 	
-	public void setBranch(Branch branch) {
-		this.branch = branch;
+	public void setBranchId(String branchId) {
+		this.branchId = branchId;
 	}
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
@@ -37,8 +37,8 @@ public class Department {
 		return departmentId;
 	}
 	
-	public Branch getBranch() {
-		return branch;
+	public String getBranchId() {
+		return branchId;
 	}
 	
 	public String getDepartmentName() {
