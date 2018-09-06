@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionManager {
-	private static String url = "jdbc:mysql://localhost:3306/sampath_web_portal_itp_2018_mlb_g3_10_version_beginner?autoReconnect=true&useSSL=false";
+	private static String url = "jdbc:mysql://localhost:3306/itp_2018_mlb_g3_10_sampath_web_portal?autoReconnect=true&useSSL=false";
 	private static String username = "ITP";
 	private static String password = "thisstuff";
 	

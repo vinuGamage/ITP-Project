@@ -9,7 +9,7 @@
 </head>
 <body>
 LOGIN PORTAL
-	<form action="/SampathBankWebPortal/CommonEntityFetcher" method="post">
+	<form action="/SampathBankWebPortal/LoginController" method="post">
 		<input type="text" name="username"/>
 		<input type="password" name="password"/>
 		<input type="submit" name="loginButton" value="LOGIN"/>
