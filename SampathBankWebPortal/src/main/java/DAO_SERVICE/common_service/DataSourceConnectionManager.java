@@ -37,7 +37,7 @@
 //	}
 //}
 
-package dao_service.common_service;
+package DAO_SERVICE.common_service;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

@@ -1,4 +1,4 @@
-package pojo_model.employee_hr_payroll_management.generators;
+package POJO_MODEL.employee_hr_payroll_management.generators;
 
 import dao_service.RetrieveDAO;
 

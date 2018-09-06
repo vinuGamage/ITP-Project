@@ -1,4 +1,4 @@
-package dao_service.common_service;
+package DAO_SERVICE.common_service;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
