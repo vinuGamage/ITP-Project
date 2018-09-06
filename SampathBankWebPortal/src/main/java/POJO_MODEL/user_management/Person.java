@@ -10,7 +10,7 @@ public abstract class Person {
 	private String nic;								//Attribute
 	private Date dateOfBirth;						//Attribute
 	private String personalEmail;					//Attribute
-	private int registrationDatesId;				//Entity Reference
+	private RegistrationDates registrationDates;	//Embedded
 	private int genderId;							//Entity Reference
 	private int nationalityId;						//Entity Reference
 	private String branchId;						//Entity Reference
@@ -19,9 +19,9 @@ public abstract class Person {
 	
 	public Person() {}
 
-	public Person(String personId, Name name, Address address, String nic, RegistrationDates registrationDates,
-			Date dateOfBirth, String personalEmail, int contact, int registrationDatesId,  int genderId, int nationalityId, 
-			String branchId, int onlineSecurityId, int permissionLevel) {
+	public Person(String personId, Name name, Address address, String nic, Date dateOfBirth, String personalEmail, 
+			RegistrationDates registrationDates, int genderId, int nationalityId, String branchId, int onlineSecurityId, 
+			int permissionLevel) {
 
 	}
 
@@ -73,12 +73,12 @@ public abstract class Person {
 		this.personalEmail = personalEmail;
 	}
 
-	public int getRegistrationDatesId() {
-		return registrationDatesId;
+	public RegistrationDates getRegistrationDates() {
+		return registrationDates;
 	}
 
-	public void setRegistrationDatesId(int registrationDatesId) {
-		this.registrationDatesId = registrationDatesId;
+	public void setRegistrationDates(RegistrationDates registrationDates) {
+		this.registrationDates = registrationDates;
 	}
 
 	public int getGenderId() {

@@ -18,13 +18,11 @@ public abstract class Employee extends Person {
 		super();
 	}
 	
-	public Employee(String personId, Name name, Address address, String nic, RegistrationDates registrationDates,
-			Date dateOfBirth, String personalEmail, int contact, int registrationDatesId, int genderId,
-			int nationalityId, String branchId, int onlineSecurityId, int permissionLevel, String departmentId, 
-			String companyEmail,int designationId, String employeeType) {
-		super(personId, name, address, nic, registrationDates, dateOfBirth, personalEmail, contact, registrationDatesId,
-				genderId, nationalityId, branchId, onlineSecurityId, permissionLevel);
-		
+	public Employee(String personId, Name name, Address address, String nic, Date dateOfBirth, String personalEmail,
+			RegistrationDates registrationDates, int genderId, int nationalityId, String branchId, int onlineSecurityId,
+			int permissionLevel, String departmentId, String companyEmail, int designation, String employeeType) {
+		super(personId, name, address, nic, dateOfBirth, personalEmail, registrationDates, genderId, nationalityId, branchId,
+				onlineSecurityId, permissionLevel);
 		this.setDepartmentId(departmentId);
 		this.setCompanyEmail(companyEmail);
 		this.setDesignationId(designationId);

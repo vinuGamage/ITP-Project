@@ -1,4 +1,4 @@
-package pojo_model.employee_hr_payroll_management.managers;
+/*package pojo_model.employee_hr_payroll_management.managers;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -106,4 +106,4 @@ public class CommonEntityManager {
 	public Collection<Department> getDepartmentList() {
 		return departmentList;
 	}
-}
+}*/
