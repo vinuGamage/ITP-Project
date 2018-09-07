@@ -1,16 +1,33 @@
 package POJO_MODEL.employee_hr_payroll_management;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class Department {
-	private String branchId;
+	private Branch branch;
 	private String departmentId;
 	private String departmentName;
 	
+	//Back Reference
+	private Collection<NormalEmployee> normalEmployeeList = new ArrayList<NormalEmployee> ();
+	private Collection<Manager> managerList = new ArrayList<Manager> ();
+	private Collection<Head> headList = new ArrayList<Head> ();
+	private Collection<Admin> adminList = new ArrayList<Admin> ();
+	
 	public Department() {}
 	
-	public Department(String branchId, String departmentId, String departmentName) {
-		this.setBranchId(branchId);
+	public Department(Branch branch, String departmentId, String departmentName) {
+		this.setBranch(branch);
 		this.setDepartmentId(departmentId);
 		this.setDepartmentName(departmentName);
+	}
+	
+	public Branch getBranch() {
+		return branch;
+	}
+
+	public void setBranch(Branch branch) {
+		this.branch = branch;
 	}
 
 	public void setDepartmentId(String departmentId) {
@@ -21,9 +38,6 @@ public class Department {
 		this.setDepartmentName(departmentName);
 	}
 	
-	public void setBranchId(String branchId) {
-		this.branchId = branchId;
-	}
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
 	}
@@ -32,11 +46,39 @@ public class Department {
 		return departmentId;
 	}
 	
-	public String getBranchId() {
-		return branchId;
-	}
-	
 	public String getDepartmentName() {
 		return departmentName;
+	}
+
+	public Collection<NormalEmployee> getNormalEmployeeList() {
+		return normalEmployeeList;
+	}
+
+	public void setNormalEmployeeList(Collection<NormalEmployee> normalEmployeeList) {
+		this.normalEmployeeList = normalEmployeeList;
+	}
+
+	public Collection<Manager> getManagerList() {
+		return managerList;
+	}
+
+	public void setManagerList(Collection<Manager> managerList) {
+		this.managerList = managerList;
+	}
+
+	public Collection<Head> getHeadList() {
+		return headList;
+	}
+
+	public void setHeadList(Collection<Head> headList) {
+		this.headList = headList;
+	}
+
+	public Collection<Admin> getAdminList() {
+		return adminList;
+	}
+
+	public void setAdminList(Collection<Admin> adminList) {
+		this.adminList = adminList;
 	}
 }

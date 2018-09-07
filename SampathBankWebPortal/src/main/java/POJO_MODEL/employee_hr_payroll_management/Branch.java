@@ -1,5 +1,8 @@
 package POJO_MODEL.employee_hr_payroll_management;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import POJO_MODEL.user_management.Address;
 
 public class Branch {
@@ -7,6 +10,12 @@ public class Branch {
 	private Address branchAddress;
 	private String branchEmail;
 
+	//Back Reference
+	private Collection<NormalEmployee> normalEmployeeList = new ArrayList<NormalEmployee> ();
+	private Collection<Manager> managerList = new ArrayList<Manager> ();
+	private Collection<Head> headList = new ArrayList<Head> ();
+	private Collection<Admin> adminList = new ArrayList<Admin> ();
+	
 	public Branch() {}
 
 	public Branch(String branchId, Address branchAddress, String branchEmail) {
@@ -15,6 +24,12 @@ public class Branch {
 		this.branchEmail = branchEmail;
 	}
 
+	public Branch(String branchId, String addressStreet01, String addressStreet02, String addressCity, String addressProvince, 
+			int addressZipCode, String branchEmail) {
+		this.setBranchId(branchId);
+		this.setBranchAddress(new Address(addressStreet01, addressStreet02, addressCity, addressProvince, addressZipCode));
+	}
+	
 	public String getBranchId() {
 		return branchId;
 	}
@@ -38,10 +53,42 @@ public class Branch {
 	public void setBranchEmail(String branchEmail) {
 		this.branchEmail = branchEmail;
 	}
-	
-	//======================================================================================================================
-	public void setBranchAddress(String addressStreet01, String addressStreet02, String addressCity, String addressProvince, 
-			int addressZipCode) {
-		this.setBranchAddress(new Address(addressStreet01, addressStreet02, addressCity, addressProvince, addressZipCode));
+
+	public Collection<NormalEmployee> getNormalEmployeeList() {
+		return normalEmployeeList;
 	}
+
+	public void setNormalEmployeeList(Collection<NormalEmployee> normalEmployeeList) {
+		this.normalEmployeeList = normalEmployeeList;
+	}
+
+	public Collection<Manager> getManagerList() {
+		return managerList;
+	}
+
+	public void setManagerList(Collection<Manager> managerList) {
+		this.managerList = managerList;
+	}
+
+	public Collection<Head> getHeadList() {
+		return headList;
+	}
+
+	public void setHeadList(Collection<Head> headList) {
+		this.headList = headList;
+	}
+
+	public Collection<Admin> getAdminList() {
+		return adminList;
+	}
+
+	public void setAdminList(Collection<Admin> adminList) {
+		this.adminList = adminList;
+	}
+
+	//======================================================================================================================
+//	public void setBranchAddress(String addressStreet01, String addressStreet02, String addressCity, String addressProvince, 
+//			int addressZipCode) {
+//		this.setBranchAddress(new Address(addressStreet01, addressStreet02, addressCity, addressProvince, addressZipCode));
+//	}
 }

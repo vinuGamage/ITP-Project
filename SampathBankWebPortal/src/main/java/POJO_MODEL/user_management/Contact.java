@@ -6,12 +6,6 @@ public class Contact {
 	private String type;			//Attribute
 	
 	public Contact() {}
-
-	public Contact(int personId, String contactNumber, String type) {
-		this.setPersonId(personId);
-		this.setContactNumber(contactNumber);
-		this.setType(type);
-	}
 	
 	public int getPersonId() {
 		return personId;

@@ -17,6 +17,10 @@ public class LoginController extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
+		if(username.equals("abc") && password.equals("123")) {
+			response.sendRedirect("/SampathBankWebPortal/jsp/empployee_hr_payroll_management.jsp");
+			
+		}
 		
 	}
 }

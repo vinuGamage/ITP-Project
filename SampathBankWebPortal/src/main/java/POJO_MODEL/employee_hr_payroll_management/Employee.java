@@ -9,32 +9,21 @@ import POJO_MODEL.user_management.RegistrationDates;
 
 //Entity
 public abstract class Employee extends Person {
-	private String departmentId;	//Entity
+	private Department department;		//Entity
 	private String companyEmail; 
-	private int designationId;		//Entity
+	private Designation designation;	//Entity
 	private String employeeType;
 	
 	public Employee() {
 		super();
 	}
-	
-	public Employee(String personId, Name name, Address address, String nic, Date dateOfBirth, String personalEmail,
-			RegistrationDates registrationDates, int genderId, int nationalityId, String branchId, int onlineSecurityId,
-			int permissionLevel, String departmentId, String companyEmail, int designation, String employeeType) {
-		super(personId, name, address, nic, dateOfBirth, personalEmail, registrationDates, genderId, nationalityId, branchId,
-				onlineSecurityId, permissionLevel);
-		this.setDepartmentId(departmentId);
-		this.setCompanyEmail(companyEmail);
-		this.setDesignationId(designationId);
-		this.setEmployeeType(employeeType);
+
+	public Department getDepartment() {
+		return department;
 	}
 
-	public String getDepartmentId() {
-		return departmentId;
-	}
-
-	public void setDepartmentId(String departmentId) {
-		this.departmentId = departmentId;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 	public String getCompanyEmail() {
@@ -45,12 +34,12 @@ public abstract class Employee extends Person {
 		this.companyEmail = companyEmail;
 	}
 
-	public int getDesignationId() {
-		return designationId;
+	public Designation getDesignation() {
+		return designation;
 	}
 
-	public void setDesignationId(int designationId) {
-		this.designationId = designationId;
+	public void setDesignation(Designation designation) {
+		this.designation = designation;
 	}
 
 	public String getEmployeeType() {

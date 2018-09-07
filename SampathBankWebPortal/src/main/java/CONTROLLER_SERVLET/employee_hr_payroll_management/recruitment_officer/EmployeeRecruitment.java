@@ -1,4 +1,4 @@
-package controller_servlet.employee_hr_payroll_management.recruitment_officer;
+package CONTROLLER_SERVLET.employee_hr_payroll_management.recruitment_officer;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,14 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao_service.CommonEntityAccessorDAO;
-import dao_service.UpdateDAO;
-import pojo_model.employee_hr_payroll_management.Validator.Validator;
-import pojo_model.employee_hr_payroll_management.converters.DateConverter;
-import pojo_model.employee_hr_payroll_management.Employee;
-import pojo_model.employee_hr_payroll_management.exceptions.EmployeeRegistrationException;
-import pojo_model.employee_hr_payroll_management.managers.CommonEntityManager;
-
+import POJO_MODEL.employee_hr_payroll_management.Validator.Validator;
 
 public class EmployeeRecruitment extends HttpServlet {
 	private static final long serialVersionUID = 1L;

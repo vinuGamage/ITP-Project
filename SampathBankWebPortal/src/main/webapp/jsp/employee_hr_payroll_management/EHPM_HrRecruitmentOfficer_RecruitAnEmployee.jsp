@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="pojo_model.employee_hr_payroll_management.managers.CommonEntityManager,
-     pojo_model.user_management.Gender, java.util.Collection, pojo_model.user_management.Nationality, pojo_model.employee_hr_payroll_management.Branch
-     , pojo_model.employee_hr_payroll_management.Department, pojo_model.user_management.Role"%>
+    pageEncoding="ISO-8859-1" import=""%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -17,8 +15,6 @@
     </head>
 
     <body>
-    <%	CommonEntityManager cem = (CommonEntityManager) session.getAttribute("cem");
-    %>
         <nav class="navbar fixed-top navbar-expand-md navbar-dark fixed-stuff">
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav mr-auto">

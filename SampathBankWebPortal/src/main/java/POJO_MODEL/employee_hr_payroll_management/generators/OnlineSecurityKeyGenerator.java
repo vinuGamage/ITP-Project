@@ -1,9 +1,7 @@
-package pojo_model.employee_hr_payroll_management.generators;
+package POJO_MODEL.employee_hr_payroll_management.generators;
 
 import java.nio.charset.Charset;
 import java.util.Random;
-
-import dao_service.RetrieveDAO;
 
 public class OnlineSecurityKeyGenerator {
 	public String generateOnlineSecurityKey() {

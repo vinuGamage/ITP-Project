@@ -1,6 +1,10 @@
 package POJO_MODEL.user_management;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import POJO_MODEL.employee_hr_payroll_management.Branch;
 
 //Entity
 public abstract class Person {
@@ -11,20 +15,15 @@ public abstract class Person {
 	private Date dateOfBirth;						//Attribute
 	private String personalEmail;					//Attribute
 	private RegistrationDates registrationDates;	//Embedded
-	private int genderId;							//Entity Reference
-	private int nationalityId;						//Entity Reference
-	private String branchId;						//Entity Reference
-	private int onlineSecurityId;					//Entity Reference
-	private int permissionLevel;					//Entity Reference
+	private Gender gender;							//Entity Reference
+	private Nationality nationality;				//Entity Reference
+	private Branch branch;							//Entity Reference
+	private OnlineSecurityKey onlineSecurityKey;	//Entity Reference
+	private Permission permission;					//Entity Reference
+	private Collection<Contact> contactList = new ArrayList<Contact>();	//contact set
 	
 	public Person() {}
-
-	public Person(String personId, Name name, Address address, String nic, Date dateOfBirth, String personalEmail, 
-			RegistrationDates registrationDates, int genderId, int nationalityId, String branchId, int onlineSecurityId, 
-			int permissionLevel) {
-
-	}
-
+	
 	public String getPersonId() {
 		return personId;
 	}
@@ -81,44 +80,52 @@ public abstract class Person {
 		this.registrationDates = registrationDates;
 	}
 
-	public int getGenderId() {
-		return genderId;
+	public Gender getGender() {
+		return gender;
 	}
 
-	public void setGenderId(int genderId) {
-		this.genderId = genderId;
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
 
-	public int getNationalityId() {
-		return nationalityId;
+	public Nationality getNationality() {
+		return nationality;
 	}
 
-	public void setNationalityId(int nationalityId) {
-		this.nationalityId = nationalityId;
+	public void setNationality(Nationality nationality) {
+		this.nationality = nationality;
 	}
 
-	public String getBranchId() {
-		return branchId;
+	public Branch getBranch() {
+		return branch;
 	}
 
-	public void setBranchId(String branchId) {
-		this.branchId = branchId;
+	public void setBranch(Branch branch) {
+		this.branch = branch;
 	}
 
-	public int getOnlineSecurityId() {
-		return onlineSecurityId;
+	public OnlineSecurityKey getOnlineSecurityKey() {
+		return onlineSecurityKey;
 	}
 
-	public void setOnlineSecurityId(int onlineSecurityId) {
-		this.onlineSecurityId = onlineSecurityId;
-	}
-	
-	public int getPermissionLevel() {
-		return permissionLevel;
+	public void setOnlineSecurityKey(OnlineSecurityKey onlineSecurityKey) {
+		this.onlineSecurityKey = onlineSecurityKey;
 	}
 
-	public void setPermissionLevel(int permissionLevel) {
-		this.permissionLevel = permissionLevel;
+	public Permission getPermission() {
+		return permission;
+	}
+
+	public void setPermission(Permission permission) {
+		this.permission = permission;
+	}
+
+	public Collection<Contact> getContactList() {
+		return contactList;
+	}
+
+	public void setContactList(Collection<Contact> contactList) {
+		this.contactList = contactList;
 	}
 
 	//======================================================================================================================

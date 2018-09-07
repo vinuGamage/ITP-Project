@@ -3,7 +3,7 @@ package POJO_MODEL.user_management;
 public class OnlineSecurityKey {
 	private int onlineSecurityId;
 	private String onlineSecurityKey;
-
+	
 	public OnlineSecurityKey() {}
 
 	public OnlineSecurityKey(int onlineSecurityId, String onlineSecurityKey) {

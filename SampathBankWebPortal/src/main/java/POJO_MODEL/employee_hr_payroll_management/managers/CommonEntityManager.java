@@ -1,34 +1,36 @@
-/*package pojo_model.employee_hr_payroll_management.managers;
+package POJO_MODEL.employee_hr_payroll_management.managers;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import dao_service.CommonEntityAccessorDAO;
-import pojo_model.employee_hr_payroll_management.Branch;
-import pojo_model.employee_hr_payroll_management.Department;
-import pojo_model.user_management.Gender;
-import pojo_model.user_management.Nationality;
-import pojo_model.user_management.Permission;
-import pojo_model.user_management.Role;
+import DAO_SERVICE.employee_hr_payroll_management.CommonEntityAccessorDAO;
+import POJO_MODEL.employee_hr_payroll_management.Branch;
+import POJO_MODEL.employee_hr_payroll_management.Department;
+import POJO_MODEL.employee_hr_payroll_management.Designation;
+import POJO_MODEL.user_management.Gender;
+import POJO_MODEL.user_management.Nationality;
+import POJO_MODEL.user_management.Permission;
 
 public class CommonEntityManager {
 	private static Collection<Gender> genderList = new ArrayList<Gender> ();
 	private static Collection<Nationality> nationalityList = new ArrayList<Nationality> ();
-	private static Collection<Role> roleList = new ArrayList<Role> ();
 	private static Collection<Permission> permissionList = new ArrayList<Permission> ();
 	private static Collection<Branch> branchList = new ArrayList<Branch> ();
 	private static Collection<Department> departmentList = new ArrayList<Department> ();
+	private static Collection<Designation> designationList = new ArrayList<Designation> ();
 	
 	public CommonEntityManager() {
-		CommonEntityAccessorDAO.initializeCommonPojoClasses();
-		genderList = CommonEntityAccessorDAO.getGenderList();
-		nationalityList = CommonEntityAccessorDAO.getNationalityList();
-		roleList = CommonEntityAccessorDAO.getRoleList();
-		permissionList = CommonEntityAccessorDAO.getPermissionList();
-		branchList = CommonEntityAccessorDAO.getBranchList();
-		departmentList = CommonEntityAccessorDAO.getDepartmentList();
-		for(Nationality nationality : getNationalityList())
-			System.out.println(nationality.getNationality());
+		CommonEntityAccessorDAO CEA = new CommonEntityAccessorDAO();
+		CEA.initializeCommonPojoClasses(this);
+		genderList = CEA.getGenderList();
+		nationalityList = CEA.getNationalityList();
+		permissionList = CEA.getPermissionList();
+		branchList = CEA.getBranchList();
+		
+		if(branchList != null)
+			departmentList = CEA.getDepartmentList();
+		
+		designationList = CEA.getDesignationList();
 	}
 	
 	public int getGenderId(String gender) {
@@ -48,7 +50,7 @@ public class CommonEntityManager {
 		return 0;
 	}
 	
-	public int getRoleId(String role) {
+/*	public int getRoleId(String role) {
 		for(Role roleObj : roleList) {
 			if(role.equalsIgnoreCase(roleObj.getRole()))
 				return roleObj.getRoleId();
@@ -64,7 +66,7 @@ public class CommonEntityManager {
 		}
 		
 		return null;
-	}
+	}*/
 	
 	public String getBranchId(String branchCity) {
 		for(Branch branchObj : branchList) {
@@ -83,16 +85,22 @@ public class CommonEntityManager {
 		return null;
 	}
 	
+	public Branch getBranch(String branchId) {
+		Branch branch1 = null;
+		for(Branch branch2: branchList) {
+			if(branch2.getBranchId().equals(branchId))
+				branch1 = branch2;
+		}
+		
+		return branch1;
+	}
+	
 	public Collection<Gender> getGenderList() {
 		return genderList;
 	}
 	
 	public Collection<Nationality> getNationalityList() {
 		return nationalityList;
-	}
-	
-	public Collection<Role> getRoleList() {
-		return roleList;
 	}
 	
 	public Collection<Permission> getPermissionList() {
@@ -106,4 +114,4 @@ public class CommonEntityManager {
 	public Collection<Department> getDepartmentList() {
 		return departmentList;
 	}
-}*/
+}
