@@ -317,4 +317,62 @@ public class CommonEntityAccessorDAO {
 	public Collection<Department> getDepartmentList() {
 		return this.departmentList;
 	}
+
+	private void initializeDesignations() {
+		ConnectionPoolManager cpmObj = new ConnectionPoolManager();
+
+		PreparedStatement EHPM_Prst0004 = null;
+		ResultSet EHPM_ResultSet0004 = null;
+		Branch branch = null;
+		
+		try {
+			DataSource dataSource = cpmObj.initializePool();
+			cpmObj.printDatabaseStatus();
+			
+			con = dataSource.getConnection();
+			cpmObj.printDatabaseStatus();
+			
+			EHPM_Prst0004 = con.prepareStatement(EHPMQueries.EHPMquery0014);
+			EHPM_ResultSet0004 = EHPM_Prst0004.executeQuery();
+			
+			int i = 0;
+			while(EHPM_ResultSet0004.next()) {
+				i++;
+				branch = new Branch(EHPM_ResultSet0004.getString(1), EHPM_ResultSet0004.getString(2), EHPM_ResultSet0004.getString(3),
+						EHPM_ResultSet0004.getString(4), EHPM_ResultSet0004.getString(5), EHPM_ResultSet0004.getInt(6), EHPM_ResultSet0004.getString(7));
+				System.out.println(EHPM_ResultSet0004.getString(1) + ", " + EHPM_ResultSet0004.getString(2) + ", " + EHPM_ResultSet0004.getString(3) + ", " + 
+						EHPM_ResultSet0004.getString(4) + ", " + EHPM_ResultSet0004.getString(5) + ", " + EHPM_ResultSet0004.getInt(6) + ", " + EHPM_ResultSet0004.getString(7));
+				insertBranchList(branch);
+			}
+			if(i == 0)
+				branchList = null;
+		} catch(SQLException sqlException) {
+			sqlException.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(EHPM_ResultSet0004 != null)
+					EHPM_ResultSet0004.close();
+				
+				if(EHPM_Prst0004 != null)
+					EHPM_Prst0004.close();
+				
+				if(con != null)
+					con.close();
+			} catch(SQLException sqlException) {
+				sqlException.printStackTrace();
+			}
+		}
+		cpmObj.printDatabaseStatus();
+	}
+	
+	private void insertBranchList(Branch branch) {
+		branchList.add(branch);
+	}
+	
+	public Collection<Branch> getBranchList() {
+		return this.branchList;
+	}
+	
 }
