@@ -12,6 +12,7 @@ import POJO_MODEL.user_management.Nationality;
 import POJO_MODEL.user_management.Permission;
 
 public class CommonEntityManager {
+	private static CommonEntityManager commonEntityManager;
 	private static Collection<Gender> genderList = new ArrayList<Gender> ();
 	private static Collection<Nationality> nationalityList = new ArrayList<Nationality> ();
 	private static Collection<Permission> permissionList = new ArrayList<Permission> ();
@@ -19,7 +20,7 @@ public class CommonEntityManager {
 	private static Collection<Department> departmentList = new ArrayList<Department> ();
 	private static Collection<Designation> designationList = new ArrayList<Designation> ();
 	
-	public CommonEntityManager() {
+	private CommonEntityManager() {
 		CommonEntityAccessorDAO CEA = new CommonEntityAccessorDAO();
 		CEA.initializeCommonPojoClasses(this);
 		genderList = CEA.getGenderList();
@@ -33,7 +34,14 @@ public class CommonEntityManager {
 		designationList = CEA.getDesignationList();
 	}
 	
-	public int getGenderId(String gender) {
+	public static CommonEntityManager getInstance() {
+		if(commonEntityManager == null)
+			commonEntityManager = new CommonEntityManager();
+		
+		return commonEntityManager;
+	}
+	
+/*	public int getGenderId(String gender) {
 		for(Gender genderObj : genderList) {
 			if(gender.equalsIgnoreCase(genderObj.getGender()))
 				return genderObj.getGenderId();
@@ -48,7 +56,7 @@ public class CommonEntityManager {
 		}
 		
 		return 0;
-	}
+	}*/
 	
 /*	public int getRoleId(String role) {
 		for(Role roleObj : roleList) {
@@ -68,22 +76,22 @@ public class CommonEntityManager {
 		return null;
 	}*/
 	
-	public String getBranchId(String branchCity) {
+/*	public String getBranchId(String branchCity) {
 		for(Branch branchObj : branchList) {
 			if(branchCity.equalsIgnoreCase(branchObj.getBranchAddress().getAddressCity()))
 				return branchObj.getBranchId();
 		}
 		
 		return null;
-	}
+	}*/
 	
-	public String getDepartmentId(String department, String branchId) {
+/*	public String getDepartmentId(String department, String branchId) {
 		for(Department deptObj : departmentList) {
 			if(branchId.equals(deptObj.getBranchId()) && department.equalsIgnoreCase(deptObj.getDepartmentName()))
 				return deptObj.getDepartmentId();
 		}
 		return null;
-	}
+	}*/
 	
 	public Branch getBranch(String branchId) {
 		Branch branch1 = null;
@@ -113,5 +121,9 @@ public class CommonEntityManager {
 	
 	public Collection<Department> getDepartmentList() {
 		return departmentList;
+	}
+	
+	public Collection<Designation> getDesignationtList() {
+		return designationList;
 	}
 }

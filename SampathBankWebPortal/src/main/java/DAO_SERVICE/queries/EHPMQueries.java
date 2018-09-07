@@ -16,4 +16,5 @@ public class EHPMQueries {
 	public static final String EHPMquery0013 = "SELECT * FROM permission;";
 	public static final String EHPMquery0014 = "SELECT * FROM branch;";
 	public static final String EHPMquery0015 = "SELECT * FROM department;";
+	public static final String EHPMquery0016 = "SELECT * FROM designation;";
 }

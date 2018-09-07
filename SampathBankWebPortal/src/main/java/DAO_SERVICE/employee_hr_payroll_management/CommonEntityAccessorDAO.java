@@ -20,7 +20,7 @@ import POJO_MODEL.user_management.Nationality;
 import POJO_MODEL.user_management.Permission;
 
 public class CommonEntityAccessorDAO {
-	static Connection con = null;
+	private static Connection con = null;
 	
 	private Collection<Gender> genderList = new ArrayList<Gender> ();
 	private Collection<Nationality> nationalityList = new ArrayList<Nationality> ();
@@ -266,6 +266,7 @@ public class CommonEntityAccessorDAO {
 		PreparedStatement EHPM_Prst0005 = null;
 		ResultSet EHPM_ResultSet0005 = null;
 		Department department = null;
+		String branchId_department = null;
 		
 		try {
 			DataSource dataSource = cpmObj.initializePool();
@@ -280,7 +281,7 @@ public class CommonEntityAccessorDAO {
 			int i = 0;
 			while(EHPM_ResultSet0005.next()) {
 				i++;
-				String branchId_department = EHPM_ResultSet0005.getString(1);
+				branchId_department = EHPM_ResultSet0005.getString(1);
 				
 				department = new Department(commonEntityManager.getBranch(branchId_department), EHPM_ResultSet0005.getString(2), 
 						EHPM_ResultSet0005.getString(3));
@@ -321,9 +322,9 @@ public class CommonEntityAccessorDAO {
 	private void initializeDesignations() {
 		ConnectionPoolManager cpmObj = new ConnectionPoolManager();
 
-		PreparedStatement EHPM_Prst0004 = null;
-		ResultSet EHPM_ResultSet0004 = null;
-		Branch branch = null;
+		PreparedStatement EHPM_Prst0006 = null;
+		ResultSet EHPM_ResultSet0006 = null;
+		Designation designation = null;
 		
 		try {
 			DataSource dataSource = cpmObj.initializePool();
@@ -332,17 +333,14 @@ public class CommonEntityAccessorDAO {
 			con = dataSource.getConnection();
 			cpmObj.printDatabaseStatus();
 			
-			EHPM_Prst0004 = con.prepareStatement(EHPMQueries.EHPMquery0014);
-			EHPM_ResultSet0004 = EHPM_Prst0004.executeQuery();
+			EHPM_Prst0006 = con.prepareStatement(EHPMQueries.EHPMquery0016);
+			EHPM_ResultSet0006 = EHPM_Prst0006.executeQuery();
 			
 			int i = 0;
-			while(EHPM_ResultSet0004.next()) {
+			while(EHPM_ResultSet0006.next()) {
 				i++;
-				branch = new Branch(EHPM_ResultSet0004.getString(1), EHPM_ResultSet0004.getString(2), EHPM_ResultSet0004.getString(3),
-						EHPM_ResultSet0004.getString(4), EHPM_ResultSet0004.getString(5), EHPM_ResultSet0004.getInt(6), EHPM_ResultSet0004.getString(7));
-				System.out.println(EHPM_ResultSet0004.getString(1) + ", " + EHPM_ResultSet0004.getString(2) + ", " + EHPM_ResultSet0004.getString(3) + ", " + 
-						EHPM_ResultSet0004.getString(4) + ", " + EHPM_ResultSet0004.getString(5) + ", " + EHPM_ResultSet0004.getInt(6) + ", " + EHPM_ResultSet0004.getString(7));
-				insertBranchList(branch);
+				designation = new Designation(EHPM_ResultSet0006.getInt(1), EHPM_ResultSet0006.getString(1));
+				insertDesignationList(designation);
 			}
 			if(i == 0)
 				branchList = null;
@@ -352,11 +350,11 @@ public class CommonEntityAccessorDAO {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(EHPM_ResultSet0004 != null)
-					EHPM_ResultSet0004.close();
+				if(EHPM_ResultSet0006 != null)
+					EHPM_ResultSet0006.close();
 				
-				if(EHPM_Prst0004 != null)
-					EHPM_Prst0004.close();
+				if(EHPM_Prst0006 != null)
+					EHPM_Prst0006.close();
 				
 				if(con != null)
 					con.close();
@@ -367,12 +365,12 @@ public class CommonEntityAccessorDAO {
 		cpmObj.printDatabaseStatus();
 	}
 	
-	private void insertBranchList(Branch branch) {
-		branchList.add(branch);
+	private void insertDesignationList(Designation designation) {
+		designationList.add(designation);
 	}
 	
-	public Collection<Branch> getBranchList() {
-		return this.branchList;
+	public Collection<Designation> getDesignationList() {
+		return this.designationList;
 	}
 	
 }
