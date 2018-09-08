@@ -50,14 +50,18 @@ public class LoginDAO {
 			
 			boolean x = false;
 			while(UM_ResultSet0001.next()) {
+				System.out.println("Some records found on online_customer_credentials");
+				System.out.println("Let's see whether they are exactly matching.");
 				usernameDB = UM_ResultSet0001.getString("username");
 				passwordDB = UM_ResultSet0001.getString("password");
 				
 				if(Validator.validateLoginCredentials(username, password, usernameDB, passwordDB)) {
 					//online_customer_credentials found
+					System.out.println("Exactly matching record found on online_customer_credentials table");
 					x = true;
 					
 					//OnlineAccount object creation for customer
+					System.out.println("Extracting online_customer_credentials table");
 					OnlineAccount onlineAccount = new OnlineAccount();
 					onlineAccount.setOnlinePersonId(UM_ResultSet0001.getString(1));
 					onlineAccount.setPhysicalPersonId(UM_ResultSet0001.getString(2));
@@ -78,25 +82,26 @@ public class LoginDAO {
 					
 					//if a record exists for the retrieved online_customer_account
 					if(UM_ResultSet0006.next()) {
+						System.out.println("Record found on joined table for retrieved customerId from online_customer_credentials table");
 						UM_Prst0007.setInt(1, UM_ResultSet0006.getInt("onlineSecurityId"));
 						//Retrieving from online_security_credentials
 						UM_ResultSet0007 = UM_Prst0007.executeQuery();
-						
+						if(UM_ResultSet0007.next()) {
 							Customer customer = new Customer();
 							customer.setOnlineAccount(onlineAccount);
 							//starting setting common person attributes
-							customer.setPersonId(UM_ResultSet0006.getString("employeeId"));
+							customer.setPersonId(UM_ResultSet0006.getString("customerId"));
 							customer.setName(UM_ResultSet0006.getString("firstName"), UM_ResultSet0006.getString("middleName"), 
 									UM_ResultSet0006.getString("lastName"), UM_ResultSet0006.getString("otherNames"));
 							customer.setAddress(UM_ResultSet0006.getString("addressStreet01"), UM_ResultSet0006.getString("addressStreet02"), 
 									UM_ResultSet0006.getString("addressCity"), UM_ResultSet0006.getString("addressProvince"), UM_ResultSet0006.getInt("addressZipCode"));
 							customer.setNic(UM_ResultSet0006.getString("nic"));
 							customer.setDateOfBirth(UM_ResultSet0006.getDate("dateOfBirth"));
-							customer.setPersonalEmail(UM_ResultSet0006.getString("personlaEmail"));
+							customer.setPersonalEmail(UM_ResultSet0006.getString("personalEmail"));
 							customer.setRegistrationDates(new RegistrationDates(UM_ResultSet0006.getDate("physicalRegistrationDate"), UM_ResultSet0006.getDate("onlineRegistrationDate")));
 							customer.setGender(commonEntityManager.getGender(UM_ResultSet0006.getInt("genderId")));
 							customer.setNationality(commonEntityManager.getNationality(UM_ResultSet0006.getInt("nationalityId")));
-							customer.setBranch(commonEntityManager.getBranch(UM_ResultSet0006.getString(UM_ResultSet0006.getString("branchId"))));
+							customer.setBranch(commonEntityManager.getBranch(UM_ResultSet0006.getString("branchId")));
 							//creating and binding online_security_key object to person
 							customer.setOnlineSecurityKey(new OnlineSecurityKey(UM_ResultSet0007.getInt(1), UM_ResultSet0007.getString(2)));
 							customer.setPermission(commonEntityManager.getPermission(UM_ResultSet0006.getInt("permissionLevel")));
@@ -111,9 +116,12 @@ public class LoginDAO {
 							}
 							//starting setting customer specific attributes
 							
-					genericLogin.setFound(true);
-					genericLogin.setType("customer");
-					genericLogin.setCustomer(customer);
+						genericLogin.setFound(true);
+						genericLogin.setType("customer");
+						genericLogin.setCustomer(customer);
+						} else {
+							
+						}
 					}
 					else {
 						genericLogin.setFound(false);

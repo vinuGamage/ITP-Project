@@ -4,7 +4,6 @@ public class OnlineAccount {
 	private String onlinePersonId;
 	private String physicalPersonId;
 	private String username;
-	private String type;
 	
 	public String getOnlinePersonId() {
 		return onlinePersonId;
@@ -24,18 +23,11 @@ public class OnlineAccount {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
 	
 	public void displayOnlineAccount() {
 		System.out.println("============Online Account : ============");
 		System.out.println(this.getOnlinePersonId());
 		System.out.println(this.getPhysicalPersonId());
 		System.out.println(this.getUsername());
-		System.out.println(this.getType());
 	}
 }

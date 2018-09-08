@@ -28,6 +28,7 @@ public class Branch {
 			int addressZipCode, String branchEmail) {
 		this.setBranchId(branchId);
 		this.setBranchAddress(new Address(addressStreet01, addressStreet02, addressCity, addressProvince, addressZipCode));
+		this.setBranchEmail(branchEmail);
 	}
 	
 	public String getBranchId() {

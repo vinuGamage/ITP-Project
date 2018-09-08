@@ -30,6 +30,7 @@ public class CommonEntityAccessorDAO {
 	private Collection<Designation> designationList = new ArrayList<Designation> ();
 	
 	public void initializeCommonPojoClasses(CommonEntityManager commonEntityManager) {
+		System.out.println("=============COMMON ENTITY ACCESSOR DAO=============");
 		initializeGenders();
 		initializeNationalities();
 		initializePermissions();
@@ -59,6 +60,7 @@ public class CommonEntityAccessorDAO {
 			while(EHPM_ResultSet0001.next()) {
 				i++;
 				gender = new Gender(EHPM_ResultSet0001.getInt(1), EHPM_ResultSet0001.getString(2));
+				System.out.println("=============ALL GENDERS=============");
 				System.out.println(EHPM_ResultSet0001.getInt(1) + ", " + EHPM_ResultSet0001.getString(2));
 				insertGenderList(gender);
 			}
@@ -114,6 +116,7 @@ public class CommonEntityAccessorDAO {
 			while(EHPM_ResultSet0002.next()) {
 				i++;
 				nationality = new Nationality(EHPM_ResultSet0002.getInt(1), EHPM_ResultSet0002.getString(2));
+				System.out.println("=============ALL Nationalities=============");
 				System.out.println(EHPM_ResultSet0002.getInt(1) + ", " + EHPM_ResultSet0002.getString(2));
 				insertNationalityList(nationality);
 			}
@@ -169,6 +172,7 @@ public class CommonEntityAccessorDAO {
 			while(EHPM_ResultSet0003.next()) {
 				i++;
 				permission = new Permission(EHPM_ResultSet0003.getInt(1), EHPM_ResultSet0003.getString(2));
+				System.out.println("=============ALL PERMISSIONS=============");
 				System.out.println(EHPM_ResultSet0003.getInt(1) + ", " + EHPM_ResultSet0003.getString(2));
 				insertPermissionList(permission);
 			}
@@ -225,6 +229,7 @@ public class CommonEntityAccessorDAO {
 				i++;
 				branch = new Branch(EHPM_ResultSet0004.getString(1), EHPM_ResultSet0004.getString(2), EHPM_ResultSet0004.getString(3),
 						EHPM_ResultSet0004.getString(4), EHPM_ResultSet0004.getString(5), EHPM_ResultSet0004.getInt(6), EHPM_ResultSet0004.getString(7));
+				System.out.println("=============ALL BRANCHES=============");
 				System.out.println(EHPM_ResultSet0004.getString(1) + ", " + EHPM_ResultSet0004.getString(2) + ", " + EHPM_ResultSet0004.getString(3) + ", " + 
 						EHPM_ResultSet0004.getString(4) + ", " + EHPM_ResultSet0004.getString(5) + ", " + EHPM_ResultSet0004.getInt(6) + ", " + EHPM_ResultSet0004.getString(7));
 				insertBranchList(branch);
@@ -285,7 +290,8 @@ public class CommonEntityAccessorDAO {
 				
 				department = new Department(commonEntityManager.getBranch(branchId_department), EHPM_ResultSet0005.getString(2), 
 						EHPM_ResultSet0005.getString(3));
-				System.out.println();
+				System.out.println("=============ALL DEPARTMENTS=============");
+				System.out.println(EHPM_ResultSet0005.getString("branchId") + ", " + EHPM_ResultSet0005.getString("departmentId") + ", " + EHPM_ResultSet0005.getString("departmentName"));
 				insertDepartmentList(department);
 			}
 			if(i == 0)
@@ -340,6 +346,8 @@ public class CommonEntityAccessorDAO {
 			while(EHPM_ResultSet0006.next()) {
 				i++;
 				designation = new Designation(EHPM_ResultSet0006.getInt(1), EHPM_ResultSet0006.getString(1));
+				System.out.println("=============ALL DESIGNATIONS=============");
+				System.out.println(EHPM_ResultSet0006.getInt("designationId") + ", " + EHPM_ResultSet0006.getString("designation"));
 				insertDesignationList(designation);
 			}
 			if(i == 0)
