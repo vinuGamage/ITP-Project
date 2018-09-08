@@ -137,7 +137,7 @@ public abstract class Person {
 		this.onlineAccount = onlineAccount;
 	}
 
-	//======================================================================================================================
+	//======================================EHPM_Management===================================================================
 	public void setName(String firstName, String middleName, String lastName, String otherNames) {
 		this.setName(new Name(firstName, middleName, lastName, otherNames));
 	}
