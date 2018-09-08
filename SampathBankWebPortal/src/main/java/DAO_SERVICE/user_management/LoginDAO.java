@@ -8,13 +8,13 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 import DAO_SERVICE.common_service.ConnectionPoolManager;
-import DAO_SERVICE.queries.EHPMQueries;
 import DAO_SERVICE.queries.UMQueries;
 import POJO_MODEL.employee_hr_payroll_management.Employee;
 import POJO_MODEL.employee_hr_payroll_management.NormalEmployee;
 import POJO_MODEL.employee_hr_payroll_management.managers.CommonEntityManager;
 import POJO_MODEL.user_management.Contact;
-import POJO_MODEL.user_management.Gender;
+import POJO_MODEL.user_management.Customer;
+import POJO_MODEL.user_management.GenericLogin;
 import POJO_MODEL.user_management.OnlineAccount;
 import POJO_MODEL.user_management.OnlineSecurityKey;
 import POJO_MODEL.user_management.RegistrationDates;
@@ -23,9 +23,14 @@ import POJO_MODEL.user_management.validators.Validator;
 public class LoginDAO {
 	private static Connection con = null;
 	
-	public static void checkLoginCredentials(String username, String password, CommonEntityManager commonEntityManager) {
+	public static GenericLogin<Boolean, String, Customer, Employee> checkLoginCredentials(String username, String password, CommonEntityManager commonEntityManager) {
 		ConnectionPoolManager cpmObj = new ConnectionPoolManager();
-
+		GenericLogin<Boolean, String, Customer, Employee> genericLogin = new GenericLogin<Boolean, String, Customer, Employee>();
+		genericLogin.setFound(false);
+		genericLogin.setType(null);
+		genericLogin.setCustomer(null);
+		genericLogin.setEmployee(null);
+		
 		PreparedStatement UM_Prst0001 = null;
 		ResultSet UM_ResultSet0001 = null;
 		String usernameDB = null;
@@ -52,8 +57,67 @@ public class LoginDAO {
 					//online_customer_credentials found
 					x = true;
 					
+					//OnlineAccount object creation for customer
+					OnlineAccount onlineAccount = new OnlineAccount();
+					onlineAccount.setOnlinePersonId(UM_ResultSet0001.getString(1));
+					onlineAccount.setPhysicalPersonId(UM_ResultSet0001.getString(2));
+					onlineAccount.setUsername(UM_ResultSet0001.getString(3));
 					
+					PreparedStatement UM_Prst0006 = null;
+					ResultSet UM_ResultSet0006 = null;
 					
+					//Joining person and customer tables and querying for specific id 
+					UM_Prst0006 = con.prepareStatement(UMQueries.queryUM_06);
+					UM_Prst0006.setString(1, onlineAccount.getPhysicalPersonId());
+					UM_ResultSet0006 = UM_Prst0006.executeQuery();
+					
+					PreparedStatement UM_Prst0007 = null; 
+					ResultSet UM_ResultSet0007 = null;
+					//query for online_security_key table
+					UM_Prst0007 = con.prepareStatement(UMQueries.queryUM_04);
+					
+					//if a record exists for the retrieved online_customer_account
+					if(UM_ResultSet0006.next()) {
+						UM_Prst0007.setInt(1, UM_ResultSet0006.getInt("onlineSecurityId"));
+						//Retrieving from online_security_credentials
+						UM_ResultSet0007 = UM_Prst0007.executeQuery();
+						
+							Customer customer = new Customer();
+							customer.setOnlineAccount(onlineAccount);
+							//starting setting common person attributes
+							customer.setPersonId(UM_ResultSet0006.getString("employeeId"));
+							customer.setName(UM_ResultSet0006.getString("firstName"), UM_ResultSet0006.getString("middleName"), 
+									UM_ResultSet0006.getString("lastName"), UM_ResultSet0006.getString("otherNames"));
+							customer.setAddress(UM_ResultSet0006.getString("addressStreet01"), UM_ResultSet0006.getString("addressStreet02"), 
+									UM_ResultSet0006.getString("addressCity"), UM_ResultSet0006.getString("addressProvince"), UM_ResultSet0006.getInt("addressZipCode"));
+							customer.setNic(UM_ResultSet0006.getString("nic"));
+							customer.setDateOfBirth(UM_ResultSet0006.getDate("dateOfBirth"));
+							customer.setPersonalEmail(UM_ResultSet0006.getString("personlaEmail"));
+							customer.setRegistrationDates(new RegistrationDates(UM_ResultSet0006.getDate("physicalRegistrationDate"), UM_ResultSet0006.getDate("onlineRegistrationDate")));
+							customer.setGender(commonEntityManager.getGender(UM_ResultSet0006.getInt("genderId")));
+							customer.setNationality(commonEntityManager.getNationality(UM_ResultSet0006.getInt("nationalityId")));
+							customer.setBranch(commonEntityManager.getBranch(UM_ResultSet0006.getString(UM_ResultSet0006.getString("branchId"))));
+							//creating and binding online_security_key object to person
+							customer.setOnlineSecurityKey(new OnlineSecurityKey(UM_ResultSet0007.getInt(1), UM_ResultSet0007.getString(2)));
+							customer.setPermission(commonEntityManager.getPermission(UM_ResultSet0006.getInt("permissionLevel")));
+							PreparedStatement UM_Prst0008 = null; 
+							ResultSet UM_ResultSet0008 = null;
+							//query for contact table
+							UM_Prst0008 = con.prepareStatement(UMQueries.queryUM_05);
+							UM_Prst0008.setString(1, customer.getPersonId());
+							UM_ResultSet0008 = UM_Prst0008.executeQuery();
+							while(UM_ResultSet0008.next()) {
+								customer.getContactList().add(new Contact(customer.getPersonId(), UM_ResultSet0008.getString("contactNumber"), UM_ResultSet0008.getString("type")));
+							}
+							//starting setting customer specific attributes
+							
+					genericLogin.setFound(true);
+					genericLogin.setType("customer");
+					genericLogin.setCustomer(customer);
+					}
+					else {
+						genericLogin.setFound(false);
+					}
 					break;
 				}
 			}
@@ -77,7 +141,7 @@ public class LoginDAO {
 						OnlineAccount onlineAccount = new OnlineAccount();
 						onlineAccount.setOnlinePersonId(UM_ResultSet0002.getString(1));
 						onlineAccount.setPhysicalPersonId(UM_ResultSet0002.getString(2));
-						onlineAccount.setUsername(UM_ResultSet0002.getString(2));
+						onlineAccount.setUsername(UM_ResultSet0002.getString(3));
 						
 						PreparedStatement UM_Prst0003 = null;
 						ResultSet UM_ResultSet0003 = null;
@@ -100,6 +164,7 @@ public class LoginDAO {
 							UM_ResultSet0004 = UM_Prst0004.executeQuery();
 							
 								Employee employee = new NormalEmployee();
+								employee.setOnlineAccount(onlineAccount);
 								//starting setting common person attributes
 								employee.setPersonId(UM_ResultSet0003.getString("employeeId"));
 								employee.setName(UM_ResultSet0003.getString("firstName"), UM_ResultSet0003.getString("middleName"), 
@@ -130,12 +195,14 @@ public class LoginDAO {
 								employee.setCompanyEmail(UM_ResultSet0003.getString("companyEmail"));
 								employee.setDesignation(commonEntityManager.getDesignation(UM_ResultSet0003.getInt("designationId")));
 								employee.setEmployeeType(employeeType);
+								
+								genericLogin.setFound(true);
+								genericLogin.setType("employee");
+								genericLogin.setEmployee(employee);
 						}
 						else {
-							
+							genericLogin.setFound(false);
 						}
-						
-						
 						break;
 					}
 				}
@@ -163,5 +230,7 @@ public class LoginDAO {
 			}
 		}
 		cpmObj.printDatabaseStatus();
+		
+		return genericLogin;
 	}
 }

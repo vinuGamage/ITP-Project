@@ -72,4 +72,10 @@ public class Nationality {
 	public void setAdminList(Collection<Admin> adminList) {
 		this.adminList = adminList;
 	}
+	
+	public void displayNationality() {
+		System.out.println("============Nationality : ============");
+		System.out.println(this.getNationalityId());
+		System.out.println(this.getNationality());
+	}
 }

@@ -54,5 +54,13 @@ public class Name {
 	
 	public String getOtherNames() {
 		return this.otherNames;
-	}	
+	}
+	
+	public void displayName() {
+		System.out.println("============Name : ============");
+		System.out.println(this.getFirstName());
+		System.out.println(this.getMiddleName());
+		System.out.println(this.getLastName());
+		System.out.println(this.getOtherNames());
+	}
 }

@@ -1,11 +1,6 @@
 package POJO_MODEL.employee_hr_payroll_management;
 
-import java.sql.Date;
-
-import POJO_MODEL.user_management.Address;
-import POJO_MODEL.user_management.Name;
 import POJO_MODEL.user_management.Person;
-import POJO_MODEL.user_management.RegistrationDates;
 
 //Entity
 public class Employee extends Person {
@@ -48,5 +43,35 @@ public class Employee extends Person {
 
 	public void setEmployeeType(String employeeType) {
 		this.employeeType = employeeType;
+	}
+	
+	public void displayEmployee() {
+		System.out.println("Employee Details : ");
+		System.out.println("\tEmployeeId : " + this.getPersonId());
+		System.out.println("\tEmployee Name : ");
+		this.getName().displayName();
+		System.out.println("\tEmployee Address : ");
+		this.getAddress().displayAddress();
+		System.out.println("\tEmployee Birthday : " + this.getDateOfBirth());
+		System.out.println("\tEmployee Personal Email : " + this.getPersonalEmail());
+		System.out.println("\tEmployee Physical Registration Date : " + this.getRegistrationDates().getPhysicalRegistrationDate());
+		System.out.println("\tEmployee Online Registration Date : " + this.getRegistrationDates().getOnlineRegistrationDate());
+		System.out.println("\tEmployee Gender Details : ");
+		this.getGender().displayGender();
+		System.out.println("\tEmployee Nationality Details : ");
+		this.getNationality().displayNationality();
+		System.out.println("\tEmployee Branch Details : ");
+		this.getBranch().displayBranch();
+		System.out.println("\tEmployee Online Security Key Details : ");
+		this.getOnlineSecurityKey().displayOnlineSecurityKey();
+		System.out.println("\tEmployee Permission Details : ");
+		this.getPermission().displayPermission();
+		System.out.println("\tOnline Employee Account Details : ");
+		this.getOnlineAccount().displayOnlineAccount();
+		System.out.println("\t\t\t====Employee Specific Details");
+		this.getDepartment().displayDepartment();
+		System.out.println("\tEmployee Company Email : " + this.getCompanyEmail());
+		this.getDesignation().getDesignation();
+		System.out.println("\tEmployee Type : " + this.getEmployeeType());
 	}
 }

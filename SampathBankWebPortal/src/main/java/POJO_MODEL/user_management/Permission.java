@@ -76,4 +76,10 @@ public class Permission {
 	public void setAdminList(Collection<Admin> adminList) {
 		this.adminList = adminList;
 	}
+	
+	public void displayPermission() {
+		System.out.println("============Permission : ============");
+		System.out.println(this.getPermissionLevel());
+		System.out.println(this.getPermissionType());
+	}
 }

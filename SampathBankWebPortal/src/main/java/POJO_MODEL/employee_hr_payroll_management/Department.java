@@ -81,4 +81,11 @@ public class Department {
 	public void setAdminList(Collection<Admin> adminList) {
 		this.adminList = adminList;
 	}
+	
+	public void displayDepartment() {
+		System.out.println("============Department Details : ============");
+		System.out.println(this.getBranch().getBranchId());
+		System.out.println(this.getDepartmentId());
+		System.out.println(this.getDepartmentName());
+	}
 }

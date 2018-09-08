@@ -26,4 +26,10 @@ public class OnlineSecurityKey {
 	public void setOnlineSecurityKey(String onlineSecurityKey) {
 		this.onlineSecurityKey = onlineSecurityKey;
 	}
+	
+	public void displayOnlineSecurityKey() {
+		System.out.println("============Online Security Key : ============");
+		System.out.println(this.getOnlineSecurityId());
+		System.out.println(this.getOnlineSecurityKey());
+	}
 }

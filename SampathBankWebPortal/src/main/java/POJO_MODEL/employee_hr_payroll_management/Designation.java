@@ -65,4 +65,10 @@ public class Designation {
 	public void setAdminList(Collection<Admin> adminList) {
 		this.adminList = adminList;
 	}
+	
+	public void displayBranch() {
+		System.out.println("============Designation Details : ============");
+		System.out.println(this.getDesignationId());
+		System.out.println(this.getDesignation());
+	}
 }

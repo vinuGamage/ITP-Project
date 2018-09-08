@@ -85,6 +85,13 @@ public class Branch {
 	public void setAdminList(Collection<Admin> adminList) {
 		this.adminList = adminList;
 	}
+	
+	public void displayBranch() {
+		System.out.println("============Branch Details : ============");
+		System.out.println(this.getBranchId());
+		this.getBranchAddress().displayAddress();
+		System.out.println(this.getBranchEmail());
+	}
 
 	//======================================================================================================================
 //	public void setBranchAddress(String addressStreet01, String addressStreet02, String addressCity, String addressProvince, 

@@ -62,4 +62,13 @@ public class Address {
 	public int getAddressZIPCode() {
 		return this.addressZipCode;
 	}
+	
+	public void displayAddress() {
+		System.out.println("============Address : ============");
+		System.out.println(this.getAddressStreet01());
+		System.out.println(this.getAddressStreet02());
+		System.out.println(this.getAddressCity());
+		System.out.println(this.getAddressProvince());
+		System.out.println(this.getAddressZIPCode());
+	}
 }

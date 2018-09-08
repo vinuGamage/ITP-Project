@@ -72,4 +72,10 @@ public class Gender {
 	public void setAdminList(Collection<Admin> adminList) {
 		this.adminList = adminList;
 	}
+	
+	public void displayGender() {
+		System.out.println("============Gender : ============");
+		System.out.println(this.getGenderId());
+		System.out.println(this.getGender());
+	}
 }
