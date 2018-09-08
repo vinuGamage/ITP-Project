@@ -5,6 +5,11 @@ public class OnlineAccount {
 	private String physicalPersonId;
 	private String username;
 	
+	public OnlineAccount(String onlinePersonId, String physicalPersonId, String username) {
+		this.onlinePersonId = onlinePersonId;
+		this.physicalPersonId = physicalPersonId;
+		this.username = username;
+	}
 	public String getOnlinePersonId() {
 		return onlinePersonId;
 	}
