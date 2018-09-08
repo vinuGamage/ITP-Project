@@ -1,5 +1,6 @@
 package POJO_MODEL.employee_hr_payroll_management.managers;
 
+import java.lang.reflect.GenericSignatureFormatError;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -93,14 +94,62 @@ public class CommonEntityManager {
 		return null;
 	}*/
 	
-	public Branch getBranch(String branchId) {
-		Branch branch1 = null;
-		for(Branch branch2: branchList) {
-			if(branch2.getBranchId().equals(branchId))
-				branch1 = branch2;
+	public Gender getGender(int genderId) {
+		Gender gender = null;
+		for(Gender gen: genderList) {
+			if(gen.getGenderId() == genderId)
+				gender = gen;
 		}
 		
-		return branch1;
+		return gender;
+	}
+	
+	public Nationality getNationality(int nationalityId) {
+		Nationality nationality = null;
+		for(Nationality nat: nationalityList) {
+			if(nat.getNationalityId() == nationalityId)
+				nationality = nat;
+		}
+		
+		return nationality;
+	}
+	
+	public Branch getBranch(String branchId) {
+		Branch branch = null;
+		for(Branch bran: branchList) {
+			if(bran.getBranchId().equals(branchId))
+				branch = bran;
+		}
+		
+		return branch;
+	}
+	
+	public Permission getPermission(int permissionId) {
+		Permission permission = null;
+		for(Permission per: permissionList) {
+			if(per.getPermissionLevel() == permissionId)
+				permission = per;
+		}
+		
+		return permission;
+	}
+	
+	public Department getDepartment(String departmentId) {
+		Department department = null;
+		for(Department dept: departmentList) {
+			if(dept.getDepartmentId().equals(departmentId))
+				department = dept;
+		}
+		return department;
+	}
+	
+	public Designation getDesignation(int designationId) {
+		Designation designation = null;
+		for(Designation desig: designationList) {
+			if(desig.getDesignationId() == designationId)
+				designation = desig;
+		}
+		return designation;
 	}
 	
 	public Collection<Gender> getGenderList() {

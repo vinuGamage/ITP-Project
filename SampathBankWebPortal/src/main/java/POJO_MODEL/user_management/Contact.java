@@ -1,17 +1,23 @@
 package POJO_MODEL.user_management;
 
 public class Contact {
-	private int personId;			//Entity Reference
+	private String personId;			//Entity Reference
 	private String contactNumber;	//Attribute
 	private String type;			//Attribute
 	
 	public Contact() {}
 	
-	public int getPersonId() {
+	public Contact(String personId, String contactNumber, String type) {
+		this.setPersonId(personId);
+		this.setContactNumber(contactNumber);
+		this.setType(type);
+	}
+	
+	public String getPersonId() {
 		return personId;
 	}
 
-	public void setPersonId(int personId) {
+	public void setPersonId(String personId) {
 		this.personId = personId;
 	}
 

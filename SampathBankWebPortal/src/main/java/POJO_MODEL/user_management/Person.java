@@ -21,6 +21,7 @@ public abstract class Person {
 	private OnlineSecurityKey onlineSecurityKey;	//Entity Reference
 	private Permission permission;					//Entity Reference
 	private Collection<Contact> contactList = new ArrayList<Contact>();	//contact set
+	private OnlineAccount onlineAccount;
 	
 	public Person() {}
 	
@@ -126,6 +127,14 @@ public abstract class Person {
 
 	public void setContactList(Collection<Contact> contactList) {
 		this.contactList = contactList;
+	}
+
+	public OnlineAccount getOnlineAccount() {
+		return onlineAccount;
+	}
+
+	public void setOnlineAccount(OnlineAccount onlineAccount) {
+		this.onlineAccount = onlineAccount;
 	}
 
 	//======================================================================================================================

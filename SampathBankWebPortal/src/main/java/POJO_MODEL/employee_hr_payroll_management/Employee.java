@@ -8,7 +8,7 @@ import POJO_MODEL.user_management.Person;
 import POJO_MODEL.user_management.RegistrationDates;
 
 //Entity
-public abstract class Employee extends Person {
+public class Employee extends Person {
 	private Department department;		//Entity
 	private String companyEmail; 
 	private Designation designation;	//Entity
