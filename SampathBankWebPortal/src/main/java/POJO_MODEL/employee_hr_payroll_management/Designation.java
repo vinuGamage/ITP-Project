@@ -66,7 +66,7 @@ public class Designation {
 		this.adminList = adminList;
 	}
 	
-	public void displayBranch() {
+	public void displayDesignation() {
 		System.out.println("============Designation Details : ============");
 		System.out.println(this.getDesignationId());
 		System.out.println(this.getDesignation());

@@ -24,6 +24,7 @@ public class LoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		CommonEntityManager commonEntityManager = CommonEntityManager.getInstance();
+		commonEntityManager.initializeDepartments();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 

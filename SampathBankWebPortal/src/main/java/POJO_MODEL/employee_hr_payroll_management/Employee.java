@@ -68,10 +68,10 @@ public class Employee extends Person {
 		this.getPermission().displayPermission();
 		System.out.println("\tOnline Employee Account Details : ");
 		this.getOnlineAccount().displayOnlineAccount();
-		System.out.println("\t\t\t====Employee Specific Details");
+		System.out.println("\t\t\t====Employee Specific Details=====");
 		this.getDepartment().displayDepartment();
 		System.out.println("\tEmployee Company Email : " + this.getCompanyEmail());
-		this.getDesignation().getDesignation();
+		this.getDesignation().displayDesignation();;
 		System.out.println("\tEmployee Type : " + this.getEmployeeType());
 	}
 }

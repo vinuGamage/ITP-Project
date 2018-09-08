@@ -29,13 +29,12 @@ public class CommonEntityAccessorDAO {
 	private Collection<Department> departmentList = new ArrayList<Department> ();
 	private Collection<Designation> designationList = new ArrayList<Designation> ();
 	
-	public void initializeCommonPojoClasses(CommonEntityManager commonEntityManager) {
+	public void initializeCommonPojoClasses() {
 		System.out.println("=============COMMON ENTITY ACCESSOR DAO=============");
 		initializeGenders();
 		initializeNationalities();
 		initializePermissions();
 		initializeBranches();
-		initializeDepartments(commonEntityManager);
 		initializeDesignations();
 	}
 	
@@ -265,13 +264,13 @@ public class CommonEntityAccessorDAO {
 		return this.branchList;
 	}
 	
-	private void initializeDepartments(CommonEntityManager commonEntityManager) {
+	public void initializeDepartments(CommonEntityManager commonEntityManager) {
 		ConnectionPoolManager cpmObj = new ConnectionPoolManager();
 
 		PreparedStatement EHPM_Prst0005 = null;
 		ResultSet EHPM_ResultSet0005 = null;
 		Department department = null;
-		String branchId_department = null;
+//		String branchId_department = null;
 		
 		try {
 			DataSource dataSource = cpmObj.initializePool();
@@ -286,10 +285,9 @@ public class CommonEntityAccessorDAO {
 			int i = 0;
 			while(EHPM_ResultSet0005.next()) {
 				i++;
-				branchId_department = EHPM_ResultSet0005.getString(1);
 				
-				department = new Department(commonEntityManager.getBranch(branchId_department), EHPM_ResultSet0005.getString(2), 
-						EHPM_ResultSet0005.getString(3));
+				department = new Department(commonEntityManager.getBranch(EHPM_ResultSet0005.getString("branchId")), EHPM_ResultSet0005.getString("departmentId"), 
+						EHPM_ResultSet0005.getString("departmentName"));
 				System.out.println("=============ALL DEPARTMENTS=============");
 				System.out.println(EHPM_ResultSet0005.getString("branchId") + ", " + EHPM_ResultSet0005.getString("departmentId") + ", " + EHPM_ResultSet0005.getString("departmentName"));
 				insertDepartmentList(department);
@@ -345,7 +343,7 @@ public class CommonEntityAccessorDAO {
 			int i = 0;
 			while(EHPM_ResultSet0006.next()) {
 				i++;
-				designation = new Designation(EHPM_ResultSet0006.getInt(1), EHPM_ResultSet0006.getString(1));
+				designation = new Designation(EHPM_ResultSet0006.getInt(1), EHPM_ResultSet0006.getString(2));
 				System.out.println("=============ALL DESIGNATIONS=============");
 				System.out.println(EHPM_ResultSet0006.getInt("designationId") + ", " + EHPM_ResultSet0006.getString("designation"));
 				insertDesignationList(designation);

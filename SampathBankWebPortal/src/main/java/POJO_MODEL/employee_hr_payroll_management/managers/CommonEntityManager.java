@@ -23,16 +23,18 @@ public class CommonEntityManager {
 	
 	private CommonEntityManager() {
 		CommonEntityAccessorDAO CEA = new CommonEntityAccessorDAO();
-		CEA.initializeCommonPojoClasses(this);
+		CEA.initializeCommonPojoClasses();
 		genderList = CEA.getGenderList();
 		nationalityList = CEA.getNationalityList();
 		permissionList = CEA.getPermissionList();
 		branchList = CEA.getBranchList();
-		
-		if(branchList != null)
-			departmentList = CEA.getDepartmentList();
-		
 		designationList = CEA.getDesignationList();
+	}
+	
+	public void initializeDepartments() {
+		CommonEntityAccessorDAO CEA = new CommonEntityAccessorDAO();
+		CEA.initializeDepartments(this);
+		departmentList = CEA.getDepartmentList();
 	}
 	
 	public static CommonEntityManager getInstance() {
