@@ -168,21 +168,46 @@
 -->
 		<nav aria-label="breadcrumb" class="breadcrumb-stuff">
 		  <ol class="breadcrumb">
-		    <li class="breadcrumb-item active" aria-current="page">EmpHome</li>
+		  <li class="breadcrumb-item"><a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp">EmpHome</a></li>
+		    <li class="breadcrumb-item active" aria-current="page">Apply For Leave</li>
 		  </ol>
 		</nav>
 		
-        <div class="container-fluid" style="margin-bottom: 100px; height: 100%">
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+        <div class="container-fluid" style="margin-bottom: 100px; height: 1000px">
+			<br><h4>Fill the Leave Request Form</h4>
+            <div class="container-fluid" style="margin-top: 50px; background-color: #F2F4F4; padding-top: 10px;">
+            	
+				<form action="" method="post">
+					 <div class="form-row">
+					    <div class="col-md-2 mb-3">
+					      <label for="validationCustom01" style="font-weight: bold;">Employee ID</label>
+					      <input type="text" class="form-control" style="font-weight: bold;" value="<%=employee.getPersonId() %>" disabled>
+					    </div>
+					    <div class="col-md-6 mb-3">
+					      <label for="validationCustom02" style="font-weight: bold;">Employee Name</label>
+					      <input type="text" class="form-control" style="text-transform: uppercase; font-weight: bold;" value="<%=employee.getName().getFullName() %>" disabled>
+					    </div>
+					    <div class="col-md-4 mb-3">
+					      <label for="validationCustom02" style="font-weight: bold;">Employee Designation</label>
+					      <input type="text" class="form-control" style="text-transform: uppercase; font-weight: bold;" value="<%=employee.getDesignation().getDesignation() %>" disabled>
+					    </div>
+					  </div>
+					  <div class="form-row">
+					    <div class="col-md-2 mb-3">
+					      <label for="validationCustom01" style="font-weight: bold;">Employee ID</label>
+					      <input type="text" class="form-control" style="font-weight: bold;" value="<%=employee.getPersonId() %>" disabled>
+					    </div>
+					    <div class="col-md-6 mb-3">
+					      <label for="validationCustom02" style="font-weight: bold;">Employee Name</label>
+					      <input type="text" class="form-control" style="text-transform: uppercase; font-weight: bold;" value="<%=employee.getName().getFullName() %>" disabled>
+					    </div>
+					    <div class="col-md-4 mb-3">
+					      <label for="validationCustom02" style="font-weight: bold;">Employee Designation</label>
+					      <input type="text" class="form-control" style="text-transform: uppercase; font-weight: bold;" value="<%=employee.getDesignation().getDesignation() %>" disabled>
+					    </div>
+					  </div>
+		    	</form>
+            </div>
 		</div>
 		
         <!-- Footer -->

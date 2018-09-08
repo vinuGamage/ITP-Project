@@ -63,4 +63,8 @@ public class Name {
 		System.out.println(this.getLastName());
 		System.out.println(this.getOtherNames());
 	}
+	
+	public String getFullName() {
+		return (this.getOtherNames() + " " + this.getFirstName() + " " + this.getMiddleName() + " " + this.getLastName());
+	}
 }

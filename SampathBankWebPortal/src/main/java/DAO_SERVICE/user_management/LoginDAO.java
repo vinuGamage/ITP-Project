@@ -121,7 +121,21 @@ public class LoginDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if(UM_ResultSet0001 != null)
+					UM_ResultSet0001.close();
+				
+				if(UM_Prst0001 != null)
+					UM_Prst0001.close();
+				
+				if(con != null)
+					con.close();
+			} catch(SQLException sqlException) {
+				sqlException.printStackTrace();
+			}
 		}
+		cpmObj.printDatabaseStatus();
 		return onlineAccount;
 	}
 	
@@ -203,6 +217,19 @@ public class LoginDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if(UM_ResultSet0006 != null)
+					UM_ResultSet0006.close();
+				
+				if(UM_Prst0006 != null)
+					UM_Prst0006.close();
+				
+				if(con != null)
+					con.close();
+			} catch(SQLException sqlException) {
+				sqlException.printStackTrace();
+			}
 		}
 		return customer;
 	}
