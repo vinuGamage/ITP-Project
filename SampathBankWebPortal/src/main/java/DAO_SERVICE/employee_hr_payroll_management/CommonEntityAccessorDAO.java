@@ -14,6 +14,7 @@ import DAO_SERVICE.common_service.ConnectionPoolManager;
 import POJO_MODEL.employee_hr_payroll_management.Branch;
 import POJO_MODEL.employee_hr_payroll_management.Department;
 import POJO_MODEL.employee_hr_payroll_management.Designation;
+import POJO_MODEL.employee_hr_payroll_management.LeaveDays;
 import POJO_MODEL.employee_hr_payroll_management.managers.CommonEntityManager;
 import POJO_MODEL.user_management.Gender;
 import POJO_MODEL.user_management.Nationality;
@@ -28,6 +29,7 @@ public class CommonEntityAccessorDAO {
 	private Collection<Branch> branchList = new ArrayList<Branch> ();
 	private Collection<Department> departmentList = new ArrayList<Department> ();
 	private Collection<Designation> designationList = new ArrayList<Designation> ();
+	private Collection<LeaveDays> leaveDaysList = new ArrayList<LeaveDays> ();
 	
 	public void initializeCommonPojoClasses() {
 		System.out.println("=============COMMON ENTITY ACCESSOR DAO=============");
@@ -36,6 +38,7 @@ public class CommonEntityAccessorDAO {
 		initializePermissions();
 		initializeBranches();
 		initializeDesignations();
+		initializeLeaveDays();
 	}
 	
 	private void initializeGenders() {
@@ -343,13 +346,13 @@ public class CommonEntityAccessorDAO {
 			int i = 0;
 			while(EHPM_ResultSet0006.next()) {
 				i++;
-				designation = new Designation(EHPM_ResultSet0006.getInt(1), EHPM_ResultSet0006.getString(2));
+				designation = new Designation(EHPM_ResultSet0006.getInt("designationId"), EHPM_ResultSet0006.getString("designation"), EHPM_ResultSet0006.getInt("leaveDaysId"));
 				System.out.println("=============ALL DESIGNATIONS=============");
-				System.out.println(EHPM_ResultSet0006.getInt("designationId") + ", " + EHPM_ResultSet0006.getString("designation"));
+				System.out.println(EHPM_ResultSet0006.getInt("designationId") + ", " + EHPM_ResultSet0006.getString("designation") + ", " + EHPM_ResultSet0006.getString("leaveDaysId"));
 				insertDesignationList(designation);
 			}
 			if(i == 0)
-				branchList = null;
+				designationList = null;
 		} catch(SQLException sqlException) {
 			sqlException.printStackTrace();
 		} catch (Exception e) {
@@ -378,5 +381,60 @@ public class CommonEntityAccessorDAO {
 	public Collection<Designation> getDesignationList() {
 		return this.designationList;
 	}
+
+	private void initializeLeaveDays() {
+		ConnectionPoolManager cpmObj = new ConnectionPoolManager();
+
+		PreparedStatement EHPM_Prst0007 = null;
+		ResultSet EHPM_ResultSet0007 = null;
+		LeaveDays leaveDays = null;
+		
+		try {
+			DataSource dataSource = cpmObj.initializePool();
+			cpmObj.printDatabaseStatus();
+			
+			con = dataSource.getConnection();
+			cpmObj.printDatabaseStatus();
+			
+			EHPM_Prst0007 = con.prepareStatement(EHPMQueries.EHPMquery0017);
+			EHPM_ResultSet0007 = EHPM_Prst0007.executeQuery();
+			
+			int i = 0;
+			while(EHPM_ResultSet0007.next()) {
+				i++;
+				leaveDays = new LeaveDays(EHPM_ResultSet0007.getInt("leaveDaysId"), EHPM_ResultSet0007.getInt("noOfLeavesPerYear"));
+				System.out.println("=============ALL LeaveDays=============");
+				System.out.println(EHPM_ResultSet0007.getInt("leaveDaysId") + ", " + EHPM_ResultSet0007.getInt("noOfLeavesPerYear"));
+				insertLeaveDaysList(leaveDays);
+			}
+			if(i == 0)
+				leaveDaysList = null;
+		} catch(SQLException sqlException) {
+			sqlException.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(EHPM_ResultSet0007 != null)
+					EHPM_ResultSet0007.close();
+				
+				if(EHPM_Prst0007 != null)
+					EHPM_Prst0007.close();
+				
+				if(con != null)
+					con.close();
+			} catch(SQLException sqlException) {
+				sqlException.printStackTrace();
+			}
+		}
+		cpmObj.printDatabaseStatus();
+	}
 	
+	private void insertLeaveDaysList(LeaveDays leaveDays) {
+		leaveDaysList.add(leaveDays);
+	}
+	
+	public Collection<LeaveDays> getLeaveDaysList() {
+		return this.leaveDaysList;
+	}
 }

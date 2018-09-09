@@ -73,5 +73,6 @@ public class Employee extends Person {
 		System.out.println("\tEmployee Company Email : " + this.getCompanyEmail());
 		this.getDesignation().displayDesignation();;
 		System.out.println("\tEmployee Type : " + this.getEmployeeType());
+		this.getDesignation().getLeaveDaysForDesignation().displayLeaveDays();
 	}
 }

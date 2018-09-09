@@ -7,4 +7,8 @@ public class KeyFix {
         String newSuffix = String.format("%06d", suffix + 1);
        return newSuffix;
 	}
+	
+	public static int IntIncrement(int key) {
+		return ++key;
+	}
 }

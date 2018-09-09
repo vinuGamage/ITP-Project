@@ -3,15 +3,20 @@ package POJO_MODEL.employee_hr_payroll_management;
 import java.sql.Date;
 
 public class LeaveDetails {
-	private int noOfLeavesPerYear;
+	private String employeeId;
 	private int noOfLeavesLeft;
 	private Date lastEffectiveLeaveDate;
 	
-	public int getNoOfLeavesPerYear() {
-		return noOfLeavesPerYear;
+	public LeaveDetails(String employeeId, int noOfLeavesLeft, Date lastEffectiveLeaveDate) {
+		this.employeeId = employeeId;
+		this.noOfLeavesLeft = noOfLeavesLeft;
+		this.lastEffectiveLeaveDate = lastEffectiveLeaveDate;
 	}
-	public void setNoOfLeavesPerYear(int noOfLeavesPerYear) {
-		this.noOfLeavesPerYear = noOfLeavesPerYear;
+	public String getEmployeeId() {
+		return employeeId;
+	}
+	public void setEmployeeId(String employeeId) {
+		this.employeeId = employeeId;
 	}
 	public int getNoOfLeavesLeft() {
 		return noOfLeavesLeft;
@@ -25,4 +30,6 @@ public class LeaveDetails {
 	public void setLastEffectiveLeaveDate(Date lastEffectiveLeaveDate) {
 		this.lastEffectiveLeaveDate = lastEffectiveLeaveDate;
 	}
+	
+	
 }

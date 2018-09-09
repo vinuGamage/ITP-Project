@@ -8,6 +8,7 @@ import DAO_SERVICE.employee_hr_payroll_management.CommonEntityAccessorDAO;
 import POJO_MODEL.employee_hr_payroll_management.Branch;
 import POJO_MODEL.employee_hr_payroll_management.Department;
 import POJO_MODEL.employee_hr_payroll_management.Designation;
+import POJO_MODEL.employee_hr_payroll_management.LeaveDays;
 import POJO_MODEL.user_management.Gender;
 import POJO_MODEL.user_management.Nationality;
 import POJO_MODEL.user_management.Permission;
@@ -20,6 +21,7 @@ public class CommonEntityManager {
 	private static Collection<Branch> branchList = new ArrayList<Branch> ();
 	private static Collection<Department> departmentList = new ArrayList<Department> ();
 	private static Collection<Designation> designationList = new ArrayList<Designation> ();
+	private static Collection<LeaveDays> leaveDaysList = new ArrayList<LeaveDays>();
 	
 	private CommonEntityManager() {
 		CommonEntityAccessorDAO CEA = new CommonEntityAccessorDAO();
@@ -29,6 +31,7 @@ public class CommonEntityManager {
 		permissionList = CEA.getPermissionList();
 		branchList = CEA.getBranchList();
 		designationList = CEA.getDesignationList();
+		leaveDaysList = CEA.getLeaveDaysList();
 	}
 	
 	public void initializeDepartments() {
@@ -152,6 +155,15 @@ public class CommonEntityManager {
 				designation = desig;
 		}
 		return designation;
+	}
+	
+	public LeaveDays getLeaveDays(int leaveDaysId) {
+		LeaveDays leaveDays = null;
+		for(LeaveDays leave: leaveDaysList) {
+			if(leave.getLeaveDaysId() == leaveDaysId)
+				leaveDays = leave;
+		}
+		return leaveDays;
 	}
 	
 	public Collection<Gender> getGenderList() {

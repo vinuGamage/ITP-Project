@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, POJO_MODEL.employee_hr_payroll_management.LeaveDetails, POJO_MODEL.employee_hr_payroll_management.LeaveRequest"%>
+<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, POJO_MODEL.employee_hr_payroll_management.LeaveDetails, POJO_MODEL.employee_hr_payroll_management.LeaveRequest, 
+POJO_MODEL.employee_hr_payroll_management.LeaveRequest, java.util.Collection, java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,15 +13,13 @@
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<title>Apply For Leave</title>
+		<title>Leave History</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
 			if(employee == null)
 				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
 			
-			LeaveDetails leaveDetails = (LeaveDetails)request.getAttribute("leaveDetails");
-			
-			LeaveRequest leaveRequest = (LeaveRequest)session.getAttribute("leaveRequest");
+			Collection<LeaveRequest> leaveHistory = (ArrayList<LeaveRequest>) session.getAttribute("leaveHistory");
 		%>
 	</head>
 	<body>
@@ -128,7 +127,7 @@
                         <div class="dropdown-menu nav-dropdown">
                             <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveBase" style="color:white">Apply for Leave</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveHistory" style="color:white">Leave History</a>
+                            <a class="dropdown-item" href="#" style="color:white">Leave History</a>
                             <a class="dropdown-item" href="#" style="color:white">Leave Status</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave Analysis</a>
@@ -189,101 +188,23 @@
 		
 		
         <div class="container-fluid" style="margin-bottom: 100px; height: 100%">
-        <%if(leaveDetails != null) {%>
-			<br><h4>Fill the Leave Request Form</h4>
-            <div class="container-fluid" style="margin-top: 50px; background-color: #F2F4F4; padding-top: 10px; border-width: 3px; border-style: solid; border-color: #FD4F00;">
-				<form action="" method="">
-					 <div class="form-row">
-					    <div class="col-md-2 mb-3">
-					      <label for="validationCustom01" style="font-weight: bold;">Employee ID:</label>
-					      <input type="text" class="form-control" style="font-weight: bold;" value="<%=employee.getPersonId() %>" disabled>
-					    </div>
-					    <div class="col-md-6 mb-3">
-					      <label for="validationCustom02" style="font-weight: bold;">Employee Name:</label>
-					      <input type="text" class="form-control" style="text-transform: uppercase; font-weight: bold;" value="<%=employee.getName().getFullName() %>" disabled>
-					    </div>
-					    <div class="col-md-4 mb-3">
-					      <label for="validationCustom02" style="font-weight: bold;">Employee Designation:</label>
-					      <input type="text" class="form-control" style="text-transform: uppercase; font-weight: bold;" value="<%=employee.getDesignation().getDesignation() %>" disabled>
-					    </div>
-					  </div>
-					  <div class="form-row">
-					    <div class="col-md-2 mb-3">
-					      <label for="validationCustom01" style="font-weight: bold;">No of Leaves Per Year:</label>
-					      <input type="text" class="form-control" style="font-weight: bold;" value="<%=employee.getDesignation().getLeaveDaysForDesignation().getNoOfLeavesPerYear()%>" disabled>
-					    </div>
-					    <div class="col-md-6 mb-3">
-					      <label for="validationCustom02" style="font-weight: bold;">No of Leaves Left:</label>
-					      <input type="text" class="form-control" style="text-transform: uppercase; font-weight: bold;" value="<%=leaveDetails.getNoOfLeavesLeft() %>" disabled>
-					    </div>
-					    <div class="col-md-4 mb-3">
-					      <label for="validationCustom02" style="font-weight: bold;">Last Effective Leave Date:</label>
-					      <input type="text" class="form-control" style="text-transform: uppercase; font-weight: bold;" value="<%=leaveDetails.getLastEffectiveLeaveDate() %>" disabled>
-					    </div>
-					  </div>
-		    	</form>
-            </div>
-            
-            <div class="container-fluid" style="margin-top: 50px; background-color: #F2F4F4; padding-top: 10px; margin-top:20px; border-width: 3px; border-style: solid; border-color: #FD4F00;">
-				<form action="/SampathBankWebPortal/LeaveHandlingEmployee" method="get">
-					 <div class="form-row">
-					    <div class="col-md-3 mb-3">
-					      <label for="validationCustom01" style="font-weight: bold;">Leave Start Date (Requested):</label>
-					      <input type="date" class="form-control" style="font-weight: bold;" name="leaveStart" required/>
-					    </div>
-					    <div class="col-md-3 mb-3">
-					      <label for="validationCustom02" style="font-weight: bold;">Leave End Date (Requested):</label>
-					      <input type="date" class="form-control" style="text-transform: uppercase; font-weight: bold;" name="leaveEnd" required/>
-					    </div>
-					    <div class="col-md-3 mb-3">
-					      <label for="validationCustom02" style="font-weight: bold;">Leave Type:</label>
-					      <select class="custom-select mr-sm-2" name="leaveType" required>
-					      	<option value="" disabled selected hidden="true">Choose...</option>
-                            <option value="sick leave">sick leave</option>
-                            <option value="family emergency">family emergency</option>
-                            <option value="event">event</option>
-                            <option value="other">other</option>
-                          </select>
-					    </div>
-					    <div class="col-md-3 mb-3">
-					      <label for="validationCustom02" style="font-weight: bold;">Review Speed:</label>
-					      <select class="custom-select mr-sm-2" name="leaveReviewSpeed" required>
-					      	<option value="" disabled selected hidden="true">Choose...</option>
-                            <option value="emergency">emergency</option>
-                            <option value="average">average</option>
-                            <option value="leisure">leisure</option>
-                          </select>
-					    </div>
-					  </div>
-					 <div class="form-row" style="margin-top: 20px;">
-					    <div class="col" style="padding-bottom: 20px;">
-					      <label for="validationCustom01" style="font-weight: bold;">Leave Description:</label>
-					      <textarea class="form-control col" rows="15" name="leaveDescription"></textarea>
-					    </div>
-					</div>
-                    <div style="clear: both; float: right; margin-top: 20px;">
-                        <div class="form-group row">
-                            <div>
-                            	<input type="reset" value="Reset" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 25px"/>
-                                <input type="submit" name="leaveSubmit" value="Submit" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 25px"/>
-                            </div>
-                        </div>
-                    </div>
-		    	</form>
-            </div>
-            <%} else if(leaveRequest != null){ %>
-            <form action="/SampathBankWebPortal/LeaveHandlingEmployee" method="get">
-            
-	            <div style="clear: both; float: right; margin-top: 20px;">
-	                <div class="form-group row">
-	                    <div>
-	                    	<input type="submit" name="leaveRejectSeconded" value="reject" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 25px"/>
-	                        <input type="submit" name="leaveSubmitSeconded" value="confirm" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 25px"/>
-	                    </div>
-	                </div>
-	            </div>
-            </form>
-            <%} %>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 		</div>
 		
         <!-- Footer -->

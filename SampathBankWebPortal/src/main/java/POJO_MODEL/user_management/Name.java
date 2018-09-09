@@ -65,6 +65,18 @@ public class Name {
 	}
 	
 	public String getFullName() {
-		return (this.getOtherNames() + " " + this.getFirstName() + " " + this.getMiddleName() + " " + this.getLastName());
+		String middleName=null;
+		String otherNames=null;
+		if(this.getMiddleName() == null || this.getMiddleName().trim().length() == 0)
+			middleName = "";
+		else
+			middleName = this.getMiddleName();
+		
+		if(this.getOtherNames() == null || this.getOtherNames().trim().length() == 0)
+			otherNames = "";
+		else
+			otherNames = this.getOtherNames();
+		
+		return (otherNames + " " + this.getFirstName() + " " + middleName + " " + this.getLastName());
 	}
 }

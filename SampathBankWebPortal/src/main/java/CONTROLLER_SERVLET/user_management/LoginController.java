@@ -36,7 +36,7 @@ public class LoginController extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
-		if(username.equals("abc") && password.equals("123")) {
+/*		if(username.equals("abc") && password.equals("123")) {
 			Employee employee = new Employee();
 			
 			employee.setPersonId("EMPL000001");
@@ -64,26 +64,29 @@ public class LoginController extends HttpServlet {
 			
 
 			response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp");
+		}*/
+		
+		
+		GenericLogin<Boolean, String, Customer, Employee> genericLogin = LoginDAO.checkLoginCredentials(username, password, commonEntityManager);
+		HttpSession session = request.getSession();
+		
+		
+		if(genericLogin.getFound()) {
+			if(genericLogin.getType().equals("customer")) {
+				Customer customer = genericLogin.getCustomer();
+				customer.displayCustomer();
+				out.print("CUSTOMER");
+				
+			} else if(genericLogin.getType().equals("employee")) {
+				Employee employee = genericLogin.getEmployee();
+				session.setAttribute("employee", employee);
+				employee.displayEmployee();
+				response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp");
+			} else {
+				out.println("NOT FOUND1");
+			}
+		} else {
+			out.println("NOT FOUND2");
 		}
-		
-		
-//		GenericLogin<Boolean, String, Customer, Employee> genericLogin = LoginDAO.checkLoginCredentials(username, password, commonEntityManager);
-//		
-//		if(genericLogin.getFound()) {
-//			if(genericLogin.getType().equals("customer")) {
-//				Customer customer = genericLogin.getCustomer();
-//				customer.displayCustomer();
-//				out.print("CUSTOMER");
-//				
-//			} else if(genericLogin.getType().equals("employee")) {
-//				Employee employee = genericLogin.getEmployee();
-//				employee.displayEmployee();
-//				out.print("EMPLOYEE");
-//			} else {
-//				out.println("NOT FOUND1");
-//			}
-//		} else {
-//			out.println("NOT FOUND2");
-//		}
 	}
 }

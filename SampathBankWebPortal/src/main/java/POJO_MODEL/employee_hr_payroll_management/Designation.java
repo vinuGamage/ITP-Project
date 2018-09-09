@@ -3,9 +3,12 @@ package POJO_MODEL.employee_hr_payroll_management;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import POJO_MODEL.employee_hr_payroll_management.managers.CommonEntityManager;
+
 public class Designation {
 	private int designationId;
 	private String designation;
+	private int leaveDaysId;
 	
 	//Back Reference
 	private Collection<NormalEmployee> normalEmployeeList = new ArrayList<NormalEmployee> ();
@@ -13,9 +16,10 @@ public class Designation {
 	private Collection<Head> headList = new ArrayList<Head> ();
 	private Collection<Admin> adminList = new ArrayList<Admin> ();
 	
-	public Designation(int designationId, String designation) {
+	public Designation(int designationId, String designation, int leaveDaysId) {
 		this.setDesignationId(designationId);
 		this.setDesignation(designation);
+		this.setLeaveDaysId(leaveDaysId);
 	}
 
 	public int getDesignationId() {
@@ -32,6 +36,14 @@ public class Designation {
 	
 	public void setDesignation(String designation) {
 		this.designation = designation;
+	}
+
+	public int getLeaveDaysId() {
+		return leaveDaysId;
+	}
+
+	public void setLeaveDaysId(int leaveDaysId) {
+		this.leaveDaysId = leaveDaysId;
 	}
 
 	public Collection<NormalEmployee> getNormalEmployeeList() {
@@ -70,5 +82,10 @@ public class Designation {
 		System.out.println("============Designation Details : ============");
 		System.out.println(this.getDesignationId());
 		System.out.println(this.getDesignation());
+	}
+
+	public LeaveDays getLeaveDaysForDesignation() {
+		CommonEntityManager commonEntityManager = CommonEntityManager.getInstance();
+		return commonEntityManager.getLeaveDays(leaveDaysId);
 	}
 }
