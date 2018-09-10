@@ -153,7 +153,7 @@ public class LeaveManagementEmployeeDAO {
 		
 		PreparedStatement EHPM_Prst0001 = null;
 		ResultSet EHPM_ResultSet0001 = null;
-		LeaveRequest leaveRequest = null;
+		LeaveRequest leaveRequest = new LeaveRequest();
 		int i = 0;
 		Collection<LeaveRequest> leaveRequestList = new ArrayList<LeaveRequest>();
 		
@@ -177,10 +177,13 @@ public class LeaveManagementEmployeeDAO {
 				else
 					leaveRequest.setLeaveReviewedBy(EHPM_ResultSet0001.getString("leaveReviewedBy"));
 				
+				leaveRequestList.add(leaveRequest);
 				i++;
 			}
-			if(i == 0)
+			if(i == 0) {
 				leaveRequestList = null;
+				System.out.println("LEAVE REQUEST LIST NULL");
+			}
 				
 		} catch (SQLException e) {
 			e.printStackTrace();

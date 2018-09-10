@@ -106,13 +106,17 @@ public class LeaveHandlingEmployee extends HttpServlet {
 		HttpSession session = request.getSession();
 		Employee employee = (Employee) session.getAttribute("employee");
 		
-		Collection<LeaveRequest> requestHistory = null;
-		requestHistory = LeaveManagementEmployeeDAO.getLeaveHistory(employee.getPersonId());
+		Collection<LeaveRequest> leaveHistory = null;
+		leaveHistory = LeaveManagementEmployeeDAO.getLeaveHistory(employee.getPersonId());
 		
-		if(requestHistory == null)
-			session.setAttribute("requestHistory", null);
-		else
-			session.setAttribute("requestHistory", requestHistory);
+		if(leaveHistory == null) {
+			session.setAttribute("leaveHistory", null);
+			System.out.println("LEAVE REQUEST HISTORY NULL");
+		}
+		else {
+			System.out.println("LEAVE REQUEST HISTORY NOTT NULL");
+			session.setAttribute("leaveHistory", leaveHistory);
+		}
 		
 		response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Leave_History.jsp");
 	}

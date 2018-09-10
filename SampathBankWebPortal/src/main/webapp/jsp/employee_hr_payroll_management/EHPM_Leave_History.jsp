@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, POJO_MODEL.employee_hr_payroll_management.LeaveDetails, POJO_MODEL.employee_hr_payroll_management.LeaveRequest, 
+<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, POJO_MODEL.employee_hr_payroll_management.LeaveRequest, 
 POJO_MODEL.employee_hr_payroll_management.LeaveRequest, java.util.Collection, java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
@@ -18,8 +18,6 @@ POJO_MODEL.employee_hr_payroll_management.LeaveRequest, java.util.Collection, ja
 			Employee employee = (Employee) session.getAttribute("employee");
 			if(employee == null)
 				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
-			
-			Collection<LeaveRequest> leaveHistory = (ArrayList<LeaveRequest>) session.getAttribute("leaveHistory");
 		%>
 	</head>
 	<body>
@@ -182,17 +180,47 @@ POJO_MODEL.employee_hr_payroll_management.LeaveRequest, java.util.Collection, ja
 		<nav aria-label="breadcrumb" class="breadcrumb-stuff">
 		  <ol class="breadcrumb">
 		  <li class="breadcrumb-item"><a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp">EmpHome</a></li>
-		    <li class="breadcrumb-item active" aria-current="page">Apply For Leave</li>
+		    <li class="breadcrumb-item active" aria-current="page">Leave History</li>
 		  </ol>
 		</nav>
 		
 		
-        <div class="container-fluid" style="margin-bottom: 100px; height: 100%">
+        <div class="container-fluid" style="margin-bottom: 100px; height: 1000px">
+        <% Collection<LeaveRequest> leaveHistory = (ArrayList<LeaveRequest>) session.getAttribute("leaveHistory"); %>
+		<%if(leaveHistory != null) {%>
+			<table class="table">
+			  <thead class="thead-light">
+			    <tr>
+			      <th scope="col">LeaveReqID</th>
+			      <th scope="col">Leave Type</th>
+			      <th scope="col">Leave RequestedDate</th>
+			      <th scope="col">Leave Duration</th>
+			      <th scope="col">Leave Status</th>
+			      <th scope="col">###</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  <%for(LeaveRequest lr: leaveHistory) {%>
+			    <tr>
+			      <th scope="row"><%=lr.getLeaveRequestId() %></th>
+			      <td><%=lr.getLeaveType() %></td>
+			      <td><%=lr.getLeaveRequestedDate() %></td>
+			      <td>0</td>
+			      <td><%=lr.getLeaveStatus() %></td>
+			      <td>
+			      	<form>
+			      		<input type="hidden" value="<%=lr.getLeaveRequestId() %>" name="leaveRequestId"/>
+			      		<input type="submit" value="View"/>
+			      	</form>
+			      </td>
+			    </tr>
+			    <%} %>
+			  </tbody>
+			</table>
+		<%} else { %>
+			LALALA
 			
-			
-			
-			
-			
+		<%} %>
 			
 			
 			
