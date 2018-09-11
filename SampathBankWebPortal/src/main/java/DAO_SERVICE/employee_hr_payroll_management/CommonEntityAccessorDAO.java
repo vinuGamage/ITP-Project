@@ -18,14 +18,14 @@ import POJO_MODEL.employee_hr_payroll_management.LeaveDays;
 import POJO_MODEL.employee_hr_payroll_management.managers.CommonEntityManager;
 import POJO_MODEL.user_management.Gender;
 import POJO_MODEL.user_management.Nationality;
-import POJO_MODEL.user_management.Permission;
+//import POJO_MODEL.user_management.Permission;
 
 public class CommonEntityAccessorDAO {
 	private static Connection con = null;
 	
 	private Collection<Gender> genderList = new ArrayList<Gender> ();
 	private Collection<Nationality> nationalityList = new ArrayList<Nationality> ();
-	private Collection<Permission> permissionList = new ArrayList<Permission> ();
+//	private Collection<Permission> permissionList = new ArrayList<Permission> ();
 	private Collection<Branch> branchList = new ArrayList<Branch> ();
 	private Collection<Department> departmentList = new ArrayList<Department> ();
 	private Collection<Designation> designationList = new ArrayList<Designation> ();
@@ -35,7 +35,7 @@ public class CommonEntityAccessorDAO {
 		System.out.println("=============COMMON ENTITY ACCESSOR DAO=============");
 		initializeGenders();
 		initializeNationalities();
-		initializePermissions();
+//		initializePermissions();
 		initializeBranches();
 		initializeDesignations();
 		initializeLeaveDays();
@@ -153,7 +153,7 @@ public class CommonEntityAccessorDAO {
 		return this.nationalityList;
 	}
 	
-	private void initializePermissions() {
+/*	private void initializePermissions() {
 		ConnectionPoolManager cpmObj = new ConnectionPoolManager();
 
 		PreparedStatement EHPM_Prst0003 = null;
@@ -207,7 +207,7 @@ public class CommonEntityAccessorDAO {
 	
 	public Collection<Permission> getPermissionList() {
 		return this.permissionList;
-	}
+	}*/
 	
 	private void initializeBranches() {
 		ConnectionPoolManager cpmObj = new ConnectionPoolManager();

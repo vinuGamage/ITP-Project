@@ -13,6 +13,11 @@ public class Contact {
 		this.setType(type);
 	}
 	
+	public Contact(String contactNumber, String type) {
+		this.setContactNumber(contactNumber);
+		this.setType(type);
+	}
+	
 	public String getPersonId() {
 		return personId;
 	}

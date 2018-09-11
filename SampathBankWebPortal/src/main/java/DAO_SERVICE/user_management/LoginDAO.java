@@ -186,7 +186,7 @@ public class LoginDAO {
 				customer.setGender(commonEntityManager.getGender(UM_ResultSet0006.getInt("genderId")));
 				customer.setNationality(commonEntityManager.getNationality(UM_ResultSet0006.getInt("nationalityId")));
 				customer.setBranch(commonEntityManager.getBranch(UM_ResultSet0006.getString("branchId")));
-				customer.setPermission(commonEntityManager.getPermission(UM_ResultSet0006.getInt("permissionLevel")));
+//				customer.setPermission(commonEntityManager.getPermission(UM_ResultSet0006.getInt("permissionLevel")));
 				
 				//query for contact table
 				PreparedStatement UM_Prst0008 = null; 
@@ -348,7 +348,7 @@ public class LoginDAO {
 				employee.setGender(commonEntityManager.getGender(UM_ResultSet0003.getInt("genderId")));
 				employee.setNationality(commonEntityManager.getNationality(UM_ResultSet0003.getInt("nationalityId")));
 				employee.setBranch(commonEntityManager.getBranch(UM_ResultSet0003.getString("branchId")));
-				employee.setPermission(commonEntityManager.getPermission(UM_ResultSet0003.getInt("permissionLevel")));
+//				employee.setPermission(commonEntityManager.getPermission(UM_ResultSet0003.getInt("permissionLevel")));
 				
 				//query for contact table
 				PreparedStatement UM_Prst0005 = null; 

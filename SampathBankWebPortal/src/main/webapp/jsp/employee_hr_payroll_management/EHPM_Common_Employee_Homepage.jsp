@@ -27,9 +27,6 @@
                         <a class="nav-link" href="#" title="Go to Employee Homepage">EmpHome</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" title="Go to Customer Homepage">CustomerHome</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="#" title="View Profile">MyProfile</a>
                     </li>
                     <li class="nav-item">
@@ -72,12 +69,12 @@
 
             <div class="container-fluid" style="margin-top:10px;">
                 <ul class="nav nav-pills nav-fill nav-justified nav-header">
-                <%if(employee.getDesignation().getDesignation().equals("hr manager")) {%>
+                <%if(employee.getDesignation().getDesignation().equals("human resource manager")) {%>
                     <li class="nav-item dropdown" title="Click to See Your Duties">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HrRecruitmentOfficer_RecruitAnEmployee.jsp" style="color:white">Recruit an Employee</a>
-                            <a class="dropdown-item" href="#" style="color:white">Create Employee Online Account</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_RecruitAnEmployee.jsp" style="color:white">Recruit an Employee</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/OnlineEmployeeAccountController?abc=check" style="color:white">Create Employee Online Account</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave Request Management</a>
                             <div class="dropdown-divider"></div>
@@ -88,7 +85,7 @@
                             <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
                         </div>
                     </li>
-                    <%} else if(employee.getDesignation().getDesignation().equals("hr admin")) {%>
+                    <%} else if(employee.getDesignation().getDesignation().equals("admin")) {%>
                     <li class="nav-item dropdown" title="Click to See Your Duties">
                     	<a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
                     	<div class="dropdown-menu nav-dropdown">
@@ -103,7 +100,7 @@
 	                        <a class="dropdown-item" href="#" style="color:white">Job 05</a>
                     	</div>
                 	</li>
-                    <%} else if(employee.getDesignation().getDesignation().equals("intern")) {%>
+                    <%} else if(employee.getDesignation().getDesignation().equals("normal employee")) {%>
                     <li class="nav-item dropdown" title="Click to See Your Duties">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
                         <div class="dropdown-menu nav-dropdown">
@@ -129,7 +126,6 @@
                             <a class="dropdown-item" href="#" style="color:white">Leave Status</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave Analysis</a>
-                            <a class="dropdown-item" href="#" style="color:white">File a Complaint</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown" title="Click to See Salary Related Options">
@@ -139,9 +135,6 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Salary History</a>
                             <a class="dropdown-item" href="#" style="color:white">Next Salary Details</a>
-                            <a class="dropdown-item" href="#" style="color:white">Personal Salary Details</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">File a Complaint</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown" title="Click to See Skills Related Options">
@@ -167,7 +160,6 @@
                         <div class="dropdown-menu nav-dropdown">
                             <a class="dropdown-item" href="#" style="color:white">Profile Details</a>
                             <a class="dropdown-item" href="#" style="color:white">Update Profile</a>
-                            <a class="dropdown-item" href="#" style="color:white">Change History</a>
                         </div>
                     </li>
                 </ul>

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import=""%>
+    pageEncoding="ISO-8859-1"%>
+<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, POJO_MODEL.employee_hr_payroll_management.managers.CommonEntityManager,
+POJO_MODEL.user_management.Gender, POJO_MODEL.user_management.Nationality, POJO_MODEL.employee_hr_payroll_management.Branch, 
+POJO_MODEL.employee_hr_payroll_management.Designation"%>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -11,7 +15,14 @@
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        <title>HR Recruitment Officer</title>
+        <title>Employee Recruitment</title>
+		<%
+			Employee employee = (Employee) session.getAttribute("employee");
+			CommonEntityManager cem = (CommonEntityManager) session.getAttribute("commonEntityManager");
+		
+			if(employee == null)
+				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
+		%>
     </head>
 
     <body>
@@ -19,10 +30,7 @@
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#" title="Go to Employee Homepage">EmpHome</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" title="Go to Customer Homepage">CustomerHome</a>
+                        <a class="nav-link" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp" title="Go to Employee Homepage">EmpHome</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" title="View Profile">MyProfile</a>
@@ -62,19 +70,19 @@
                         <img src="/SampathBankWebPortal/resources/images/ProfilePlaceholder.png" alt="" class="pro-pic">
                     </div>
                     <div class="container-fluid" style="float: right; clear: both;" >
-                        <a href="">Mr. xxx xxx</a>
+                        <a href="">Mr. <%=employee.getName().getFirstName()%><br/>
+                        <%=employee.getName().getLastName() %></a>
                     </div>
                 </div>
-
             </div>
 
-            <div class="container-fluid">
+            <div class="container-fluid" style="margin-top:10px;">
                 <ul class="nav nav-pills nav-fill nav-justified nav-header">
                     <li class="nav-item dropdown" title="Click to See Your Duties">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HrRecruitmentOfficer_RecruitAnEmployee.jsp" style="color:white">Recruit an Employee</a>
-                            <a class="dropdown-item" href="#" style="color:white">Create Employee Online Account</a>
+                            <a class="dropdown-item" href="#" style="color:white">Recruit an Employee</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/OnlineEmployeeAccountController?abc=check" style="color:white">Create Employee Online Account</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave Request Management</a>
                             <div class="dropdown-divider"></div>
@@ -94,7 +102,6 @@
                             <a class="dropdown-item" href="#" style="color:white">Leave Status</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave Analysis</a>
-                            <a class="dropdown-item" href="#" style="color:white">File a Complaint</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown" title="Click to See Salary Related Options">
@@ -104,9 +111,6 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Salary History</a>
                             <a class="dropdown-item" href="#" style="color:white">Next Salary Details</a>
-                            <a class="dropdown-item" href="#" style="color:white">Personal Salary Details</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">File a Complaint</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown" title="Click to See Skills Related Options">
@@ -132,7 +136,6 @@
                         <div class="dropdown-menu nav-dropdown">
                             <a class="dropdown-item" href="#" style="color:white">Profile Details</a>
                             <a class="dropdown-item" href="#" style="color:white">Update Profile</a>
-                            <a class="dropdown-item" href="#" style="color:white">Change History</a>
                         </div>
                     </li>
                 </ul>
@@ -163,9 +166,9 @@
                         <div style="width: 550px; float: left; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
                             <h5>Basic Details</h5>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px">
-                                <label class="col-4 col-form-label" for="EmpForm01BasicDetails02">First Name:</label>
+                                <label class="col-4 col-form-label" for="EmpForm01BasicDetails02">First Name: *</label>
                                 <div class="col-8">
-                                	<input type="text" class="form-control" id="EmpForm01BasicDetails02" name="empFirstName" required>
+                                	<input type="text" class="form-control" id="EmpForm01BasicDetails02" name="empFirstName">
                                 </div>
                             </div>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px">
@@ -175,9 +178,9 @@
                                 </div>
                             </div>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px">
-                                <label class="col-4 col-form-label" for="EmpForm01BasicDetails04">Last Name:</label>
+                                <label class="col-4 col-form-label" for="EmpForm01BasicDetails04">Last Name: *</label>
                                 <div class="col-8">
-                                	<input type="text" class="form-control" id="EmpForm01BasicDetails04" name="empLastName" required>
+                                	<input type="text" class="form-control" id="EmpForm01BasicDetails04" name="empLastName">
                                 </div>
                             </div>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px">
@@ -187,13 +190,14 @@
                                 </div>
                             </div>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px">
-                                <label class="col-4 col-form-label" for="EmpForm01BasicDetails06">Gender:</label>
+                                <label class="col-4 col-form-label" for="EmpForm01BasicDetails06">Gender: *</label>
                                 <div class="col-8">
-                                    <select class="custom-select mr-sm-2" id="EmpForm01BasicDetails06" name="empGender" required>
+                                    <select class="custom-select mr-sm-2" id="EmpForm01BasicDetails06" name="empGender">
                                         <option value="" disabled selected hidden="true">Choose...</option>
                                         <%for(Gender gender : (Collection<Gender>) cem.getGenderList()) {%>
                                         <option value="<%=gender.getGender()%>"><%=gender.getGender()%></option>
                                         <%} %>
+                                        <option value="error%>">error</option>
                                     </select>
                                 </div>
                             </div>
@@ -205,8 +209,8 @@
                                 <label class="col-4 col-form-label">Street Address:</label>
                                 <div class="col-8">
                                     <div class="form-group">
-                                        <label for="EmpForm01ContactDetails01">Line 01:</label>
-                                        <input type="text" class="form-control" id="EmpForm01ContactDetails01" placeholder="1234 Main St" name="empAddLine01" required>
+                                        <label for="EmpForm01ContactDetails01">Line 01: *</label>
+                                        <input type="text" class="form-control" id="EmpForm01ContactDetails01" placeholder="1234 Main St" name="empAddLine01">
                                     </div>
                                     <div class="form-group">
                                         <label for="EmpForm01ContactDetails02">Line 02:</label>
@@ -215,13 +219,13 @@
                                 </div>
                             </div>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px">
-                                <label class="col-2 col-form-label" for="EmpForm01ContactDetails03">City:</label>
+                                <label class="col-2 col-form-label" for="EmpForm01ContactDetails03">City: *</label>
                                 <div class="col-4">
-                                    <input type="text" class="form-control" id="EmpForm01ContactDetails03" name="empAddCity" required>
+                                    <input type="text" class="form-control" id="EmpForm01ContactDetails03" name="empAddCity">
                                 </div>
-                                <label class="col-2 col-form-label" for="EmpForm01ContactDetails04">Province:</label>
+                                <label class="col-2 col-form-label" for="EmpForm01ContactDetails04">Province: *</label>
                                 <div class="col-4">
-                                    <select class="custom-select mr-sm-2" id="EmpForm01ContactDetails04" name="empAddProvince" required>
+                                    <select class="custom-select mr-sm-2" id="EmpForm01ContactDetails04" name="empAddProvince">
                                         <option value="" disabled selected hidden="ture">Choose...</option>
                                         <option value="western">Western</option>
                                         <option value="eastern">Eastern</option>
@@ -236,27 +240,30 @@
                                 </div>
                             </div>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px">
-                                <label class="col-3 col-form-label" for="EmpForm01ContactDetails05">ZIP Code:</label>
+                                <label class="col-3 col-form-label" for="EmpForm01ContactDetails05">ZIP Code: *</label>
                                 <div class="col-4">
-                                	<input type="number" class="form-control" id="EmpForm01ContactDetails05" name="empAddZip" pattern="[0-9]{3}" title="5 digit number" required>
+                                	<input type="number" class="form-control" id="EmpForm01ContactDetails05" name="empAddZip" title="5 digit number">
+                                	<!-- pattern="[0-9]{3}" -->
                                 </div>
                             </div>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px">
-                                <label class="col-4 col-form-label" for="EmpForm01ContactDetails06">Home Contact No:</label>
+                                <label class="col-4 col-form-label" for="EmpForm01ContactDetails06">Home Contact No: *</label>
                                 <div class="col-8">
-                                	<input type="text" class="form-control" id="EmpForm01ContactDetails06" name="empHomeContact" pattern="0[0-9]{9}" title="10 digits inluding the preceding 0" required>
+                                	<input type="text" class="form-control" id="EmpForm01ContactDetails06" name="empHomeContact" title="10 digits inluding the preceding 0">
+                                	<!-- pattern="0[0-9]{9}" -->
                                 </div>
                             </div>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px">
                                 <label class="col-4 col-form-label" for="EmpForm01ContactDetails07">Mobile:</label>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" id="EmpForm01ContactDetails07" name="empMobileContact" pattern="0[0-9]{9}">
+                                    <input type="text" class="form-control" id="EmpForm01ContactDetails07" name="empMobileContact">
+                                    <!-- pattern="0[0-9]{9}" -->
                                 </div>
                             </div>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px">
-                                <label class="col-4 col-form-label" for="EmpForm01ContactDetails08">Personal Email:</label>
+                                <label class="col-4 col-form-label" for="EmpForm01ContactDetails08">Personal Email: *</label>
                                 <div class="col-8">
-                               		<input type="email" class="form-control" id="EmpForm01ContactDetails08" name="empPersonalEmail" required>
+                               		<input type="email" class="form-control" id="EmpForm01ContactDetails08" name="empPersonalEmail">
                                 </div>
                             </div>
                         </div>
@@ -266,106 +273,84 @@
                         <div style="width: 550px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
                             <h5>Identification</h5>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px">
-                                <label class="col-4 col-form-label" for="EmpForm01Identification01">NIC:</label>
+                                <label class="col-4 col-form-label" for="EmpForm01Identification01">NIC: *</label>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" id="EmpForm01Identification01" name="empNic" pattern="[0-9]{9}(v|V)" title="9 digits followed by a v or a V" required>
+                                    <input type="text" class="form-control" id="EmpForm01Identification01" name="empNic" title="9 digits followed by a v or a V">
+                                    <!-- pattern="[0-9]{9}(v|V)" -->
                                 </div>
                             </div>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px">
-                                <label class="col-4 col-form-label" for="EmpForm01Identification03">Nationality:</label>
+                                <label class="col-4 col-form-label" for="EmpForm01Identification03">Nationality: *</label>
                                 <div class="col-8">
-                                    <select class="custom-select mr-sm-2" id="EmpForm01Identification03" name="empNationality" required>
+                                    <select class="custom-select mr-sm-2" id="EmpForm01Identification03" name="empNationality">
                                         <option value="" disabled selected hidden>Choose...</option>
                                         <%for(Nationality nationality : (Collection<Nationality>) cem.getNationalityList()) {%>
                                         <option value="<%=nationality.getNationality()%>"><%=nationality.getNationality()%></option>
                                         <%} %>
+                                        <option value="error%>">error</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px">
-                                <label class="col-4 col-form-label" for="EmpForm01Identification04">Date of Birth:</label>
+                                <label class="col-4 col-form-label" for="EmpForm01Identification04">Date of Birth: *</label>
                                 <div class="col-8">
-                                    <input type="date" class="form-control" id="EmpForm01Identification04" name="empDob" required>
+                                    <input type="date" class="form-control" id="EmpForm01Identification04" name="empDob">
                                 </div>
                             </div>
-<!--                             <div class="form-group row" style="padding: 4px; padding-left: 16px; margin: 2px; border-width: 1px; border-style: solid; border-color: #FD4F00">
-                                <label class="col-4 col-form-label" for="EmpForm01Identification05">Employee ID:</label>
-                                <div class="col-4">
-                                <input type="text" class="form-control" id="EmpForm01Identification05" disabled>
-                                </div>
-                                <div class="col-4">
-                                <button class="btn-secondary">Generate ID</button>
-                                </div>
-                                <div class="col">
-                                    <label for="EmpForm01Identification05">Employee ID:</label>
-                                </div>
-                                <div class="col">
-                                    <input type="text" class="form-control" id="EmpForm01Identification05" placeholder="XXXX0000" disabled>
-                                </div>
-                                <div class="col">
-                                    <button class="btn-info">Generate ID</button>
-                                </div>
-                            </div> -->
                         </div>
 
                         <div style="width: 550px; padding: 5px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; clear: both; margin-bottom: 5px;">
                             <h5>Company Related</h5>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px">
-                                <label class="col-4 col-form-label" for="EmpForm01CompanyRelated01">Branch:</label>
+                                <label class="col-4 col-form-label" for="EmpForm01CompanyRelated01">Branch: *</label>
                                 <div class="col-8">
-                                    <select class="custom-select mr-sm-2" id="EmpForm01CompanyRelated01" name="empBranch" required>
+                                    <select class="custom-select mr-sm-2" id="EmpForm01CompanyRelated01" name="empBranch">
                                         <option value="" disabled selected hidden>Choose...</option>
                                         <%for(Branch branch : (Collection<Branch>) cem.getBranchList()) {%>
                                         <option value="<%=branch.getBranchAddress().getAddressCity()%>"><%=branch.getBranchAddress().getAddressCity()%></option>
                                         <%} %>
+                                        <option value="error%>">error</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px">
-                                <label class="col-4 col-form-label" for="EmpForm01CompanyRelated02">Department:</label>
+                                <label class="col-4 col-form-label" for="EmpForm01CompanyRelated02">Department: *</label>
                                 <div class="col-8">
                                     <select class="custom-select mr-sm-2" id="EmpForm01CompanyRelated02" name="empDepartment" required>
                                         <option value="" disabled selected hidden>Choose...</option>
-                                        <%for(Department department: (Collection<Department>) cem.getDepartmentList()) {%>
-                                        <option value="<%=department.getDepartmentName()%>"><%=department.getDepartmentName()%></option>
-                                        <%} %>
+                                        <option value="human resource">human resource</option>
+                                        <option value="inventory">inventory</option>
+                                        <option value="transaction">transaction</option>
+                                        <option value="loan">loan</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px">
-                                <label class="col-4 col-form-label" for="EmpForm01CompanyRelated03">Designation:</label>
+                                <label class="col-4 col-form-label" for="EmpForm01CompanyRelated03">Designation: *</label>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" id="EmpForm01CompanyRelated03" name="empDesignation" required>
-                                </div>
-                            </div>
-                            <div class="form-group row" style="padding: 4px; padding-left: 16px">
-                                <label class="col-4 col-form-label" for="EmpForm01CompanyRelated04">Role:</label>
-                                <div class="col-8">
-                                    <select class="custom-select mr-sm-2" id="EmpForm01CompanyRelated04" name="empRole" required>
+                                    <select class="custom-select mr-sm-2" id="EmpForm01CompanyRelated03" name="empDesignation">
                                         <option value="" disabled selected hidden>Choose...</option>
-                                        <%for(Role role: (Collection<Role>) cem.getRoleList()) {%>
-                                        <option value="<%=role.getRole()%>"><%=role.getRole()%></option>
+                                        <%for(Designation designation : (Collection<Designation>) cem.getDesignationList()) {%>
+                                        <option value="<%=designation.getDesignation()%>"><%=designation.getDesignation()%></option>
                                         <%} %>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px">
-                                <label class="col-4 col-form-label" for="EmpForm01BasicDetails01">Recruitment Date:</label>
+                                <label class="col-4 col-form-label" for="EmpForm01BasicDetails01">Recruitment Date:*</label>
                                 <div class="col-8">
                                     <input type="date" class="form-control" id="EmpForm01CompanyRelated05" name="empPhyRegDate">
                                 </div>
                             </div>
                         </div>
-
-                        <div style="width: 550px; padding: 5px; padding: 5px; clear: both">
-                            <div class="form-group row" style="padding: 4px; padding-left: 16px">
-                                <label class="col-4"></label>
-                                <div class="col-8">
-                                    <input type="submit" value="Submit" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 20px"/>
-                                </div>
-                            </div>
-                        </div>
-
+			            <div style="clear: both; float: right; margin-top: 20px;">
+			                <div class="form-group row">
+			                    <div>
+			                    	<input type="reset" value="Reset" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 22px; margin-right:10px;"/>
+			                        <input type="submit" value="Submit" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 22px; margin-right: 20px;"/>
+			                    </div>
+			                </div>
+			            </div>
                     </div>
                         
                 </form>

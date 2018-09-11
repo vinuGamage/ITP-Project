@@ -1,4 +1,4 @@
-package POJO_MODEL.user_management;
+/*package POJO_MODEL.user_management;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -83,3 +83,4 @@ public class Permission {
 		System.out.println(this.getPermissionType());
 	}
 }
+*/

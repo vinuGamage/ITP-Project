@@ -19,7 +19,7 @@ public abstract class Person {
 	private Nationality nationality;				//Entity Reference
 	private Branch branch;							//Entity Reference
 	private OnlineSecurityKey onlineSecurityKey;	//Entity Reference
-	private Permission permission;					//Entity Reference
+//	private Permission permission;					//Entity Reference
 	private Collection<Contact> contactList = new ArrayList<Contact>();	//contact set
 	private OnlineAccount onlineAccount;
 	
@@ -113,13 +113,13 @@ public abstract class Person {
 		this.onlineSecurityKey = onlineSecurityKey;
 	}
 
-	public Permission getPermission() {
-		return permission;
-	}
-
-	public void setPermission(Permission permission) {
-		this.permission = permission;
-	}
+//	public Permission getPermission() {
+//		return permission;
+//	}
+//
+//	public void setPermission(Permission permission) {
+//		this.permission = permission;
+//	}
 
 	public Collection<Contact> getContactList() {
 		return contactList;
@@ -145,5 +145,9 @@ public abstract class Person {
 	public void setAddress(String addressStreet01, String addressStreet02, String addressCity, String addressProvince, 
 			int addressZipCode) {
 		this.setAddress(new Address(addressStreet01, addressStreet02, addressCity, addressProvince, addressZipCode));
+	}
+	
+	public void setPhysicalRegistrationDate(Date phyRegDate) {
+		this.setRegistrationDates(new RegistrationDates(phyRegDate));
 	}
 }

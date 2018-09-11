@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class RegistrationDates {
 	private Date physicalRegistrationDate;
-	private Date onlineRegistrationDate;
+	private Date onlineRegistrationDate=null;
 	
 	public RegistrationDates() {}
 
@@ -13,6 +13,10 @@ public class RegistrationDates {
 		this.onlineRegistrationDate = onlineRegistrationDate;
 	}
 
+	public RegistrationDates(Date physicalRegistrationDate) {
+		this.physicalRegistrationDate = physicalRegistrationDate;
+	}
+	
 	public Date getPhysicalRegistrationDate() {
 		return physicalRegistrationDate;
 	}

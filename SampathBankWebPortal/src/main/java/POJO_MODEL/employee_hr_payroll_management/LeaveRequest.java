@@ -9,7 +9,7 @@ public class LeaveRequest {
 	private String leaveDescription;
 	private Date leaveRequestedDate;
 	private Date leaveStartDate;
-	private Date leaveFinishDate;
+	private int leaveDuration;
 	private String leaveStatus;//
 	private String leaveReviewedBy;//
 	private String leaveReviewSpeed;
@@ -50,11 +50,11 @@ public class LeaveRequest {
 	public void setLeaveStartDate(Date leaveStartDate) {
 		this.leaveStartDate = leaveStartDate;
 	}
-	public Date getLeaveFinishDate() {
-		return leaveFinishDate;
+	public int getLeaveDuration() {
+		return leaveDuration;
 	}
-	public void setLeaveFinishDate(Date leaveFinishDate) {
-		this.leaveFinishDate = leaveFinishDate;
+	public void setLeaveDuration(int leaveDuration) {
+		this.leaveDuration = leaveDuration;
 	}
 	public String getLeaveStatus() {
 		return leaveStatus;
@@ -74,4 +74,12 @@ public class LeaveRequest {
 	public void setLeaveReviewSpeed(String leaveReviewSpeed) {
 		this.leaveReviewSpeed = leaveReviewSpeed;
 	}
+	@Override
+	public String toString() {
+		return "LeaveRequest [employeeId=" + employeeId + ", leaveRequestId=" + leaveRequestId + ", leaveType="
+				+ leaveType + ", leaveDescription=" + leaveDescription + ", leaveRequestedDate=" + leaveRequestedDate
+				+ ", leaveStartDate=" + leaveStartDate + ", leaveDuration=" + leaveDuration + ", leaveStatus="
+				+ leaveStatus + ", leaveReviewedBy=" + leaveReviewedBy + ", leaveReviewSpeed=" + leaveReviewSpeed + "]";
+	}
+	
 }

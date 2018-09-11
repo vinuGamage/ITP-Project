@@ -1,5 +1,7 @@
 package POJO_MODEL.employee_hr_payroll_management;
 
+import java.sql.Date;
+
 import POJO_MODEL.user_management.Person;
 
 //Entity
@@ -12,7 +14,7 @@ public class Employee extends Person {
 	public Employee() {
 		super();
 	}
-
+	
 	public Department getDepartment() {
 		return department;
 	}
@@ -64,8 +66,8 @@ public class Employee extends Person {
 		this.getBranch().displayBranch();
 		System.out.println("\tEmployee Online Security Key Details : ");
 		this.getOnlineSecurityKey().displayOnlineSecurityKey();
-		System.out.println("\tEmployee Permission Details : ");
-		this.getPermission().displayPermission();
+//		System.out.println("\tEmployee Permission Details : ");
+//		this.getPermission().displayPermission();
 		System.out.println("\tOnline Employee Account Details : ");
 		this.getOnlineAccount().displayOnlineAccount();
 		System.out.println("\t\t\t====Employee Specific Details=====");

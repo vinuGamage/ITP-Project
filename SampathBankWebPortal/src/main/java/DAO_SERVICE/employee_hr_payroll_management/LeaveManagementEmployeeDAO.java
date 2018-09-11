@@ -104,7 +104,7 @@ public class LeaveManagementEmployeeDAO {
 			EHPM_Prst0001.setString(4, leaveRequest.getLeaveDescription());
 			EHPM_Prst0001.setDate(5, leaveRequest.getLeaveRequestedDate());
 			EHPM_Prst0001.setDate(6, leaveRequest.getLeaveStartDate());
-			EHPM_Prst0001.setDate(7, leaveRequest.getLeaveFinishDate());
+			EHPM_Prst0001.setInt(7, leaveRequest.getLeaveDuration());
 			EHPM_Prst0001.setString(8, "submitted");
 			EHPM_Prst0001.setInt(2, PrimaryKeyGeneratorDAO.LeaveRequestKeyGenerator());
 			i = EHPM_Prst0001.executeUpdate();
@@ -153,7 +153,6 @@ public class LeaveManagementEmployeeDAO {
 		
 		PreparedStatement EHPM_Prst0001 = null;
 		ResultSet EHPM_ResultSet0001 = null;
-		LeaveRequest leaveRequest = new LeaveRequest();
 		int i = 0;
 		Collection<LeaveRequest> leaveRequestList = new ArrayList<LeaveRequest>();
 		
@@ -164,13 +163,14 @@ public class LeaveManagementEmployeeDAO {
 			EHPM_ResultSet0001 = EHPM_Prst0001.executeQuery();
 			
 			while(EHPM_ResultSet0001.next()) {
+				LeaveRequest leaveRequest = new LeaveRequest();
 				leaveRequest.setEmployeeId(EHPM_ResultSet0001.getString("employeeId"));
 				leaveRequest.setLeaveRequestId(EHPM_ResultSet0001.getInt("leaveRequestId"));
 				leaveRequest.setLeaveType(EHPM_ResultSet0001.getString("leaveType"));
 				leaveRequest.setLeaveDescription(EHPM_ResultSet0001.getString("leaveDescription"));
 				leaveRequest.setLeaveRequestedDate(EHPM_ResultSet0001.getDate("leaveRequestedDate"));
 				leaveRequest.setLeaveStartDate(EHPM_ResultSet0001.getDate("leaveStartDate"));
-				leaveRequest.setLeaveFinishDate(EHPM_ResultSet0001.getDate("leaveFinishDate"));
+				leaveRequest.setLeaveDuration(EHPM_ResultSet0001.getInt("leaveDuration"));
 				leaveRequest.setLeaveStatus(EHPM_ResultSet0001.getString("leaveStatus"));
 				if(leaveRequest.getLeaveStatus().equals("submitted"))
 					leaveRequest.setLeaveReviewedBy("Not Yet Reviewed");
@@ -178,6 +178,7 @@ public class LeaveManagementEmployeeDAO {
 					leaveRequest.setLeaveReviewedBy(EHPM_ResultSet0001.getString("leaveReviewedBy"));
 				
 				leaveRequestList.add(leaveRequest);
+
 				i++;
 			}
 			if(i == 0) {
@@ -204,5 +205,60 @@ public class LeaveManagementEmployeeDAO {
 		cpmObj.printDatabaseStatus();
 		
 		return leaveRequestList;
+	}
+	
+	public static boolean getWhetherSubmitted(String employeeId) {
+		//Conneciton Managing Start
+		ConnectionPoolManager cpmObj = new ConnectionPoolManager();
+		DataSource dataSource = null;
+		try {
+			dataSource = cpmObj.initializePool();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		cpmObj.printDatabaseStatus();
+		try {
+			con = dataSource.getConnection();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		cpmObj.printDatabaseStatus();
+		//Conneciton Managing End
+		
+		
+		PreparedStatement EHPM_Prst0001 = null;
+		ResultSet EHPM_ResultSet0001 = null;
+		boolean i = false;
+		
+		//Checking online_customer_credentials table
+		try {
+			EHPM_Prst0001 = con.prepareStatement(EHPMQueries.EHPMquery0023);
+			EHPM_Prst0001.setString(1, employeeId);
+			EHPM_Prst0001.setString(2, "submitted");
+			EHPM_ResultSet0001 = EHPM_Prst0001.executeQuery();
+			
+			if(EHPM_ResultSet0001.next()) {
+				System.out.println("dasdasdasdasdasdasdasdasdasdasdasd");
+				i = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(EHPM_ResultSet0001 != null)
+					EHPM_ResultSet0001.close();
+				
+				if(EHPM_Prst0001 != null)
+					EHPM_Prst0001.close();
+				
+				if(con != null)
+					con.close();
+			} catch(SQLException sqlException) {
+				sqlException.printStackTrace();
+			}
+		}
+		cpmObj.printDatabaseStatus();
+		
+		return i;
 	}
 }

@@ -1,9 +1,9 @@
 package CONTROLLER_SERVLET.employee_hr_payroll_management.common_deeds;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Collection;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +15,7 @@ import POJO_MODEL.employee_hr_payroll_management.Employee;
 import POJO_MODEL.employee_hr_payroll_management.LeaveDetails;
 import POJO_MODEL.employee_hr_payroll_management.LeaveRequest;
 import POJO_MODEL.employee_hr_payroll_management.converters.DateConverter;
+import POJO_MODEL.employee_hr_payroll_management.converters.StringsToNumbers;
 
 public class LeaveHandlingEmployee extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -45,27 +46,51 @@ public class LeaveHandlingEmployee extends HttpServlet {
 		HttpSession session = request.getSession();
 		Employee employee = (Employee) session.getAttribute("employee");
 		
-		LeaveDetails leaveDetails = LeaveManagementEmployeeDAO.getLeaveDetails(employee.getPersonId());
+		if(LeaveManagementEmployeeDAO.getWhetherSubmitted(employee.getPersonId())) {
+			PrintWriter out = response.getWriter();
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('You have a pending leave request, hence, you cannot apply for another.');");
+			out.println("location='/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp';");
+			out.println("</script>");
+		}
 		
-		if(leaveDetails != null) {
-			request.setAttribute("leaveDetails", leaveDetails);
+		else {
+			LeaveDetails leaveDetails = LeaveManagementEmployeeDAO.getLeaveDetails(employee.getPersonId());
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/jsp/employee_hr_payroll_management/EHPM_Apply_For_Leave.jsp");
-			rd.forward(request, response);
-		} else {
-			
+			if(leaveDetails != null) {
+				session.setAttribute("leaveDetails", leaveDetails);
+				
+				response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Apply_For_Leave.jsp");
+			} else {
+				PrintWriter out = response.getWriter();
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('For some reason, your leave details were not found.');");
+				out.println("location='/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp';");
+				out.println("</script>");
+			}
 		}
 	}
 	
 	public void initialLeaveRequestSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String leaveStart = request.getParameter("leaveStart");
-		String leaveEnd = request.getParameter("leaveEnd");
+		String leaveDuration = request.getParameter("leaveDuration");
 		String leaveType = request.getParameter("leaveType");
 		String leaveReviewSpeed = request.getParameter("leaveReviewSpeed");
 		String leaveDescription = request.getParameter("leaveDescription");
 		
 		HttpSession session = request.getSession();
+		LeaveDetails leaveDetails = (LeaveDetails) session.getAttribute("leaveDetails");
+		
+		if(StringsToNumbers.getIntFromString(leaveDuration) > leaveDetails.getNoOfLeavesLeft()) {
+			PrintWriter out = response.getWriter();
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Please input a valid duration which is less than leaves left.');");
+			out.println("location='/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Apply_For_Leave.jsp';");
+			out.println("</script>");
+		} else {
+		
 		Employee employee = (Employee) session.getAttribute("employee");
+		session.removeAttribute("leaveDetails");
 		
 		LeaveRequest leaveRequest = new LeaveRequest();
 		leaveRequest.setEmployeeId(employee.getPersonId());
@@ -73,11 +98,12 @@ public class LeaveHandlingEmployee extends HttpServlet {
 		leaveRequest.setLeaveDescription(leaveDescription);
 		leaveRequest.setLeaveRequestedDate(DateConverter.getCurrentSqlDate());
 		leaveRequest.setLeaveStartDate(DateConverter.getSqlDateFromString(leaveStart));
-		leaveRequest.setLeaveFinishDate(DateConverter.getSqlDateFromString(leaveEnd));
+		leaveRequest.setLeaveDuration(StringsToNumbers.getIntFromString(leaveDuration));
 		leaveRequest.setLeaveReviewSpeed(leaveReviewSpeed);
 		
 		session.setAttribute("leaveRequest", leaveRequest);
 		response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Apply_For_Leave.jsp");
+		}
 	}
 	
 	public void leaveRequestReject(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -98,7 +124,11 @@ public class LeaveHandlingEmployee extends HttpServlet {
 			session.removeAttribute("leaveDetails");
 			response.sendRedirect("/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveHistory");
 		} else {
-			System.out.println("NONO");
+			PrintWriter out = response.getWriter();
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('For some unknown reason, leave submitting failed.');");
+			out.println("location='/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp';");
+			out.println("</script>");
 		}
 	}
 	
@@ -110,14 +140,15 @@ public class LeaveHandlingEmployee extends HttpServlet {
 		leaveHistory = LeaveManagementEmployeeDAO.getLeaveHistory(employee.getPersonId());
 		
 		if(leaveHistory == null) {
-			session.setAttribute("leaveHistory", null);
-			System.out.println("LEAVE REQUEST HISTORY NULL");
+			PrintWriter out = response.getWriter();
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('You have not yet requested for any leaves.');");
+			out.println("location='/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp';");
+			out.println("</script>");
 		}
 		else {
-			System.out.println("LEAVE REQUEST HISTORY NOTT NULL");
 			session.setAttribute("leaveHistory", leaveHistory);
+			response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Leave_History.jsp");
 		}
-		
-		response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Leave_History.jsp");
 	}
 }

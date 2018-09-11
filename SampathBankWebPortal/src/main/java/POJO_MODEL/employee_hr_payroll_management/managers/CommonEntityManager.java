@@ -11,13 +11,13 @@ import POJO_MODEL.employee_hr_payroll_management.Designation;
 import POJO_MODEL.employee_hr_payroll_management.LeaveDays;
 import POJO_MODEL.user_management.Gender;
 import POJO_MODEL.user_management.Nationality;
-import POJO_MODEL.user_management.Permission;
+//import POJO_MODEL.user_management.Permission;
 
 public class CommonEntityManager {
 	private static CommonEntityManager commonEntityManager;
 	private static Collection<Gender> genderList = new ArrayList<Gender> ();
 	private static Collection<Nationality> nationalityList = new ArrayList<Nationality> ();
-	private static Collection<Permission> permissionList = new ArrayList<Permission> ();
+//	private static Collection<Permission> permissionList = new ArrayList<Permission> ();
 	private static Collection<Branch> branchList = new ArrayList<Branch> ();
 	private static Collection<Department> departmentList = new ArrayList<Department> ();
 	private static Collection<Designation> designationList = new ArrayList<Designation> ();
@@ -28,7 +28,7 @@ public class CommonEntityManager {
 		CEA.initializeCommonPojoClasses();
 		genderList = CEA.getGenderList();
 		nationalityList = CEA.getNationalityList();
-		permissionList = CEA.getPermissionList();
+//		permissionList = CEA.getPermissionLis();
 		branchList = CEA.getBranchList();
 		designationList = CEA.getDesignationList();
 		leaveDaysList = CEA.getLeaveDaysList();
@@ -47,58 +47,6 @@ public class CommonEntityManager {
 		return commonEntityManager;
 	}
 	
-/*	public int getGenderId(String gender) {
-		for(Gender genderObj : genderList) {
-			if(gender.equalsIgnoreCase(genderObj.getGender()))
-				return genderObj.getGenderId();
-		}
-		return 0;
-	}
-	
-	public int getNationalityId(String nationality) {
-		for(Nationality nationalityObj : nationalityList) {
-			if(nationality.equalsIgnoreCase(nationalityObj.getNationality()))
-				return nationalityObj.getNationalityId();
-		}
-		
-		return 0;
-	}*/
-	
-/*	public int getRoleId(String role) {
-		for(Role roleObj : roleList) {
-			if(role.equalsIgnoreCase(roleObj.getRole()))
-				return roleObj.getRoleId();
-		}
-		
-		return 0;
-	}
-	
-	public String getRoleGroup(String role) {
-		for(Role roleObj : roleList) {
-			if(role.equalsIgnoreCase(roleObj.getRole()))
-				return roleObj.getRoleGroup();
-		}
-		
-		return null;
-	}*/
-	
-/*	public String getBranchId(String branchCity) {
-		for(Branch branchObj : branchList) {
-			if(branchCity.equalsIgnoreCase(branchObj.getBranchAddress().getAddressCity()))
-				return branchObj.getBranchId();
-		}
-		
-		return null;
-	}*/
-	
-/*	public String getDepartmentId(String department, String branchId) {
-		for(Department deptObj : departmentList) {
-			if(branchId.equals(deptObj.getBranchId()) && department.equalsIgnoreCase(deptObj.getDepartmentName()))
-				return deptObj.getDepartmentId();
-		}
-		return null;
-	}*/
-	
 	public Gender getGender(int genderId) {
 		Gender gender = null;
 		for(Gender gen: genderList) {
@@ -106,6 +54,15 @@ public class CommonEntityManager {
 				gender = gen;
 		}
 		
+		return gender;
+	}
+	
+	public Gender getGender(String genderInput) {
+		Gender gender = null;
+		for(Gender gen: genderList) {
+			if(gen.getGender().equalsIgnoreCase(genderInput))
+				gender = gen;
+		}
 		return gender;
 	}
 	
@@ -119,6 +76,15 @@ public class CommonEntityManager {
 		return nationality;
 	}
 	
+	public Nationality getNationality(String nationalityInput) {
+		Nationality nationality = null;
+		for(Nationality nat: nationalityList) {
+			if(nat.getNationality().equalsIgnoreCase(nationalityInput))
+				nationality = nat;
+		}
+		return nationality;
+	}
+	
 	public Branch getBranch(String branchId) {
 		Branch branch = null;
 		for(Branch bran: branchList) {
@@ -129,7 +95,16 @@ public class CommonEntityManager {
 		return branch;
 	}
 	
-	public Permission getPermission(int permissionId) {
+	public Branch getBranchByCity(String branchInput) {
+		Branch branch = null;
+		for(Branch bran: branchList) {
+			if(bran.getBranchAddress().getAddressCity().equalsIgnoreCase(branchInput))
+				branch = bran;
+		}
+		return branch;
+	}
+	
+/*	public Permission getPermission(int permissionId) {
 		Permission permission = null;
 		for(Permission per: permissionList) {
 			if(per.getPermissionLevel() == permissionId)
@@ -138,6 +113,17 @@ public class CommonEntityManager {
 		
 		return permission;
 	}
+	
+	public Permission getPermissionByDesignation(String designation) {
+		Permission permission = null;
+		for(Designation desig: designationList) {
+			if(desig.getDesignation().equalsIgnoreCase("normal employee"))
+				permission = getPermission(3);
+			else if(desig.getDesignation().equalsIgnoreCase("human resource manager"))
+				permission = getPermission(5);
+		}
+		return permission;
+	}*/
 	
 	public Department getDepartment(String departmentId) {
 		Department department = null;
@@ -157,6 +143,15 @@ public class CommonEntityManager {
 		return designation;
 	}
 	
+	public Designation getDesignationByName(String designation) {
+		Designation designat = null;
+		for(Designation desig: designationList) {
+			if(desig.getDesignation().equalsIgnoreCase(designation))
+				designat = desig;
+		}
+		return designat;
+	}
+	
 	public LeaveDays getLeaveDays(int leaveDaysId) {
 		LeaveDays leaveDays = null;
 		for(LeaveDays leave: leaveDaysList) {
@@ -164,6 +159,24 @@ public class CommonEntityManager {
 				leaveDays = leave;
 		}
 		return leaveDays;
+	}
+	
+//	public LeaveDays getLeaveDaysByDesignation(Designation designation) {
+//		LeaveDays leaveDays = null;
+//		for(Designation desig: designationList) {
+//			if(desig.getDesignationId() == designation.getDesignationId())
+//				leaveDays = getLeav
+//		}
+//	}
+	
+	public Department getDepartmentByDepartmentNameAndBranch(String depName, Branch branch) {
+		Department department = null;
+		for(Department dep: departmentList) {
+			if(dep.getDepartmentName().equalsIgnoreCase(depName) && dep.getBranch().getBranchId().equalsIgnoreCase(branch.getBranchId())) {
+				department = dep;
+			}
+		}
+		return department;
 	}
 	
 	public Collection<Gender> getGenderList() {
@@ -174,9 +187,9 @@ public class CommonEntityManager {
 		return nationalityList;
 	}
 	
-	public Collection<Permission> getPermissionList() {
-		return permissionList;
-	}
+//	public Collection<Permission> getPermissionList() {
+//		return permissionList;
+//	}
 	
 	public Collection<Branch> getBranchList() {
 		return branchList;
@@ -186,7 +199,59 @@ public class CommonEntityManager {
 		return departmentList;
 	}
 	
-	public Collection<Designation> getDesignationtList() {
+	public Collection<Designation> getDesignationList() {
 		return designationList;
 	}
+	
+	/*	public int getGenderId(String gender) {
+	for(Gender genderObj : genderList) {
+		if(gender.equalsIgnoreCase(genderObj.getGender()))
+			return genderObj.getGenderId();
+	}
+	return 0;
+}
+
+public int getNationalityId(String nationality) {
+	for(Nationality nationalityObj : nationalityList) {
+		if(nationality.equalsIgnoreCase(nationalityObj.getNationality()))
+			return nationalityObj.getNationalityId();
+	}
+	
+	return 0;
+}*/
+
+/*	public int getRoleId(String role) {
+	for(Role roleObj : roleList) {
+		if(role.equalsIgnoreCase(roleObj.getRole()))
+			return roleObj.getRoleId();
+	}
+	
+	return 0;
+}
+
+public String getRoleGroup(String role) {
+	for(Role roleObj : roleList) {
+		if(role.equalsIgnoreCase(roleObj.getRole()))
+			return roleObj.getRoleGroup();
+	}
+	
+	return null;
+}*/
+
+/*	public String getBranchId(String branchCity) {
+	for(Branch branchObj : branchList) {
+		if(branchCity.equalsIgnoreCase(branchObj.getBranchAddress().getAddressCity()))
+			return branchObj.getBranchId();
+	}
+	
+	return null;
+}*/
+
+/*	public String getDepartmentId(String department, String branchId) {
+	for(Department deptObj : departmentList) {
+		if(branchId.equals(deptObj.getBranchId()) && department.equalsIgnoreCase(deptObj.getDepartmentName()))
+			return deptObj.getDepartmentId();
+	}
+	return null;
+}**/
 }

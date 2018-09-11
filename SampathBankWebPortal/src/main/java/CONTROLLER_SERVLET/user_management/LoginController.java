@@ -35,38 +35,7 @@ public class LoginController extends HttpServlet {
 
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-
-/*		if(username.equals("abc") && password.equals("123")) {
-			Employee employee = new Employee();
 			
-			employee.setPersonId("EMPL000001");
-			employee.setName("Isuru", "Dananjaya", "Samarasekara", "S.A.M.");
-			employee.setAddress("83/2", "Piliyandala Road", "Maharagama", "Western", 10280);
-			employee.setNic("961370213v");
-			employee.setDateOfBirth(DateConverter.getSqlDateFromString("1996-05-16"));
-			employee.setRegistrationDates(new RegistrationDates(DateConverter.getSqlDateFromString("2018-09-07"), DateConverter.getSqlDateFromString("2018-09-07")));
-			employee.setGender(commonEntityManager.getGender(1));
-			employee.setNationality(commonEntityManager.getNationality(1));
-			employee.setBranch(commonEntityManager.getBranch("BRAN000001"));
-			employee.setOnlineSecurityKey(new OnlineSecurityKey(2, "abcd4567f8"));
-			employee.setPermission(commonEntityManager.getPermission(3));
-			employee.setOnlineAccount(new OnlineAccount("EMON000001", "EMPL000001", "abc"));
-			employee.getContactList().add(new Contact("EMPL000001", "0112844830", "home"));
-			employee.getContactList().add(new Contact("EMPL000001", "0772841580", "mobile"));
-			employee.setDepartment(commonEntityManager.getDepartment("DEPT000001"));
-			employee.setCompanyEmail("isuruCompany@company.com");
-			employee.setDesignation(commonEntityManager.getDesignation(1));
-			employee.setEmployeeType("normal employee");
-			employee.displayEmployee();
-			
-			HttpSession session = request.getSession();
-			session.setAttribute("employee", employee);
-			
-
-			response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp");
-		}*/
-		
-		
 		GenericLogin<Boolean, String, Customer, Employee> genericLogin = LoginDAO.checkLoginCredentials(username, password, commonEntityManager);
 		HttpSession session = request.getSession();
 		
@@ -80,6 +49,7 @@ public class LoginController extends HttpServlet {
 			} else if(genericLogin.getType().equals("employee")) {
 				Employee employee = genericLogin.getEmployee();
 				session.setAttribute("employee", employee);
+				session.setAttribute("commonEntityManager", commonEntityManager);
 				employee.displayEmployee();
 				response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp");
 			} else {

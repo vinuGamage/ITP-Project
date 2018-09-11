@@ -5,7 +5,7 @@ public class KeyFix {
 		String prefix = key.substring(0, 4);
 		int suffix = Integer.parseInt(key.substring(4));
         String newSuffix = String.format("%06d", suffix + 1);
-       return newSuffix;
+       return prefix + newSuffix;
 	}
 	
 	public static int IntIncrement(int key) {

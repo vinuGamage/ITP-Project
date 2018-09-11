@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, POJO_MODEL.employee_hr_payroll_management.LeaveRequest, 
-POJO_MODEL.employee_hr_payroll_management.LeaveRequest, java.util.Collection, java.util.ArrayList"%>
+<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, java.util.Collection, java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,22 +12,20 @@ POJO_MODEL.employee_hr_payroll_management.LeaveRequest, java.util.Collection, ja
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<title>Leave History</title>
+		<title>Create Online Employee Accounts</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
 			if(employee == null)
 				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
 		%>
 	</head>
-	<body>
+
+    <body>
         <nav class="navbar fixed-top navbar-expand-md navbar-dark fixed-stuff">
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#" title="Go to Employee Homepage">EmpHome</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" title="Go to Customer Homepage">CustomerHome</a>
+                        <a class="nav-link" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp" title="Go to Employee Homepage">EmpHome</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" title="View Profile">MyProfile</a>
@@ -46,8 +43,11 @@ POJO_MODEL.employee_hr_payroll_management.LeaveRequest, java.util.Collection, ja
             </div>
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" title="Sign Up">
+                        <a class="nav-link" href="#"><span class="fa fa-user"></span> Sign Up</a>
+                    </li>
                     <li class="nav-item" title="Login">
-                        <a class="nav-link" href="#"><span class="fa fa-sign-in"></span> Sign Out</a>
+                        <a class="nav-link" href="#"><span class="fa fa-sign-in"></span> Login</a>
                     </li>
                 </ul>
             </div>
@@ -73,11 +73,10 @@ POJO_MODEL.employee_hr_payroll_management.LeaveRequest, java.util.Collection, ja
 
             <div class="container-fluid" style="margin-top:10px;">
                 <ul class="nav nav-pills nav-fill nav-justified nav-header">
-                <%if(employee.getDesignation().getDesignation().equals("hr manager")) {%>
                     <li class="nav-item dropdown" title="Click to See Your Duties">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HrRecruitmentOfficer_RecruitAnEmployee.jsp" style="color:white">Recruit an Employee</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_RecruitAnEmployee.jsp" style="color:white">Recruit an Employee</a>
                             <a class="dropdown-item" href="#" style="color:white">Create Employee Online Account</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave Request Management</a>
@@ -89,47 +88,15 @@ POJO_MODEL.employee_hr_payroll_management.LeaveRequest, java.util.Collection, ja
                             <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
                         </div>
                     </li>
-               		<%} else if(employee.getDesignation().getDesignation().equals("hr admin")) {%>
-                    <li class="nav-item dropdown" title="Click to See Your Duties">
-                    	<a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
-                    	<div class="dropdown-menu nav-dropdown">
-	                        <a class="dropdown-item" href="#" style="color:white">abcd</a>
-	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">Job 02</a>
-	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">Job 03</a>
-	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">Job 04</a>
-	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">Job 05</a>
-                    	</div>
-                	</li>
-                    <%} else if(employee.getDesignation().getDesignation().equals("intern")) {%>
-                    <li class="nav-item dropdown" title="Click to See Your Duties">
-                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
-                        <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Job 01</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Job 02</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Job 03</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Job 04</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Job 05</a>
-                        </div>
-                    </li>
-                    <%} %>
                     <li class="nav-item dropdown" title="Click to See Leave Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Leave Request Inquiry</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveBase" style="color:white">Apply for Leave</a>
+                            <a class="dropdown-item" href="#" style="color:white">Apply for Leave</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave History</a>
                             <a class="dropdown-item" href="#" style="color:white">Leave Status</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave Analysis</a>
-                            <a class="dropdown-item" href="#" style="color:white">File a Complaint</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown" title="Click to See Salary Related Options">
@@ -139,9 +106,6 @@ POJO_MODEL.employee_hr_payroll_management.LeaveRequest, java.util.Collection, ja
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Salary History</a>
                             <a class="dropdown-item" href="#" style="color:white">Next Salary Details</a>
-                            <a class="dropdown-item" href="#" style="color:white">Personal Salary Details</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">File a Complaint</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown" title="Click to See Skills Related Options">
@@ -167,7 +131,6 @@ POJO_MODEL.employee_hr_payroll_management.LeaveRequest, java.util.Collection, ja
                         <div class="dropdown-menu nav-dropdown">
                             <a class="dropdown-item" href="#" style="color:white">Profile Details</a>
                             <a class="dropdown-item" href="#" style="color:white">Update Profile</a>
-                            <a class="dropdown-item" href="#" style="color:white">Change History</a>
                         </div>
                     </li>
                 </ul>
@@ -186,31 +149,31 @@ POJO_MODEL.employee_hr_payroll_management.LeaveRequest, java.util.Collection, ja
 		
 		
         <div class="container-fluid" style="margin-bottom: 100px; height: 1000px">
-        <% Collection<LeaveRequest> leaveHistory = (ArrayList<LeaveRequest>) session.getAttribute("leaveHistory"); %>
-		<%if(leaveHistory != null) {%>
+        <% Collection<Employee> newEmployeeList = (ArrayList<Employee>) session.getAttribute("newEmployeeList"); %>
+		<%if(newEmployeeList != null) {%>
 			<table class="table">
 			  <thead class="thead-light">
 			    <tr>
-			      <th scope="col">LeaveReqID</th>
-			      <th scope="col">Leave Type</th>
-			      <th scope="col">Leave RequestedDate</th>
-			      <th scope="col">Leave Duration</th>
-			      <th scope="col">Leave Status</th>
-			      <th scope="col">###</th>
+			      <th scope="col">Employee Id</th>
+			      <th scope="col">Employee Name</th>
+			      <th scope="col">Branch</th>
+			      <th scope="col">Employee Type</th>
+			      <th scope="col">Registration Date</th>
+			      <th scope="col">Approval</th>
 			    </tr>
 			  </thead>
 			  <tbody>
-			  <%for(LeaveRequest lr: leaveHistory) {%>
+			  <%for(Employee emp: newEmployeeList) {%>
 			    <tr>
-			      <th scope="row"><%=lr.getLeaveRequestId() %></th>
-			      <td><%=lr.getLeaveType() %></td>
-			      <td><%=lr.getLeaveRequestedDate() %></td>
-			      <td>0</td>
-			      <td><%=lr.getLeaveStatus() %></td>
+			      <th scope="row"><%=emp.getPersonId() %></th>
+			      <td style="font-weight: bold;"><%=emp.getName().getFirstName() %> <%=emp.getName().getLastName() %></td>
+			      <td style="font-weight: bold;"><%=emp.getBranch().getBranchId() %></td>
+			      <td style="font-weight: bold;"><%=emp.getEmployeeType() %></td>
+			      <td style="font-weight: bold;"><%=emp.getRegistrationDates().getPhysicalRegistrationDate() %></td>
 			      <td>
-			      	<form>
-			      		<input type="hidden" value="<%=lr.getLeaveRequestId() %>" name="leaveRequestId"/>
-			      		<input type="submit" value="View"/>
+			      	<form action="/SampathBankWebPortal/OnlineEmployeeAccountController" method="post">
+			      		<input type="hidden" value="<%=emp.getPersonId()%>" name="employeeId"/>
+			      		<input type="submit" value="Create Online Account" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; margin-right: 20px;"/>
 			      	</form>
 			      </td>
 			    </tr>
@@ -218,21 +181,9 @@ POJO_MODEL.employee_hr_payroll_management.LeaveRequest, java.util.Collection, ja
 			  </tbody>
 			</table>
 		<%} else { %>
-			LALALA
-			
+			There are no new employees in need of online accounts.
 		<%} %>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+
 		</div>
 		
         <!-- Footer -->

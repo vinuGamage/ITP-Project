@@ -3,9 +3,15 @@ package POJO_MODEL.employee_hr_payroll_management.Validator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import POJO_MODEL.employee_hr_payroll_management.Branch;
 import POJO_MODEL.employee_hr_payroll_management.exceptions.EmployeeRegistrationException;
+import POJO_MODEL.employee_hr_payroll_management.managers.CommonEntityManager;
+import POJO_MODEL.user_management.Gender;
+import POJO_MODEL.user_management.Nationality;
 
 public class Validator {
+	CommonEntityManager cem = CommonEntityManager.getInstance();
+	
 	public boolean isValidByEmpty(String str) {
 		boolean isEmpty = (str == null || str.trim().length() == 0);
 		return !isEmpty;
@@ -13,7 +19,7 @@ public class Validator {
 	
 	public boolean isStringOnly(String str) {
 		for(int i = 0; i < str.trim().length(); i++) {
-			if(Character.isDigit(str.trim().charAt(i)))
+			if(!Character.isLetter(str.trim().charAt(i)))
 				return false;
 		}
 		return true;
@@ -28,8 +34,12 @@ public class Validator {
 	}
 	
 	public boolean checkGender(String gender) {
-		boolean isRight = gender.trim().equalsIgnoreCase("MALE") || gender.trim().equalsIgnoreCase("FEMALE");
-		return isRight;
+		for(Gender gen: cem.getGenderList()) {
+			if(gen.getGender().equalsIgnoreCase(gender)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public boolean checkProvince(String province) {
@@ -85,40 +95,48 @@ public class Validator {
 	}
 	
 	public boolean checkNationality(String nationality) {
-		boolean isRight = nationality.trim().equalsIgnoreCase("SINHALESE") || nationality.trim().equalsIgnoreCase("TAMIL") || nationality.trim().equalsIgnoreCase("MUSLIM");
-		return isRight;
+		for(Nationality nat: cem.getNationalityList()) {
+			if(nat.getNationality().equalsIgnoreCase(nationality)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public boolean checkBranch(String branch) {
-		boolean isRight = branch.trim().equalsIgnoreCase("MAHARAGAMA") || branch.trim().equalsIgnoreCase("MALABE") || branch.trim().equalsIgnoreCase("NUGEGODA") || branch.trim().equalsIgnoreCase("DEHIWELA");
-		return isRight;
+		for(Branch bran: cem.getBranchList()) {
+			if(bran.getBranchAddress().getAddressCity().equalsIgnoreCase(branch)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public boolean checkDepartment(String department) {
-		boolean isRight = department.trim().equalsIgnoreCase("IT") || department.trim().equalsIgnoreCase("FINANCE") || department.trim().equalsIgnoreCase("CARD CENTER") || department.trim().equalsIgnoreCase("HUMAN RESOURCE");
+		boolean isRight = department.trim().equalsIgnoreCase("human resource") || department.trim().equalsIgnoreCase("inventory") || department.trim().equalsIgnoreCase("transaction") || department.trim().equalsIgnoreCase("loan");
 		return isRight;
 	}
 	
 	public boolean validateEmployeeRegistration(String empFirstName, String empMiddleName, String empLastName, String empOtherNames, String empGender, String empAddLine01, String empAddLine02, String empAddCity, String empAddProvince, String empAddZip, 
-			String empHomeContact, String empMobileContact, String empPersonalEmail, String empNic, String empNationality, String empDob, String empBranch, String empDepartment, String empDesignation, String empRole) throws EmployeeRegistrationException{
+			String empHomeContact, String empMobileContact, String empPersonalEmail, String empNic, String empNationality, String empDob, String empBranch, String empDepartment, String empDesignation, String empPhyRegDate) throws EmployeeRegistrationException{
 
 		if(this.isValidByEmpty(empFirstName)) {//
-			if(!this.isStringOnly(empFirstName)) {
-				throw new EmployeeRegistrationException("First Name, must only contain letters."); }
-			else if(this.isContainsWhiteSpaces(empFirstName)) {
+			if(this.isContainsWhiteSpaces(empFirstName)) {
 				throw new EmployeeRegistrationException("First Name, must not contain any whitespaces."); }
+			else if(!this.isStringOnly(empFirstName)) {
+				throw new EmployeeRegistrationException("First Name, must only contain letters."); }
 			else {//
 				if(this.isValidByEmpty(empMiddleName)) {
-					if(!this.isStringOnly(empMiddleName)) {
-						throw new EmployeeRegistrationException("Middle Name, must only contain letters."); }
-					else if(this.isContainsWhiteSpaces(empMiddleName)) {
+					if(this.isContainsWhiteSpaces(empMiddleName)) {
 						throw new EmployeeRegistrationException("Middle Name, must not contain any whitespaces."); }
+					else if(!this.isStringOnly(empMiddleName)) {
+						throw new EmployeeRegistrationException("Middle Name, must only contain letters."); }
 				}
 				if(this.isValidByEmpty(empLastName)) {//
-					if(!this.isStringOnly(empLastName)) {
-						throw new EmployeeRegistrationException("Last Name, must only contain letters."); }
-					else if(this.isContainsWhiteSpaces(empLastName)) {
+					if(this.isContainsWhiteSpaces(empLastName)) {
 						throw new EmployeeRegistrationException("Last Name, must not contain any whitespaces."); }
+					else if(!this.isStringOnly(empLastName)) {
+						throw new EmployeeRegistrationException("Last Name, must only contain letters."); }
 					else {//
 						if(this.isValidByEmpty(empOtherNames)) {
 							if(!this.isStringOnly(empOtherNames)) {
@@ -195,10 +213,7 @@ public class Validator {
 																											throw new EmployeeRegistrationException("Department, must only be selected from the given Departments."); }
 																										else {//
 																											if(this.isValidByEmpty(empDesignation))
-																												if(this.isValidByEmpty(empRole))
-																													return true;
-																												else
-																													throw new EmployeeRegistrationException("Role field cannot be empty.");
+																												return true;
 																											else
 																												throw new EmployeeRegistrationException("Designation field cannot be empty.");
 																										}
@@ -254,6 +269,4 @@ public class Validator {
 		else
 			throw new EmployeeRegistrationException("\"First Name:\" field cannot be empty.");
 	}
-
-	
 }
