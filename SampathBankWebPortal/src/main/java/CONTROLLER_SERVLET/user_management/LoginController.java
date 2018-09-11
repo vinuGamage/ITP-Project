@@ -13,8 +13,8 @@ import javax.servlet.http.HttpSession;
 import DAO_SERVICE.user_management.LoginDAO;
 import POJO_MODEL.employee_hr_payroll_management.Employee;
 import POJO_MODEL.employee_hr_payroll_management.converters.DateConverter;
+import POJO_MODEL.employee_hr_payroll_management.email_client.EmailClient;
 import POJO_MODEL.employee_hr_payroll_management.managers.CommonEntityManager;
-import POJO_MODEL.user_management.Contact;
 import POJO_MODEL.user_management.Customer;
 import POJO_MODEL.user_management.GenericLogin;
 import POJO_MODEL.user_management.OnlineAccount;
@@ -51,6 +51,7 @@ public class LoginController extends HttpServlet {
 				session.setAttribute("employee", employee);
 				session.setAttribute("commonEntityManager", commonEntityManager);
 				employee.displayEmployee();
+				
 				response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp");
 			} else {
 				out.println("NOT FOUND1");

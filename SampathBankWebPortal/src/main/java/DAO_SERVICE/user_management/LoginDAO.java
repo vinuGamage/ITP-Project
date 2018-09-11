@@ -12,7 +12,6 @@ import DAO_SERVICE.queries.UMQueries;
 import POJO_MODEL.employee_hr_payroll_management.Employee;
 import POJO_MODEL.employee_hr_payroll_management.NormalEmployee;
 import POJO_MODEL.employee_hr_payroll_management.managers.CommonEntityManager;
-import POJO_MODEL.user_management.Contact;
 import POJO_MODEL.user_management.Customer;
 import POJO_MODEL.user_management.GenericLogin;
 import POJO_MODEL.user_management.OnlineAccount;
@@ -186,17 +185,9 @@ public class LoginDAO {
 				customer.setGender(commonEntityManager.getGender(UM_ResultSet0006.getInt("genderId")));
 				customer.setNationality(commonEntityManager.getNationality(UM_ResultSet0006.getInt("nationalityId")));
 				customer.setBranch(commonEntityManager.getBranch(UM_ResultSet0006.getString("branchId")));
-//				customer.setPermission(commonEntityManager.getPermission(UM_ResultSet0006.getInt("permissionLevel")));
+				customer.setHomeContact(UM_ResultSet0006.getString("homeContact"));
+				customer.setMobileContact(UM_ResultSet0006.getString("mobileContact"));
 				
-				//query for contact table
-				PreparedStatement UM_Prst0008 = null; 
-				ResultSet UM_ResultSet0008 = null;
-				UM_Prst0008 = con.prepareStatement(UMQueries.queryUM_05);
-				UM_Prst0008.setString(1, customer.getPersonId());
-				UM_ResultSet0008 = UM_Prst0008.executeQuery();
-				while(UM_ResultSet0008.next()) {
-					customer.getContactList().add(new Contact(customer.getPersonId(), UM_ResultSet0008.getString("contactNumber"), UM_ResultSet0008.getString("type")));
-				}
 				//starting setting customer specific attributes
 				
 				//query for online_security_key table
@@ -348,17 +339,9 @@ public class LoginDAO {
 				employee.setGender(commonEntityManager.getGender(UM_ResultSet0003.getInt("genderId")));
 				employee.setNationality(commonEntityManager.getNationality(UM_ResultSet0003.getInt("nationalityId")));
 				employee.setBranch(commonEntityManager.getBranch(UM_ResultSet0003.getString("branchId")));
-//				employee.setPermission(commonEntityManager.getPermission(UM_ResultSet0003.getInt("permissionLevel")));
+				employee.setHomeContact(UM_ResultSet0003.getString("homeContact"));
+				employee.setMobileContact(UM_ResultSet0003.getString("mobileContact"));
 				
-				//query for contact table
-				PreparedStatement UM_Prst0005 = null; 
-				ResultSet UM_ResultSet0005 = null;
-				UM_Prst0005 = con.prepareStatement(UMQueries.queryUM_05);
-				UM_Prst0005.setString(1, employee.getPersonId());
-				UM_ResultSet0005 = UM_Prst0005.executeQuery();
-				while(UM_ResultSet0005.next()) {
-					employee.getContactList().add(new Contact(employee.getPersonId(), UM_ResultSet0005.getString("contactNumber"), UM_ResultSet0005.getString("type")));
-				}
 				//starting setting employee specific attributes
 				employee.setDepartment(commonEntityManager.getDepartment(UM_ResultSet0003.getString("departmentId")));
 				employee.setCompanyEmail(UM_ResultSet0003.getString("companyEmail"));

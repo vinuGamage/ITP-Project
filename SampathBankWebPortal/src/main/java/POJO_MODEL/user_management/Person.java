@@ -19,9 +19,10 @@ public abstract class Person {
 	private Nationality nationality;				//Entity Reference
 	private Branch branch;							//Entity Reference
 	private OnlineSecurityKey onlineSecurityKey;	//Entity Reference
-//	private Permission permission;					//Entity Reference
-	private Collection<Contact> contactList = new ArrayList<Contact>();	//contact set
 	private OnlineAccount onlineAccount;
+	private String homeContact;
+	private String mobileContact;
+	
 	
 	public Person() {}
 	
@@ -113,28 +114,28 @@ public abstract class Person {
 		this.onlineSecurityKey = onlineSecurityKey;
 	}
 
-//	public Permission getPermission() {
-//		return permission;
-//	}
-//
-//	public void setPermission(Permission permission) {
-//		this.permission = permission;
-//	}
-
-	public Collection<Contact> getContactList() {
-		return contactList;
-	}
-
-	public void setContactList(Collection<Contact> contactList) {
-		this.contactList = contactList;
-	}
-
 	public OnlineAccount getOnlineAccount() {
 		return onlineAccount;
 	}
 
 	public void setOnlineAccount(OnlineAccount onlineAccount) {
 		this.onlineAccount = onlineAccount;
+	}
+
+	public String getHomeContact() {
+		return homeContact;
+	}
+
+	public void setHomeContact(String homeContact) {
+		this.homeContact = homeContact;
+	}
+
+	public String getMobileContact() {
+		return mobileContact;
+	}
+
+	public void setMobileContact(String mobileContact) {
+		this.mobileContact = mobileContact;
 	}
 
 	//======================================EHPM_Management===================================================================

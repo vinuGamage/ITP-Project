@@ -15,7 +15,6 @@ import POJO_MODEL.employee_hr_payroll_management.LeaveDetails;
 import POJO_MODEL.employee_hr_payroll_management.converters.DateConverter;
 import POJO_MODEL.employee_hr_payroll_management.generators.CompanyEmailGenerator;
 import POJO_MODEL.employee_hr_payroll_management.managers.CommonEntityManager;
-import POJO_MODEL.user_management.Contact;
 
 public class RegisterEmployeeDAO {
 	private static Connection con = null;
@@ -46,12 +45,10 @@ public class RegisterEmployeeDAO {
 		int i = 0;
 		String id = null;
 		int j = 0;
-		
+		int k = 0;
 		//Checking online_customer_credentials table
 		try {
 			EHPM_Prst0001 = con.prepareStatement(EHPMQueries.EHPMquery0024);
-			id = PrimaryKeyGeneratorDAO.EmployeePrimaryKeyGenerator();
-			EHPM_Prst0001.setString(1, id);
 			EHPM_Prst0001.setString(2, employee.getName().getFirstName());
 			EHPM_Prst0001.setString(3, employee.getName().getMiddleName());
 			EHPM_Prst0001.setString(4, employee.getName().getLastName());
@@ -68,6 +65,10 @@ public class RegisterEmployeeDAO {
 			EHPM_Prst0001.setInt(15, employee.getGender().getGenderId());
 			EHPM_Prst0001.setInt(16, employee.getNationality().getNationalityId());
 			EHPM_Prst0001.setString(17, employee.getBranch().getBranchId());
+			EHPM_Prst0001.setString(18, employee.getHomeContact());
+			EHPM_Prst0001.setString(19, employee.getMobileContact());
+			id = PrimaryKeyGeneratorDAO.EmployeePrimaryKeyGenerator();
+			EHPM_Prst0001.setString(1, id);
 			i = EHPM_Prst0001.executeUpdate();
 			
 			if(i != 0) {
@@ -79,22 +80,13 @@ public class RegisterEmployeeDAO {
 				EHPM_Prst0002.setString(5, employee.getEmployeeType());
 				j = EHPM_Prst0002.executeUpdate();
 				
-				EHPM_Prst0004 = con.prepareStatement(EHPMQueries.EHPMquery0027);
-				CommonEntityManager CEM = CommonEntityManager.getInstance();
-				EHPM_Prst0004.setString(1, id);
-				EHPM_Prst0004.setInt(2, CEM.getLeaveDays(employee.getDesignation().getLeaveDaysId()).getNoOfLeavesPerYear());
-				EHPM_Prst0004.setDate(3, DateConverter.getSqlDateFromString("0000-00-00"));
-				EHPM_Prst0004.executeUpdate();
-				
 				if(j != 0) {
-					for(Contact contact: employee.getContactList()) {
-						EHPM_Prst0003 = con.prepareStatement(EHPMQueries.EHPMquery0026);
-						EHPM_Prst0003.setString(1, id);
-						EHPM_Prst0003.setString(2, contact.getContactNumber());
-						EHPM_Prst0003.setString(3, contact.getType());
-						EHPM_Prst0003.executeUpdate();
-						EHPM_Prst0003 = null;
-					}
+					EHPM_Prst0004 = con.prepareStatement(EHPMQueries.EHPMquery0027);
+					CommonEntityManager CEM = CommonEntityManager.getInstance();
+					EHPM_Prst0004.setString(1, id);
+					EHPM_Prst0004.setInt(2, CEM.getLeaveDays(employee.getDesignation().getLeaveDaysId()).getNoOfLeavesPerYear());
+					EHPM_Prst0004.setDate(3, DateConverter.getCurrentSqlDate());
+					k = EHPM_Prst0004.executeUpdate();
 				}
 			}
 		} catch (SQLException e) {
@@ -115,7 +107,7 @@ public class RegisterEmployeeDAO {
 		}
 		cpmObj.printDatabaseStatus();
 		
-		if(i == 0 || j == 0)
+		if(k == 0)
 			return false;
 		else
 			return true;

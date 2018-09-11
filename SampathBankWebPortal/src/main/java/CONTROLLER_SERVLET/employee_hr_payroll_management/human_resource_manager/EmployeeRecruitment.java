@@ -15,7 +15,6 @@ import POJO_MODEL.employee_hr_payroll_management.Validator.Validator;
 import POJO_MODEL.employee_hr_payroll_management.converters.DateConverter;
 import POJO_MODEL.employee_hr_payroll_management.exceptions.EmployeeRegistrationException;
 import POJO_MODEL.employee_hr_payroll_management.managers.CommonEntityManager;
-import POJO_MODEL.user_management.Contact;
 
 public class EmployeeRecruitment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -68,9 +67,8 @@ public class EmployeeRecruitment extends HttpServlet {
 			regEmp.setGender(CEM.getGender(empGender));
 			regEmp.setNationality(CEM.getNationality(empNationality));
 			regEmp.setBranch(CEM.getBranchByCity(empBranch));
-			regEmp.getContactList().add(new Contact(empHomeContact, "home"));
-			if(empMobileContact != null || empMobileContact.trim().length() != 0)
-				regEmp.getContactList().add(new Contact(empMobileContact, "mobile"));
+			regEmp.setHomeContact(empHomeContact);
+			regEmp.setMobileContact(empMobileContact);
 			regEmp.setDepartment(CEM.getDepartmentByDepartmentNameAndBranch(empDepartment, regEmp.getBranch()));
 			regEmp.setDesignation(CEM.getDesignationByName(empDesignation));
 			

@@ -24,9 +24,9 @@ public class EHPMQueries {
 	public static final String EHPMquery0021 = "INSERT INTO leave_request(employeeId, leaveRequestId, leaveType, leaveDescription, leaveRequestedDate, leaveStartDate, leaveDuration, leaveStatus) VALUES(?,?,?,?,?,?,?,?);";
 	public static final String EHPMquery0022 = "SELECT * FROM leave_request WHERE employeeId=?;";
 	public static final String EHPMquery0023 = "SELECT * FROM leave_request WHERE employeeId=? AND leaveStatus=?;";
-	public static final String EHPMquery0024 = "INSERT INTO person(personId, firstName, middleName, lastName, otherNames, addressStreet01, addressStreet02, addressCity, addressProvince, addressZipCode, nic, dateOfBirth, personalEmail, physicalRegistrationDate, genderId, nationalityId, branchId) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+	public static final String EHPMquery0024 = "INSERT INTO person(personId, firstName, middleName, lastName, otherNames, addressStreet01, addressStreet02, addressCity, addressProvince, addressZipCode, nic, dateOfBirth, personalEmail, physicalRegistrationDate, genderId, nationalityId, branchId, homeContact, mobileContact) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	public static final String EHPMquery0025 = "INSERT INTO employee(employeeId, departmentId, companyEmail, designationId, employeeType) VALUES(?, ?, ?, ?, ?);";
-	public static final String EHPMquery0026 = "INSERT INTO person_contact(personId, contactNumber, type) VALUES(?, ?, ?);";
+//	public static final String EHPMquery0026 = "INSERT INTO person_contact(personId, contactNumber, type) VALUES(?, ?, ?);";
 	public static final String EHPMquery0027 = "INSERT INTO leave_details(employeeId, noOfLeavesLeft, lastEffectiveLeaveDate) VALUES(?, ?, ?);";
 	public static final String EHPMquery0028 = "SELECT * FROM person p INNER JOIN employee e ON p.personId = e.employeeId WHERE p.onlineRegistrationDate IS NULL;";
 }

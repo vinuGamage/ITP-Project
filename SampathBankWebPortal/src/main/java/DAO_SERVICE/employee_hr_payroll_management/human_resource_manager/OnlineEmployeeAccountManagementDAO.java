@@ -59,7 +59,7 @@ public class OnlineEmployeeAccountManagementDAO {
 				employee.setBranch(CEM.getBranch(EHPM_ResultSet0001.getString("branchId")));
 				employee.setPhysicalRegistrationDate(EHPM_ResultSet0001.getDate("physicalRegistrationDate"));
 				employee.setNic(EHPM_ResultSet0001.getString("nic"));
-				
+				employee.setPersonalEmail(EHPM_ResultSet0001.getString("personalEmail"));
 				newEmployeeList.add(employee);
 			}
 			

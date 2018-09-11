@@ -43,11 +43,8 @@
             </div>
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item" title="Sign Up">
-                        <a class="nav-link" href="#"><span class="fa fa-user"></span> Sign Up</a>
-                    </li>
                     <li class="nav-item" title="Login">
-                        <a class="nav-link" href="#"><span class="fa fa-sign-in"></span> Login</a>
+                        <a class="nav-link" href="#"><span class="fa fa-sign-in"></span> Sign Out</a>
                     </li>
                 </ul>
             </div>
@@ -79,12 +76,12 @@
                             <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_RecruitAnEmployee.jsp" style="color:white">Recruit an Employee</a>
                             <a class="dropdown-item" href="#" style="color:white">Create Employee Online Account</a>
                             <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=allActive" style="color:white">Active Employees</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=inActive" style="color:white">Inactive Employees</a>
+                            <a class="dropdown-item" href="#" style="color:white">Search for Employees</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave Request Management</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Update Details of Employees</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Inactive Employees</a>
-                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" style="color:white">Update Details Request Management</a>
                             <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
                         </div>
                     </li>
@@ -142,8 +139,9 @@
 -->
 		<nav aria-label="breadcrumb" class="breadcrumb-stuff">
 		  <ol class="breadcrumb">
-		  <li class="breadcrumb-item"><a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp">EmpHome</a></li>
-		    <li class="breadcrumb-item active" aria-current="page">Leave History</li>
+		    <li class="breadcrumb-item"><a href="#">EmpHome</a></li>
+		    <li class="breadcrumb-item"><a href="#">Employee Duties</a></li>
+		    <li class="breadcrumb-item active" aria-current="page">Create Employee Online Account</li>
 		  </ol>
 		</nav>
 		

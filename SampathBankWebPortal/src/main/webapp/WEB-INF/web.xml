@@ -22,6 +22,12 @@
   	<description></description>
   	<servlet-class>CONTROLLER_SERVLET.employee_hr_payroll_management.human_resource_manager.OnlineEmployeeAccountController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ActiveInactiveSearchEmployees</servlet-name>
+  	<display-name>ActiveInactiveSearchEmployees</display-name>
+  	<description></description>
+  	<servlet-class>CONTROLLER_SERVLET.employee_hr_payroll_management.human_resource_manager.ActiveInactiveSearchEmployees</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>EmployeeRecruitment</servlet-name>
   	<url-pattern>/EmployeeRecruitment</url-pattern>
@@ -33,6 +39,10 @@
   <servlet-mapping>
   	<servlet-name>OnlineEmployeeAccountController</servlet-name>
   	<url-pattern>/OnlineEmployeeAccountController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ActiveInactiveSearchEmployees</servlet-name>
+  	<url-pattern>/ActiveInactiveSearchEmployees</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
   	<welcome-file>UM_Homepage_Common.jsp</welcome-file>

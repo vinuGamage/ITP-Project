@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee"%>
+<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, java.util.Collection, java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,19 +12,20 @@
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<title>Employee homepage</title>
+		<title>Active Employees</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
 			if(employee == null)
 				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
 		%>
 	</head>
-	<body>
+
+    <body>
         <nav class="navbar fixed-top navbar-expand-md navbar-dark fixed-stuff">
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#" title="Go to Employee Homepage">EmpHome</a>
+                        <a class="nav-link" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp" title="Go to Employee Homepage">EmpHome</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" title="View Profile">MyProfile</a>
@@ -69,60 +70,27 @@
 
             <div class="container-fluid" style="margin-top:10px;">
                 <ul class="nav nav-pills nav-fill nav-justified nav-header">
-                <%if(employee.getDesignation().getDesignation().equals("human resource manager")) {%>
                     <li class="nav-item dropdown" title="Click to See Your Duties">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
                         <div class="dropdown-menu nav-dropdown">
                             <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_RecruitAnEmployee.jsp" style="color:white">Recruit an Employee</a>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/OnlineEmployeeAccountController?abc=check" style="color:white">Create Employee Online Account</a>
+                            <a class="dropdown-item" href="#" style="color:white">Create Employee Online Account</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=allActive" style="color:white">Active Employees</a>
                             <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=inActive" style="color:white">Inactive Employees</a>
-                            <a class="dropdown-item" href="" style="color:white">Search for Employees</a>
+                            <a class="dropdown-item" href="#" style="color:white">Search for Employees</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave Request Management</a>
                             <a class="dropdown-item" href="#" style="color:white">Update Details Request Management</a>
                             <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
                         </div>
                     </li>
-                    <%} else if(employee.getDesignation().getDesignation().equals("admin")) {%>
-                    <li class="nav-item dropdown" title="Click to See Your Duties">
-                    	<a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
-                    	<div class="dropdown-menu nav-dropdown">
-	                        <a class="dropdown-item" href="#" style="color:white">abcd</a>
-	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">Job 02</a>
-	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">Job 03</a>
-	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">Job 04</a>
-	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">Job 05</a>
-                    	</div>
-                	</li>
-                    <%} else if(employee.getDesignation().getDesignation().equals("normal employee")) {%>
-                    <li class="nav-item dropdown" title="Click to See Your Duties">
-                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
-                        <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Job 01</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Job 02</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Job 03</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Job 04</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Job 05</a>
-                        </div>
-                    </li>
-                    <%} %>
-                    
                     <li class="nav-item dropdown" title="Click to See Leave Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Leave Request Inquiry</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveBase" style="color:white">Apply for Leave</a>
+                            <a class="dropdown-item" href="#" style="color:white">Apply for Leave</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveHistory" style="color:white">Leave History</a>
+                            <a class="dropdown-item" href="#" style="color:white">Leave History</a>
                             <a class="dropdown-item" href="#" style="color:white">Leave Status</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave Analysis</a>
@@ -171,21 +139,49 @@
 -->
 		<nav aria-label="breadcrumb" class="breadcrumb-stuff">
 		  <ol class="breadcrumb">
-		    <li class="breadcrumb-item active" aria-current="page">EmpHome</li>
+		    <li class="breadcrumb-item"><a href="#">EmpHome</a></li>
+		    <li class="breadcrumb-item"><a href="#">Employee Duties</a></li>
+		    <li class="breadcrumb-item active" aria-current="page">Active Employees</li>
 		  </ol>
 		</nav>
 		
-        <div class="container-fluid" style="margin-bottom: 100px; height: 100%">
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+        <div class="container-fluid" style="margin-bottom: 100px; height: 1000px">
+        <% Collection<Employee> activeEmployeeList = (ArrayList<Employee>) session.getAttribute("activeEmployeeList"); %>
+		<%if(activeEmployeeList != null) {%>
+			<table class="table">
+			  <thead class="thead-light">
+			    <tr>
+			      <th scope="col">Employee Id</th>
+			      <th scope="col">Employee Name</th>
+			      <th scope="col">Branch</th>
+			      <th scope="col">Employee Type</th>
+			      <th scope="col">Registration Date</th>
+			      <th scope="col">Approval</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  <%for(Employee emp: activeEmployeeList) {%>
+			    <tr>
+			      <th scope="row"><%=emp.getPersonId() %></th>
+			      <td style="font-weight: bold;"><%=emp.getName().getFirstName() %> <%=emp.getName().getLastName() %></td>
+			      <td style="font-weight: bold;"><%=emp.getBranch().getBranchId() %></td>
+			      <td style="font-weight: bold;"><%=emp.getEmployeeType() %></td>
+			      <td style="font-weight: bold;"><%=emp.getRegistrationDates().getPhysicalRegistrationDate() %></td>
+			      <td>
+			      	<form action="/SampathBankWebPortal/OnlineEmployeeAccountController" method="post">
+			      		<input type="hidden" value="<%=emp.getPersonId()%>" name="employeeId"/>
+			      		<input type="submit" value="Create Online Account" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; margin-right: 20px;"/>
+			      	</form>
+			      </td>
+			    </tr>
+			    <%} %>
+			  </tbody>
+			</table>
+		<%} else { %>
+			There are no active employees as of now.
+		<%} %>
+
 		</div>
 		
         <!-- Footer -->

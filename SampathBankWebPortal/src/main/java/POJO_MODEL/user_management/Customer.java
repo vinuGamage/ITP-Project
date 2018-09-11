@@ -24,6 +24,8 @@ public class Customer extends Person {
 		this.getBranch().displayBranch();
 		System.out.println("\tCustomer Online Security Key Details : ");
 		this.getOnlineSecurityKey().displayOnlineSecurityKey();
+		System.out.println("\tCustomer Home Contact Number : " + this.getHomeContact());
+		System.out.println("\tCustomer Mobile Contact Number : " + this.getMobileContact());
 //		System.out.println("\tCustomer Permission Details : ");
 //		this.getPermission().displayPermission();
 		System.out.println("\tOnline Customer Account Details : ");

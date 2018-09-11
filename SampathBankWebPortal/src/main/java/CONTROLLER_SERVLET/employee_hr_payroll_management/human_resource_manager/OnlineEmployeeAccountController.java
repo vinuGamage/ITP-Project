@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import DAO_SERVICE.employee_hr_payroll_management.PrimaryKeyGeneratorDAO;
 import DAO_SERVICE.employee_hr_payroll_management.human_resource_manager.OnlineEmployeeAccountManagementDAO;
 import POJO_MODEL.employee_hr_payroll_management.Employee;
+import POJO_MODEL.employee_hr_payroll_management.email_client.EmailClient;
 import POJO_MODEL.employee_hr_payroll_management.generators.OnlineAccountGenerator;
 import POJO_MODEL.employee_hr_payroll_management.generators.OnlineSecurityKeyGenerator;
 import POJO_MODEL.user_management.OnlineAccount;
@@ -57,6 +58,9 @@ public class OnlineEmployeeAccountController extends HttpServlet {
 			
 			boolean bool = OnlineEmployeeAccountManagementDAO.createEmployeeOnlineAccount(emp);
 
+			if(bool) {
+				EmailClient.sendMail(emp.getPersonalEmail(), emp.getOnlineAccount().getUsername(), emp.getOnlineAccount().getPassword());
+			}
 			System.out.println(bool);
 			if(bool) {
 				PrintWriter out = response.getWriter();
