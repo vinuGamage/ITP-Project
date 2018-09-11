@@ -3,13 +3,39 @@ CREATE DATABASE `itp_2018_mlb_g3_10_sampath_web_portal` /*!40100 DEFAULT CHARACT
 CREATE TABLE `branch` (
   `branchId` char(10) NOT NULL,
   `branchAddressStreet01` varchar(100) NOT NULL,
-  `branchAddressStreet02` varchar(100) NOT NULL,
-  `branchAddressCity` varchar(50) DEFAULT NULL,
+  `branchAddressStreet02` varchar(100) DEFAULT NULL,
+  `branchAddressCity` varchar(50) NOT NULL,
   `branchAddressProvince` varchar(50) NOT NULL,
   `branchAddressZipCode` int(5) NOT NULL,
-  `branchEmail` varchar(100) DEFAULT NULL,
+  `branchEmail` varchar(100) NOT NULL,
   PRIMARY KEY (`branchId`),
   UNIQUE KEY `branchId_UNIQUE` (`branchId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `department` (
+  `branchId` char(10) NOT NULL,
+  `departmentId` char(10) NOT NULL,
+  `departmentName` varchar(50) NOT NULL,
+  PRIMARY KEY (`departmentId`,`branchId`),
+  KEY `fk01_department_to_branch_idx` (`branchId`),
+  CONSTRAINT `fk01_department_to_branch` FOREIGN KEY (`branchId`) REFERENCES `branch` (`branchId`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `leave_days` (
+  `leaveDaysId` int(11) NOT NULL,
+  `noOfLeavesPerYear` int(11) NOT NULL,
+  PRIMARY KEY (`leaveDaysId`),
+  UNIQUE KEY `leaveDaysId_UNIQUE` (`leaveDaysId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `designation` (
+  `designationId` int(11) NOT NULL,
+  `designation` varchar(50) NOT NULL,
+  `leaveDaysId` int(11) NOT NULL,
+  PRIMARY KEY (`designationId`),
+  UNIQUE KEY `designationId_UNIQUE` (`designationId`),
+  KEY `fk01_designation_to_leave_days_idx` (`leaveDaysId`),
+  CONSTRAINT `fk01_designation_to_leave_days` FOREIGN KEY (`leaveDaysId`) REFERENCES `leave_days` (`leaveDaysId`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `gender` (
@@ -26,36 +52,11 @@ CREATE TABLE `nationality` (
   UNIQUE KEY `nationality_UNIQUE` (`nationality`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `designation` (
-  `designationId` int(11) NOT NULL,
-  `designation` varchar(50) NOT NULL,
-  PRIMARY KEY (`designationId`),
-  UNIQUE KEY `designationId_UNIQUE` (`designationId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `department` (
-  `branchId` char(10) NOT NULL,
-  `departmentId` char(10) NOT NULL,
-  `departmentName` varchar(50) NOT NULL,
-  PRIMARY KEY (`departmentId`,`branchId`),
-  KEY `fk01_department_to_branch_idx` (`branchId`),
-  CONSTRAINT `fk01_department_to_branch` FOREIGN KEY (`branchId`) REFERENCES `branch` (`branchId`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `permission` (
-  `permissionLevel` int(11) NOT NULL,
-  `permissionType` varchar(10) NOT NULL,
-  PRIMARY KEY (`permissionLevel`),
-  UNIQUE KEY `permissionLevel_UNIQUE` (`permissionLevel`),
-  UNIQUE KEY `permissionType_UNIQUE` (`permissionType`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 CREATE TABLE `online_security_key` (
   `onlineSecurityId` int(11) NOT NULL,
   `onlineSecurityKey` char(10) NOT NULL,
   PRIMARY KEY (`onlineSecurityId`),
-  UNIQUE KEY `onlineSecurityId_UNIQUE` (`onlineSecurityId`),
-  UNIQUE KEY `onlineSecurityKey_UNIQUE` (`onlineSecurityKey`)
+  UNIQUE KEY `onlineSecurityId_UNIQUE` (`onlineSecurityId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `person` (
@@ -77,8 +78,7 @@ CREATE TABLE `person` (
   `genderId` int(11) NOT NULL,
   `nationalityId` int(11) NOT NULL,
   `branchId` char(10) NOT NULL,
-  `onlineSecurityId` int(11) NOT NULL,
-  `permissionLevel` int(11) NOT NULL,
+  `onlineSecurityId` int(11) DEFAULT NULL,
   PRIMARY KEY (`personId`),
   UNIQUE KEY `personId_UNIQUE` (`personId`),
   UNIQUE KEY `nic_UNIQUE` (`nic`),
@@ -88,12 +88,18 @@ CREATE TABLE `person` (
   KEY `fk03_person_to_branch_idx` (`branchId`),
   KEY `fk02_person_to_nationality_idx` (`nationalityId`),
   KEY `fk04_person_to_online_security_key_idx` (`onlineSecurityId`),
-  KEY `fk03_person_to_permission_idx` (`permissionLevel`),
   CONSTRAINT `fk01_person_to_gender` FOREIGN KEY (`genderId`) REFERENCES `gender` (`genderId`) ON UPDATE CASCADE,
   CONSTRAINT `fk02_person_to_nationality` FOREIGN KEY (`nationalityId`) REFERENCES `nationality` (`nationalityId`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `fk03_person_to_branch` FOREIGN KEY (`branchId`) REFERENCES `branch` (`branchId`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `fk03_person_to_online_security_key` FOREIGN KEY (`onlineSecurityId`) REFERENCES `online_security_key` (`onlineSecurityId`) ON UPDATE CASCADE,
-  CONSTRAINT `fk03_person_to_permission` FOREIGN KEY (`permissionLevel`) REFERENCES `permission` (`permissionLevel`) ON DELETE NO ACTION ON UPDATE CASCADE
+  CONSTRAINT `fk03_person_to_online_security_key` FOREIGN KEY (`onlineSecurityId`) REFERENCES `online_security_key` (`onlineSecurityId`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `person_contact` (
+  `personId` char(10) NOT NULL,
+  `contactNumber` char(10) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  PRIMARY KEY (`personId`,`contactNumber`),
+  CONSTRAINT `fk01_person_contact_to_person` FOREIGN KEY (`personId`) REFERENCES `person` (`personId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `employee` (
@@ -118,25 +124,36 @@ CREATE TABLE `customer` (
   CONSTRAINT `fk01_customer_to_person` FOREIGN KEY (`customerId`) REFERENCES `person` (`personId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `person_contact` (
-  `personId` char(10) NOT NULL,
-  `contactNumber` char(10) NOT NULL,
-  `type` varchar(20) NOT NULL,
-  PRIMARY KEY (`personId`,`contactNumber`),
-  UNIQUE KEY `personId_UNIQUE` (`personId`),
-  CONSTRAINT `fk01_person_contact_to_person` FOREIGN KEY (`personId`) REFERENCES `person` (`personId`) ON DELETE CASCADE ON UPDATE CASCADE
+CREATE TABLE `leave_details` (
+  `employeeId` char(10) NOT NULL,
+  `noOfLeavesLeft` int(11) NOT NULL,
+  `lastEffectiveLeaveDate` date NOT NULL,
+  PRIMARY KEY (`employeeId`),
+  UNIQUE KEY `employeeId_UNIQUE` (`employeeId`),
+  CONSTRAINT `fk01_leave_details_to_employee` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`employeeId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `online_employee_credentials` (
-  `onlineEmployeeId` char(10) NOT NULL,
+CREATE TABLE `leave_request` (
   `employeeId` char(10) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  PRIMARY KEY (`onlineEmployeeId`,`employeeId`),
-  UNIQUE KEY `username_UNIQUE` (`username`),
-  UNIQUE KEY `onlineEmployeeId_UNIQUE` (`onlineEmployeeId`),
-  UNIQUE KEY `employeeId_UNIQUE` (`employeeId`),
-  CONSTRAINT `fk01_online_employee_credentials_to_employee` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`employeeId`) ON DELETE CASCADE ON UPDATE CASCADE
+  `leaveRequestId` int(11) NOT NULL,
+  `leaveType` varchar(50) NOT NULL,
+  `leaveDescription` varchar(500) NOT NULL,
+  `leaveRequestedDate` date NOT NULL,
+  `leaveStartDate` date NOT NULL,
+  `leaveDuration` int(11) NOT NULL,
+  `leaveStatus` varchar(50) NOT NULL,
+  `leaveReviewedBy` char(10) DEFAULT NULL,
+  PRIMARY KEY (`employeeId`,`leaveRequestId`),
+  CONSTRAINT `fk01_leave_request_to_employee` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`employeeId`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `next_primary_keys` (
+  `primaryKey` int(11) NOT NULL,
+  `nextEmployeeId` char(10) NOT NULL,
+  `nextOnlineEmployeeId` char(10) NOT NULL,
+  `nextOnlineSecurityId` int(11) NOT NULL,
+  PRIMARY KEY (`primaryKey`),
+  UNIQUE KEY `primaryKey_UNIQUE` (`primaryKey`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `online_customer_credentials` (
@@ -149,4 +166,16 @@ CREATE TABLE `online_customer_credentials` (
   UNIQUE KEY `customerId_UNIQUE` (`customerId`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   CONSTRAINT `fk01_online_customer_credentials_to_customer` FOREIGN KEY (`customerId`) REFERENCES `customer` (`customerId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `online_employee_credentials` (
+  `onlineEmployeeId` char(10) NOT NULL,
+  `employeeId` char(10) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  PRIMARY KEY (`onlineEmployeeId`,`employeeId`),
+  UNIQUE KEY `username_UNIQUE` (`username`),
+  UNIQUE KEY `onlineEmployeeId_UNIQUE` (`onlineEmployeeId`),
+  UNIQUE KEY `employeeId_UNIQUE` (`employeeId`),
+  CONSTRAINT `fk01_online_employee_credentials_to_employee` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`employeeId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
