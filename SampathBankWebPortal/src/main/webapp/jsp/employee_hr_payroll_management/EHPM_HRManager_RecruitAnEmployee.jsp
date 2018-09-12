@@ -145,7 +145,7 @@ POJO_MODEL.employee_hr_payroll_management.Designation"%>
 		<nav aria-label="breadcrumb" class="breadcrumb-stuff">
 		  <ol class="breadcrumb">
 		    <li class="breadcrumb-item"><a href="#">EmpHome</a></li>
-		    <li class="breadcrumb-item"><a href="#">Employee Duties</a></li>
+		    <li class="breadcrumb-item active">Employee Duties</a></li>
 		    <li class="breadcrumb-item active" aria-current="page">Recruit An Employee</li>
 		  </ol>
 		</nav>
@@ -157,7 +157,6 @@ POJO_MODEL.employee_hr_payroll_management.Designation"%>
 <!-- 
 	FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM
  -->
-            
                 <form action="/SampathBankWebPortal/EmployeeRecruitment" method="post">
                     <div style="float: left; margin-right: 5px;">
                         <div style="width: 550px; float: left; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
@@ -353,18 +352,6 @@ POJO_MODEL.employee_hr_payroll_management.Designation"%>
                 </form>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
 
         <!-- Footer -->
         <footer class="page-footer font-small blue pt-4 footer-all">

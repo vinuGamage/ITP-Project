@@ -12,6 +12,8 @@ import javax.sql.DataSource;
 import DAO_SERVICE.common_service.ConnectionPoolManager;
 import DAO_SERVICE.queries.EHPMQueries;
 import POJO_MODEL.employee_hr_payroll_management.Employee;
+import POJO_MODEL.employee_hr_payroll_management.InactiveEmployee;
+import POJO_MODEL.employee_hr_payroll_management.converters.DateConverter;
 import POJO_MODEL.employee_hr_payroll_management.managers.CommonEntityManager;
 import POJO_MODEL.user_management.OnlineAccount;
 import POJO_MODEL.user_management.OnlineSecurityKey;
@@ -245,6 +247,7 @@ public class ActiveInactiveSearchEmployeesDAO {
 				EHPM_Prst0002 = con.prepareStatement(EHPMQueries.EHPMquery0036);
 				EHPM_Prst0002.setString(1, employee.getPersonId());
 				EHPM_Prst0002.setString(2, reason);
+				EHPM_Prst0002.setDate(3, DateConverter.getCurrentSqlDate());
 				j = EHPM_Prst0002.executeUpdate();
 			} else {
 				
@@ -270,5 +273,80 @@ public class ActiveInactiveSearchEmployeesDAO {
 			return true;
 		else
 			return false;
+	}
+
+	public static Collection<InactiveEmployee> getAllInactiveEmployees() {
+		//Conneciton Managing Start
+		ConnectionPoolManager cpmObj = new ConnectionPoolManager();
+		DataSource dataSource = null;
+		try {
+			dataSource = cpmObj.initializePool();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		cpmObj.printDatabaseStatus();
+		try {
+			con = dataSource.getConnection();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		cpmObj.printDatabaseStatus();
+		//Conneciton Managing End
+		
+		CommonEntityManager CEM = CommonEntityManager.getInstance();
+		PreparedStatement EHPM_Prst0001 = null;
+		ResultSet EHPM_ResultSet0001 = null;
+		Collection<InactiveEmployee> inactiveEmployeeList = new ArrayList<InactiveEmployee> ();
+		InactiveEmployee inactiveEmployee = null;
+		int i = 0;
+		
+		try {
+			EHPM_Prst0001 = con.prepareStatement(EHPMQueries.EHPMquery0037);
+			EHPM_ResultSet0001 = EHPM_Prst0001.executeQuery();
+			
+			while(EHPM_ResultSet0001.next()) {
+				i++;
+				inactiveEmployee = null;
+				inactiveEmployee = new InactiveEmployee();
+				
+				inactiveEmployee.setPersonId(EHPM_ResultSet0001.getString("personId"));
+				inactiveEmployee.setName(EHPM_ResultSet0001.getString("firstName"), EHPM_ResultSet0001.getString("middleName"), EHPM_ResultSet0001.getString("lastName"), EHPM_ResultSet0001.getString("otherNames"));
+				inactiveEmployee.setAddress(EHPM_ResultSet0001.getString("addressStreet01"), EHPM_ResultSet0001.getString("addressStreet02"), EHPM_ResultSet0001.getString("addressCity"), EHPM_ResultSet0001.getString("addressProvince"), EHPM_ResultSet0001.getInt("addressZipCode"));
+				inactiveEmployee.setNic(EHPM_ResultSet0001.getString("nic"));
+				inactiveEmployee.setDateOfBirth(EHPM_ResultSet0001.getDate("dateOfBirth"));
+				inactiveEmployee.setPersonalEmail(EHPM_ResultSet0001.getString("personalEmail"));
+				inactiveEmployee.setRegistrationDates(new RegistrationDates(EHPM_ResultSet0001.getDate("physicalRegistrationDate")));
+				inactiveEmployee.setGender(CEM.getGender(EHPM_ResultSet0001.getInt("genderId")));
+				inactiveEmployee.setNationality(CEM.getNationality(EHPM_ResultSet0001.getInt("nationalityId")));
+				inactiveEmployee.setBranch(CEM.getBranch(EHPM_ResultSet0001.getString("branchId")));
+				inactiveEmployee.setHomeContact(EHPM_ResultSet0001.getString("homeContact"));
+				inactiveEmployee.setMobileContact(EHPM_ResultSet0001.getString("mobileContact"));
+				inactiveEmployee.setReason(EHPM_ResultSet0001.getString("reason"));
+				inactiveEmployee.setInactivationDate(EHPM_ResultSet0001.getDate("inactivationDate"));
+				
+				inactiveEmployeeList.add(inactiveEmployee);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(EHPM_ResultSet0001 != null)
+					EHPM_ResultSet0001.close();
+				
+				if(EHPM_Prst0001 != null)
+					EHPM_Prst0001.close();
+				
+				if(con != null)
+					con.close();
+			} catch(SQLException sqlException) {
+				sqlException.printStackTrace();
+			}
+		}
+		cpmObj.printDatabaseStatus();
+		
+		if(i == 0)
+			inactiveEmployeeList = null;
+		
+		return inactiveEmployeeList;
 	}
 }

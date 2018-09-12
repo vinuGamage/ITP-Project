@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, java.util.Collection, java.util.ArrayList"%>
+<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, java.util.Collection, java.util.ArrayList, POJO_MODEL.employee_hr_payroll_management.InactiveEmployee"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<title>Active Single Employee</title>
+		<title>Inactive Single Employee</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
 			if(employee == null)
@@ -51,7 +51,10 @@
 			.cancelbtn {
 			    width: auto;
 			    padding: 10px 18px;
-			    background-color: #f44336;
+			    
+			    border-radius: 10px;
+			    background-color: #FD4F00;
+			    color: white;
 			}
 			
 			/* Center the image and position the close button */
@@ -261,25 +264,23 @@
 <!--
     BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY
 -->
-		<% Employee activeEmp = (Employee) session.getAttribute("activeEmp"); %>
+        <% InactiveEmployee inactiveEmp = (InactiveEmployee) session.getAttribute("inactiveEmp"); %>
 		<nav aria-label="breadcrumb" class="breadcrumb-stuff">
 		  <ol class="breadcrumb">
 		    <li class="breadcrumb-item"><a href="#">EmpHome</a></li>
 		    <li class="breadcrumb-item active">Employee Duties</a></li>
-		    <li class="breadcrumb-item active" aria-current="page">All Active Employees</li>
-		    <%if(activeEmp != null) {%>
-		    <li class="breadcrumb-item active" aria-current="page"><%=activeEmp.getPersonId() %></li>
-		    <%} else { %>
+		    <li class="breadcrumb-item active" aria-current="page">All Inactive Employees</li>
+		    <%if(inactiveEmp != null) {%>
+		    <li class="breadcrumb-item active" aria-current="page"><%=inactiveEmp.getPersonId() %></li>
+		    <%} else {%>
 		    <li class="breadcrumb-item active" aria-current="page">XXXXX</li>
 		    <%} %>
 		  </ol>
 		</nav>
 		
-		
-        <div class="container-fluid" style="margin-bottom: 100px; height: 1000px;">
-        
-		<%if(activeEmp != null) {%>
-		<h3 style="font-weight: bold;"><%=activeEmp.getPersonId() %> : <%=activeEmp.getName().getFullName() %></h3>
+		<%if(inactiveEmp != null) {%>
+        <div class="container-fluid" style="margin-bottom: 100px; height: 700px;">
+		<h3 style="font-weight: bold;"><%=inactiveEmp.getPersonId() %> : <%=inactiveEmp.getName().getFullName() %> (INACTIVE)</h3></br>
 					<div style="float: left; margin-right: 15px; margin-left: 22px;">
                         <div style="width: 700px; float: left; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
                             <h5>Basic Details</h5>
@@ -287,15 +288,15 @@
                             	<tbody>
                             		<tr>
                             			<th scope="row">Full Name: </th>
-                            			<td><%=activeEmp.getName().getFullName()%></td>
+                            			<td><%=inactiveEmp.getName().getFullName()%></td>
                             		</tr>
                             		<tr>
                             			<th scope="row">Gender: </th>
-                            			<td><%=activeEmp.getGender().getGender() %></td>
+                            			<td><%=inactiveEmp.getGender().getGender() %></td>
                             		</tr>
                             		<tr>
                             			<th scope="row">Nationality: </th>
-                            			<td><%=activeEmp.getNationality().getNationality() %></td>
+                            			<td><%=inactiveEmp.getNationality().getNationality() %></td>
                             		</tr>
                             	</tbody>
                             </table>
@@ -305,46 +306,46 @@
                             <h5>Contact Details</h5>
                             <table class="table table-borderless">
                             	<tbody>
-                            	<%if(activeEmp.getAddress().getAddressStreet02() != null && activeEmp.getAddress().getAddressStreet02().trim().length() != 0) {%>
+                            	<%if(inactiveEmp.getAddress().getAddressStreet02() != null && inactiveEmp.getAddress().getAddressStreet02().trim().length() != 0) {%>
                             		<tr>
                             			<th scope="row">Street Address (Line 01): </th>
-                            			<td><%=activeEmp.getAddress().getAddressStreet01() %></td>
+                            			<td><%=inactiveEmp.getAddress().getAddressStreet01() %></td>
                             		</tr>
                             		<tr>
                             			<th scope="row">Street Address (Line 02): </th>
-                            			<td><%=activeEmp.getAddress().getAddressStreet02() %></td>
+                            			<td><%=inactiveEmp.getAddress().getAddressStreet02() %></td>
                             		</tr>
                             	<%} else {%>
                             		<tr>
                             			<th scope="row">Street Address: </th>
-                            			<td><%=activeEmp.getAddress().getAddressStreet01() %></td>
+                            			<td><%=inactiveEmp.getAddress().getAddressStreet01() %></td>
                             		</tr>
                             	<%} %>
                             		<tr>
                             			<th scope="row">City: </th>
-                            			<td><%=activeEmp.getAddress().getAddressCity() %></td>
+                            			<td><%=inactiveEmp.getAddress().getAddressCity() %></td>
                             		</tr>
                             		<tr>
                             			<th scope="row">Province: </th>
-                            			<td><%=activeEmp.getAddress().getAddressProvince() %></td>
+                            			<td><%=inactiveEmp.getAddress().getAddressProvince() %></td>
                             		</tr>
                             		<tr>
                             			<th scope="row">ZIP Code: </th>
-                            			<td><%=activeEmp.getAddress().getAddressZIPCode() %></td>
+                            			<td><%=inactiveEmp.getAddress().getAddressZIPCode() %></td>
                             		</tr>
                             		<tr>
                             			<th scope="row">Contact Number </br>(Home): </th>
-                            			<td><%=activeEmp.getHomeContact() %></td>
+                            			<td><%=inactiveEmp.getHomeContact() %></td>
                             		</tr>
-								<%if(activeEmp.getMobileContact() != null && activeEmp.getMobileContact().trim().length() != 0) {%>
+								<%if(inactiveEmp.getMobileContact() != null && inactiveEmp.getMobileContact().trim().length() != 0) {%>
                             		<tr>
                             			<th scope="row">Contact Number (Mobile): </th>
-                            			<td><%=activeEmp.getMobileContact() %></td>
+                            			<td><%=inactiveEmp.getMobileContact() %></td>
                             		</tr>
                             	<%} %>
                             		<tr>
                             			<th scope="row">Personal Email: </th>
-                            			<td><%=activeEmp.getPersonalEmail() %></td>
+                            			<td><%=inactiveEmp.getPersonalEmail() %></td>
                             		</tr>
                             	</tbody>
                             </table>
@@ -358,15 +359,15 @@
                             	<tbody>
                             		<tr class="table-warning">
                             			<th scope="row">Employee ID: </th>
-                            			<td><%=activeEmp.getPersonId() %></td>
+                            			<td><%=inactiveEmp.getPersonId() %></td>
                             		</tr>
                             		<tr>
                             			<th scope="row">NIC: </th>
-                            			<td><%=activeEmp.getNic() %></td>
+                            			<td><%=inactiveEmp.getNic() %></td>
                             		</tr>
                             		<tr>
                             			<th scope="row">Date of Birth: </th>
-                            			<td><%=activeEmp.getDateOfBirth() %></td>
+                            			<td><%=inactiveEmp.getDateOfBirth() %></td>
                             		</tr>
                             	</tbody>
                             </table>
@@ -377,57 +378,24 @@
                             <table class="table table-borderless">
                             	<tbody>
                             		<tr>
-                            			<th scope="row">Branch: </th>
-                            			<td><%=activeEmp.getBranch().getBranchAddress().getAddressCity() %></td>
-                            		</tr>
-                            		<tr>
-                            			<th scope="row">Department: </th>
-                            			<td><%=activeEmp.getDepartment().getDepartmentName() %></td>
-                            		</tr>
-                            		<tr>
-                            			<th scope="row">Designation: </th>
-                            			<td><%=activeEmp.getDesignation().getDesignation() %></td>
+                            			<th scope="row">Branch (Before Inactivation): </th>
+                            			<td><%=inactiveEmp.getBranch().getBranchAddress().getAddressCity() %></td>
                             		</tr>
 									<tr>
                             			<th scope="row">Recruitment Date: </th>
-                            			<td><%=activeEmp.getRegistrationDates().getPhysicalRegistrationDate() %></td>
+                            			<td><%=inactiveEmp.getRegistrationDates().getPhysicalRegistrationDate() %></td>
                             		</tr>
                             		<tr>
-                            			<th scope="row">Company Email: </th>
-                            			<td><%=activeEmp.getCompanyEmail() %></td>
+                            			<th scope="row">Reason For Disposal: </th>
+                            			<td><button type="button" class="btn btn-sm" onclick="document.getElementById('id01').style.display='block'" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 19px; width: auto;">See</button></td>
                             		</tr>
                             		<tr>
-                            			<th scope="row">Employee Type: </th>
-                            			<td><%=activeEmp.getEmployeeType() %></td>
+                            			<th scope="row">Inactivation Date: </th>
+                            			<td><%=inactiveEmp.getInactivationDate() %></td>
                             		</tr>
-                            		<%if(activeEmp.getOnlineSecurityKey() != null){ %>
-                            		<tr>
-                            			<table class="table table-warning">
-                            				<tbody>
-	                            				<tr>
-	                            					<th scope="row">Employee Online Username: </th>
-	                            					<td><%=activeEmp.getOnlineAccount().getUsername() %></td>
-	                            				</tr>
-	                            				<tr>
-	                            					<th scope="row">Online Registration Date: </th>
-	                            					<td><%=activeEmp.getRegistrationDates().getOnlineRegistrationDate() %></td>
-	                            				</tr>
-	                            			</tbody>
-                            			</table>
-                            		</tr>
-                            		<%} else {%>
-                            		<tr class="table-warning"">
-                            			<th scope="row">Online Account Status: </th>
-                            			<td>This Employee Do Not Have an Online Account.</td>
-                            		</tr>
-                            		<%} %>
                             	</tbody>
                             </table>
                         </div>
-                        <%if(activeEmp.getOnlineSecurityKey() != null){ %>
-                        	<button onclick="document.getElementById('id01').style.display='block'" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 19px; margin-right:10px;">Remove Online Account</button>
-                        <%} %>
-                        	<button onclick="document.getElementById('id02').style.display='block'" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 19px; margin-right:10px;">Inactivate Employee</button>
                     </div>
 			
 		<%} else { %>
@@ -524,51 +492,19 @@
         
 <!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
         <div id="id01" class="modal">
-		  <form class="modal-content animate" action="/SampathBankWebPortal/ActiveInactiveEmployeeManupulation" method="post">
-		    <div class="imgcontainer">
-		      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-		      <img src="/SampathBankWebPortal/resources/images/avatar_sure.png" alt="Avatar" class="avatar">
-		    </div>
+		  <form class="modal-content animate" action="" method="">
 		
-		    <div class="container">
-		      	<label for="psw"><b>Enter Your Online Security Key: </b></label>
-		      	<input type="password" placeholder="Online Security Key" name="onlineSecKey" required>
-		        
-		        
-		        <input type="hidden" value="removeOnlineAccount" name="anotherDeed"/>
-		      	<button type="submit" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 19px; margin-right:10px;">Remove Online</button>
+		    <div class="container" style="word-wrap: break-word;">
+		      	<label for="psw"><b>Reason for Disposal </b></label>
+		      	<p><%=inactiveEmp.getReason() %></p>
 		    </div>
 		
 		    <div class="container" style="background-color:#f1f1f1">
-		      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+		      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Done</button>
 		    </div>
 		  </form>
 		</div>
-		
-        <div id="id02" class="modal">
-		  <form class="modal-content animate" action="/SampathBankWebPortal/ActiveInactiveEmployeeManupulation" method="post">
-		    <div class="imgcontainer">
-		      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-		      <img src="/SampathBankWebPortal/resources/images/avatar_sure.png" alt="Avatar" class="avatar">
-		    </div>
-		
-		    <div class="container">
-		    	<label for="psw"><b>Reason for Inactivating: </b></label>
-		      	<input type="text" name="reason" required>
-		      	
-		      	<label for="psw"><b>Enter Your Online Security Key: </b></label>
-		      	<input type="password" placeholder="Online Security Key" name="onlineSecKey" required>
-		      
-		      
-		      	<input type="hidden" value="inactivate" name="anotherDeed"/>
-		      	<button type="submit" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 19px; margin-right:10px;">Inactivate</button>
-		    </div>
-		
-		    <div class="container" style="background-color:#f1f1f1">
-		      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
-		    </div>
-		  </form>
-		</div>
+
 <!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
 		<script>
 			// Get the modal
@@ -580,15 +516,6 @@
 			        modal.style.display = "none";
 			    }
 			}
-			
-			var modal2 = document.getElementById('id02');
-			
-			window.onclick = function(event) {
-			    if (event.target == modal2) {
-			        modal2.style.display = "none";
-			    }
-			}
 		</script>
-<!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
     </body>
 </html>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import DAO_SERVICE.employee_hr_payroll_management.human_resource_manager.ActiveInactiveSearchEmployeesDAO;
 import POJO_MODEL.employee_hr_payroll_management.Employee;
+import POJO_MODEL.employee_hr_payroll_management.InactiveEmployee;
 
 public class ActiveInactiveSearchEmployees extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -41,7 +42,15 @@ public class ActiveInactiveSearchEmployees extends HttpServlet {
 		response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_ActiveEmployeesView.jsp");
 	}
 	
-	public void allInactiveEmployeesDisplay(HttpServletRequest request, HttpServletResponse response) {
+	public void allInactiveEmployeesDisplay(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+		Collection<InactiveEmployee> inactiveEmployeeList = ActiveInactiveSearchEmployeesDAO.getAllInactiveEmployees();
 		
+		if(inactiveEmployeeList != null)
+			session.setAttribute("inactiveEmployeeList", inactiveEmployeeList);
+		else
+			session.setAttribute("inactiveEmployeeList", null);
+		
+		response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_InactiveEmployeesView.jsp");
 	}
 }

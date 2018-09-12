@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, java.util.Collection, java.util.ArrayList"%>
+<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, java.util.Collection, java.util.ArrayList, POJO_MODEL.employee_hr_payroll_management.InactiveEmployee"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<title>Active Employees</title>
+		<title>Inactive Employees</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
 			if(employee == null)
@@ -76,8 +76,8 @@
                             <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_RecruitAnEmployee.jsp" style="color:white">Recruit an Employee</a>
                             <a class="dropdown-item" href="/SampathBankWebPortal/OnlineEmployeeAccountController?abc=check" style="color:white">Create Employee Online Account</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Active Employees</a>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=inActive" style="color:white">Inactive Employees</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=allActive" style="color:white">Active Employees</a>
+                            <a class="dropdown-item" href="#" style="color:white">Inactive Employees</a>
                             <a class="dropdown-item" href="#" style="color:white">Search for Employees</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave Request Management</a>
@@ -141,45 +141,37 @@
 		  <ol class="breadcrumb">
 		    <li class="breadcrumb-item"><a href="#">EmpHome</a></li>
 		    <li class="breadcrumb-item active">Employee Duties</a></li>
-		    <li class="breadcrumb-item active" aria-current="page">All Active Employees</li>
+		    <li class="breadcrumb-item active" aria-current="page">All Inactive Employees</li>
 		  </ol>
 		</nav>
 		
 		
         <div class="container-fluid" style="margin-bottom: 100px; height: 1000px">
-        <% Collection<Employee> activeEmployeeList = (ArrayList<Employee>) session.getAttribute("activeEmployeeList"); %>
-		<%if(activeEmployeeList != null) {%>
+        <% Collection<InactiveEmployee> inactiveEmployeeList = (ArrayList<InactiveEmployee>) session.getAttribute("inactiveEmployeeList"); %>
+		<%if(inactiveEmployeeList != null) {%>
 			<table class="table table-hover">
 			  <thead class="thead-light">
 			    <tr>
 			      <th scope="col">Employee Id</th>
 			      <th scope="col">Employee Name</th>
-			      <th scope="col">Branch Id</th>
-			      <th scope="col">Employee Type</th>
+			      <th scope="col">Branch Id (Before Inactive)</th>
 			      <th scope="col">Company Induction Date</th>
-			      <th scope="col">Online Account</th>
+			      <th scope="col">Inactivation Date</th>
 			      <th scope="col">####</th>
 			    </tr>
 			  </thead>
 			  <tbody>
-			  <%for(Employee emp: activeEmployeeList) {%>
+			  <%for(InactiveEmployee inEmp: inactiveEmployeeList) {%>
 			    <tr>
-			      <th scope="row"><%=emp.getPersonId() %></th>
-			      <td style="font-weight: bold;"><%=emp.getName().getFirstName() %> <%=emp.getName().getLastName() %></td>
-			      <td style="font-weight: bold;"><%=emp.getBranch().getBranchId() %></td>
-			      <td style="font-weight: bold;"><%=emp.getEmployeeType() %></td>
-			      <td style="font-weight: bold;"><%=emp.getRegistrationDates().getPhysicalRegistrationDate() %></td>
-			      <td style="font-weight: bold;">
-			      	<%if(emp.getOnlineSecurityKey() == null) {%>
-			      		No
-			      	<%} else {%>
-			      		Yes
-			      	<%} %>
-			      </td>
+			      <th scope="row"><%=inEmp.getPersonId() %></th>
+			      <td style="font-weight: bold;"><%=inEmp.getName().getFullName() %></td>
+			      <td style="font-weight: bold;"><%=inEmp.getBranch().getBranchId() %></td>
+			      <td style="font-weight: bold;"><%=inEmp.getRegistrationDates().getPhysicalRegistrationDate() %></td>
+			      <td style="font-weight: bold;"><%=inEmp.getInactivationDate()%></td>
 			      <td>
 			      	<form action="/SampathBankWebPortal/ActiveInactiveEmployeeManupulation" method="post">
-			      		<input type="hidden" value="activeView" name="anotherDeed"/>
-			      		<input type="hidden" value="<%=emp.getPersonId()%>" name="employeeId"/>
+			      		<input type="hidden" value="inactiveView" name="anotherDeed"/>
+			      		<input type="hidden" value="<%=inEmp.getPersonId()%>" name="inEmployeeId"/>
 			      		<input type="submit" value="View Details" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; margin-right: 20px;"/>
 			      	</form>
 			      </td>
@@ -188,7 +180,7 @@
 			  </tbody>
 			</table>
 		<%} else { %>
-			There are no active employees as of now.
+			There are no inactive employees as of now.
 		<%} %>
 
 		</div>

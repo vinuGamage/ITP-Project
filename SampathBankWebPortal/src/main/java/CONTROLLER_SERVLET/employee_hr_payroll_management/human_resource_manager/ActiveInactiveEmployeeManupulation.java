@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import DAO_SERVICE.employee_hr_payroll_management.human_resource_manager.ActiveInactiveSearchEmployeesDAO;
 import POJO_MODEL.employee_hr_payroll_management.Employee;
+import POJO_MODEL.employee_hr_payroll_management.InactiveEmployee;
 
 /**
  * Servlet implementation class ActiveInactiveEmployeeManupulation
@@ -60,8 +61,21 @@ public class ActiveInactiveEmployeeManupulation extends HttpServlet {
 		response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_ActiveSingleEmployeeView.jsp");
 	}
 	
-	public void viewSingleInactiveEmployee(HttpServletRequest request, HttpServletResponse response) {
+	public void viewSingleInactiveEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+		Collection<InactiveEmployee> inactiveEmployeeList = (ArrayList<InactiveEmployee>) session.getAttribute("inactiveEmployeeList");
+		String inEmployeeId = request.getParameter("inEmployeeId");
 		
+		InactiveEmployee inEmp = null;
+		for(InactiveEmployee inemployee: inactiveEmployeeList) {
+			if(inemployee.getPersonId().equals(inEmployeeId)) {
+				inEmp = inemployee;
+				break;
+			}
+		}
+		
+		session.setAttribute("inactiveEmp", inEmp);
+		response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_InactiveSingleEmployeeView.jsp");
 	}
 	
 	public void removeOnlineAccount(HttpServletRequest request, HttpServletResponse response) throws IOException {

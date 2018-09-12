@@ -36,5 +36,6 @@ public class EHPMQueries {
 	public static final String EHPMquery0033 = "DELETE FROM online_security_key WHERE onlineSecurityId=?;";
 	public static final String EHPMquery0034 = "UPDATE person SET onlineRegistrationDate=NULL WHERE personId=?;";
 	public static final String EHPMquery0035 = "DELETE FROM employee WHERE employeeId=?;";
-	public static final String EHPMquery0036 = "INSERT INTO inactive_employees(employeeId, reason) VALUES(?, ?);";
+	public static final String EHPMquery0036 = "INSERT INTO inactive_employees(employeeId, reason, inactivationDate) VALUES(?, ?, ?);";
+	public static final String EHPMquery0037 = "SELECT * FROM person p INNER JOIN inactive_employees e ON p.personId = e.employeeId;";
 }
