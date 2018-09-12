@@ -29,4 +29,12 @@ public class EHPMQueries {
 //	public static final String EHPMquery0026 = "INSERT INTO person_contact(personId, contactNumber, type) VALUES(?, ?, ?);";
 	public static final String EHPMquery0027 = "INSERT INTO leave_details(employeeId, noOfLeavesLeft, lastEffectiveLeaveDate) VALUES(?, ?, ?);";
 	public static final String EHPMquery0028 = "SELECT * FROM person p INNER JOIN employee e ON p.personId = e.employeeId WHERE p.onlineRegistrationDate IS NULL;";
+	public static final String EHPMquery0029 = "SELECT * FROM person p INNER JOIN employee e ON p.personId = e.employeeId;";
+	public static final String EHPMquery0030 = "SELECT * FROM online_security_key WHERE onlineSecurityId=?";
+	public static final String EHPMquery0031 = "SELECT * FROM online_employee_credentials WHERE employeeId=?;";
+	public static final String EHPMquery0032 = "DELETE FROM online_employee_credentials WHERE employeeId=?;";
+	public static final String EHPMquery0033 = "DELETE FROM online_security_key WHERE onlineSecurityId=?;";
+	public static final String EHPMquery0034 = "UPDATE person SET onlineRegistrationDate=NULL WHERE personId=?;";
+	public static final String EHPMquery0035 = "DELETE FROM employee WHERE employeeId=?;";
+	public static final String EHPMquery0036 = "INSERT INTO inactive_employees(employeeId, reason) VALUES(?, ?);";
 }

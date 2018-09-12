@@ -74,7 +74,7 @@
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
                         <div class="dropdown-menu nav-dropdown">
                             <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_RecruitAnEmployee.jsp" style="color:white">Recruit an Employee</a>
-                            <a class="dropdown-item" href="#" style="color:white">Create Employee Online Account</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/OnlineEmployeeAccountController?abc=check" style="color:white">Create Employee Online Account</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=allActive" style="color:white">Active Employees</a>
                             <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=inActive" style="color:white">Inactive Employees</a>
@@ -149,15 +149,16 @@
         <div class="container-fluid" style="margin-bottom: 100px; height: 1000px">
         <% Collection<Employee> activeEmployeeList = (ArrayList<Employee>) session.getAttribute("activeEmployeeList"); %>
 		<%if(activeEmployeeList != null) {%>
-			<table class="table">
+			<table class="table table-hover">
 			  <thead class="thead-light">
 			    <tr>
 			      <th scope="col">Employee Id</th>
 			      <th scope="col">Employee Name</th>
-			      <th scope="col">Branch</th>
+			      <th scope="col">Branch Id</th>
 			      <th scope="col">Employee Type</th>
-			      <th scope="col">Registration Date</th>
-			      <th scope="col">Approval</th>
+			      <th scope="col">Company Induction Date</th>
+			      <th scope="col">Online Account</th>
+			      <th scope="col">####</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -168,10 +169,18 @@
 			      <td style="font-weight: bold;"><%=emp.getBranch().getBranchId() %></td>
 			      <td style="font-weight: bold;"><%=emp.getEmployeeType() %></td>
 			      <td style="font-weight: bold;"><%=emp.getRegistrationDates().getPhysicalRegistrationDate() %></td>
+			      <td style="font-weight: bold;">
+			      	<%if(emp.getOnlineSecurityKey() == null) {%>
+			      		No
+			      	<%} else {%>
+			      		Yes
+			      	<%} %>
+			      </td>
 			      <td>
-			      	<form action="/SampathBankWebPortal/OnlineEmployeeAccountController" method="post">
+			      	<form action="/SampathBankWebPortal/ActiveInactiveEmployeeManupulation" method="post">
+			      		<input type="hidden" value="activeView" name="anotherDeed"/>
 			      		<input type="hidden" value="<%=emp.getPersonId()%>" name="employeeId"/>
-			      		<input type="submit" value="Create Online Account" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; margin-right: 20px;"/>
+			      		<input type="submit" value="View Details" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; margin-right: 20px;"/>
 			      	</form>
 			      </td>
 			    </tr>
