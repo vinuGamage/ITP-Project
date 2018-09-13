@@ -347,8 +347,8 @@
                     <div style="clear: both; float: right; margin-top: 20px;">
                         <div class="form-group row">
                             <div>
-                            	<input type="reset" value="Reset" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 25px"/>
-                                <input type="submit" name="leaveSubmit" value="Submit" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 25px"/>
+                            	<input type="reset" value="Reset" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 20px; margin-right: 4px;"/>
+                                <input type="submit" name="leaveSubmit" value="Submit" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 20px"/>
                             </div>
                         </div>
                     </div>

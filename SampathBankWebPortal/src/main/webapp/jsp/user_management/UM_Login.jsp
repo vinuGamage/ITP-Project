@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -98,13 +100,13 @@
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="UM_Homepage.jsp" title="Go to Employee Homepage">Customer Home</a>
+                        <a class="nav-link" href="/SampathBankWebPortal/UM_Homepage_Common.jsp" title="Go to Common Homepage">Common Home</a>
                     </li>
                     
                 </ul>
             </div>
             <div class="mx-auto order-0">
-                <a class="navbar-brand mx-auto" href="#" title="Go to Employee Homepage">Sampath Web Portal</a>
+                <a class="navbar-brand mx-auto" href="/SampathBankWebPortal/UM_Homepage_Common.jsp" title="Go to Common Homepage">Sampath Web Portal</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
                     <span class="navbar-toggler-icon"></span>
                 </button>

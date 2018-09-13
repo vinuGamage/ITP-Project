@@ -59,7 +59,7 @@ public class OnlineEmployeeAccountController extends HttpServlet {
 			boolean bool = OnlineEmployeeAccountManagementDAO.createEmployeeOnlineAccount(emp);
 
 			if(bool) {
-				EmailClient.sendMail(emp.getPersonalEmail(), emp.getOnlineAccount().getUsername(), emp.getOnlineAccount().getPassword());
+//				EmailClient.sendMail(emp.getPersonalEmail(), emp.getOnlineAccount().getUsername(), emp.getOnlineAccount().getPassword());
 			}
 			System.out.println(bool);
 			if(bool) {

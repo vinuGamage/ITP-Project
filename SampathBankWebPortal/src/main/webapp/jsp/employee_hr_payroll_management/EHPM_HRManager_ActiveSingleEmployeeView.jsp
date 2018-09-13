@@ -539,7 +539,7 @@
 		      	<button type="submit" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 19px; margin-right:10px;">Remove Online</button>
 		    </div>
 		
-		    <div class="container" style="background-color:#f1f1f1">
+		    <div class="container">
 		      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
 		    </div>
 		  </form>
@@ -564,7 +564,7 @@
 		      	<button type="submit" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 19px; margin-right:10px;">Inactivate</button>
 		    </div>
 		
-		    <div class="container" style="background-color:#f1f1f1">
+		    <div class="container">
 		      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
 		    </div>
 		  </form>

@@ -493,13 +493,16 @@
 <!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
         <div id="id01" class="modal">
 		  <form class="modal-content animate" action="" method="">
+		    <div class="imgcontainer">
+		      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+		    </div>
 		
 		    <div class="container" style="word-wrap: break-word;">
 		      	<label for="psw"><b>Reason for Disposal </b></label>
 		      	<p><%=inactiveEmp.getReason() %></p>
 		    </div>
 		
-		    <div class="container" style="background-color:#f1f1f1">
+		    <div class="container">
 		      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Done</button>
 		    </div>
 		  </form>

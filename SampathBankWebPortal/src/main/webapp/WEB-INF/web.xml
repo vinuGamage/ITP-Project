@@ -40,6 +40,12 @@
   	<description></description>
   	<servlet-class>CONTROLLER_SERVLET.employee_hr_payroll_management.common_deeds.LeaveHandlingEmployee</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>EmailInboxController</servlet-name>
+  	<display-name>EmailInboxController</display-name>
+  	<description>Managing employee intracompany mail inbox</description>
+  	<servlet-class>CONTROLLER_SERVLET.user_management.EmailInboxController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>EmployeeRecruitment</servlet-name>
   	<url-pattern>/EmployeeRecruitment</url-pattern>
@@ -63,6 +69,10 @@
   <servlet-mapping>
   	<servlet-name>LeaveHandlingEmployee</servlet-name>
   	<url-pattern>/LeaveHandlingEmployee</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>EmailInboxController</servlet-name>
+  	<url-pattern>/EmailInboxController</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
   	<welcome-file>UM_Homepage_Common.jsp</welcome-file>

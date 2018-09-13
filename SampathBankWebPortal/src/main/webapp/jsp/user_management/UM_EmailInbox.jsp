@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, POJO_MODEL.employee_hr_payroll_management.LeaveRequest"%>
+<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<title>Leave Request Confirmation</title>
+		<title>Employee Inbox</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
 			if(employee == null)
@@ -30,7 +30,7 @@
                         <a class="nav-link" href="#" title="View Profile">MyProfile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" title="View Company Messages">MyInbox</a>
+                        <a class="nav-link" href="/SampathBankWebPortal/EmailInboxController" title="View Company Messages">MyInbox</a>
                     </li>
                 </ul>
             </div>
@@ -69,6 +69,7 @@
 
             <div class="container-fluid" style="margin-top:10px;">
                 <ul class="nav nav-pills nav-fill nav-justified nav-header">
+                <%if(employee.getDesignation().getDesignation().equals("human resource manager")) {%>
                     <li class="nav-item dropdown" title="Click to See Your Duties">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
                         <div class="dropdown-menu nav-dropdown">
@@ -84,6 +85,37 @@
                             <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
                         </div>
                     </li>
+                    <%} else if(employee.getDesignation().getDesignation().equals("admin")) {%>
+                    <li class="nav-item dropdown" title="Click to See Your Duties">
+                    	<a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
+                    	<div class="dropdown-menu nav-dropdown">
+	                        <a class="dropdown-item" href="#" style="color:white">abcd</a>
+	                        <div class="dropdown-divider"></div>
+	                        <a class="dropdown-item" href="#" style="color:white">Job 02</a>
+	                        <div class="dropdown-divider"></div>
+	                        <a class="dropdown-item" href="#" style="color:white">Job 03</a>
+	                        <div class="dropdown-divider"></div>
+	                        <a class="dropdown-item" href="#" style="color:white">Job 04</a>
+	                        <div class="dropdown-divider"></div>
+	                        <a class="dropdown-item" href="#" style="color:white">Job 05</a>
+                    	</div>
+                	</li>
+                    <%} else if(employee.getDesignation().getDesignation().equals("normal employee")) {%>
+                    <li class="nav-item dropdown" title="Click to See Your Duties">
+                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
+                        <div class="dropdown-menu nav-dropdown">
+                            <a class="dropdown-item" href="#" style="color:white">Job 01</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" style="color:white">Job 02</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" style="color:white">Job 03</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" style="color:white">Job 04</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" style="color:white">Job 05</a>
+                        </div>
+                    </li>
+                    <%} %>
                     
                     <li class="nav-item dropdown" title="Click to See Leave Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Leave Request Inquiry</a>
@@ -139,62 +171,21 @@
 -->
 		<nav aria-label="breadcrumb" class="breadcrumb-stuff">
 		  <ol class="breadcrumb">
-		    <li class="breadcrumb-item" aria-current="page"><a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp">EmpHome</a></li>
-		    <li class="breadcrumb-item active">Employee Duties</a></li>
-		    <li class="breadcrumb-item active" aria-current="page">Apply For Leave</li>
-		    <li class="breadcrumb-item active" aria-current="page">Confirm Leave Request</li>
+		    <li class="breadcrumb-item active" aria-current="page">EmpHome</li>
 		  </ol>
 		</nav>
 		
-        <div class="container" style="margin-bottom: 100px; height: 100%">
+        <div class="container-fluid" style="margin-bottom: 100px; height: 100%">
 		
-		<%LeaveRequest leaveRequest = (LeaveRequest) session.getAttribute("leaveRequest"); %>
-		<%if(leaveRequest != null) {%>
-			<table class="table" style="border-color: #FD4F00; border-width: 2px; border-style: solid;">
-			  <tbody>
-			    <tr>
-			      <th scope="row">Employee ID: </th>
-			      <td><%=employee.getPersonId() %></td>
-			      <th scope="row">Employee Name: </th>
-			      <td colspan="3"><%=employee.getName().getFullName() %></td>
-			    </tr>
-			    <tr>
-			    	<th scope="row">Branch: </th>
-			      	<td><%=employee.getBranch().getBranchAddress().getAddressCity() %></td>
-			    	<th scope="row">Department: </th>
-			      	<td><%=employee.getDepartment().getDepartmentName() %></td>
-			      	<th scope="row">Designation: </th>
-			      	<td><%=employee.getDesignation().getDesignation() %></td>
-			    </tr>
-			  </tbody>
-			</table>
-			<table class="table" style="border-color: #FD4F00; border-width: 2px; border-style: solid;">
-			  <tbody>
-			    <tr>
-			      <th scope="row">Leave Start Date: </th>
-			      <td><%=leaveRequest.getLeaveStartDate() %></td>
-			      <th scope="row">Leave Duration: </th>
-			      <td colspan="3"><%=leaveRequest.getLeaveDuration() %></td>
-			      <th scope="row">Leave Type: </th>
-			      <td colspan="3"><%=leaveRequest.getLeaveType() %></td>
-			      <th scope="row">Review Speed: </th>
-			      <td colspan="3"><%=leaveRequest.getLeaveReviewSpeed() %></td>
-			    </tr>
-			  </tbody>
-			</table>
-			<table class="table table-borderless" style="border-color: #FD4F00; border-width: 2px; border-style: solid;">
-			  <tbody>
-			    <tr>
-			      <th scope="row">Leave Request Description: </th>
-			    </tr>
-			    <tr>
-			      <td><%=leaveRequest.getLeaveDescription() %> </td>
-			    </tr>
-			  </tbody>
-			</table>
-		<%} else { %>
 		
-		<%} %>
+		
+		
+		
+		
+		
+		
+		
+		
 		</div>
 		
         <!-- Footer -->
@@ -282,37 +273,5 @@
         <script src="/SampathBankWebPortal/resources/css&js&jquery/popper.min.js"></script>
         <script src="/SampathBankWebPortal/resources/css&js&jquery/bootstrap.min.js"></script>
         <script src="/SampathBankWebPortal/resources/css&js&jquery/customized.js"></script>
-        
-<!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
-        <div id="id01" class="modal">
-		  <form class="modal-content animate" action="/SampathBankWebPortal/ActiveInactiveEmployeeManupulation" method="post">
-		    <div class="imgcontainer">
-		      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-		      <img src="/SampathBankWebPortal/resources/images/avatar_sure.png" alt="Avatar" class="avatar">
-		    </div>
-		
-		    <div class="container">
-		      	<label for="psw"><b>Enter Your Online Security Key: </b></label>
-		      	<input type="password" placeholder="Online Security Key" name="onlineSecKey" required>
-		        
-		        
-		        <input type="hidden" value="removeOnlineAccount" name="anotherDeed"/>
-		      	<button type="submit" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 19px; margin-right:10px;">Remove Online</button>
-		    </div>
-		   </form>
-		 </div>
-
-<!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
-		<script>
-			// Get the modal
-			var modal = document.getElementById('id01');
-			
-			// When the user clicks anywhere outside of the modal, close it
-			window.onclick = function(event) {
-			    if (event.target == modal) {
-			        modal.style.display = "none";
-			    }
-			}
-		</script>
     </body>
 </html>
