@@ -12,6 +12,12 @@ public class LeaveDetails {
 		this.noOfLeavesLeft = noOfLeavesLeft;
 		this.lastEffectiveLeaveDate = lastEffectiveLeaveDate;
 	}
+	
+	public LeaveDetails(String employeeId, int noOfLeavesLeft) {
+		this.employeeId = employeeId;
+		this.noOfLeavesLeft = noOfLeavesLeft;
+	}
+	
 	public String getEmployeeId() {
 		return employeeId;
 	}

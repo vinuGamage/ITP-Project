@@ -1,4 +1,4 @@
-package DAO_SERVICE.employee_hr_payroll_management;
+package DAO_SERVICE.employee_hr_payroll_management.common_deeds;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,10 +10,12 @@ import java.util.Collection;
 import javax.sql.DataSource;
 
 import DAO_SERVICE.common_service.ConnectionPoolManager;
+import DAO_SERVICE.employee_hr_payroll_management.PrimaryKeyGeneratorDAO;
 import DAO_SERVICE.queries.EHPMQueries;
 import DAO_SERVICE.queries.UMQueries;
 import POJO_MODEL.employee_hr_payroll_management.LeaveDetails;
 import POJO_MODEL.employee_hr_payroll_management.LeaveRequest;
+import POJO_MODEL.employee_hr_payroll_management.converters.DateConverter;
 import POJO_MODEL.user_management.OnlineAccount;
 
 public class LeaveManagementEmployeeDAO {
@@ -50,6 +52,13 @@ public class LeaveManagementEmployeeDAO {
 			
 			if(EHPM_ResultSet0001.next()) {
 				leaveDetails = new LeaveDetails(EHPM_ResultSet0001.getString("employeeId"), EHPM_ResultSet0001.getInt("noOfLeavesLeft"), EHPM_ResultSet0001.getDate("lastEffectiveLeaveDate"));
+//				if(EHPM_ResultSet0001.getDate("lastEffectiveLeaveDate") == null || EHPM_ResultSet0001.getDate("lastEffectiveLeaveDate").equals(null)) {
+//					leaveDetails.setLastEffectiveLeaveDate(null);
+//				} else {
+//					leaveDetails.setLastEffectiveLeaveDate(EHPM_ResultSet0001.getDate("lastEffectiveLeaveDate"));
+//				}
+			} else {
+				leaveDetails = null;
 			}
 			
 		} catch (SQLException e) {
@@ -238,7 +247,6 @@ public class LeaveManagementEmployeeDAO {
 			EHPM_ResultSet0001 = EHPM_Prst0001.executeQuery();
 			
 			if(EHPM_ResultSet0001.next()) {
-				System.out.println("dasdasdasdasdasdasdasdasdasdasdasd");
 				i = true;
 			}
 		} catch (SQLException e) {

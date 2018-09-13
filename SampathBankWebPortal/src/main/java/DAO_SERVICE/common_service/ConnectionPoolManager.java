@@ -11,7 +11,7 @@ import org.apache.commons.dbcp.PoolingDataSource;
 
 public class ConnectionPoolManager {
 	static final String mysql_driver = "com.mysql.jdbc.Driver";
-	static final String mysql_db_url = "jdbc:mysql://localhost:3306/itp_2018_mlb_g3_10_sampath_web_portal?autoReconnect=true&useSSL=false";
+	static final String mysql_db_url = "jdbc:mysql://localhost:3306/itp_2018_mlb_g3_10_sampath_web_portal?zeroDateTimeBehavior=convertToNull&autoReconnect=true&useSSL=false";
 	static final String mysql_db_username = "ITP";
 	static final String mysql_db_password = "thisstuff";
 	

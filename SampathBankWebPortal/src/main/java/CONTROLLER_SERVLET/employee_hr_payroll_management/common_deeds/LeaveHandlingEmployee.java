@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DAO_SERVICE.employee_hr_payroll_management.LeaveManagementEmployeeDAO;
+import DAO_SERVICE.employee_hr_payroll_management.common_deeds.LeaveManagementEmployeeDAO;
 import POJO_MODEL.employee_hr_payroll_management.Employee;
 import POJO_MODEL.employee_hr_payroll_management.LeaveDetails;
 import POJO_MODEL.employee_hr_payroll_management.LeaveRequest;
@@ -22,9 +22,11 @@ public class LeaveHandlingEmployee extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String xyz = request.getParameter("xyz");
+		
 		String leaveSubmit = request.getParameter("leaveSubmit");
 		String leaveRejectSeconded = request.getParameter("leaveRejectSeconded");
 		String leaveSubmitSeconded = request.getParameter("leaveSubmitSeconded");
+		
 		if(xyz != null && xyz.equals("retrieveBase")) {
 			retrieveLeaveDetails(request, response);
 		} else if(xyz != null && xyz.equals("retrieveHistory")) {
@@ -102,7 +104,7 @@ public class LeaveHandlingEmployee extends HttpServlet {
 		leaveRequest.setLeaveReviewSpeed(leaveReviewSpeed);
 		
 		session.setAttribute("leaveRequest", leaveRequest);
-		response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Apply_For_Leave.jsp");
+		response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Apply_For_Leave_Confirmation.jsp");
 		}
 	}
 	
