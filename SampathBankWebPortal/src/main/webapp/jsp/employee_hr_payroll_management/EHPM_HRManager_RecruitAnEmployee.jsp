@@ -20,7 +20,7 @@ POJO_MODEL.employee_hr_payroll_management.Designation"%>
 			Employee employee = (Employee) session.getAttribute("employee");
 			CommonEntityManager cem = (CommonEntityManager) session.getAttribute("commonEntityManager");
 		
-			if(employee == null)
+			if(employee == null || !employee.getDesignation().getDesignation().equals("human resource manager"))
 				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
 		%>
     </head>

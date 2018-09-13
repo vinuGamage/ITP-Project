@@ -14,6 +14,7 @@ import DAO_SERVICE.queries.EHPMQueries;
 import POJO_MODEL.employee_hr_payroll_management.Employee;
 import POJO_MODEL.employee_hr_payroll_management.InactiveEmployee;
 import POJO_MODEL.employee_hr_payroll_management.converters.DateConverter;
+import POJO_MODEL.employee_hr_payroll_management.email_client.EmailClient;
 import POJO_MODEL.employee_hr_payroll_management.managers.CommonEntityManager;
 import POJO_MODEL.user_management.OnlineAccount;
 import POJO_MODEL.user_management.OnlineSecurityKey;
@@ -207,8 +208,13 @@ public class ActiveInactiveSearchEmployeesDAO {
 		if(employee.getOnlineSecurityKey() == null)
 			return true;
 		else {
-			if(k != 0)
-				return true;
+			if(k != 0) {
+				String subject = "Removal of Online Account of Employee: " + employee.getName().getFullName();
+				String content = "As the Human Resource Manager of Sampath Bank, I am sorry to say that your online account tied with SampathBankWebPortal had been shutdown.\n"
+						+ "If you think this is a mistake, please contact me.";
+				EmailClient.sendMail(employee.getPersonalEmail(), subject, content);
+				
+				return true;}
 			else
 				return false;
 		}

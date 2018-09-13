@@ -7,7 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import DAO_SERVICE.employee_hr_payroll_management.human_resource_manager.RegisterEmployeeDAO;
 import POJO_MODEL.employee_hr_payroll_management.Employee;
@@ -84,10 +83,10 @@ public class EmployeeRecruitment extends HttpServlet {
 			System.out.println(bool);
 			if(bool) {
 				PrintWriter out = response.getWriter();
-			   out.println("<script type=\"text/javascript\">");
-			   out.println("alert('Employee Successfully Recruited.');");
-			   out.println("location='/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp';");
-			   out.println("</script>");
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('Employee Successfully Recruited.');");
+				out.println("location='/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp';");
+				out.println("</script>");
 			} else {
 				response.sendRedirect("asd");
 			}

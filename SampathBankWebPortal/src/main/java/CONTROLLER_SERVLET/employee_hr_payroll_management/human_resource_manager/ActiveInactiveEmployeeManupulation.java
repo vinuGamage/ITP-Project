@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import DAO_SERVICE.employee_hr_payroll_management.human_resource_manager.ActiveInactiveSearchEmployeesDAO;
 import POJO_MODEL.employee_hr_payroll_management.Employee;
 import POJO_MODEL.employee_hr_payroll_management.InactiveEmployee;
+import POJO_MODEL.employee_hr_payroll_management.email_client.EmailClient;
 
 /**
  * Servlet implementation class ActiveInactiveEmployeeManupulation
@@ -118,6 +119,12 @@ public class ActiveInactiveEmployeeManupulation extends HttpServlet {
 				boolean bool1 = ActiveInactiveSearchEmployeesDAO.inactivateEmployee(activeEmp, reason);
 				
 				if(bool1) {
+					String subject = "Inactivation of Employee: " + activeEmp.getName().getFullName();
+					String content = "As the Human Resource Manager of Sampath Bank, I am sorry to inform you that you are no longer an employee at Sampath Bank.\n"
+							+ "Reason for inactivation: " + reason + ".\n"
+							+ "We are thankfull for your services!";
+					EmailClient.sendMail(activeEmp.getPersonalEmail(), subject, content);
+					
 					session.removeAttribute("activeEmp");
 					response.sendRedirect("/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=allActive");
 				} else {

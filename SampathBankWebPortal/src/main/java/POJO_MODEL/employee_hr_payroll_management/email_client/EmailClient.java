@@ -11,7 +11,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EmailClient {
-	public static void sendMail(String receiver, String user, String pass) {
+	public static void sendMail(String receiver, String subject, String content) {
 		   final String username = "itpCompanySampath@gmail.com";
 		    final String password = "itp2018g310";
 
@@ -31,15 +31,14 @@ public class EmailClient {
 			try {
 
 				Message message = new MimeMessage(session);
-				message.setFrom(new InternetAddress(username)); // same email id
-				message.setRecipients(Message.RecipientType.TO,
-					InternetAddress.parse(receiver));// whome u have to send mails that person id
-				message.setSubject("Login Credentials for Your Online Account.");
-				message.setText("Username : " + user + "\n" + "Password : " + pass);
+				message.setFrom(new InternetAddress(username));
+				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receiver));
+				message.setSubject(subject);
+				message.setText(content);
 
 				Transport.send(message);
 
-				System.out.println("Done");
+				System.out.println("Email Sent Successfully!");
 
 			} catch (MessagingException e) {
 				throw new RuntimeException(e);

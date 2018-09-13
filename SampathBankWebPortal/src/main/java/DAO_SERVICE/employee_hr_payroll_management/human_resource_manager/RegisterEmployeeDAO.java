@@ -13,6 +13,7 @@ import DAO_SERVICE.queries.EHPMQueries;
 import POJO_MODEL.employee_hr_payroll_management.Employee;
 import POJO_MODEL.employee_hr_payroll_management.LeaveDetails;
 import POJO_MODEL.employee_hr_payroll_management.converters.DateConverter;
+import POJO_MODEL.employee_hr_payroll_management.email_client.EmailClient;
 import POJO_MODEL.employee_hr_payroll_management.generators.CompanyEmailGenerator;
 import POJO_MODEL.employee_hr_payroll_management.managers.CommonEntityManager;
 
@@ -42,6 +43,7 @@ public class RegisterEmployeeDAO {
 		PreparedStatement EHPM_Prst0002 = null;
 		PreparedStatement EHPM_Prst0003 = null;
 		PreparedStatement EHPM_Prst0004 = null;
+		String companyEmail = null;
 		int i = 0;
 		String id = null;
 		int j = 0;
@@ -75,7 +77,8 @@ public class RegisterEmployeeDAO {
 				EHPM_Prst0002 = con.prepareStatement(EHPMQueries.EHPMquery0025);
 				EHPM_Prst0002.setString(1, id);
 				EHPM_Prst0002.setString(2, employee.getDepartment().getDepartmentId());
-				EHPM_Prst0002.setString(3, CompanyEmailGenerator.generateCompanyEmail(employee));
+				companyEmail = CompanyEmailGenerator.generateCompanyEmail(employee);
+				EHPM_Prst0002.setString(3, companyEmail);
 				EHPM_Prst0002.setInt(4, employee.getDesignation().getDesignationId());
 				EHPM_Prst0002.setString(5, employee.getEmployeeType());
 				j = EHPM_Prst0002.executeUpdate();
@@ -109,7 +112,15 @@ public class RegisterEmployeeDAO {
 		
 		if(k == 0)
 			return false;
-		else
+		else {
+			String subject = "Recruitment of New Employee: " + employee.getName().getFullName();
+			String content = "As the Human Resource Manager of Sampath Bank, I welcome you to our company.\n"
+					+ "\tYour Name: " + employee.getName().getFullName() + ".\n"
+					+ "\tEmployee ID: " + id + ".\n"
+					+ "\tCompany Email: " + companyEmail + ".\n\n"
+					+ "If you do not receive your online account credentials within two days of receiving this email, please contact me.";
+			EmailClient.sendMail(employee.getPersonalEmail(), subject, content);
 			return true;
+		}
 	}
 }

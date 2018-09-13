@@ -15,7 +15,7 @@
 		<title>Active Single Employee</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
-			if(employee == null)
+			if(employee == null || !employee.getDesignation().getDesignation().equals("human resource manager"))
 				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
 		%>
 <!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->

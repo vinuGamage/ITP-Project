@@ -89,30 +89,30 @@
                     <li class="nav-item dropdown" title="Click to See Your Duties">
                     	<a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
                     	<div class="dropdown-menu nav-dropdown">
-	                        <a class="dropdown-item" href="#" style="color:white">abcd</a>
+	                        <a class="dropdown-item" href="#" style="color:white">admin job 01</a>
 	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">Job 02</a>
+	                        <a class="dropdown-item" href="#" style="color:white">admin job 02</a>
 	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">Job 03</a>
+	                        <a class="dropdown-item" href="#" style="color:white">admin job 03</a>
 	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">Job 04</a>
+	                        <a class="dropdown-item" href="#" style="color:white">admin job 04</a>
 	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">Job 05</a>
+	                        <a class="dropdown-item" href="#" style="color:white">admin job 05</a>
                     	</div>
                 	</li>
                     <%} else if(employee.getDesignation().getDesignation().equals("normal employee")) {%>
                     <li class="nav-item dropdown" title="Click to See Your Duties">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Job 01</a>
+                            <a class="dropdown-item" href="#" style="color:white">normal employee job 01</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Job 02</a>
+                            <a class="dropdown-item" href="#" style="color:white">normal employee job 02</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Job 03</a>
+                            <a class="dropdown-item" href="#" style="color:white">normal employee job 03</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Job 04</a>
+                            <a class="dropdown-item" href="#" style="color:white">normal employee job 04</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Job 05</a>
+                            <a class="dropdown-item" href="#" style="color:white">normal employee job 05</a>
                         </div>
                     </li>
                     <%} %>

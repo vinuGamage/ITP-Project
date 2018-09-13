@@ -14,6 +14,7 @@ import DAO_SERVICE.queries.EHPMQueries;
 import DAO_SERVICE.queries.UMQueries;
 import POJO_MODEL.employee_hr_payroll_management.Employee;
 import POJO_MODEL.employee_hr_payroll_management.converters.DateConverter;
+import POJO_MODEL.employee_hr_payroll_management.email_client.EmailClient;
 import POJO_MODEL.employee_hr_payroll_management.managers.CommonEntityManager;
 import POJO_MODEL.user_management.OnlineAccount;
 import POJO_MODEL.user_management.validators.Validator;
@@ -140,8 +141,17 @@ public class OnlineEmployeeAccountManagementDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		if(k != 0)
+		if(k != 0) {
+			String subject = "Online Account Details of Employee: " + employee.getName().getFullName();
+			String content = "Please use these credentials for your new online account at SampathBankWebPortal.\n"
+					+ "\tYour Username: " + employee.getOnlineAccount().getUsername() + ".\n"
+					+ "\tPassword: " + employee.getOnlineAccount().getPassword() + ".\n"
+					+ "\tOnline Security Key: " + employee.getOnlineSecurityKey().getOnlineSecurityKey() + ".\n\n"
+					+ "Use the online security key in emergencies.";
+			EmailClient.sendMail(employee.getPersonalEmail(), subject, content);
+			
 			return true;
+		}
 		else
 			return false;
 	}
