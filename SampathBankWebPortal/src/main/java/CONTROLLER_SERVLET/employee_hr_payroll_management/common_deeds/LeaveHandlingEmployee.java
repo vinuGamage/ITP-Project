@@ -2,13 +2,17 @@ package CONTROLLER_SERVLET.employee_hr_payroll_management.common_deeds;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.sun.deploy.nativesandbox.comm.Request;
 
 import DAO_SERVICE.employee_hr_payroll_management.common_deeds.LeaveManagementEmployeeDAO;
 import POJO_MODEL.employee_hr_payroll_management.Employee;
@@ -26,6 +30,7 @@ public class LeaveHandlingEmployee extends HttpServlet {
 		String leaveSubmit = request.getParameter("leaveSubmit");
 		String leaveRejectSeconded = request.getParameter("leaveRejectSeconded");
 		String leaveSubmitSeconded = request.getParameter("leaveSubmitSeconded");
+		String viewLeaveReq = request.getParameter("viewLeaveReq");
 		
 		if(xyz != null && xyz.equals("retrieveBase")) {
 			retrieveLeaveDetails(request, response);
@@ -35,13 +40,31 @@ public class LeaveHandlingEmployee extends HttpServlet {
 			initialLeaveRequestSubmit(request, response);
 		} else if(leaveRejectSeconded != null) {
 			leaveRequestReject(request, response);
-		} else if(leaveSubmitSeconded != null) {
-			secondaryLeaveRequestSubmit(request, response);
+		} else if(viewLeaveReq != null) {
+			showLeaveReq(request, response);
 		}
+		/*else if(leaveSubmitSeconded != null) {
+			secondaryLeaveRequestSubmit(request, response);
+		}*/
 	}
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		HttpSession session = request.getSession();
+		Employee employee = (Employee) session.getAttribute("employee");
+		
+		String onlineSecKey = request.getParameter("onlineSecKey");
+		
+		if(onlineSecKey.equals(employee.getOnlineSecurityKey().getOnlineSecurityKey())) {
+			System.out.println("Checking Security Key Successfull.");
+			
+			secondaryLeaveRequestSubmit(request, response);
+		} else {
+			PrintWriter out = response.getWriter();
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Online Security Key is Invalid!');");
+			out.println("location='/SampathBankWebPortal/employee_hr_payroll_management/EHPM_Apply_For_Leave_Confirmation.jsp';");
+			out.println("</script>");
+		}
 	}
 	
 	public void retrieveLeaveDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -74,12 +97,8 @@ public class LeaveHandlingEmployee extends HttpServlet {
 	}
 	
 	public void initialLeaveRequestSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String leaveStart = request.getParameter("leaveStart");
 		String leaveDuration = request.getParameter("leaveDuration");
-		String leaveType = request.getParameter("leaveType");
-		String leaveReviewSpeed = request.getParameter("leaveReviewSpeed");
-		String leaveDescription = request.getParameter("leaveDescription");
-		
+
 		HttpSession session = request.getSession();
 		LeaveDetails leaveDetails = (LeaveDetails) session.getAttribute("leaveDetails");
 		
@@ -90,21 +109,25 @@ public class LeaveHandlingEmployee extends HttpServlet {
 			out.println("location='/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Apply_For_Leave.jsp';");
 			out.println("</script>");
 		} else {
-		
-		Employee employee = (Employee) session.getAttribute("employee");
-		session.removeAttribute("leaveDetails");
-		
-		LeaveRequest leaveRequest = new LeaveRequest();
-		leaveRequest.setEmployeeId(employee.getPersonId());
-		leaveRequest.setLeaveType(leaveType);
-		leaveRequest.setLeaveDescription(leaveDescription);
-		leaveRequest.setLeaveRequestedDate(DateConverter.getCurrentSqlDate());
-		leaveRequest.setLeaveStartDate(DateConverter.getSqlDateFromString(leaveStart));
-		leaveRequest.setLeaveDuration(StringsToNumbers.getIntFromString(leaveDuration));
-		leaveRequest.setLeaveReviewSpeed(leaveReviewSpeed);
-		
-		session.setAttribute("leaveRequest", leaveRequest);
-		response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Apply_For_Leave_Confirmation.jsp");
+			String leaveStart = request.getParameter("leaveStart");
+			String leaveType = request.getParameter("leaveType");
+			String leaveReviewSpeed = request.getParameter("leaveReviewSpeed");
+			String leaveDescription = request.getParameter("leaveDescription");
+			
+			Employee employee = (Employee) session.getAttribute("employee");
+			session.removeAttribute("leaveDetails");
+			
+			LeaveRequest leaveRequest = new LeaveRequest();
+			leaveRequest.setEmployeeId(employee.getPersonId());
+			leaveRequest.setLeaveType(leaveType);
+			leaveRequest.setLeaveDescription(leaveDescription);
+			leaveRequest.setLeaveRequestedDate(DateConverter.getCurrentSqlDate());
+			leaveRequest.setLeaveStartDate(DateConverter.getSqlDateFromString(leaveStart));
+			leaveRequest.setLeaveDuration(StringsToNumbers.getIntFromString(leaveDuration));
+			leaveRequest.setLeaveReviewSpeed(leaveReviewSpeed);
+			
+			session.setAttribute("leaveRequest", leaveRequest);
+			response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Apply_For_Leave_Confirmation.jsp");
 		}
 	}
 	
@@ -126,6 +149,8 @@ public class LeaveHandlingEmployee extends HttpServlet {
 			session.removeAttribute("leaveDetails");
 			response.sendRedirect("/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveHistory");
 		} else {
+			session.removeAttribute("leaveRequest");
+			session.removeAttribute("leaveDetails");
 			PrintWriter out = response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('For some unknown reason, leave submitting failed.');");
@@ -152,5 +177,23 @@ public class LeaveHandlingEmployee extends HttpServlet {
 			session.setAttribute("leaveHistory", leaveHistory);
 			response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Leave_History.jsp");
 		}
+	}
+
+	public void showLeaveReq(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		Collection<LeaveRequest> leaveHistory = (ArrayList<LeaveRequest>) session.getAttribute("leaveHistory");
+		String leaveRequestId = request.getParameter("leaveRequestId");
+		LeaveRequest leaveReq = null;
+		
+		for(LeaveRequest lr: leaveHistory) {
+			if(lr.getLeaveRequestId() == StringsToNumbers.getIntFromString(leaveRequestId)) {
+				leaveReq = lr;
+				break;
+			}
+		}
+		
+		request.setAttribute("leaveReq", leaveReq);
+		RequestDispatcher rd = request.getRequestDispatcher("/jsp/employee_hr_payroll_management/EHPM_ViewLeave.jsp");
+		rd.forward(request, response);
 	}
 }

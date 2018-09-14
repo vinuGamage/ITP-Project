@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, POJO_MODEL.employee_hr_payroll_management.LeaveDetails"%>
+<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, POJO_MODEL.employee_hr_payroll_management.LeaveRequest, 
+java.util.Collection, java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,7 +13,7 @@
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<title>Apply For Leave</title>
+		<title>Leave History</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
 			if(employee == null)
@@ -177,94 +178,56 @@
 		  </ol>
 		</nav>
 		
-        <div class="container-fluid" style="margin-bottom: 100px; height: 100%">
-		<%LeaveDetails leaveDetails = (LeaveDetails)session.getAttribute("leaveDetails"); %>
-        <%if(leaveDetails != null) {%>
-			<br><h4>Fill the Leave Request Form</h4>
-            <div class="container-fluid" style="margin-top: 50px; background-color: #F2F4F4; padding-top: 10px; border-width: 3px; border-style: solid; border-color: #FD4F00;">
-				<form action="" method="">
-					 <div class="form-row">
-					    <div class="col-md-2 mb-3">
-					      <label for="validationCustom01" style="font-weight: bold;">Employee ID:</label>
-					      <input type="text" class="form-control" style="font-weight: bold;" value="<%=employee.getPersonId() %>" disabled>
-					    </div>
-					    <div class="col-md-6 mb-3">
-					      <label for="validationCustom02" style="font-weight: bold;">Employee Name:</label>
-					      <input type="text" class="form-control" style="text-transform: uppercase; font-weight: bold;" value="<%=employee.getName().getFullName() %>" disabled>
-					    </div>
-					    <div class="col-md-4 mb-3">
-					      <label for="validationCustom02" style="font-weight: bold;">Employee Designation:</label>
-					      <input type="text" class="form-control" style="text-transform: uppercase; font-weight: bold;" value="<%=employee.getDesignation().getDesignation() %>" disabled>
-					    </div>
-					  </div>
-					  <div class="form-row">
-					    <div class="col-md-2 mb-3">
-					      <label for="validationCustom01" style="font-weight: bold;">No of Leaves Per Year:</label>
-					      <input type="text" class="form-control" style="font-weight: bold;" value="<%=employee.getDesignation().getLeaveDaysForDesignation().getNoOfLeavesPerYear()%>" disabled>
-					    </div>
-					    <div class="col-md-6 mb-3">
-					      <label for="validationCustom02" style="font-weight: bold;">No of Leaves Left:</label>
-					      <input type="text" class="form-control" style="text-transform: uppercase; font-weight: bold;" value="<%=leaveDetails.getNoOfLeavesLeft() %>" disabled>
-					    </div>
-					    <div class="col-md-4 mb-3">
-					      <label for="validationCustom02" style="font-weight: bold;">Last Effective Leave Date:</label>
-					      <input type="text" class="form-control" style="text-transform: uppercase; font-weight: bold;" <%if(leaveDetails.getLastEffectiveLeaveDate() == null) {%> value="xxxx-xx-xx" <%} else {%> value="<%=leaveDetails.getLastEffectiveLeaveDate() %>" <%} %>disabled>
-					    </div>
-					  </div>
-		    	</form>
-            </div>
-            
-            <div class="container-fluid" style="margin-top: 50px; background-color: #F2F4F4; padding-top: 10px; margin-top:20px; border-width: 3px; border-style: solid; border-color: #FD4F00;">
-				<form action="/SampathBankWebPortal/LeaveHandlingEmployee" method="get">
-					 <div class="form-row">
-					    <div class="col-md-3 mb-3">
-					      <label for="validationCustom01" style="font-weight: bold;">Leave Start Date (Requested):</label>
-					      <input type="date" class="form-control" style="font-weight: bold;" name="leaveStart" required/>
-					    </div>
-					    <div class="col-md-3 mb-3">
-					      <label for="validationCustom02" style="font-weight: bold;">Leave Duration (Requested):</label>
-					      <input type="number" class="form-control" style="text-transform: uppercase; font-weight: bold;" name="leaveDuration" required/>
-					    </div>
-					    <div class="col-md-3 mb-3">
-					      <label for="validationCustom02" style="font-weight: bold;">Leave Type:</label>
-					      <select class="custom-select mr-sm-2" name="leaveType" required>
-					      	<option value="" disabled selected hidden="true">Choose...</option>
-                            <option value="sick leave">sick leave</option>
-                            <option value="family emergency">family emergency</option>
-                            <option value="event">event</option>
-                            <option value="other">other</option>
-                          </select>
-					    </div>
-					    <div class="col-md-3 mb-3">
-					      <label for="validationCustom02" style="font-weight: bold;">Review Speed:</label>
-					      <select class="custom-select mr-sm-2" name="leaveReviewSpeed" required>
-					      	<option value="" disabled selected hidden="true">Choose...</option>
-                            <option value="emergency">emergency</option>
-                            <option value="average">average</option>
-                            <option value="leisure">leisure</option>
-                          </select>
-					    </div>
-					  </div>
-					 <div class="form-row" style="margin-top: 20px;">
-					    <div class="col" style="padding-bottom: 20px;">
-					      <label for="validationCustom01" style="font-weight: bold;">Leave Description:</label>
-					      <textarea class="form-control col" rows="15" name="leaveDescription"></textarea>
-					    </div>
-					</div>
-                    <div style="clear: both; float: right; margin-top: 20px;">
-                        <div class="form-group row">
-                            <div>
-                            	<input type="reset" value="Reset" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 20px; margin-right: 4px;"/>
-                                <input type="submit" name="leaveSubmit" value="Submit" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 20px"/>
-                            </div>
-                        </div>
-                    </div>
-		    	</form>
-            </div>
-		<%} else { %>
-			Some Error!
-		<%} %>
-
+        <div class="container" style="margin-bottom: 100px; height: 100%">
+		<% LeaveRequest leaveReq = (LeaveRequest) request.getAttribute("leaveReq");%>
+			<%if(leaveReq != null) {%>
+			<table class="table" style="border-color: #FD4F00; border-width: 2px; border-style: solid;">
+			  <tbody>
+			    <tr>
+			      <th scope="row">Employee ID: </th>
+			      <td style="border-right-color: #FD4F00; border-right-width: 1px; border-right-style: solid;"><%=employee.getPersonId() %></td>
+			      <th scope="row">Employee Name: </th>
+			      <td colspan="3"><%=employee.getName().getFullName() %></td>
+			    </tr>
+			  </tbody>
+			</table>
+			<table class="table" style="border-color: #FD4F00; border-width: 2px; border-style: solid;">
+			  <tbody>
+			    <tr>
+			      <th scope="row">Leave Start Date: </th>
+			      <td style="border-right-color: #FD4F00; border-right-width: 1px; border-right-style: solid;"><%=leaveReq.getLeaveStartDate() %></td>
+			      <th scope="row">Leave Duration: </th>
+			      <td colspan="3" style="border-right-color: #FD4F00; border-right-width: 1px; border-right-style: solid;"><%=leaveReq.getLeaveDuration() %></td>
+			      <th scope="row">Leave Type: </th>
+			      <td colspan="3" style="border-right-color: #FD4F00; border-right-width: 1px; border-right-style: solid;"><%=leaveReq.getLeaveType() %></td>
+			      <th scope="row">Review Speed: </th>
+			      <td colspan="3"><%=leaveReq.getLeaveReviewSpeed() %></td>
+			    </tr>
+			  </tbody>
+			</table>
+			<table class="table" style="border-color: #FD4F00; border-width: 2px; border-style: solid;">
+			  <tbody>
+			    <tr>
+			  		<th scope="row">Leave Status: </th>
+			      	<td style="border-right-color: #FD4F00; border-right-width: 1px; border-right-style: solid;"><%=leaveReq.getLeaveStatus() %></td>
+			      	<th scope="row">Leave Reviewed By: </th>
+			      	<td colspan="3"><%=leaveReq.getLeaveReviewedBy() %></td>
+			  	</tr>
+			  </tbody>
+			</table>
+			<table class="table table-borderless" style="border-color: #FD4F00; border-width: 2px; border-style: solid;">
+			  <tbody>
+			    <tr>
+			      <th scope="row">Leave Request Description: </th>
+			    </tr>
+			    <tr>
+			      <td><%=leaveReq.getLeaveDescription() %> </td>
+			    </tr>
+			  </tbody>
+			</table>
+			<%} else { %>
+				Some Error.
+			<%} %>
 		</div>
 		
         <!-- Footer -->

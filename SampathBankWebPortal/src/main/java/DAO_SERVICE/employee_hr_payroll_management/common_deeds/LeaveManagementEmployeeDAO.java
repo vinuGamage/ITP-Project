@@ -52,11 +52,6 @@ public class LeaveManagementEmployeeDAO {
 			
 			if(EHPM_ResultSet0001.next()) {
 				leaveDetails = new LeaveDetails(EHPM_ResultSet0001.getString("employeeId"), EHPM_ResultSet0001.getInt("noOfLeavesLeft"), EHPM_ResultSet0001.getDate("lastEffectiveLeaveDate"));
-//				if(EHPM_ResultSet0001.getDate("lastEffectiveLeaveDate") == null || EHPM_ResultSet0001.getDate("lastEffectiveLeaveDate").equals(null)) {
-//					leaveDetails.setLastEffectiveLeaveDate(null);
-//				} else {
-//					leaveDetails.setLastEffectiveLeaveDate(EHPM_ResultSet0001.getDate("lastEffectiveLeaveDate"));
-//				}
 			} else {
 				leaveDetails = null;
 			}

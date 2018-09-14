@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<title>Employee homepage</title>
+		<title>Employee Homepage</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
 			if(employee == null)
