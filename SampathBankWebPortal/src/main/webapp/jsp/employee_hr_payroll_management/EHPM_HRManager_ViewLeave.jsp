@@ -13,141 +13,14 @@ java.util.Collection, java.util.ArrayList"%>
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<title>Leave History</title>
+		<title>Leave</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
 			if(employee == null)
 				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
 			
-			Collection<LeaveRequest> leaveHistory = (ArrayList<LeaveRequest>) session.getAttribute("leaveHistory");
-			if(leaveHistory == null)
-				response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp");
+			LeaveRequest lr = (LeaveRequest) request.getAttribute("leaveR");
 		%>
-		
-<!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
-		<style>
-			body {font-family: Arial, Helvetica, sans-serif;}
-		
-			/* Full-width input fields */
-			input[type=text], input[type=password] {
-			    width: 100%;
-			    padding: 12px 20px;
-			    margin: 8px 0;
-			    display: inline-block;
-			    border: 1px solid #ccc;
-			    box-sizing: border-box;
-			}
-			
-			/* Set a style for all buttons */
-			button {
-			    background-color: #4CAF50;
-			    color: white;
-			    padding: 14px 20px;
-			    margin: 8px 0;
-			    border: none;
-			    cursor: pointer;
-			    width: 100%;
-			}
-			
-			button:hover {
-			    opacity: 0.8;
-			}
-			
-			/* Extra styles for the cancel button */
-			.cancelbtn {
-			    width: auto;
-			    padding: 10px 18px;
-			    background-color: #f44336;
-			}
-			
-			/* Center the image and position the close button */
-			.imgcontainer {
-			    text-align: center;
-			    margin: 24px 0 12px 0;
-			    position: relative;
-			}
-			
-			img.avatar {
-			    width: 40%;
-			    border-radius: 50%;
-			}
-			
-			.container {
-			    padding: 16px;
-			}
-			
-			span.psw {
-			    float: right;
-			    padding-top: 16px;
-			}
-			
-			/* The Modal (background) */
-			.modal {
-			    display: none; /* Hidden by default */
-			    position: fixed; /* Stay in place */
-			    z-index: 1; /* Sit on top */
-			    left: 0;
-			    top: 0;
-			    width: 100%; /* Full width */
-			    height: 100%; /* Full height */
-			    overflow: auto; /* Enable scroll if needed */
-			    background-color: rgb(0,0,0); /* Fallback color */
-			    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-			    padding-top: 60px;
-			}
-			
-			/* Modal Content/Box */
-			.modal-content {
-			    background-color: #fefefe;
-			    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-			    border: 1px solid #888;
-			    width: 80%; /* Could be more or less, depending on screen size */
-			}
-			
-			/* The Close Button (x) */
-			.close {
-			    position: absolute;
-			    right: 25px;
-			    top: 0;
-			    color: #000;
-			    font-size: 35px;
-			    font-weight: bold;
-			}
-			
-			.close:hover,
-			.close:focus {
-			    color: red;
-			    cursor: pointer;
-			}
-			
-			/* Add Zoom Animation */
-			.animate {
-			    -webkit-animation: animatezoom 0.6s;
-			    animation: animatezoom 0.6s
-			}
-			
-			@-webkit-keyframes animatezoom {
-			    from {-webkit-transform: scale(0)} 
-			    to {-webkit-transform: scale(1)}
-			}
-			    
-			@keyframes animatezoom {
-			    from {transform: scale(0)} 
-			    to {transform: scale(1)}
-			}
-			
-			/* Change styles for span and cancel button on extra small screens */
-			@media screen and (max-width: 300px) {
-			    span.psw {
-			       display: block;
-			       float: none;
-			    }
-			    .cancelbtn {
-			       width: 100%;
-			    }
-			}
-		</style>
-<!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
 	</head>
 	<body>
         <nav class="navbar fixed-top navbar-expand-md navbar-dark fixed-stuff">
@@ -199,7 +72,6 @@ java.util.Collection, java.util.ArrayList"%>
 
             <div class="container-fluid" style="margin-top:10px;">
                 <ul class="nav nav-pills nav-fill nav-justified nav-header">
-                <%if(employee.getDesignation().getDesignation().equals("human resource manager")) {%>
                     <li class="nav-item dropdown" title="Click to See Your Duties">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
                         <div class="dropdown-menu nav-dropdown">
@@ -210,49 +82,19 @@ java.util.Collection, java.util.ArrayList"%>
                             <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=inActive" style="color:white">Inactive Employees</a>
                             <a class="dropdown-item" href="" style="color:white">Search for Employees</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/HRLeaveRequestManagement?lmanage=getAllLeaveRequests" style="color:white">Leave Request Management</a>
+                            <a class="dropdown-item" href="#" style="color:white">Leave Request Management</a>
                             <a class="dropdown-item" href="#" style="color:white">Update Details Request Management</a>
                             <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
                         </div>
                     </li>
-                    <%} else if(employee.getDesignation().getDesignation().equals("admin")) {%>
-                    <li class="nav-item dropdown" title="Click to See Your Duties">
-                    	<a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
-                    	<div class="dropdown-menu nav-dropdown">
-	                        <a class="dropdown-item" href="#" style="color:white">admin job 01</a>
-	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">admin job 02</a>
-	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">admin job 03</a>
-	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">admin job 04</a>
-	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">admin job 05</a>
-                    	</div>
-                	</li>
-                    <%} else if(employee.getDesignation().getDesignation().equals("normal employee")) {%>
-                    <li class="nav-item dropdown" title="Click to See Your Duties">
-                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
-                        <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">normal employee job 01</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">normal employee job 02</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">normal employee job 03</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">normal employee job 04</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">normal employee job 05</a>
-                        </div>
-                    </li>
-                    <%} %>
                     
                     <li class="nav-item dropdown" title="Click to See Leave Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Leave Request Inquiry</a>
                         <div class="dropdown-menu nav-dropdown">
                             <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveBase" style="color:white">Apply for Leave</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Leave History</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveHistory" style="color:white">Leave History</a>
+                            <a class="dropdown-item" href="#" style="color:white">Leave Status</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave Analysis</a>
                         </div>
@@ -301,75 +143,52 @@ java.util.Collection, java.util.ArrayList"%>
 		<nav aria-label="breadcrumb" class="breadcrumb-stuff">
 		  <ol class="breadcrumb">
 		    <li class="breadcrumb-item" aria-current="page"><a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp">EmpHome</a></li>
-		    <li class="breadcrumb-item active">Leave Request Inquiry</a></li>
-		    <li class="breadcrumb-item active" aria-current="page">Leave History</li>
+		    <li class="breadcrumb-item active">Employee Duties</li>
+		    <li class="breadcrumb-item active" aria-current="page">Leave Request Management</li>
+		    <li class="breadcrumb-item active" aria-current="page"><%=lr.getEmployeeId() %></li>
 		  </ol>
 		</nav>
 		
-        <div class="container-fluid" style="margin-bottom: 100px; height: 100%">
-			<%if(leaveHistory != null) {%>
-				<table class="table table-bordered">
-				  <thead class="thead-light">
-				    <tr>
-				      <th scope="col" colspan="1">LRID</th>
-				      <th scope="col" colspan="2">LR Type</th>
-				      <th scope="col" colspan="2">LR Date</th>
-				      <th scope="col" colspan="2">LR Duration</th>
-				      <th scope="col" colspan="2">LR Status</th>
-				      <th scope="col" colspan="1">###</th>
-				      <th scope="col" colspan="1">###</th>
-				      <th scope="col" colspan="1">###</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				  <%for(LeaveRequest lr: leaveHistory) {%>
-				    <tr>
-				      <th scope="row" colspan="1"><%=lr.getLeaveRequestId() %></th>
-				      <td colspan="2"><%=lr.getLeaveType() %></td>
-				      <td colspan="2"><%=lr.getLeaveRequestedDate() %></td>
-				      <td colspan="2"><%=lr.getLeaveDuration() %></td>
-				      <td colspan="2"><%=lr.getLeaveStatus() %></td>
-				      <td style="width: 130px;">
-				      	<form action="/SampathBankWebPortal/LeaveHandlingEmployee" method="get">
-				      		<input type="hidden" value="<%=lr.getLeaveRequestId() %>" name="leaveRequestId"/>
-				      		<input type="submit" value="View" name="viewLeaveReq" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/>
-				      	</form>
-				      </td>
-				      <td style="width: 130px;">
-				      <%if(lr.getLeaveStatus().equals("submitted")) {%>
-				      	<form action="/SampathBankWebPortal/LeaveRequestEditing" method="get">
-				      		<input type="hidden" value="<%=lr.getLeaveRequestId() %>" name="leaveRequestId"/>
-				      		<input type="submit" value="Edit" name="editLeaveReq" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/>
-				      	</form>
-				      <%} %>
-				      </td>
-				      <td style="width: 130px;">
-				      <%if(lr.getLeaveStatus().equals("submitted")) {%>
-				      	<button class="btn-sm" onclick="document.getElementById('id01').style.display='block'" style="margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;">Remove</button>
-<!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
-        <div id="id01" class="modal">
-		  <form class="modal-content animate" action="/SampathBankWebPortal/LeaveRequestEditing" method="get">
-		    <div class="imgcontainer">
-		      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-		    </div>
-		
-		    <div class="container">
-		      	<label for="psw"><b>Enter Your Online Security Key: </b></label>
-		      	<input type="password" placeholder="Online Security Key" name="onlineSecKey" required>
-		        <input type="hidden" value="<%=lr.getLeaveRequestId() %>" name="leaveRequestId"/>
-		      	<button type="submit" name="remove" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 19px; margin-right:10px;">Remove the Leave Request</button>
-		    </div>
-		   </form>
-		 </div>
-<!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
-					<%} %>
-					</td>
-				    </tr>
-				    <%} %>
-				  </tbody>
-				</table>
+        <div class="container" style="margin-bottom: 100px; height: 100%">
+			<%if(lr != null) {%>
+			<table class="table table-borderless" style="border-color: #FD4F00; border-width: 2px; border-style: solid;">
+			  <tbody>
+			    <tr>
+			      <th>Employee ID: </th>
+			      <td style="border-right-color: #FD4F00; border-right-width: 1px; border-right-style: solid;"><%=lr.getEmployeeId() %></td>
+			      <th>LR ID: </th>
+			      <td style="border-right-color: #FD4F00; border-right-width: 1px; border-right-style: solid;"><%=lr.getLeaveRequestId() %></td>
+			      <th>LR Applied: </th>
+			      <td><%=lr.getLeaveRequestedDate() %></td>
+			    </tr>
+			  </tbody>
+			</table>
+			<table class="table table-borderless" style="border-color: #FD4F00; border-width: 2px; border-style: solid;">
+			  <tbody>
+			    <tr>
+			      <th scope="row">Leave Due Date: </th>
+			      <td style="border-right-color: #FD4F00; border-right-width: 1px; border-right-style: solid;"><%=lr.getLeaveStartDate() %></td>
+			      <th scope="row">Duration: </th>
+			      <td style="border-right-color: #FD4F00; border-right-width: 1px; border-right-style: solid;"><%=lr.getLeaveDuration() %></td>
+			      <th scope="row">Leave Type: </th>
+			      <td style="border-right-color: #FD4F00; border-right-width: 1px; border-right-style: solid;"><%=lr.getLeaveType() %></td>
+			      <th scope="row">Review Speed: </th>
+			      <td ><%=lr.getLeaveReviewSpeed() %></td>
+			    </tr>
+			  </tbody>
+			</table>
+			<table class="table table-borderless" style="border-color: #FD4F00; border-width: 2px; border-style: solid;">
+			  <tbody>
+			    <tr>
+			      <th scope="row">Leave Request Description: </th>
+			    </tr>
+			    <tr>
+			      <td><%=lr.getLeaveDescription() %></td>
+			    </tr>
+			  </tbody>
+			</table>
 			<%} else { %>
-				You have not yet requested for any leaves.
+				Some Error.
 			<%} %>
 		</div>
 		
@@ -458,17 +277,5 @@ java.util.Collection, java.util.ArrayList"%>
         <script src="/SampathBankWebPortal/resources/css&js&jquery/popper.min.js"></script>
         <script src="/SampathBankWebPortal/resources/css&js&jquery/bootstrap.min.js"></script>
         <script src="/SampathBankWebPortal/resources/css&js&jquery/customized.js"></script>
-        
-		<script>
-			// Get the modal
-			var modal = document.getElementById('id01');
-			
-			// When the user clicks anywhere outside of the modal, close it
-			window.onclick = function(event) {
-			    if (event.target == modal) {
-			        modal.style.display = "none";
-			    }
-			}
-		</script>
     </body>
 </html>

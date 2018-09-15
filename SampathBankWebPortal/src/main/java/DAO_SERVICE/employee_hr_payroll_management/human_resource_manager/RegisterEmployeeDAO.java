@@ -48,7 +48,7 @@ public class RegisterEmployeeDAO {
 		String id = null;
 		int j = 0;
 		int k = 0;
-		//Checking online_customer_credentials table
+
 		try {
 			EHPM_Prst0001 = con.prepareStatement(EHPMQueries.EHPMquery0024);
 			EHPM_Prst0001.setString(2, employee.getName().getFirstName());
@@ -113,13 +113,13 @@ public class RegisterEmployeeDAO {
 		if(k == 0)
 			return false;
 		else {
-			String subject = "Recruitment of New Employee: " + employee.getName().getFullName();
+			/*String subject = "Recruitment of New Employee: " + employee.getName().getFullName();
 			String content = "As the Human Resource Manager of Sampath Bank, I welcome you to our company.\n"
 					+ "\tYour Name: " + employee.getName().getFullName() + ".\n"
 					+ "\tEmployee ID: " + id + ".\n"
 					+ "\tCompany Email: " + companyEmail + ".\n\n"
 					+ "If you do not receive your online account credentials within two days of receiving this email, please contact me.";
-			EmailClient.sendMail(employee.getPersonalEmail(), subject, content);
+			EmailClient.sendMail(employee.getPersonalEmail(), subject, content);*/
 			return true;
 		}
 	}

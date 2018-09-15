@@ -142,13 +142,13 @@ public class OnlineEmployeeAccountManagementDAO {
 			e.printStackTrace();
 		}
 		if(k != 0) {
-			String subject = "Online Account Details of Employee: " + employee.getName().getFullName();
+/*			String subject = "Online Account Details of Employee: " + employee.getName().getFullName();
 			String content = "Please use these credentials for your new online account at SampathBankWebPortal.\n"
 					+ "\tYour Username: " + employee.getOnlineAccount().getUsername() + ".\n"
 					+ "\tPassword: " + employee.getOnlineAccount().getPassword() + ".\n"
 					+ "\tOnline Security Key: " + employee.getOnlineSecurityKey().getOnlineSecurityKey() + ".\n\n"
 					+ "Use the online security key in emergencies.";
-			EmailClient.sendMail(employee.getPersonalEmail(), subject, content);
+			EmailClient.sendMail(employee.getPersonalEmail(), subject, content);*/
 			
 			return true;
 		}

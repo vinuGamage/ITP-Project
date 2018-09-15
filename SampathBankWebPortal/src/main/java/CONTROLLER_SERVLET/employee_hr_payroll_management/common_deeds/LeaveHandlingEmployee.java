@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.sun.deploy.nativesandbox.comm.Request;
-
 import DAO_SERVICE.employee_hr_payroll_management.common_deeds.LeaveManagementEmployeeDAO;
 import POJO_MODEL.employee_hr_payroll_management.Employee;
 import POJO_MODEL.employee_hr_payroll_management.LeaveDetails;
@@ -55,14 +53,12 @@ public class LeaveHandlingEmployee extends HttpServlet {
 		String onlineSecKey = request.getParameter("onlineSecKey");
 		
 		if(onlineSecKey.equals(employee.getOnlineSecurityKey().getOnlineSecurityKey())) {
-			System.out.println("Checking Security Key Successfull.");
-			
 			secondaryLeaveRequestSubmit(request, response);
 		} else {
 			PrintWriter out = response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Online Security Key is Invalid!');");
-			out.println("location='/SampathBankWebPortal/employee_hr_payroll_management/EHPM_Apply_For_Leave_Confirmation.jsp';");
+			out.println("location='/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Apply_For_Leave_Confirmation.jsp';");
 			out.println("</script>");
 		}
 	}
@@ -133,6 +129,8 @@ public class LeaveHandlingEmployee extends HttpServlet {
 	
 	public void leaveRequestReject(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		HttpSession session = request.getSession();
+		
+		session.removeAttribute("leaveDetails");//
 		session.removeAttribute("leaveRequest");
 		
 		retrieveLeaveDetails(request, response);
@@ -144,13 +142,11 @@ public class LeaveHandlingEmployee extends HttpServlet {
 		
 		boolean bool = LeaveManagementEmployeeDAO.recordInitialLeaveRequest(leaveRequest);
 		
+		session.removeAttribute("leaveRequest");
+		session.removeAttribute("leaveDetails");
 		if(bool) {
-			session.removeAttribute("leaveRequest");
-			session.removeAttribute("leaveDetails");
 			response.sendRedirect("/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveHistory");
 		} else {
-			session.removeAttribute("leaveRequest");
-			session.removeAttribute("leaveDetails");
 			PrintWriter out = response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('For some unknown reason, leave submitting failed.');");
@@ -170,7 +166,7 @@ public class LeaveHandlingEmployee extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('You have not yet requested for any leaves.');");
-			out.println("location='/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp';");
+			out.println("location='/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveBase';");
 			out.println("</script>");
 		}
 		else {

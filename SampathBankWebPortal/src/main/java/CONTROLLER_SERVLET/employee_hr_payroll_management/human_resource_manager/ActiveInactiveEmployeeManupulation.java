@@ -119,11 +119,11 @@ public class ActiveInactiveEmployeeManupulation extends HttpServlet {
 				boolean bool1 = ActiveInactiveSearchEmployeesDAO.inactivateEmployee(activeEmp, reason);
 				
 				if(bool1) {
-					String subject = "Inactivation of Employee: " + activeEmp.getName().getFullName();
+/*					String subject = "Inactivation of Employee: " + activeEmp.getName().getFullName();
 					String content = "As the Human Resource Manager of Sampath Bank, I am sorry to inform you that you are no longer an employee at Sampath Bank.\n"
 							+ "Reason for inactivation: " + reason + ".\n"
 							+ "We are thankfull for your services!";
-					EmailClient.sendMail(activeEmp.getPersonalEmail(), subject, content);
+					EmailClient.sendMail(activeEmp.getPersonalEmail(), subject, content);*/
 					
 					session.removeAttribute("activeEmp");
 					response.sendRedirect("/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=allActive");

@@ -209,10 +209,10 @@ public class ActiveInactiveSearchEmployeesDAO {
 			return true;
 		else {
 			if(k != 0) {
-				String subject = "Removal of Online Account of Employee: " + employee.getName().getFullName();
+/*				String subject = "Removal of Online Account of Employee: " + employee.getName().getFullName();
 				String content = "As the Human Resource Manager of Sampath Bank, I am sorry to say that your online account tied with SampathBankWebPortal had been shutdown.\n"
 						+ "If you think this is a mistake, please contact me.";
-				EmailClient.sendMail(employee.getPersonalEmail(), subject, content);
+				EmailClient.sendMail(employee.getPersonalEmail(), subject, content);*/
 				
 				return true;}
 			else

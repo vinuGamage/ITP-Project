@@ -17,6 +17,10 @@
 			Employee employee = (Employee) session.getAttribute("employee");
 			if(employee == null)
 				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
+			
+			LeaveDetails leaveDetails = (LeaveDetails)session.getAttribute("leaveDetails");
+			if(leaveDetails == null)
+				response.sendRedirect("/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveBase");
 		%>
 	</head>
 	<body>
@@ -24,7 +28,7 @@
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#" title="Go to Employee Homepage">EmpHome</a>
+                        <a class="nav-link" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp" title="Go to Employee Homepage">EmpHome</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" title="View Profile">MyProfile</a>
@@ -35,7 +39,7 @@
                 </ul>
             </div>
             <div class="mx-auto order-0">
-                <a class="navbar-brand mx-auto" href="#" title="Go to Employee Homepage">SampathEmpWeb</a>
+                <a class="navbar-brand mx-auto" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp" title="Go to Employee Homepage">SampathEmpWeb</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -80,7 +84,7 @@
                             <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=inActive" style="color:white">Inactive Employees</a>
                             <a class="dropdown-item" href="" style="color:white">Search for Employees</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Leave Request Management</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/HRLeaveRequestManagement?lmanage=getAllLeaveRequests" style="color:white">Leave Request Management</a>
                             <a class="dropdown-item" href="#" style="color:white">Update Details Request Management</a>
                             <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
                         </div>
@@ -123,7 +127,6 @@
                             <a class="dropdown-item" href="#" style="color:white">Apply for Leave</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveHistory" style="color:white">Leave History</a>
-                            <a class="dropdown-item" href="#" style="color:white">Leave Status</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave Analysis</a>
                         </div>
@@ -172,13 +175,12 @@
 		<nav aria-label="breadcrumb" class="breadcrumb-stuff">
 		  <ol class="breadcrumb">
 		    <li class="breadcrumb-item" aria-current="page"><a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp">EmpHome</a></li>
-		    <li class="breadcrumb-item active">Employee Duties</a></li>
+		    <li class="breadcrumb-item active">Leave Request Inquiry</li>
 		    <li class="breadcrumb-item active" aria-current="page">Apply For Leave</li>
 		  </ol>
 		</nav>
 		
         <div class="container-fluid" style="margin-bottom: 100px; height: 100%">
-		<%LeaveDetails leaveDetails = (LeaveDetails)session.getAttribute("leaveDetails"); %>
         <%if(leaveDetails != null) {%>
 			<br><h4>Fill the Leave Request Form</h4>
             <div class="container-fluid" style="margin-top: 50px; background-color: #F2F4F4; padding-top: 10px; border-width: 3px; border-style: solid; border-color: #FD4F00;">

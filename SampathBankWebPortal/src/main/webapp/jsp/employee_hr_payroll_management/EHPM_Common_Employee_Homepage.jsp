@@ -24,10 +24,10 @@
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#" title="Go to Employee Homepage">EmpHome</a>
+                        <a class="nav-link" href="#" title="You are Already in the Employee Homepage">EmpHome</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" title="View Profile">MyProfile</a>
+                        <a class="nav-link" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_ViewProfile.jsp" title="View Profile">MyProfile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" title="View Company Messages">MyInbox</a>
@@ -35,7 +35,7 @@
                 </ul>
             </div>
             <div class="mx-auto order-0">
-                <a class="navbar-brand mx-auto" href="#" title="Go to Employee Homepage">SampathEmpWeb</a>
+                <a class="navbar-brand mx-auto" href="#" title="You are Already in the Employee Homepage">SampathEmpWeb</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -80,7 +80,7 @@
                             <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=inActive" style="color:white">Inactive Employees</a>
                             <a class="dropdown-item" href="" style="color:white">Search for Employees</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Leave Request Management</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/HRLeaveRequestManagement?lmanage=getAllLeaveRequests" style="color:white">Leave Request Management</a>
                             <a class="dropdown-item" href="#" style="color:white">Update Details Request Management</a>
                             <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
                         </div>
@@ -123,7 +123,6 @@
                             <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveBase" style="color:white">Apply for Leave</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveHistory" style="color:white">Leave History</a>
-                            <a class="dropdown-item" href="#" style="color:white">Leave Status</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave Analysis</a>
                         </div>
@@ -158,7 +157,7 @@
                     <li class="nav-item dropdown" title="Click to See Profile Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Profile Related</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Profile Details</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_ViewProfile.jsp" style="color:white">Profile Details</a>
                             <a class="dropdown-item" href="#" style="color:white">Update Profile</a>
                         </div>
                     </li>

@@ -25,7 +25,7 @@ java.util.Collection, java.util.ArrayList"%>
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#" title="Go to Employee Homepage">EmpHome</a>
+                        <a class="nav-link" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp" title="Go to Employee Homepage">EmpHome</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" title="View Profile">MyProfile</a>
@@ -36,7 +36,7 @@ java.util.Collection, java.util.ArrayList"%>
                 </ul>
             </div>
             <div class="mx-auto order-0">
-                <a class="navbar-brand mx-auto" href="#" title="Go to Employee Homepage">SampathEmpWeb</a>
+                <a class="navbar-brand mx-auto" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp" title="Go to Employee Homepage">SampathEmpWeb</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -81,7 +81,7 @@ java.util.Collection, java.util.ArrayList"%>
                             <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=inActive" style="color:white">Inactive Employees</a>
                             <a class="dropdown-item" href="" style="color:white">Search for Employees</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Leave Request Management</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/HRLeaveRequestManagement?lmanage=getAllLeaveRequests" style="color:white">Leave Request Management</a>
                             <a class="dropdown-item" href="#" style="color:white">Update Details Request Management</a>
                             <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
                         </div>
@@ -121,10 +121,9 @@ java.util.Collection, java.util.ArrayList"%>
                     <li class="nav-item dropdown" title="Click to See Leave Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Leave Request Inquiry</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Apply for Leave</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveBase" style="color:white">Apply for Leave</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveHistory" style="color:white">Leave History</a>
-                            <a class="dropdown-item" href="#" style="color:white">Leave Status</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave Analysis</a>
                         </div>
@@ -170,18 +169,19 @@ java.util.Collection, java.util.ArrayList"%>
 <!--
     BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY
 -->
+		<% LeaveRequest leaveReq = (LeaveRequest) request.getAttribute("leaveReq");%>
 		<nav aria-label="breadcrumb" class="breadcrumb-stuff">
 		  <ol class="breadcrumb">
 		    <li class="breadcrumb-item" aria-current="page"><a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp">EmpHome</a></li>
-		    <li class="breadcrumb-item active">Employee Duties</a></li>
-		    <li class="breadcrumb-item active" aria-current="page">Apply For Leave</li>
+		    <li class="breadcrumb-item active">Leave Request Inquiry</li>
+		    <li class="breadcrumb-item active" aria-current="page">Leave History</li>
+		    <li class="breadcrumb-item active" aria-current="page"><%=leaveReq.getLeaveRequestId() %></li>
 		  </ol>
 		</nav>
 		
         <div class="container" style="margin-bottom: 100px; height: 100%">
-		<% LeaveRequest leaveReq = (LeaveRequest) request.getAttribute("leaveReq");%>
 			<%if(leaveReq != null) {%>
-			<table class="table" style="border-color: #FD4F00; border-width: 2px; border-style: solid;">
+			<table class="table table-borderless" style="border-color: #FD4F00; border-width: 2px; border-style: solid;">
 			  <tbody>
 			    <tr>
 			      <th scope="row">Employee ID: </th>
@@ -191,7 +191,7 @@ java.util.Collection, java.util.ArrayList"%>
 			    </tr>
 			  </tbody>
 			</table>
-			<table class="table" style="border-color: #FD4F00; border-width: 2px; border-style: solid;">
+			<table class="table table-borderless" style="border-color: #FD4F00; border-width: 2px; border-style: solid;">
 			  <tbody>
 			    <tr>
 			      <th scope="row">Leave Start Date: </th>
@@ -205,13 +205,13 @@ java.util.Collection, java.util.ArrayList"%>
 			    </tr>
 			  </tbody>
 			</table>
-			<table class="table" style="border-color: #FD4F00; border-width: 2px; border-style: solid;">
+			<table class="table table-borderless" style="border-color: #FD4F00; border-width: 2px; border-style: solid;">
 			  <tbody>
 			    <tr>
 			  		<th scope="row">Leave Status: </th>
 			      	<td style="border-right-color: #FD4F00; border-right-width: 1px; border-right-style: solid;"><%=leaveReq.getLeaveStatus() %></td>
 			      	<th scope="row">Leave Reviewed By: </th>
-			      	<td colspan="3"><%=leaveReq.getLeaveReviewedBy() %></td>
+			      	<td colspan="3"><%=leaveReq.getLeaveReviewedBy()%></td>
 			  	</tr>
 			  </tbody>
 			</table>
@@ -221,7 +221,7 @@ java.util.Collection, java.util.ArrayList"%>
 			      <th scope="row">Leave Request Description: </th>
 			    </tr>
 			    <tr>
-			      <td><%=leaveReq.getLeaveDescription() %> </td>
+			      <td><%=leaveReq.getLeaveDescription() %></td>
 			    </tr>
 			  </tbody>
 			</table>

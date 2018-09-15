@@ -138,11 +138,6 @@
         <script src="/SampathBankWebPortal/resources/css&js&jquery/jquery-3.3.1.slim.min.js"></script>
         <script src="/SampathBankWebPortal/resources/css&js&jquery/popper.min.js"></script>
         <script src="/SampathBankWebPortal/resources/css&js&jquery/bootstrap.min.js"></script>
-        <script src="/SampathBankWebPortal/resources/css&js&jquery/customized.js"></script>
-    <script>
-    
-    </script>
-    
-   
+        <script src="/SampathBankWebPortal/resources/css&js&jquery/customized.js"></script>   
     </body>
 </html>

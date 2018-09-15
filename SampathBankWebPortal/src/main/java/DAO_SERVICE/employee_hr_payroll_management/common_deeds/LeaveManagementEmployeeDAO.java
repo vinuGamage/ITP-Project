@@ -44,7 +44,6 @@ public class LeaveManagementEmployeeDAO {
 		ResultSet EHPM_ResultSet0001 = null;
 		LeaveDetails leaveDetails = null;
 		
-		//Checking online_customer_credentials table
 		try {
 			EHPM_Prst0001 = con.prepareStatement(EHPMQueries.EHPMquery0018);
 			EHPM_Prst0001.setString(1, employeeId);
@@ -110,6 +109,7 @@ public class LeaveManagementEmployeeDAO {
 			EHPM_Prst0001.setDate(6, leaveRequest.getLeaveStartDate());
 			EHPM_Prst0001.setInt(7, leaveRequest.getLeaveDuration());
 			EHPM_Prst0001.setString(8, "submitted");
+			EHPM_Prst0001.setString(9, leaveRequest.getLeaveReviewSpeed());
 			EHPM_Prst0001.setInt(2, PrimaryKeyGeneratorDAO.LeaveRequestKeyGenerator());
 			i = EHPM_Prst0001.executeUpdate();
 		} catch (SQLException e) {
@@ -176,6 +176,7 @@ public class LeaveManagementEmployeeDAO {
 				leaveRequest.setLeaveStartDate(EHPM_ResultSet0001.getDate("leaveStartDate"));
 				leaveRequest.setLeaveDuration(EHPM_ResultSet0001.getInt("leaveDuration"));
 				leaveRequest.setLeaveStatus(EHPM_ResultSet0001.getString("leaveStatus"));
+				leaveRequest.setLeaveReviewSpeed(EHPM_ResultSet0001.getString("leaveReviewSpeed"));
 				if(leaveRequest.getLeaveStatus().equals("submitted"))
 					leaveRequest.setLeaveReviewedBy("Not Yet Reviewed");
 				else
@@ -263,5 +264,51 @@ public class LeaveManagementEmployeeDAO {
 		cpmObj.printDatabaseStatus();
 		
 		return i;
+	}
+
+	public static boolean removeLeaveRequest(int leaveRequestId) {
+		//Connection Managing Start
+		ConnectionPoolManager cpmObj = new ConnectionPoolManager();
+		DataSource dataSource = null;
+		try {
+			dataSource = cpmObj.initializePool();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		cpmObj.printDatabaseStatus();
+		try {
+			con = dataSource.getConnection();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		cpmObj.printDatabaseStatus();
+		//Conneciton Managing End
+		
+		PreparedStatement EHPM_Prst0001 = null;
+		int i = 0;
+		
+		try {
+			EHPM_Prst0001 = con.prepareStatement(EHPMQueries.EHPMquery0038);
+			EHPM_Prst0001.setInt(1, leaveRequestId);
+			i = EHPM_Prst0001.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(EHPM_Prst0001 != null)
+					EHPM_Prst0001.close();
+				
+				if(con != null)
+					con.close();
+			} catch(SQLException sqlException) {
+				sqlException.printStackTrace();
+			}
+		}
+		cpmObj.printDatabaseStatus();
+		
+		if(i == 0)
+			return false;
+		else
+			return true;
 	}
 }

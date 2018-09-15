@@ -21,7 +21,7 @@ public class EHPMQueries {
 	public static final String EHPMquery0018 = "SELECT * FROM leave_details WHERE employeeId=?;";
 	public static final String EHPMquery0019 = "SELECT leaveRequestId FROM next_primary_keys WHERE primaryKey=1;";
 	public static final String EHPMquery0020 = "UPDATE next_primary_keys SET leaveRequestId=? WHERE primaryKey=1;";
-	public static final String EHPMquery0021 = "INSERT INTO leave_request(employeeId, leaveRequestId, leaveType, leaveDescription, leaveRequestedDate, leaveStartDate, leaveDuration, leaveStatus) VALUES(?,?,?,?,?,?,?,?);";
+	public static final String EHPMquery0021 = "INSERT INTO leave_request(employeeId, leaveRequestId, leaveType, leaveDescription, leaveRequestedDate, leaveStartDate, leaveDuration, leaveStatus, leaveReviewSpeed) VALUES(?,?,?,?,?,?,?,?, ?);";
 	public static final String EHPMquery0022 = "SELECT * FROM leave_request WHERE employeeId=?;";
 	public static final String EHPMquery0023 = "SELECT * FROM leave_request WHERE employeeId=? AND leaveStatus=?;";
 	public static final String EHPMquery0024 = "INSERT INTO person(personId, firstName, middleName, lastName, otherNames, addressStreet01, addressStreet02, addressCity, addressProvince, addressZipCode, nic, dateOfBirth, personalEmail, physicalRegistrationDate, genderId, nationalityId, branchId, homeContact, mobileContact) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -38,4 +38,8 @@ public class EHPMQueries {
 	public static final String EHPMquery0035 = "DELETE FROM employee WHERE employeeId=?;";
 	public static final String EHPMquery0036 = "INSERT INTO inactive_employees(employeeId, reason, inactivationDate) VALUES(?, ?, ?);";
 	public static final String EHPMquery0037 = "SELECT * FROM person p INNER JOIN inactive_employees e ON p.personId = e.employeeId;";
+	public static final String EHPMquery0038 = "DELETE FROM leave_request WHERE leaveRequestId=?;";
+	public static final String EHPMquery0039 = "SELECT * FROM leave_request WHERE leaveStatus='submitted' ORDER BY leaveStartDate;";
+	public static final String EHPMquery0040 = "UPDATE leave_request SET leaveStatus=?, leaveReviewedBy=? WHERE leaveRequestId=?;";
+	public static final String EHPMquery0041 = "UPDATE leave_details SET noOfLeavesLeft=noOfLeavesLeft-?, lastEffectiveLeaveDate=? WHERE employeeId=?;";
 }

@@ -36,7 +36,7 @@
                 </ul>
             </div>
             <div class="mx-auto order-0">
-                <a class="navbar-brand mx-auto" href="#" title="Go to Employee Homepage">SampathEmpWeb</a>
+                <a class="navbar-brand mx-auto" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp" title="Go to Employee Homepage">SampathEmpWeb</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -88,10 +88,9 @@
                     <li class="nav-item dropdown" title="Click to See Leave Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Leave Request Inquiry</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Apply for Leave</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveBase" style="color:white">Apply for Leave</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Leave History</a>
-                            <a class="dropdown-item" href="#" style="color:white">Leave Status</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveHistory" style="color:white">Leave History</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave Analysis</a>
                         </div>
@@ -139,7 +138,7 @@
 -->
 		<nav aria-label="breadcrumb" class="breadcrumb-stuff">
 		  <ol class="breadcrumb">
-		    <li class="breadcrumb-item"><a href="#">EmpHome</a></li>
+		    <li class="breadcrumb-item"><a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp">EmpHome</a></li>
 		    <li class="breadcrumb-item">Employee Duties</a></li>
 		    <li class="breadcrumb-item active" aria-current="page">Create Employee Online Account</li>
 		  </ol>
@@ -149,7 +148,7 @@
         <div class="container-fluid" style="margin-bottom: 100px; height: 1000px">
         <% Collection<Employee> newEmployeeList = (ArrayList<Employee>) session.getAttribute("newEmployeeList"); %>
 		<%if(newEmployeeList != null) {%>
-			<table class="table">
+			<table class="table table-hover">
 			  <thead class="thead-light">
 			    <tr>
 			      <th scope="col">Employee Id</th>
