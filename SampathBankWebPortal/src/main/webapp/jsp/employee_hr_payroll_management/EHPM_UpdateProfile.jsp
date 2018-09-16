@@ -203,27 +203,38 @@
 					  <tbody>
 					    <tr style="color: #FD4F00; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #FD4F00;">
 					      <th colspan="2">Contact Info</th>
-					      <th>Other Info</th>
+					      <th> </th>
+					    </tr>
+					    <tr style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">
+					      <td style="width: 250px; font-weight: bold;">Address</td>
+					      <td style="font-size: 17px;"><%=employee.getAddress().getAddressStreet01() %>, <%if(employee.getAddress().getAddressStreet02() != null && employee.getAddress().getAddressStreet02().trim().length() != 0) { %> <%=employee.getAddress().getAddressStreet02() %> <%} %></br>
+					      		<%=employee.getAddress().getAddressCity() %>, </br>
+					      		<%=employee.getAddress().getAddressProvince() %>, </br>
+					      		<%=employee.getAddress().getAddressZIPCode() %>
+					      </td>
+					      <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id01').style.display='block'" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Edit</button></td>
 					    </tr>
 					    <tr style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">
 					      <td style="font-weight: bold;">Personal Email</td>
 					      <td><%=employee.getPersonalEmail() %></td>
-					      <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id01').style.display='block'" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Personal</button></td>
-					    </tr>
-					    <tr style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">
-					      <td style="font-weight: bold;">Company Email</td>
-					      <td><%=employee.getCompanyEmail() %></td>
-						  <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id02').style.display='block'" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Employment</button></td>
+						  <td style="font-size: 17px;"><button type="button" class="btn btn-sm" onclick="document.getElementById('id02').style.display='block'" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Edit</button></td>
 					    </tr>
 					    <tr style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">
 					      <td style="font-weight: bold;">Home</td>
-					      <td><%=employee.getHomeContact() %></td>
-					      <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id03').style.display='block'" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Branch</button></td>
+					      <td style="font-size: 17px;"><%=employee.getHomeContact() %></td>
+					      <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id03').style.display='block'" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Edit</button></td>
 					    </tr>
 					    <tr>
 					      <td style="font-weight: bold;">Mobile</td>
-					      <td><%=employee.getMobileContact() %></td>
-					      <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id04').style.display='block'" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Department</button></td>
+					      <td style="font-size: 17px;">
+					      
+					      <%if(employee.getMobileContact() == null || employee.getMobileContact().trim().length() == 0) {%>
+					      	No Mobile Number Given.
+					      <%} else {%>
+					      	<%=employee.getMobileContact() %>
+					      <%} %>
+					      </td>
+					      <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id04').style.display='block'" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Edit</button></td>
 					    </tr>
 					  </tbody>
 					</table>
@@ -443,161 +454,133 @@
 <!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
 <!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
         <div id="id01" class="modal">
-		  <form class="modal-content animate" action="#" method="#">
+		  <form class="modal-content animate" action="/UpdateProfileDetailsEmployeeSide" method="post">
 		    <div class="imgcontainer">
 		      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 		    </div>
 		
-		    <div class="container">
-				<div style="float: left;">
-	                <div style="width: 500px; float: left; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
-	                    <table class="table table-borderless table-hover">
-	                    	<tbody>
-	                    		<tr>
-	                    			<th scope="row">Full Name: </th>
-	                    			<td><%=employee.getName().getFullName()%></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<th scope="row">NIC: </th>
-	                    			<td><%=employee.getNic() %></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<th scope="row">Gender: </th>
-	                    			<td><%=employee.getGender().getGender() %></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<th scope="row">Nationality: </th>
-	                    			<td><%=employee.getNationality().getNationality() %></td>
-	                    		</tr>
-	                    	</tbody>
-	                    </table>
-	            	</div>
-		    	</div>
-				<div style="float: left; margin-left: 10px;">
-	                <div style="width: 500px; float: left; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
-	                    <table class="table table-borderless table-hover">
-	                    	<tbody>
-	                    		<tr>
-	                    			<th scope="row">Birth Date: </th>
-	                    			<td><%=employee.getDateOfBirth()%></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<th scope="row">Address: </th>
-	                    			<td><%=employee.getAddress().getFullAddress()%></td>
-	                    		</tr>
-	                    	</tbody>
-	                    </table>
-	            	</div>
-		    	</div>
-		    </div>
+            <div style="width: 1000px; margin-left: 50px; padding: 5px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00;">
+                <div class="form-group row" style="padding: 4px; padding-left: 16px">
+                    <label class="col-4 col-form-label">Street Address:</label>
+                    <div class="col-8">
+                        <div class="form-group">
+                            <label for="EmpForm01ContactDetails01">Line 01: *</label>
+                            <input type="text" class="form-control" name="updateAddStreet01" value="<%=employee.getAddress().getAddressStreet01()%>">
+                        </div>
+                        <div class="form-group">
+                            <label for="EmpForm01ContactDetails02">Line 02:</label>
+                            <%if(employee.getAddress().getAddressStreet02() == null || employee.getAddress().getAddressStreet02().trim().length() == 0) {%>
+                            	<input type="text" class="form-control" name="updateAddStreet02" placeholder="No Address Street 02 given">
+                            <%} else {%>
+                            	<input type="text" class="form-control" name="updateAddStreet02" value="employee.getAddress().getAddressStreet02()">
+                            <%} %>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row" style="padding: 4px; padding-left: 16px">
+                    <label class="col-2 col-form-label" for="EmpForm01ContactDetails03">City: *</label>
+                    <div class="col-2">
+                        <input type="text" class="form-control" name="updateAddCity" value="<%=employee.getAddress().getAddressCity()%>">
+                    </div>
+                    <label class="col-2 col-form-label" for="EmpForm01ContactDetails04">Province: *</label>
+                    <div class="col-2">
+                        <select class="custom-select mr-sm-2" id="EmpForm01ContactDetails04" name="updateAddProvince">
+                            <option value="<%=employee.getAddress().getAddressProvince()%>" selected><%=employee.getAddress().getAddressProvince()%></option>
+                            <option value="western">Western</option>
+                            <option value="eastern">Eastern</option>
+                            <option value="central">Central</option>
+                            <option value="sourthern">Sourthern</option>
+                            <option value="northern">Northern</option>
+                            <option value="north western">North Western</option>
+                            <option value="sabaragamuwa">Sabaragamuwa</option>
+                            <option value="north central">North Central</option>
+                            <option value="uva">Uva</option>
+                        </select>
+                    </div>
+					<label class="col-2 col-form-label" for="EmpForm01ContactDetails05">ZIP Code: *</label>
+                    <div class="col-2">
+                    	<input type="number" class="form-control" name="updateAddZip" value="<%=employee.getAddress().getAddressZIPCode()%>">
+                    	<!-- pattern="[0-9]{3}" -->
+                    </div>
+                </div>
+             </div>
 		
 		    <div class="container">
-		      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Done</button>
+		    	<button type="reset" class="cancelbtn">Reset</button>
+		    	<button type="submit" class="cancelbtn" name="updateAddress">Submit</button>
+		      	<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
 		    </div>
 		  </form>
 		</div>
 		
         <div id="id02" class="modal">
-		  <form class="modal-content animate" action="#" method="#">
+		  <form class="modal-content animate" action="/UpdateProfileDetailsEmployeeSide" method="post">
 		    <div class="imgcontainer">
 		      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
 		    </div>
 		
-		    <div class="container">
-				<div style="float: left;">
-	                <div style="width: 1000px; float: center; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
-	                    <table class="table table-borderless table-hover">
-	                    	<tbody>
-	                    		<tr>
-	                    			<th scope="row">Registration Date (Physical): </th>
-	                    			<td><%=employee.getRegistrationDates().getPhysicalRegistrationDate()%></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<th scope="row">Registration Date (Online): </th>
-	                    			<td><%=employee.getRegistrationDates().getOnlineRegistrationDate() %></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<th scope="row">Designation: </th>
-	                    			<td><%=employee.getDesignation().getDesignation() %></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<th scope="row">Type: </th>
-	                    			<td><%=employee.getEmployeeType() %></td>
-	                    		</tr>
-	                    	</tbody>
-	                    </table>
-	            	</div>
-		    	</div>
-		    </div>
+            <div style="width: 1000px; margin-left: 50px; padding: 5px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00;">
+                <div class="form-group row" style="margin-left: 100px; padding: 4px; padding-left: 16px">
+                    <label class="col-3 col-form-label" for="EmpForm01ContactDetails05">Personal Email: *</label>
+                    <div class="col-4">
+                    	<input type="email" class="form-control" name="updatedPersonalEmail" value=<%=employee.getPersonalEmail() %>>
+                    	<!-- pattern="[0-9]{3}" -->
+                    </div>
+                </div>
+             </div>
 		
 		    <div class="container">
-		      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+		    	<button type="reset" class="cancelbtn">Reset</button>
+		    	<button type="submit" class="cancelbtn" name="updatePersonalEmail">Submit</button>
+		      	<button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
 		    </div>
 		  </form>
 		</div>
 		
         <div id="id03" class="modal">
-		  <form class="modal-content animate" action="#" method="#">
+		  <form class="modal-content animate" action="/UpdateProfileDetailsEmployeeSide" method="post">
 		    <div class="imgcontainer">
 		      <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
 		    </div>
 		
-		    <div class="container">
-				<div style="float: left;">
-	                <div style="width: 1000px; float: center; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
-	                    <table class="table table-borderless table-hover">
-	                    	<tbody>
-	                    		<tr>
-	                    			<th scope="row">Branch ID: </th>
-	                    			<td><%=employee.getBranch().getBranchId()%></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<th scope="row">Branch Address: </th>
-	                    			<td><%=employee.getBranch().getBranchAddress().getFullAddress() %></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<th scope="row">Branch Email: </th>
-	                    			<td><%=employee.getBranch().getBranchEmail() %></td>
-	                    		</tr>
-	                    	</tbody>
-	                    </table>
-	            	</div>
-		    	</div>
-		    </div>
+            <div style="width: 1000px; margin-left: 50px; padding: 5px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00;">
+                <div class="form-group row" style="margin-left: 100px; padding: 4px; padding-left: 16px;">
+                    <label class="col-3 col-form-label" for="EmpForm01ContactDetails05">Home Contact Number: *</label>
+                    <div class="col-4">
+                    	<input type="text" class="form-control" name="updatedPersonalEmail" value=<%=employee.getHomeContact() %>>
+                    	<!-- pattern="[0-9]{3}" -->
+                    </div>
+                </div>
+             </div>
 		
 		    <div class="container">
-		      <button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">Done</button>
+		    	<button type="reset" class="cancelbtn">Reset</button>
+		    	<button type="submit" class="cancelbtn" name="updateHomeContact">Submit</button>
+		      	<button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">Cancel</button>
 		    </div>
 		  </form>
 		</div>
 		
         <div id="id04" class="modal">
-		  <form class="modal-content animate" action="#" method="#">
+		  <form class="modal-content animate" action="/UpdateProfileDetailsEmployeeSide" method="post">
 		    <div class="imgcontainer">
 		      <span onclick="document.getElementById('id04').style.display='none'" class="close" title="Close Modal">&times;</span>
 		    </div>
 		
-		    <div class="container">
-				<div style="float: left;">
-	                <div style="width: 1000px; float: center; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
-	                    <table class="table table-borderless table-hover">
-	                    	<tbody>
-	                    		<tr>
-	                    			<th scope="row">Department ID: </th>
-	                    			<td><%=employee.getDepartment().getDepartmentId()%></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<th scope="row">Department Name: </th>
-	                    			<td><%=employee.getDepartment().getDepartmentName() %></td>
-	                    		</tr>
-	                    	</tbody>
-	                    </table>
-	            	</div>
-		    	</div>
-		    </div>
+            <div style="width: 1000px; margin-left: 50px; padding: 5px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00;">
+                <div class="form-group row" style="margin-left: 100px; padding: 4px; padding-left: 16px">
+                    <label class="col-3 col-form-label" for="EmpForm01ContactDetails05">Mobile Contact Number: </label>
+                    <div class="col-4">
+                    	<input type="text" class="form-control" name="updatedPersonalEmail">
+                    	<!-- pattern="[0-9]{3}" -->
+                    </div>
+                </div>
+             </div>
 		
 		    <div class="container">
-		      <button type="button" onclick="document.getElementById('id04').style.display='none'" class="cancelbtn">Cancel</button>
+		    	<button type="reset" class="cancelbtn">Reset</button>
+		    	<button type="submit" class="cancelbtn" name="updateMobileContact">Submit</button>
+		      	<button type="button" onclick="document.getElementById('id04').style.display='none'" class="cancelbtn">Cancel</button>
 		    </div>
 		  </form>
 		</div>

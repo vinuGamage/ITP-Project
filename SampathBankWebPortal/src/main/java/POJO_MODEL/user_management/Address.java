@@ -63,6 +63,15 @@ public class Address {
 		return this.addressZipCode;
 	}
 	
+	public String getFullAddress() {
+		String addStrt02 = null;
+		if(this.getAddressStreet02() == null || this.getAddressStreet02().trim().length() == 0)
+			addStrt02 = "";
+		else
+			addStrt02 = this.getAddressStreet02() + ", ";
+		
+		return (this.getAddressStreet01() + ", " + addStrt02 + this.getAddressCity() + ", " + this.getAddressProvince() + ", " + this.getAddressZIPCode() + ".");
+	}
 	public void displayAddress() {
 		System.out.println("============Address : ============");
 		System.out.println(this.getAddressStreet01());
