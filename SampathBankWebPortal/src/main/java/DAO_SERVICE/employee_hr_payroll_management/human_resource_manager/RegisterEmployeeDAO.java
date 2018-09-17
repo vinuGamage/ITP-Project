@@ -38,7 +38,6 @@ public class RegisterEmployeeDAO {
 		cpmObj.printDatabaseStatus();
 		//Conneciton Managing End
 		
-		
 		PreparedStatement EHPM_Prst0001 = null;
 		PreparedStatement EHPM_Prst0002 = null;
 		PreparedStatement EHPM_Prst0003 = null;

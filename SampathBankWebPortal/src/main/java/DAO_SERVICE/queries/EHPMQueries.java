@@ -53,4 +53,6 @@ public class EHPMQueries {
 	public static final String EHPMquery0050 = "UPDATE employee_update_requests SET homeContact=? WHERE employeeId=?;";
 	public static final String EHPMquery0051 = "INSERT INTO employee_update_requests(employeeId, mobileContact) VALUES(?, ?);";
 	public static final String EHPMquery0052 = "UPDATE employee_update_requests SET mobileContact=? WHERE employeeId=?;";
+	public static final String EHPMquery0053 = "SELECT * FROM employee_update_requests;";
+	public static final String EHPMquery0054 = "SELECT * FROM person WHERE personId=?;";
 }
