@@ -206,24 +206,24 @@
 					      <th>Other Info</th>
 					    </tr>
 					    <tr style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">
-					      <td style="font-weight: bold;">Personal Email</td>
-					      <td><%=employee.getPersonalEmail() %></td>
-					      <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id01').style.display='block'" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Personal</button></td>
+					      <td style="width: 240px; font-weight: bold;">Personal Email</td>
+					      <td style="width: 550px"><%=employee.getPersonalEmail() %></td>
+					      <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id01').style.display='block'" style="width:full; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Personal</button></td>
 					    </tr>
 					    <tr style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">
-					      <td style="font-weight: bold;">Company Email</td>
-					      <td><%=employee.getCompanyEmail() %></td>
-						  <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id02').style.display='block'" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Employment</button></td>
+					      <td style="width: 240px; font-weight: bold;">Company Email</td>
+					      <td style="width: 550px"><%=employee.getCompanyEmail() %></td>
+						  <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id02').style.display='block'" style="width:full; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Employment</button></td>
 					    </tr>
 					    <tr style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">
-					      <td style="font-weight: bold;">Home</td>
-					      <td><%=employee.getHomeContact() %></td>
-					      <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id03').style.display='block'" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Branch</button></td>
+					      <td style="width: 240px; font-weight: bold;">Home</td>
+					      <td style="width: 550px"><%=employee.getHomeContact() %></td>
+					      <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id03').style.display='block'" style="width:full; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Branch</button></td>
 					    </tr>
 					    <tr>
-					      <td style="font-weight: bold;">Mobile</td>
-					      <td><%=employee.getMobileContact() %></td>
-					      <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id04').style.display='block'" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Department</button></td>
+					      <td style="width: 240px; font-weight: bold;">Mobile</td>
+					      <td style="width: 550px"><%=employee.getMobileContact() %></td>
+					      <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id04').style.display='block'" style="width:full; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Department</button></td>
 					    </tr>
 					  </tbody>
 					</table>
@@ -454,20 +454,20 @@
 	                    <table class="table table-borderless table-hover">
 	                    	<tbody>
 	                    		<tr>
-	                    			<th scope="row">Full Name: </th>
-	                    			<td><%=employee.getName().getFullName()%></td>
+	                    			<th style="width: 150px;" scope="row">Full Name: </th>
+	                    			<td style="width: 350px;"><%=employee.getName().getFullName()%></td>
 	                    		</tr>
 	                    		<tr>
-	                    			<th scope="row">NIC: </th>
-	                    			<td><%=employee.getNic() %></td>
+	                    			<th style="width: 150px;" scope="row">NIC: </th>
+	                    			<td style="width: 350px;"><%=employee.getNic() %></td>
 	                    		</tr>
 	                    		<tr>
-	                    			<th scope="row">Gender: </th>
-	                    			<td><%=employee.getGender().getGender() %></td>
+	                    			<th style="width: 150px;" scope="row">Gender: </th>
+	                    			<td style="width: 350px;"><%=employee.getGender().getGender() %></td>
 	                    		</tr>
 	                    		<tr>
-	                    			<th scope="row">Nationality: </th>
-	                    			<td><%=employee.getNationality().getNationality() %></td>
+	                    			<th style="width: 150px;" scope="row">Nationality: </th>
+	                    			<td style="width: 350px;"><%=employee.getNationality().getNationality() %></td>
 	                    		</tr>
 	                    	</tbody>
 	                    </table>
@@ -478,12 +478,12 @@
 	                    <table class="table table-borderless table-hover">
 	                    	<tbody>
 	                    		<tr>
-	                    			<th scope="row">Birth Date: </th>
-	                    			<td><%=employee.getDateOfBirth()%></td>
+	                    			<th style="width: 150px;" scope="row">Birth Date: </th>
+	                    			<td style="width: 350px;"><%=employee.getDateOfBirth()%></td>
 	                    		</tr>
 	                    		<tr>
-	                    			<th scope="row">Address: </th>
-	                    			<td><%=employee.getAddress().getFullAddress()%></td>
+	                    			<th style="width: 150px;" scope="row">Address: </th>
+	                    			<td style="width: 350px;"><%=employee.getAddress().getFullAddress()%></td>
 	                    		</tr>
 	                    	</tbody>
 	                    </table>
@@ -509,20 +509,20 @@
 	                    <table class="table table-borderless table-hover">
 	                    	<tbody>
 	                    		<tr>
-	                    			<th scope="row">Registration Date (Physical): </th>
-	                    			<td><%=employee.getRegistrationDates().getPhysicalRegistrationDate()%></td>
+	                    			<th style="width: 300px;" scope="row">Registration Date (Physical): </th>
+	                    			<td style="width: full;"><%=employee.getRegistrationDates().getPhysicalRegistrationDate()%></td>
 	                    		</tr>
 	                    		<tr>
-	                    			<th scope="row">Registration Date (Online): </th>
-	                    			<td><%=employee.getRegistrationDates().getOnlineRegistrationDate() %></td>
+	                    			<th style="width: 300px;" scope="row">Registration Date (Online): </th>
+	                    			<td style="width: full;"><%=employee.getRegistrationDates().getOnlineRegistrationDate() %></td>
 	                    		</tr>
 	                    		<tr>
-	                    			<th scope="row">Designation: </th>
-	                    			<td><%=employee.getDesignation().getDesignation() %></td>
+	                    			<th style="width: 300px;" scope="row">Designation: </th>
+	                    			<td style="width: full;"><%=employee.getDesignation().getDesignation() %></td>
 	                    		</tr>
 	                    		<tr>
-	                    			<th scope="row">Type: </th>
-	                    			<td><%=employee.getEmployeeType() %></td>
+	                    			<th style="width: 300px;" scope="row">Type: </th>
+	                    			<td style="width: full;"><%=employee.getEmployeeType() %></td>
 	                    		</tr>
 	                    	</tbody>
 	                    </table>
@@ -548,16 +548,16 @@
 	                    <table class="table table-borderless table-hover">
 	                    	<tbody>
 	                    		<tr>
-	                    			<th scope="row">Branch ID: </th>
-	                    			<td><%=employee.getBranch().getBranchId()%></td>
+	                    			<th style="width: 250px;" scope="row">Branch ID: </th>
+	                    			<td style="width: full;"><%=employee.getBranch().getBranchId()%></td>
 	                    		</tr>
 	                    		<tr>
-	                    			<th scope="row">Branch Address: </th>
-	                    			<td><%=employee.getBranch().getBranchAddress().getFullAddress() %></td>
+	                    			<th style="width: 250px;" scope="row">Branch Address: </th>
+	                    			<td style="width: full;"><%=employee.getBranch().getBranchAddress().getFullAddress() %></td>
 	                    		</tr>
 	                    		<tr>
-	                    			<th scope="row">Branch Email: </th>
-	                    			<td><%=employee.getBranch().getBranchEmail() %></td>
+	                    			<th style="width: 250px;" scope="row">Branch Email: </th>
+	                    			<td style="width: full;"><%=employee.getBranch().getBranchEmail() %></td>
 	                    		</tr>
 	                    	</tbody>
 	                    </table>
@@ -583,12 +583,12 @@
 	                    <table class="table table-borderless table-hover">
 	                    	<tbody>
 	                    		<tr>
-	                    			<th scope="row">Department ID: </th>
-	                    			<td><%=employee.getDepartment().getDepartmentId()%></td>
+	                    			<th style="width: 250px;" scope="row">Department ID: </th>
+	                    			<td style="width: full;"><%=employee.getDepartment().getDepartmentId()%></td>
 	                    		</tr>
 	                    		<tr>
-	                    			<th scope="row">Department Name: </th>
-	                    			<td><%=employee.getDepartment().getDepartmentName() %></td>
+	                    			<th style="width: 250px;" scope="row">Department Name: </th>
+	                    			<td style="width: full;"><%=employee.getDepartment().getDepartmentName() %></td>
 	                    		</tr>
 	                    	</tbody>
 	                    </table>
@@ -611,11 +611,14 @@
 			
 			// When the user clicks anywhere outside of the modal, close it
 			window.onclick = function(event) {
-			    if (event.target == modal || event.target == modal2 || event.target == modal3 || event.target == modal4) {
+			    if (event.target == modal) {
 			        modal.style.display = "none";
-			        modal2.style.display = "none";
-			        modal3.style.display = "none";
-			        modal4.style.display = "none";
+			    } else if(event.target == modal2) {
+			    	modal2.style.display = "none";
+			    } else if(event.target == modal3) {
+			    	modal3.style.display = "none";
+			    } else if(event.target == modal4) {
+			    	modal4.style.display = "none";
 			    }
 			}
 		</script>

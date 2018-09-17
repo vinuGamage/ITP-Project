@@ -14,6 +14,8 @@
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		<title>Employee Profile</title>
 		<%
+			response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		
 			Employee employee = (Employee) session.getAttribute("employee");
 			if(employee == null)
 				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
@@ -207,7 +209,7 @@
 					    </tr>
 					    <tr style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">
 					      <td style="width: 250px; font-weight: bold;">Address</td>
-					      <td style="font-size: 17px;"><%=employee.getAddress().getAddressStreet01() %>, <%if(employee.getAddress().getAddressStreet02() != null && employee.getAddress().getAddressStreet02().trim().length() != 0) { %> <%=employee.getAddress().getAddressStreet02() %> <%} %></br>
+					      <td style="width: 650px; font-size: 17px;"><%=employee.getAddress().getAddressStreet01() %>, <%if(employee.getAddress().getAddressStreet02() != null && employee.getAddress().getAddressStreet02().trim().length() != 0) { %> <%=employee.getAddress().getAddressStreet02() %> <%} %></br>
 					      		<%=employee.getAddress().getAddressCity() %>, </br>
 					      		<%=employee.getAddress().getAddressProvince() %>, </br>
 					      		<%=employee.getAddress().getAddressZIPCode() %>
@@ -215,18 +217,18 @@
 					      <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id01').style.display='block'" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Edit</button></td>
 					    </tr>
 					    <tr style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">
-					      <td style="font-weight: bold;">Personal Email</td>
-					      <td><%=employee.getPersonalEmail() %></td>
+					      <td style="width: 250px; font-weight: bold;">Personal Email</td>
+					      <td style="width: 650px;"><%=employee.getPersonalEmail() %></td>
 						  <td style="font-size: 17px;"><button type="button" class="btn btn-sm" onclick="document.getElementById('id02').style.display='block'" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Edit</button></td>
 					    </tr>
 					    <tr style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">
-					      <td style="font-weight: bold;">Home</td>
-					      <td style="font-size: 17px;"><%=employee.getHomeContact() %></td>
+					      <td style="width: 250px; font-weight: bold;">Home</td>
+					      <td style="width: 650px; font-size: 17px;"><%=employee.getHomeContact() %></td>
 					      <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id03').style.display='block'" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Edit</button></td>
 					    </tr>
 					    <tr>
-					      <td style="font-weight: bold;">Mobile</td>
-					      <td style="font-size: 17px;">
+					      <td style="width: 250px; font-weight: bold;">Mobile</td>
+					      <td style="width: 650px; font-size: 17px;">
 					      
 					      <%if(employee.getMobileContact() == null || employee.getMobileContact().trim().length() == 0) {%>
 					      	No Mobile Number Given.
@@ -235,6 +237,29 @@
 					      <%} %>
 					      </td>
 					      <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id04').style.display='block'" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Edit</button></td>
+					    </tr>
+					  </tbody>
+					</table>
+				</div>
+			</div>
+			
+			
+			<div class="container" style="height: auto; background-color: white; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-top: 10px; padding: 2px;">
+				<div style="height: 40px; font-size: 26px; padding-left: 10px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #FD4F00;">
+					Online Account Details
+				</div>
+				<div>
+					<table class="table table-borderless" style="margin: 20px; width: 1100px;">
+					  <tbody>
+					    <tr>
+					      <td style="width: 250px; font-weight: bold;">Username</td>
+					      <td style="width: 650px;"><%=employee.getOnlineAccount().getUsername() %></td>
+						  
+					    </tr>
+					    <tr>
+					      <td style="width: 250px; font-weight: bold;">Password</td>
+					      <td style="width: 650px; font-size: 17px;">xxxx xxxx</td>
+					      <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id05').style.display='block'" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Change</button></td>
 					    </tr>
 					  </tbody>
 					</table>
@@ -454,7 +479,7 @@
 <!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
 <!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
         <div id="id01" class="modal">
-		  <form class="modal-content animate" action="/UpdateProfileDetailsEmployeeSide" method="post">
+		  <form class="modal-content animate" action="/SampathBankWebPortal/UpdateProfileDetailsEmployeeSide" method="post">
 		    <div class="imgcontainer">
 		      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 		    </div>
@@ -464,27 +489,27 @@
                     <label class="col-4 col-form-label">Street Address:</label>
                     <div class="col-8">
                         <div class="form-group">
-                            <label for="EmpForm01ContactDetails01">Line 01: *</label>
-                            <input type="text" class="form-control" name="updateAddStreet01" value="<%=employee.getAddress().getAddressStreet01()%>">
+                            <label for="abc01_02">Line 01: *</label>
+                            <input type="text" class="form-control" name="updateAddStreet01" id="abc01_02" value="<%=employee.getAddress().getAddressStreet01()%>">
                         </div>
                         <div class="form-group">
-                            <label for="EmpForm01ContactDetails02">Line 02:</label>
+                            <label for="abc01_03">Line 02:</label>
                             <%if(employee.getAddress().getAddressStreet02() == null || employee.getAddress().getAddressStreet02().trim().length() == 0) {%>
-                            	<input type="text" class="form-control" name="updateAddStreet02" placeholder="No Address Street 02 given">
+                            	<input type="text" class="form-control" name="updateAddStreet02" id="abc01_03" placeholder="No Address Street 02 given">
                             <%} else {%>
-                            	<input type="text" class="form-control" name="updateAddStreet02" value="employee.getAddress().getAddressStreet02()">
+                            	<input type="text" class="form-control" name="updateAddStreet02" id="abc01_03" value="employee.getAddress().getAddressStreet02()">
                             <%} %>
                         </div>
                     </div>
                 </div>
                 <div class="form-group row" style="padding: 4px; padding-left: 16px">
-                    <label class="col-2 col-form-label" for="EmpForm01ContactDetails03">City: *</label>
+                    <label class="col-2 col-form-label" for="abc01_04">City: *</label>
                     <div class="col-2">
-                        <input type="text" class="form-control" name="updateAddCity" value="<%=employee.getAddress().getAddressCity()%>">
+                        <input type="text" class="form-control" name="updateAddCity" id="abc01_04" value="<%=employee.getAddress().getAddressCity() %>">
                     </div>
-                    <label class="col-2 col-form-label" for="EmpForm01ContactDetails04">Province: *</label>
+                    <label class="col-2 col-form-label" for="abc01_05">Province: *</label>
                     <div class="col-2">
-                        <select class="custom-select mr-sm-2" id="EmpForm01ContactDetails04" name="updateAddProvince">
+                        <select class="custom-select mr-sm-2" id="abc01_05" name="updateAddProvince">
                             <option value="<%=employee.getAddress().getAddressProvince()%>" selected><%=employee.getAddress().getAddressProvince()%></option>
                             <option value="western">Western</option>
                             <option value="eastern">Eastern</option>
@@ -497,9 +522,9 @@
                             <option value="uva">Uva</option>
                         </select>
                     </div>
-					<label class="col-2 col-form-label" for="EmpForm01ContactDetails05">ZIP Code: *</label>
+					<label class="col-2 col-form-label" for="abc01_06">ZIP Code: *</label>
                     <div class="col-2">
-                    	<input type="number" class="form-control" name="updateAddZip" value="<%=employee.getAddress().getAddressZIPCode()%>">
+                    	<input type="number" class="form-control" name="updateAddZip" id="abc01_06" value="<%=employee.getAddress().getAddressZIPCode()%>">
                     	<!-- pattern="[0-9]{3}" -->
                     </div>
                 </div>
@@ -514,17 +539,16 @@
 		</div>
 		
         <div id="id02" class="modal">
-		  <form class="modal-content animate" action="/UpdateProfileDetailsEmployeeSide" method="post">
+		  <form class="modal-content animate" action="/SampathBankWebPortal/UpdateProfileDetailsEmployeeSide" method="post">
 		    <div class="imgcontainer">
 		      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
 		    </div>
 		
             <div style="width: 1000px; margin-left: 50px; padding: 5px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00;">
                 <div class="form-group row" style="margin-left: 100px; padding: 4px; padding-left: 16px">
-                    <label class="col-3 col-form-label" for="EmpForm01ContactDetails05">Personal Email: *</label>
+                    <label class="col-3 col-form-label" for="abc02">Personal Email: *</label>
                     <div class="col-4">
-                    	<input type="email" class="form-control" name="updatedPersonalEmail" value=<%=employee.getPersonalEmail() %>>
-                    	<!-- pattern="[0-9]{3}" -->
+                    	<input type="email" class="form-control" name="updatedPersonalEmail" id="abc02" value=<%=employee.getPersonalEmail() %>>
                     </div>
                 </div>
              </div>
@@ -538,17 +562,16 @@
 		</div>
 		
         <div id="id03" class="modal">
-		  <form class="modal-content animate" action="/UpdateProfileDetailsEmployeeSide" method="post">
+		  <form class="modal-content animate" action="/SampathBankWebPortal/UpdateProfileDetailsEmployeeSide" method="post">
 		    <div class="imgcontainer">
 		      <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
 		    </div>
 		
             <div style="width: 1000px; margin-left: 50px; padding: 5px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00;">
                 <div class="form-group row" style="margin-left: 100px; padding: 4px; padding-left: 16px;">
-                    <label class="col-3 col-form-label" for="EmpForm01ContactDetails05">Home Contact Number: *</label>
+                    <label class="col-3 col-form-label" for="abc03">Home Contact Number: *</label>
                     <div class="col-4">
-                    	<input type="text" class="form-control" name="updatedPersonalEmail" value=<%=employee.getHomeContact() %>>
-                    	<!-- pattern="[0-9]{3}" -->
+                    	<input type="text" class="form-control" name="updatedHomeContact" id="abc03" value=<%=employee.getHomeContact() %>>
                     </div>
                 </div>
              </div>
@@ -562,17 +585,16 @@
 		</div>
 		
         <div id="id04" class="modal">
-		  <form class="modal-content animate" action="/UpdateProfileDetailsEmployeeSide" method="post">
+		  <form class="modal-content animate" action="/SampathBankWebPortal/UpdateProfileDetailsEmployeeSide" method="post">
 		    <div class="imgcontainer">
 		      <span onclick="document.getElementById('id04').style.display='none'" class="close" title="Close Modal">&times;</span>
 		    </div>
 		
             <div style="width: 1000px; margin-left: 50px; padding: 5px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00;">
                 <div class="form-group row" style="margin-left: 100px; padding: 4px; padding-left: 16px">
-                    <label class="col-3 col-form-label" for="EmpForm01ContactDetails05">Mobile Contact Number: </label>
+                    <label class="col-3 col-form-label" for="abc04">Mobile Contact Number: </label>
                     <div class="col-4">
-                    	<input type="text" class="form-control" name="updatedPersonalEmail">
-                    	<!-- pattern="[0-9]{3}" -->
+                    	<input type="text" class="form-control" id="abc04" name="updatedMobileContact">
                     </div>
                 </div>
              </div>
@@ -584,6 +606,41 @@
 		    </div>
 		  </form>
 		</div>
+		
+        <div id="id05" class="modal">
+		  <form class="modal-content animate" action="/SampathBankWebPortal/UpdateProfileDetailsEmployeeSide" method="post">
+		    <div class="imgcontainer">
+		      <span onclick="document.getElementById('id05').style.display='none'" class="close" title="Close Modal">&times;</span>
+		    </div>
+		
+            <div style="width: 1000px; margin-left: 60px; padding: 5px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00;">
+                <div class="form-group row" style="margin-left: 200px; padding: 4px; padding-left: 16px">
+                    <label class="col-3 col-form-label" for="abc05_01">Old Password: </label>
+                    <div class="col-4">
+                    	<input type="password" class="form-control" name="updatedOldPassword" id="abc05_01">
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-left: 200px; padding: 4px; padding-left: 16px">
+                    <label class="col-3 col-form-label" for="abc05_02">New Password: </label>
+                    <div class="col-4">
+                    	<input type="password" class="form-control" name="updatedNewPassword" id="abc05_02">
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-left: 200px; padding: 4px; padding-left: 16px">
+                    <label class="col-3 col-form-label" for="abc05_03">Confirm New Password: </label>
+                    <div class="col-4">
+                    	<input type="password" class="form-control" name="updatedConfirmNewPassword" id="abc05_03">
+                    </div>
+                </div>
+             </div>
+		
+		    <div class="container">
+		    	<button type="reset" class="cancelbtn">Reset</button>
+		    	<button type="submit" class="cancelbtn" name="updatePassword">Submit</button>
+		      	<button type="button" onclick="document.getElementById('id05').style.display='none'" class="cancelbtn">Cancel</button>
+		    </div>
+		  </form>
+		</div>
 <!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
 		<script>
 			// Get the modal
@@ -591,17 +648,22 @@
 			var modal2 = document.getElementById('id02');
 			var modal3 = document.getElementById('id03');
 			var modal4 = document.getElementById('id04');
+			var modal5 = document.getElementById('id05');
 			
 			// When the user clicks anywhere outside of the modal, close it
 			window.onclick = function(event) {
-			    if (event.target == modal || event.target == modal2 || event.target == modal3 || event.target == modal4) {
+			    if (event.target == modal) {
 			        modal.style.display = "none";
+			    } else if (event.target == modal2) {
 			        modal2.style.display = "none";
+			    } else if (event.target == modal3) {
 			        modal3.style.display = "none";
+			    } else if (event.target == modal4) {
 			        modal4.style.display = "none";
+			    } else if (event.target == modal5) {
+			        modal5.style.display = "none";
 			    }
 			}
-		</script>
 		</script>
 <!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
     </body>

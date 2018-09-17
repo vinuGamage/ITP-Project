@@ -42,4 +42,15 @@ public class EHPMQueries {
 	public static final String EHPMquery0039 = "SELECT * FROM leave_request WHERE leaveStatus='submitted' ORDER BY leaveStartDate;";
 	public static final String EHPMquery0040 = "UPDATE leave_request SET leaveStatus=?, leaveReviewedBy=? WHERE leaveRequestId=?;";
 	public static final String EHPMquery0041 = "UPDATE leave_details SET noOfLeavesLeft=noOfLeavesLeft-?, lastEffectiveLeaveDate=? WHERE employeeId=?;";
+	public static final String EHPMquery0042 = "SELECT password FROM online_employee_credentials WHERE employeeId=?;";
+	public static final String EHPMquery0043 = "UPDATE online_employee_credentials SET password=? WHERE employeeId=?;";
+	public static final String EHPMquery0044 = "SELECT * FROM employee_update_requests WHERE employeeId=?;";
+	public static final String EHPMquery0045 = "INSERT INTO employee_update_requests(employeeId, addressStreet01, addressStreet02, addressCity, addressProvince, addressZipCode) VALUES(?, ?, ?, ?, ?, ?);";
+	public static final String EHPMquery0046 = "UPDATE employee_update_requests SET addressStreet01=?, addressStreet02=?, addressCity=?, addressProvince=?, addressZipCode=? WHERE employeeId=?;";
+	public static final String EHPMquery0047 = "INSERT INTO employee_update_requests(employeeId, personalEmail) VALUES(?, ?);";
+	public static final String EHPMquery0048 = "UPDATE employee_update_requests SET personalEmail=? WHERE employeeId=?;";
+	public static final String EHPMquery0049 = "INSERT INTO employee_update_requests(employeeId, homeContact) VALUES(?, ?);";
+	public static final String EHPMquery0050 = "UPDATE employee_update_requests SET homeContact=? WHERE employeeId=?;";
+	public static final String EHPMquery0051 = "INSERT INTO employee_update_requests(employeeId, mobileContact) VALUES(?, ?);";
+	public static final String EHPMquery0052 = "UPDATE employee_update_requests SET mobileContact=? WHERE employeeId=?;";
 }
