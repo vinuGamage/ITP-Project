@@ -115,6 +115,21 @@
                             <a class="dropdown-item" href="#" style="color:white">normal employee job 05</a>
                         </div>
                     </li>
+                   	<%} else if(employee.getDesignation().getDesignation().equals("user manager")) {%>
+                    <li class="nav-item dropdown" title="Click to See Your Duties">
+                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
+                        <div class="dropdown-menu nav-dropdown">
+                            <a class="dropdown-item" href="/CustomerRegistrationManagementController?var=getAllRequests" style="color:white">Online Customer Account Management</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" style="color:white">normal employee job 02</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" style="color:white">normal employee job 03</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" style="color:white">normal employee job 04</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" style="color:white">normal employee job 05</a>
+                        </div>
+                    </li>
                     <%} %>
                     
                     <li class="nav-item dropdown" title="Click to See Leave Related Options">

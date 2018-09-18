@@ -70,6 +70,18 @@
   	<description></description>
   	<servlet-class>CONTROLLER_SERVLET.employee_hr_payroll_management.human_resource_manager.UpdateProfileDetailsHRSide</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>CustomerRegistrationController</servlet-name>
+  	<display-name>CustomerRegistrationController</display-name>
+  	<description></description>
+  	<servlet-class>CONTROLLER_SERVLET.user_management.CustomerRegistrationController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>CustomerRegistrationManagementController</servlet-name>
+  	<display-name>CustomerRegistrationManagementController</display-name>
+  	<description></description>
+  	<servlet-class>CONTROLLER_SERVLET.user_management.CustomerRegistrationManagementController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>EmployeeRecruitment</servlet-name>
   	<url-pattern>/EmployeeRecruitment</url-pattern>
@@ -113,6 +125,14 @@
   <servlet-mapping>
   	<servlet-name>UpdateProfileDetailsHRSide</servlet-name>
   	<url-pattern>/UpdateProfileDetailsHRSide</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CustomerRegistrationController</servlet-name>
+  	<url-pattern>/CustomerRegistrationController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CustomerRegistrationManagementController</servlet-name>
+  	<url-pattern>/CustomerRegistrationManagementController</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
   	<welcome-file>UM_Homepage_Common.jsp</welcome-file>

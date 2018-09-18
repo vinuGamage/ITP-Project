@@ -34,19 +34,33 @@ public class LoginDAO {
 		if(onlineAccount != null) {
 			Customer customer = checkCustomerPhysicalDetails(onlineAccount, commonEntityManager);
 			
-			genericLogin.setFound(true);
-			genericLogin.setType("customer");
-			genericLogin.setCustomer(customer);
-			genericLogin.setEmployee(null);
+			if(customer != null ) {
+				genericLogin.setFound(true);
+				genericLogin.setType("customer");
+				genericLogin.setCustomer(customer);
+				genericLogin.setEmployee(null);
+			} else {
+				genericLogin.setFound(false);
+				genericLogin.setType("customerError01");
+				genericLogin.setCustomer(null);
+				genericLogin.setEmployee(null);
+			}
 		} else {
 			onlineAccount = checkOnlineEmployeeCredentials(username, password);
 			if(onlineAccount != null) {
 				Employee employee = checkEmployeePhysicalDetails(onlineAccount, commonEntityManager);
 				
-				genericLogin.setFound(true);
-				genericLogin.setType("employee");
-				genericLogin.setCustomer(null);
-				genericLogin.setEmployee(employee);
+				if(employee != null) {
+					genericLogin.setFound(true);
+					genericLogin.setType("employee");
+					genericLogin.setCustomer(null);
+					genericLogin.setEmployee(employee);
+				} else {
+					genericLogin.setFound(false);
+					genericLogin.setType("employeeError01");
+					genericLogin.setCustomer(null);
+					genericLogin.setEmployee(null);
+				}
 			}else {
 				genericLogin.setFound(false);
 				genericLogin.setType("none");
@@ -91,16 +105,16 @@ public class LoginDAO {
 			boolean m = false;
 			boolean x = false;
 			while(UM_ResultSet0001.next()) {
-				m = true;
 				System.out.println("Some records found on online_customer_credentials(online_customer_credentials)");
 				System.out.println("Let's see whether they are exactly matching(online_customer_credentials)");
 				usernameDB = UM_ResultSet0001.getString("username");
 				passwordDB = UM_ResultSet0001.getString("password");
+				m = true;
 				
 				if(Validator.validateLoginCredentials(username, password, usernameDB, passwordDB)) {
 					//online_customer_credentials found
 					System.out.println("Exactly matching record found on online_customer_credentials table(online_customer_credentials)");
-					x = true;
+					
 					//OnlineAccount object creation for customer
 					System.out.println("Extracting online_customer_credentials table(online_customer_credentials)");
 					
@@ -108,7 +122,7 @@ public class LoginDAO {
 					onlineAccount.setOnlinePersonId(UM_ResultSet0001.getString("onlineCustomerId"));
 					onlineAccount.setPhysicalPersonId(UM_ResultSet0001.getString("customerId"));
 					onlineAccount.setUsername(UM_ResultSet0001.getString("username"));
-					
+					x = true;
 					break;
 				} else {
 					System.out.println("No record found to be EXACTLY MATCHING(online_customer_credentials)");
@@ -200,7 +214,8 @@ public class LoginDAO {
 					//creating and binding online_security_key object to person
 					customer.setOnlineSecurityKey(new OnlineSecurityKey(UM_ResultSet0007.getInt(1), UM_ResultSet0007.getString(2)));
 				} else {
-					
+					customer = null;
+					System.out.println("No online security credentials though there was details...");
 				}
 			} else {
 				customer = null;
@@ -259,16 +274,15 @@ public class LoginDAO {
 			boolean m = false;
 			boolean x = false;
 			while(UM_ResultSet0002.next()) {
-				m = true;
 				System.out.println("Some records found on online_employee_credentials(online_employee_credentials)");
 				System.out.println("Let's see whether they are exactly matching(online_employee_credentials)");
 				usernameDB = UM_ResultSet0002.getString("username");
 				passwordDB = UM_ResultSet0002.getString("password");
+				m = true;
 				
 				if(Validator.validateLoginCredentials(username, password, usernameDB, passwordDB)) {
 					//online_employee_credentials found
 					System.out.println("Exactly matching record found on online_employee_credentials table(online_employee_credentials)");
-					x = true;
 					//OnlineAccount object creation for customer
 					System.out.println("Extracting online_customer_credentials table(online_employee_credentials)");
 					
@@ -276,7 +290,7 @@ public class LoginDAO {
 					onlineAccount.setOnlinePersonId(UM_ResultSet0002.getString("onlineEmployeeId"));
 					onlineAccount.setPhysicalPersonId(UM_ResultSet0002.getString("employeeId"));
 					onlineAccount.setUsername(UM_ResultSet0002.getString("username"));
-					
+					x = true;
 					break;
 				} else {
 					System.out.println("No record found to be EXACTLY MATCHING(online_employee_credentials)");
@@ -359,7 +373,8 @@ public class LoginDAO {
 					//creating and binding online_security_key object to person
 					employee.setOnlineSecurityKey(new OnlineSecurityKey(UM_ResultSet0004.getInt(1), UM_ResultSet0004.getString(2)));
 				} else {
-					
+					employee = null;
+					System.out.println("could not find online security key.");
 				}
 			} else {
 				employee = null;
