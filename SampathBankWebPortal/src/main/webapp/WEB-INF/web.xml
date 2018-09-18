@@ -68,7 +68,7 @@
   	<servlet-name>UpdateProfileDetailsHRSide</servlet-name>
   	<display-name>UpdateProfileDetailsHRSide</display-name>
   	<description></description>
-  	<servlet-class>DAO_SERVICE.employee_hr_payroll_management.human_resource_manager.UpdateProfileDetailsHRSide</servlet-class>
+  	<servlet-class>CONTROLLER_SERVLET.employee_hr_payroll_management.human_resource_manager.UpdateProfileDetailsHRSide</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>EmployeeRecruitment</servlet-name>

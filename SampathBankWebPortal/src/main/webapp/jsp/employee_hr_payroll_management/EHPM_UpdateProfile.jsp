@@ -83,7 +83,7 @@
                             <a class="dropdown-item" href="" style="color:white">Search for Employees</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/HRLeaveRequestManagement?lmanage=getAllLeaveRequests" style="color:white">Leave Request Management</a>
-                            <a class="dropdown-item" href="#" style="color:white">Update Details Request Management</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/UpdateProfileDetailsHRSide?upmanage=retrieveAll" style="color:white">Update Details Request Management</a>
                             <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
                         </div>
                     </li>
@@ -159,7 +159,7 @@
                     <li class="nav-item dropdown" title="Click to See Profile Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Profile Related</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Profile Details</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_ViewProfile.jsp" style="color:white">Profile Details</a>
                             <a class="dropdown-item" href="#" style="color:white">Update Profile</a>
                         </div>
                     </li>
@@ -497,7 +497,7 @@
                             <%if(employee.getAddress().getAddressStreet02() == null || employee.getAddress().getAddressStreet02().trim().length() == 0) {%>
                             	<input type="text" class="form-control" name="updateAddStreet02" id="abc01_03" placeholder="No Address Street 02 given">
                             <%} else {%>
-                            	<input type="text" class="form-control" name="updateAddStreet02" id="abc01_03" value="employee.getAddress().getAddressStreet02()">
+                            	<input type="text" class="form-control" name="updateAddStreet02" id="abc01_03" value="<%=employee.getAddress().getAddressStreet02() %>">
                             <%} %>
                         </div>
                     </div>

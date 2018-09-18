@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.Collection, java.util.ArrayList" %>
-<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, POJO_MODEL.user_management.Updation"%>
+<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, POJO_MODEL.employee_hr_payroll_management.UpdateRequestManagement,
+	POJO_MODEL.user_management.Updation"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,15 +14,15 @@
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        <title>Leave Requests</title>
+        <title>Update Requests</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
 		
 			if(employee == null || !employee.getDesignation().getDesignation().equals("human resource manager"))
 				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
 			
-			Collection<LeaveRequest> managementLeaveRequestList = (ArrayList<LeaveRequest>) session.getAttribute("managementLeaveRequestList");
-			if(managementLeaveRequestList == null)
+			Collection<UpdateRequestManagement> list = (ArrayList<UpdateRequestManagement>) session.getAttribute("list");
+			if(list == null)
 				response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp");
 		%>
     </head>
@@ -79,14 +80,14 @@
                     <li class="nav-item dropdown" title="Click to See Your Duties">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Recruit an Employee</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_RecruitAnEmployee.jsp" style="color:white">Recruit an Employee</a>
                             <a class="dropdown-item" href="/SampathBankWebPortal/OnlineEmployeeAccountController?abc=check" style="color:white">Create Employee Online Account</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=allActive" style="color:white">Active Employees</a>
                             <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=inActive" style="color:white">Inactive Employees</a>
                             <a class="dropdown-item" href="#" style="color:white">Search for Employees</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Leave Request Management</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/HRLeaveRequestManagement?lmanage=getAllLeaveRequests" style="color:white">Leave Request Management</a>
                             <a class="dropdown-item" href="#" style="color:white">Update Details Request Management</a>
                             <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
                         </div>
@@ -132,8 +133,8 @@
                     <li class="nav-item dropdown" title="Click to See Profile Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Profile Related</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Profile Details</a>
-                            <a class="dropdown-item" href="#" style="color:white">Update Profile</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_ViewProfile.jsp" style="color:white">Profile Details</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_UpdateProfile.jsp" style="color:white">Update Profile</a>
                         </div>
                     </li>
                 </ul>
@@ -153,38 +154,34 @@
 
         <div class="container" style="margin-bottom: 100px; height: auto;">
 
-		<%if(managementLeaveRequestList != null) {%>
+		<%if(list != null) {%>
 			<table class="table table-hover" style="margin-top: 40px;">
 			  <thead class="thead-light">
 			    <tr>
-			      <th scope="col">Employee Id</th>
-			      <th scope="col">Leave Type</th>
-			      <th scope="col">Start Date</th>
-			      <th scope="col">Duration</th>
-			      <th scope="col">####</th>
-			      <th scope="col">####</th>
-			      <th scope="col">####</th>
+			      <th style="width: 30px;" scope="col">Employee Id</th>
+			      <th style="width: 350px;" scope="col">Requested Field To Be Changed</th>
+			      <th style="width: 60px;" scope="col">####</th>
+			      <th style="width: 60px;" scope="col">####</th>
+			      <th style="width: 60px;" scope="col">####</th>
 			    </tr>
 			  </thead>
 			  <tbody>
-			  <%for(LeaveRequest lr: managementLeaveRequestList) {%>
+			  <% for(UpdateRequestManagement URM: list) { %>
 			    <tr>
-			    <form action="/SampathBankWebPortal/HRLeaveRequestManagement" method="post">
-					<td style="font-weight: bold;"><%=lr.getEmployeeId() %></td>
-					<td style="font-weight: bold;"><%=lr.getLeaveType() %></td>
-					<td style="font-weight: bold;"><%=lr.getLeaveStartDate() %></td>
-			      	<td style="font-weight: bold;"><%=lr.getLeaveDuration() %></td>
-			      	<input type="hidden" name="leaveRequestId" value="<%=lr.getLeaveRequestId() %>"/>
-					<td><input type="submit" name="leaveShowBtn" value="Show" style="margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/></td>
-					<td><input type="submit" name="leaveGrantBtn" value="Grant" style="margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/></td>
-					<td><input type="submit" name="leaveRejectBtn" value="Reject" style="margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/></td>
+			    <form action="/SampathBankWebPortal/UpdateProfileDetailsHRSide" method="post">
+					<td style="width: 30px; font-weight: bold;"><%=URM.getEmployee().getPersonId() %></td>
+					<td style="width: 350px; font-weight: bold;"><%=URM.getDiffStuff() %></td>
+			      	<input style="width: 70px;" type="hidden" name="employeetId" value="<%=URM.getEmployee().getPersonId() %>">
+					<td><input type="submit" name="updateShow" value="Show" style="width: full; margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/></td>
+					<td><input type="submit" name="updateApprove" value="Approve" style="width: full; margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/></td>
+					<td><input type="submit" name="updateReject" value="Reject" style="width: full; margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/></td>
 			  	</form>
 			    </tr>
 			  <%} %>
 			  </tbody>
 			</table>
 		<%} else { %>
-			There are no leave requests to manage.
+			There are no update requests to manage.
 		<%} %>
 
 

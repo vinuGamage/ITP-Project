@@ -55,4 +55,6 @@ public class EHPMQueries {
 	public static final String EHPMquery0052 = "UPDATE employee_update_requests SET mobileContact=? WHERE employeeId=?;";
 	public static final String EHPMquery0053 = "SELECT * FROM employee_update_requests;";
 	public static final String EHPMquery0054 = "SELECT * FROM person WHERE personId=?;";
+	public static final String EHPMquery0055 = "UPDATE person SET addressStreet01=?, addressStreet02=?, addressCity=?, addressProvince=?, addressZipCode=?, personalEmail=?, homeContact=?, mobileContact=? WHERE personId=?;";
+	public static final String EHPMquery0056 = "DELETE FROM employee_update_requests WHERE employeeId=?;";
 }

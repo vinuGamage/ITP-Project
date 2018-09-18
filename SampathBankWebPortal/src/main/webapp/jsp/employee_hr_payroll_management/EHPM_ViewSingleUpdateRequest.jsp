@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, POJO_MODEL.employee_hr_payroll_management.LeaveRequest, 
-java.util.Collection, java.util.ArrayList"%>
+<%@ page import="java.util.Collection, java.util.ArrayList" %>
+<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, POJO_MODEL.employee_hr_payroll_management.UpdateRequestManagement,
+	POJO_MODEL.user_management.Updation"%>
 <!DOCTYPE html>
-<html>
-	<head>
-		<!-- Required meta tags -->
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
         <meta charset="ISO-8859-1">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -13,16 +14,20 @@ java.util.Collection, java.util.ArrayList"%>
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<title>Leave</title>
+        <title>Update Requests</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
-			if(employee == null)
+		
+			if(employee == null || !employee.getDesignation().getDesignation().equals("human resource manager"))
 				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
 			
-			LeaveRequest lr = (LeaveRequest) request.getAttribute("leaveR");
+			UpdateRequestManagement URM = (UpdateRequestManagement) request.getAttribute("URM");
+			if(URM == null)
+				response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp");
 		%>
-	</head>
-	<body>
+    </head>
+
+    <body>
         <nav class="navbar fixed-top navbar-expand-md navbar-dark fixed-stuff">
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav mr-auto">
@@ -80,14 +85,13 @@ java.util.Collection, java.util.ArrayList"%>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=allActive" style="color:white">Active Employees</a>
                             <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=inActive" style="color:white">Inactive Employees</a>
-                            <a class="dropdown-item" href="" style="color:white">Search for Employees</a>
+                            <a class="dropdown-item" href="#" style="color:white">Search for Employees</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/HRLeaveRequestManagement?lmanage=getAllLeaveRequests" style="color:white">Leave Request Management</a>
                             <a class="dropdown-item" href="/SampathBankWebPortal/UpdateProfileDetailsHRSide?upmanage=retrieveAll" style="color:white">Update Details Request Management</a>
                             <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
                         </div>
                     </li>
-                    
                     <li class="nav-item dropdown" title="Click to See Leave Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Leave Request Inquiry</a>
                         <div class="dropdown-menu nav-dropdown">
@@ -142,56 +146,45 @@ java.util.Collection, java.util.ArrayList"%>
 -->
 		<nav aria-label="breadcrumb" class="breadcrumb-stuff">
 		  <ol class="breadcrumb">
-		    <li class="breadcrumb-item" aria-current="page"><a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp">EmpHome</a></li>
+		    <li class="breadcrumb-item"><a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp">EmpHome</a></li>
 		    <li class="breadcrumb-item active">Employee Duties</li>
 		    <li class="breadcrumb-item active" aria-current="page">Leave Request Management</li>
-		    <li class="breadcrumb-item active" aria-current="page"><%=lr.getEmployeeId() %></li>
 		  </ol>
 		</nav>
-		
-        <div class="container" style="margin-bottom: 100px; height: 100%">
-			<%if(lr != null) {%>
-			<table class="table table-borderless" style="border-color: #FD4F00; border-width: 2px; border-style: solid;">
+
+        <div class="container" style="margin-bottom: 100px; height: auto;">
+
+		<%if(URM != null) {%>
+			<table class="table table-hover" style="margin-top: 40px;">
+			  <thead class="thead-light">
+			    <tr>
+			      <th style="width: 30px;" scope="col">Employee Id</th>
+			      <th style="width: 350px;" scope="col">Requested Field To Be Changed</th>
+			      <th style="width: 60px;" scope="col">####</th>
+			      <th style="width: 60px;" scope="col">####</th>
+			      <th style="width: 60px;" scope="col">####</th>
+			    </tr>
+			  </thead>
 			  <tbody>
 			    <tr>
-			      <th>Employee ID: </th>
-			      <td style="border-right-color: #FD4F00; border-right-width: 1px; border-right-style: solid;"><%=lr.getEmployeeId() %></td>
-			      <th>LR ID: </th>
-			      <td style="border-right-color: #FD4F00; border-right-width: 1px; border-right-style: solid;"><%=lr.getLeaveRequestId() %></td>
-			      <th>LR Applied: </th>
-			      <td><%=lr.getLeaveRequestedDate() %></td>
+			    <form action="/SampathBankWebPortal/UpdateProfileDetailsHRSide" method="post">
+					<td style="width: 30px; font-weight: bold;"><%=URM.getEmployee().getPersonId() %></td>
+					<td style="width: 350px; font-weight: bold;"><%=URM.getDiffStuff() %></td>
+			      	<input style="width: 70px;" type="hidden" name="employeetId" value="<%=URM.getEmployee().getPersonId() %>">
+					<td><input type="submit" name="updateShow" value="Show" style="width: full; margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/></td>
+					<td><input type="submit" name="updateApprove" value="Approve" style="width: full; margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/></td>
+					<td><input type="submit" name="updateReject" value="Reject" style="width: full; margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/></td>
+			  	</form>
 			    </tr>
 			  </tbody>
 			</table>
-			<table class="table table-borderless" style="border-color: #FD4F00; border-width: 2px; border-style: solid;">
-			  <tbody>
-			    <tr>
-			      <th scope="row">Leave Due Date: </th>
-			      <td style="border-right-color: #FD4F00; border-right-width: 1px; border-right-style: solid;"><%=lr.getLeaveStartDate() %></td>
-			      <th scope="row">Duration: </th>
-			      <td style="border-right-color: #FD4F00; border-right-width: 1px; border-right-style: solid;"><%=lr.getLeaveDuration() %></td>
-			      <th scope="row">Leave Type: </th>
-			      <td style="border-right-color: #FD4F00; border-right-width: 1px; border-right-style: solid;"><%=lr.getLeaveType() %></td>
-			      <th scope="row">Review Speed: </th>
-			      <td ><%=lr.getLeaveReviewSpeed() %></td>
-			    </tr>
-			  </tbody>
-			</table>
-			<table class="table table-borderless" style="border-color: #FD4F00; border-width: 2px; border-style: solid;">
-			  <tbody>
-			    <tr>
-			      <th scope="row">Leave Request Description: </th>
-			    </tr>
-			    <tr>
-			      <td><%=lr.getLeaveDescription() %></td>
-			    </tr>
-			  </tbody>
-			</table>
-			<%} else { %>
-				Some Error.
-			<%} %>
-		</div>
-		
+		<%} else { %>
+			Some Error.
+		<%} %>
+
+
+        </div>
+
         <!-- Footer -->
         <footer class="page-footer font-small blue pt-4 footer-all">
             <div class="container-fluid text-center text-md-left">

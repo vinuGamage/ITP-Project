@@ -87,7 +87,7 @@
                             <a class="dropdown-item" href="#" style="color:white">Search for Employees</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave Request Management</a>
-                            <a class="dropdown-item" href="#" style="color:white">Update Details Request Management</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/UpdateProfileDetailsHRSide?upmanage=retrieveAll" style="color:white">Update Details Request Management</a>
                             <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
                         </div>
                     </li>
@@ -132,8 +132,8 @@
                     <li class="nav-item dropdown" title="Click to See Profile Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Profile Related</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Profile Details</a>
-                            <a class="dropdown-item" href="#" style="color:white">Update Profile</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_ViewProfile.jsp" style="color:white">Profile Details</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_UpdateProfile.jsp" style="color:white">Update Profile</a>
                         </div>
                     </li>
                 </ul>
@@ -157,13 +157,13 @@
 			<table class="table table-hover" style="margin-top: 40px;">
 			  <thead class="thead-light">
 			    <tr>
-			      <th scope="col">Employee Id</th>
-			      <th scope="col">Leave Type</th>
-			      <th scope="col">Start Date</th>
-			      <th scope="col">Duration</th>
-			      <th scope="col">####</th>
-			      <th scope="col">####</th>
-			      <th scope="col">####</th>
+			      <th style="width: 130px;" scope="col">Employee Id</th>
+			      <th style="width: 200px;" scope="col">Leave Type</th>
+			      <th style="width: 100px;" scope="col">Start Date</th>
+			      <th style="width: 90px;" scope="col">Duration</th>
+			      <th style="width: 90px;" scope="col">####</th>
+			      <th style="width: 90px;" scope="col">####</th>
+			      <th style="width: 90px;" scope="col">####</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -175,9 +175,9 @@
 					<td style="font-weight: bold;"><%=lr.getLeaveStartDate() %></td>
 			      	<td style="font-weight: bold;"><%=lr.getLeaveDuration() %></td>
 			      	<input type="hidden" name="leaveRequestId" value="<%=lr.getLeaveRequestId() %>"/>
-					<td><input type="submit" name="leaveShowBtn" value="Show" style="margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/></td>
-					<td><input type="submit" name="leaveGrantBtn" value="Grant" style="margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/></td>
-					<td><input type="submit" name="leaveRejectBtn" value="Reject" style="margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/></td>
+					<td><input type="submit" name="leaveShowBtn" value="Show" style="width: full; margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/></td>
+					<td><input type="submit" name="leaveGrantBtn" value="Grant" style="width: full; margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/></td>
+					<td><input type="submit" name="leaveRejectBtn" value="Reject" style="width: full; margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/></td>
 			  	</form>
 			    </tr>
 			  <%} %>
