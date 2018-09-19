@@ -31,7 +31,7 @@
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item" title="Sign Up">
-                        <a class="nav-link" href="UM_Registration2.jsp"><span class="fa fa-user"></span> Sign Up</a>
+                        <a class="nav-link" href="/SampathBankWebPortal/jsp/user_management/UM_CustomerRegistrationInitial.jsp"><span class="fa fa-user"></span> Sign Up</a>
                     </li>
                     <li class="nav-item" title="Login">
                         <a class="nav-link" href="/SampathBankWebPortal/jsp/user_management/UM_Login.jsp"><span class="fa fa-sign-in"></span> Login</a>

@@ -80,24 +80,58 @@
             </div>
         </header>
 
-        <div class="container" style="height: auto; padding-top: 40px;">
+        <div class="container" style="height: 1000px; padding-top: 40px;">
 <!-- 
 	FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM
  -->    
  			<h4 style="color: red; text-align: center;">This is for customer registration only!</h4>
  			<h4 style="color: red; text-align: center;">Customers who are registering needs to have a physical account in the bank itself!!</h4>
  			
- 			<form action="/SampathBankWebPortal/CustomerRegistrationController" method="post">
-	 			<input type="text" name="regNic" placeholder="NIC"/>
+ 			
+<!-- 	 			<input type="text" name="regNic" placeholder="NIC"/>
 	 			<input type="date" name="regDOB" placeholder="date"/>
 	 			<input type="text" name="regZIP" placeholder="00000"/>
 	 			<input type="email" name="regPersonalEmail" placeholder="abc@abc.com"/>
 	 			<input type="text" name="regAccountNo" placeholder="000000000"/>
-	 			<input type="submit" name="submitInitialRegistration"/>
+	 			<input type="submit" name="submitInitialRegistration"/> -->
+ 			
+ 			<form action="/SampathBankWebPortal/CustomerRegistrationController" method="post">
+	 			<div style="float: center; margin-right: 5px;">
+	                <div style="width: 550px; align: center; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
+	                    <div class="form-group row" style="padding: 4px; padding-left: 16px">
+	                        <label class="col-4 col-form-label" for="reg01">NIC: *</label>
+	                        <div class="col-8">
+	                        	<input type="text" class="form-control" id="reg01" name="regNic" placeholder="000000000v">
+	                        </div>
+	                    </div>
+	                    <div class="form-group row" style="padding: 4px; padding-left: 16px">
+	                        <label class="col-4 col-form-label" for="reg02">Date of Birth:</label>
+	                        <div class="col-8">
+	                            <input type="date" class="form-control" id="reg02" name="regDOB">
+	                        </div>
+	                    </div>
+	                    <div class="form-group row" style="padding: 4px; padding-left: 16px">
+	                        <label class="col-4 col-form-label" for="reg03">ZIP: *</label>
+	                        <div class="col-8">
+	                        	<input type="number" class="form-control" id="reg03" name="regZIP">
+	                        </div>
+	                    </div>
+	                    <div class="form-group row" style="padding: 4px; padding-left: 16px">
+	                        <label class="col-4 col-form-label" for="reg04">Personal Email:</label>
+	                        <div class="col-8">
+	                            <input type="text" class="form-control" id="reg04" name="regPersonalEmail" placeholeder="email@email.com">
+	                        </div>
+	                    </div>
+	                    <div class="form-group row" style="padding: 4px; padding-left: 16px">
+	                        <label class="col-4 col-form-label" for="reg05">Account No:</label>
+	                        <div class="col-8">
+	                            <input type="number" class="form-control" id="reg05" name="regAccountNo">
+	                        </div>
+	                    </div>
+	                </div>
+				</div>
+				<input type="submit" name="submitInitialRegistration"/>
  			</form>
- 
- 
- 
          
 
 		 </div>
