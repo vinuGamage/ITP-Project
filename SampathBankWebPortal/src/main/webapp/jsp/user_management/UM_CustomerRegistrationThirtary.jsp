@@ -88,11 +88,14 @@
 <!-- 
 	FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM
  -->    
- 			<h4 style="color: red; text-align: center;">Please Enter the 5 digit pin you received via email!</h4>
+ 			<h4 style="color: red; text-align: center;">Please fill the necessary details!</h4>
  			
  			<form action="/SampathBankWebPortal/CustomerRegistrationController" method="post">
-	 			<input type="number" name="regOnlinePin" placeholder="00000"/>
-	 			<input type="submit" name="submitSecondaryegistration"/>
+	 			<input type="text" name="question01" placeholder="Who am I ?"/>
+	 			<input type="text" name="answer01" placeholder="me"/>
+	 			<input type="text" name="question02" placeholder="Who are you ?"/>
+	 			<input type="text" name="answer02" placeholder="you"/>
+	 			<input type="submit" name="submitThirtaryegistration" value="Finish"/>
  			</form>
  
  

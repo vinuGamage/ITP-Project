@@ -13,15 +13,14 @@
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<title>Customer Online Account Requests</title>
+		<title>Customer Online Account Request</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
 			if(employee == null)
 				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
-			Collection<Customer> requestList = (ArrayList<Customer>)session.getAttribute("requestList");
-				if(requestList == null)
+			Customer customer = (Customer)request.getAttribute("customer");
+				if(customer == null)
 					response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp");
-			
 		%>
 	</head>
 	<body>
@@ -182,57 +181,134 @@
 -->
 		<nav aria-label="breadcrumb" class="breadcrumb-stuff">
 		  <ol class="breadcrumb">
-		    <li class="breadcrumb-item" aria-current="page"><a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp">EmpHome</a></li>
-		    <li class="breadcrumb-item active">Leave Request Inquiry</a></li>
-		    <li class="breadcrumb-item active" aria-current="page">Leave History</li>
+		    <li class="breadcrumb-item"><a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp">EmpHome</a></li>
+		    <li class="breadcrumb-item active">Employee Duties</a></li>
+		    <li class="breadcrumb-item active" aria-current="page">Online Customer Account Management</li>
+		    <%if(customer != null) {%>
+		    <li class="breadcrumb-item active" aria-current="page"><%=customer.getPersonId() %></li>
+		    <%} else { %>
+		    <li class="breadcrumb-item active" aria-current="page">XXXXX</li>
+		    <%} %>
 		  </ol>
 		</nav>
 		
-        <div class="container" style="margin-bottom: 100px; height: auto%; margin-top: 30px;">
-			<%if(requestList != null) {%>
-				<table class="table table-borderless table-hover" style="border-color: #FD4F00; border-width: 1px; border-style: solid;">
-				  <thead style="background-color: #FD4F00;">
-				    <tr style="color:white;">
-				      <th scope="col" style="width: 100px;">CustomerID</th>
-				      <th scope="col" style="width: 220px;">Customer Name</th>
-				      <th scope="col" style="width: 170px;">Physical Registration Date</th>
-				      <th scope="col" style="width: 30px;"></th>
-				      <th scope="col" style="width: 30px;"></th>
-				      <th scope="col" style="width: 30px;"></th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				  <%for(Customer cus: requestList) {%>
-				    <tr>
-				      <th scope="row"><%=cus.getPersonId() %></th>
-				      <td ><%=cus.getName().getFullName() %></td>
-				      <td ><%=cus.getRegistrationDates().getPhysicalRegistrationDate() %></td>
-				      <td style="width: 30px;">
-				      	<form action="/SampathBankWebPortal/CustomerRegistrationManagementController" method="post">
-				      		<input type="hidden" value="<%=cus.getPersonId() %>" name="requestId"/>
-				      		<input type="submit" value="Show" name="displayRequest" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/>
-				      	</form>
-				      </td>
-				      <td style="width: 30px;">
-				      	<form action="/SampathBankWebPortal/CustomerRegistrationManagementController" method="post">
-				      		<input type="hidden" value="<%=cus.getPersonId() %>" name="requestId"/>
-				      		<input type="submit" value="Approve" name="approveRequest" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/>
-				      	</form>
-				      </td>
-				      <td style="width: 30px;">
-				      	<form action="/SampathBankWebPortal/CustomerRegistrationManagementController" method="post">
-				      		<input type="hidden" value="<%=cus.getPersonId() %>" name="requestId"/>
-				      		<input type="submit" value="Reject" name="rejectRequest" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/>
-				      	</form>
-				      </td>
-				    </tr>
-				    <%} %>
-				  </tbody>
-				</table>
-			<%} else { %>
-				There are no requests for customer online registration.
-			<%} %>
+		
+        <div class="container-fluid" style="margin-bottom: 100px; height: 1000px;">
+        
+		<%if(customer != null) {%>
+		<h3 style="font-weight: bold;"><%=customer.getPersonId() %> : <%=customer.getName().getFullName() %></h3>
+					<div style="float: left; margin-right: 15px; margin-left: 22px;">
+                        <div style="width: 700px; float: left; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
+                            <h5>Basic Details</h5>
+                            <table class="table table-borderless">
+                            	<tbody>
+                            		<tr>
+                            			<th scope="row">Full Name: </th>
+                            			<td><%=customer.getName().getFullName()%></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Gender: </th>
+                            			<td><%=customer.getGender().getGender() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Nationality: </th>
+                            			<td><%=customer.getNationality().getNationality() %></td>
+                            		</tr>
+                            	</tbody>
+                            </table>
+                        </div>
+
+                        <div style="width: 700px; padding: 5px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; clear: both">
+                            <h5>Contact Details</h5>
+                            <table class="table table-borderless">
+                            	<tbody>
+                            	<%if(customer.getAddress().getAddressStreet02() != null && customer.getAddress().getAddressStreet02().trim().length() != 0) {%>
+                            		<tr>
+                            			<th scope="row">Street Address (Line 01): </th>
+                            			<td><%=customer.getAddress().getAddressStreet01() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Street Address (Line 02): </th>
+                            			<td><%=customer.getAddress().getAddressStreet02() %></td>
+                            		</tr>
+                            	<%} else {%>
+                            		<tr>
+                            			<th scope="row">Street Address: </th>
+                            			<td><%=customer.getAddress().getAddressStreet01() %></td>
+                            		</tr>
+                            	<%} %>
+                            		<tr>
+                            			<th scope="row">City: </th>
+                            			<td><%=customer.getAddress().getAddressCity() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Province: </th>
+                            			<td><%=customer.getAddress().getAddressProvince() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">ZIP Code: </th>
+                            			<td><%=customer.getAddress().getAddressZIPCode() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Contact Number </br>(Home): </th>
+                            			<td><%=customer.getHomeContact() %></td>
+                            		</tr>
+								<%if(customer.getMobileContact() != null && customer.getMobileContact().trim().length() != 0) {%>
+                            		<tr>
+                            			<th scope="row">Contact Number (Mobile): </th>
+                            			<td><%=customer.getMobileContact() %></td>
+                            		</tr>
+                            	<%} %>
+                            		<tr>
+                            			<th scope="row">Personal Email: </th>
+                            			<td><%=customer.getPersonalEmail() %></td>
+                            		</tr>
+                            	</tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div style="float: left;">
+                        <div style="width: 700px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
+                            <h5>Identification</h5>
+                            <table class="table table-borderless">
+                            	<tbody>
+                            		<tr>
+                            			<th scope="row">Customer ID: </th>
+                            			<td><%=customer.getPersonId() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">NIC: </th>
+                            			<td><%=customer.getNic() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Date of Birth: </th>
+                            			<td><%=customer.getDateOfBirth() %></td>
+                            		</tr>
+                            	</tbody>
+                            </table>
+                        </div>
+
+                        <div style="width: 700px; padding: 5px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; clear: both; margin-bottom: 5px;">
+                            <h5>Company Association</h5>
+                            <table class="table table-borderless">
+                            	<tbody>
+                            		<tr>
+                            			<th scope="row">Branch: </th>
+                            			<td><%=customer.getBranch().getBranchAddress().getAddressCity() %></td>
+                            		</tr>
+									<tr>
+                            			<th scope="row">Physical Registration Date: </th>
+                            			<td><%=customer.getRegistrationDates().getPhysicalRegistrationDate() %></td>
+                            		</tr>
+                            	</tbody>
+                            </table>
+                        </div>
+                    </div>
 			
+		<%} else { %>
+			Some Error!
+		<%} %>
 			
 			
 			

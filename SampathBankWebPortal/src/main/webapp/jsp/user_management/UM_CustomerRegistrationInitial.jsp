@@ -92,7 +92,7 @@
 	 			<input type="date" name="regDOB" placeholder="date"/>
 	 			<input type="text" name="regZIP" placeholder="00000"/>
 	 			<input type="email" name="regPersonalEmail" placeholder="abc@abc.com"/>
-	 			<input type="text" name="regAccountNo" placeholder="000000000000"/>
+	 			<input type="text" name="regAccountNo" placeholder="000000000"/>
 	 			<input type="submit" name="submitInitialRegistration"/>
  			</form>
  

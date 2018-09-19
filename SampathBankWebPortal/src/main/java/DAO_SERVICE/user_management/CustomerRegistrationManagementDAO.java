@@ -11,9 +11,12 @@ import javax.sql.DataSource;
 
 import DAO_SERVICE.common_service.ConnectionPoolManager;
 import DAO_SERVICE.queries.UMQueries;
+import POJO_MODEL.employee_hr_payroll_management.converters.DateConverter;
 import POJO_MODEL.employee_hr_payroll_management.managers.CommonEntityManager;
 import POJO_MODEL.user_management.Customer;
+import POJO_MODEL.user_management.OnlineSecurityKey;
 import POJO_MODEL.user_management.RegistrationDates;
+import POJO_MODEL.user_management.SecurityVariables;
 
 public class CustomerRegistrationManagementDAO {
 	private static Connection con = null;
@@ -79,5 +82,297 @@ public class CustomerRegistrationManagementDAO {
 			return null;
 		else
 			return requestList;
+	}
+	
+	public static boolean insertIntoOnlineSecurityKeyTable(Customer cust) {
+		ConnectionPoolManager cpmObj = new ConnectionPoolManager();
+		DataSource dataSource = null;
+		try {
+			dataSource = cpmObj.initializePool();
+			con = dataSource.getConnection();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+		PreparedStatement UM_Pr = null;
+		String key = null;
+		int q = 0;
+		
+		try {
+			UM_Pr = con.prepareStatement(UMQueries.queryUM_19);
+			UM_Pr.setInt(1, cust.getOnlineSecurityKey().getOnlineSecurityId());
+			UM_Pr.setString(2, cust.getOnlineSecurityKey().getOnlineSecurityKey());
+			q = UM_Pr.executeUpdate();			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(UM_Pr != null)
+					UM_Pr.close();
+				
+				if(con != null)
+					con.close();
+			} catch(SQLException sqlException) {
+				sqlException.printStackTrace();
+			}
+		}
+		
+		if(q == 0)
+			return false;
+		else
+			return true;
+	}
+
+	public static String getOnlineCustomerCredentialsPrimaryKey() {
+		ConnectionPoolManager cpmObj = new ConnectionPoolManager();
+		DataSource dataSource = null;
+		try {
+			dataSource = cpmObj.initializePool();
+			con = dataSource.getConnection();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+		PreparedStatement UM_Pr = null;
+		ResultSet UM_RS = null;
+		String key = null;
+		
+		try {
+			UM_Pr = con.prepareStatement(UMQueries.queryUM_17);
+			UM_RS = UM_Pr.executeQuery();
+			
+			if(UM_RS.next()) {
+				key = UM_RS.getString("nextOnlineCustomerId");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(UM_RS != null)
+					UM_RS.close();
+				
+				if(UM_Pr != null)
+					UM_Pr.close();
+				
+				if(con != null)
+					con.close();
+			} catch(SQLException sqlException) {
+				sqlException.printStackTrace();
+			}
+		}
+		
+		return key;
+	}
+	
+	public static boolean updateOnlineCustomerCredentialsPrimaryKey(String Key) {
+		ConnectionPoolManager cpmObj = new ConnectionPoolManager();
+		DataSource dataSource = null;
+		try {
+			dataSource = cpmObj.initializePool();
+			con = dataSource.getConnection();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+		PreparedStatement UM_Pr = null;
+		String key = null;
+		int q = 0;
+		
+		try {
+			UM_Pr = con.prepareStatement(UMQueries.queryUM_18);
+			UM_Pr.setString(1, Key);
+			q = UM_Pr.executeUpdate();			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(UM_Pr != null)
+					UM_Pr.close();
+				
+				if(con != null)
+					con.close();
+			} catch(SQLException sqlException) {
+				sqlException.printStackTrace();
+			}
+		}
+		
+		if(q == 0)
+			return false;
+		else
+			return true;
+	}
+
+	public static SecurityVariables getSecurityVariables(Customer cust) {
+		ConnectionPoolManager cpmObj = new ConnectionPoolManager();
+		DataSource dataSource = null;
+		try {
+			dataSource = cpmObj.initializePool();
+			con = dataSource.getConnection();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+		PreparedStatement UM_Pr = null;
+		ResultSet UM_RS = null;
+		SecurityVariables sv = null;
+		
+		try {
+			UM_Pr = con.prepareStatement(UMQueries.queryUM_20);
+			UM_Pr.setString(1, cust.getPersonId());
+			UM_RS = UM_Pr.executeQuery();
+			
+			if(UM_RS.next()) {
+				sv = new SecurityVariables();
+				sv.setQuestion01(UM_RS.getString("question01"));
+				sv.setAnswer01(UM_RS.getString("answer01"));
+				sv.setQuestion02(UM_RS.getString("question02"));
+				sv.setAnswer02(UM_RS.getString("answer02"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(UM_RS != null)
+					UM_RS.close();
+				
+				if(UM_Pr != null)
+					UM_Pr.close();
+				
+				if(con != null)
+					con.close();
+			} catch(SQLException sqlException) {
+				sqlException.printStackTrace();
+			}
+		}
+		
+		return sv;
+	}
+
+	public static boolean insertIntoOnlineCustomerCredentials(String onlineCustomerId, Customer cust, String username, String password, SecurityVariables sv) {
+		ConnectionPoolManager cpmObj = new ConnectionPoolManager();
+		DataSource dataSource = null;
+		try {
+			dataSource = cpmObj.initializePool();
+			con = dataSource.getConnection();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+		PreparedStatement UM_Pr = null;
+		String key = null;
+		int q = 0;
+		
+		try {
+			UM_Pr = con.prepareStatement(UMQueries.queryUM_21);
+			UM_Pr.setString(1, onlineCustomerId);
+			UM_Pr.setString(2, cust.getPersonId());
+			UM_Pr.setString(3, username);
+			UM_Pr.setString(4, password);
+			UM_Pr.setString(5, sv.getQuestion01());
+			UM_Pr.setString(6, sv.getAnswer01());
+			UM_Pr.setString(7, sv.getQuestion02());
+			UM_Pr.setString(8, sv.getAnswer02());
+			q = UM_Pr.executeUpdate();			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(UM_Pr != null)
+					UM_Pr.close();
+				
+				if(con != null)
+					con.close();
+			} catch(SQLException sqlException) {
+				sqlException.printStackTrace();
+			}
+		}
+		
+		if(q == 0)
+			return false;
+		else
+			return true;
+	}
+
+	public static boolean updateCustomerOnPersonTable(Customer cust) {
+		ConnectionPoolManager cpmObj = new ConnectionPoolManager();
+		DataSource dataSource = null;
+		try {
+			dataSource = cpmObj.initializePool();
+			con = dataSource.getConnection();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+		PreparedStatement UM_Pr = null;
+		int q = 0;
+		
+		try {
+			UM_Pr = con.prepareStatement(UMQueries.queryUM_22);
+			UM_Pr.setDate(1, DateConverter.getCurrentSqlDate());
+			UM_Pr.setInt(2, cust.getOnlineSecurityKey().getOnlineSecurityId());
+			UM_Pr.setString(3, cust.getPersonId());
+			q = UM_Pr.executeUpdate();			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(UM_Pr != null)
+					UM_Pr.close();
+				
+				if(con != null)
+					con.close();
+			} catch(SQLException sqlException) {
+				sqlException.printStackTrace();
+			}
+		}
+		
+		if(q == 0)
+			return false;
+		else
+			return true;
+	}
+
+	public static boolean deleteFromCustomerRegistrationRequests(Customer cust) {
+		ConnectionPoolManager cpmObj = new ConnectionPoolManager();
+		DataSource dataSource = null;
+		try {
+			dataSource = cpmObj.initializePool();
+			con = dataSource.getConnection();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+		PreparedStatement UM_Pr = null;
+		int q = 0;
+		
+		try {
+			UM_Pr = con.prepareStatement(UMQueries.queryUM_23);
+			UM_Pr.setString(1, cust.getPersonId());
+			q = UM_Pr.executeUpdate();			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(UM_Pr != null)
+					UM_Pr.close();
+				
+				if(con != null)
+					con.close();
+			} catch(SQLException sqlException) {
+				sqlException.printStackTrace();
+			}
+		}
+		
+		if(q == 0)
+			return false;
+		else
+			return true;
 	}
 }

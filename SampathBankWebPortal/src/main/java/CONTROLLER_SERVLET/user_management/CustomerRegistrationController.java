@@ -25,11 +25,14 @@ public class CustomerRegistrationController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String submitInitialRegistration = request.getParameter("submitInitialRegistration");
 		String submitSecondaryegistration = request.getParameter("submitSecondaryegistration");
+		String submitThirtaryegistration = request.getParameter("submitThirtaryegistration");
 		
 		if(submitInitialRegistration != null)
 			initialRegistration(request, response);
 		else if(submitSecondaryegistration != null)
 			secondaryRegistration(request, response);
+		else if(submitThirtaryegistration != null)
+			thirtaryRegistration(request, response);
 	}
 	
 	public void initialRegistration(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -59,7 +62,7 @@ public class CustomerRegistrationController extends HttpServlet {
 								
 								PrintWriter out = response.getWriter();
 								out.println("<script type=\"text/javascript\">");
-								out.println("alert('Your email will receive the pin required for next step, immediately!');");
+								out.println("alert('Your email will receive the pin required for the next step, immediately!');");
 								out.println("location='/SampathBankWebPortal/jsp/user_management/UM_CustomerRegistrationSecondary.jsp';");
 								out.println("</script>");
 							} else {
@@ -72,7 +75,7 @@ public class CustomerRegistrationController extends HttpServlet {
 								
 								PrintWriter out = response.getWriter();
 								out.println("<script type=\"text/javascript\">");
-								out.println("alert('Your email will receive the pin required for next step, immediately!');");
+								out.println("alert('Your email will receive the pin required for the next step, immediately!');");
 								out.println("location='/SampathBankWebPortal/jsp/user_management/UM_CustomerRegistrationSecondary.jsp';");
 								out.println("</script>");
 							} else {
@@ -116,25 +119,42 @@ public class CustomerRegistrationController extends HttpServlet {
 			String custId = (String)session.getAttribute("custId");
 			
 			if(CustomerRegistrationDAO.validateOnlineRegPin(custId, Integer.parseInt(regOnlinePin))) {
-				if(CustomerRegistrationDAO.storeRequestForCustomerOnlineAccount(custId)) {
-					if(CustomerRegistrationDAO.deleteFromTempOnlineRegPins(custId)) {
-						PrintWriter out = response.getWriter();
-						out.println("<script type=\"text/javascript\">");
-						out.println("alert('Your request for an online account has been submitted! If you do not receive the credentials within 1 week, please kindly visit the nearest sampath bank!');");
-						out.println("location='/SampathBankWebPortal/UM_Homepage_Common.jsp';");
-						out.println("</script>");
-					} else {
-						System.out.println("some error 0004");
-					}
-				} else {
-					System.out.println("some error 0003");
-				}
+				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_CustomerRegistrationThirtary.jsp");
 			} else {
 				PrintWriter out = response.getWriter();
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('Entered PIN is not Correct!');");
 				out.println("location='/SampathBankWebPortal/jsp/user_management/UM_CustomerRegistrationSecondary.jsp';");
 				out.println("</script>");
+			}
+		} else {
+			
+		}
+	}
+	
+	public void thirtaryRegistration(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String question01 = request.getParameter("question01");
+		String answer01 = request.getParameter("answer01");
+		String question02 = request.getParameter("question02");
+		String answer02 = request.getParameter("answer02");
+		
+		//validation goes here
+		if(true) {
+			HttpSession session = request.getSession();
+			String custId = (String)session.getAttribute("custId");
+			
+			if(CustomerRegistrationDAO.storeRequestForCustomerOnlineAccount(custId, question01, answer01, question02, answer02)) {
+				if(CustomerRegistrationDAO.deleteFromTempOnlineRegPins(custId)) {
+					PrintWriter out = response.getWriter();
+					out.println("<script type=\"text/javascript\">");
+					out.println("alert('Your request for an online account has been submitted! If you do not receive the credentials within 1 week, please kindly visit the nearest sampath bank!');");
+					out.println("location='/SampathBankWebPortal/UM_Homepage_Common.jsp';");
+					out.println("</script>");
+				} else {
+					System.out.println("some error 0004");
+				}
+			} else {
+				System.out.println("some error 0003");
 			}
 		} else {
 			

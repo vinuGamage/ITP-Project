@@ -321,7 +321,7 @@ public class CustomerRegistrationDAO {
 		return i;
 	}
 
-	public static boolean storeRequestForCustomerOnlineAccount(String custId) {
+	public static boolean storeRequestForCustomerOnlineAccount(String custId, String question01, String answer01, String question02, String answer02) {
 		ConnectionPoolManager cpmObj = new ConnectionPoolManager();
 		DataSource dataSource = null;
 		try {
@@ -337,6 +337,10 @@ public class CustomerRegistrationDAO {
 		try {
 			UM_Pr = con.prepareStatement(UMQueries.queryUM_14);
 			UM_Pr.setString(1, custId);
+			UM_Pr.setString(2, question01);
+			UM_Pr.setString(3, answer01);
+			UM_Pr.setString(4, question02);
+			UM_Pr.setString(5, answer02);
 			
 			i = UM_Pr.executeUpdate();
 		} catch (SQLException e) {
