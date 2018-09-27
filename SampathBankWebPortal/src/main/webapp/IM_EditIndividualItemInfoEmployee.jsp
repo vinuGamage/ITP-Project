@@ -1,33 +1,35 @@
+<%@page import="javax.swing.JDialog"%>
+<%@page import="javax.swing.JOptionPane"%>
+<%@page import="POJO_MODEL.inventory_management.item"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee"%>
 <!DOCTYPE html>
-<html>
-	<head>
-		<!-- Required meta tags -->
-        <meta charset="ISO-8859-1">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html lang="en">
+    <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<title>Employee Homepage</title>
-		<%
-			Employee employee = (Employee) session.getAttribute("employee");
-			if(employee == null)
-				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
-		%>
-	</head>
-	<body>
+    <!-- Bootstrap CSS -->
+    <link type ="text/css" rel="stylesheet" href="resources/css&js&jquery/bootstrap/css/bootstrap.css" >
+    <link type="text/css" rel="stylesheet" href="resources/css&js&jquery/customized.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+    <title>Common Employee Inventory</title>
+    </head>
+
+    <body>
         <nav class="navbar fixed-top navbar-expand-md navbar-dark fixed-stuff">
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#" title="You are Already in the Employee Homepage">EmpHome</a>
+                        <a class="nav-link" href="#" title="Go to Employee Homepage">EmpHome</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_ViewProfile.jsp" title="View Profile">MyProfile</a>
+                        <a class="nav-link" href="#" title="Go to Customer Homepage">CustomerHome</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" title="View Profile">MyProfile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" title="View Company Messages">MyInbox</a>
@@ -35,15 +37,18 @@
                 </ul>
             </div>
             <div class="mx-auto order-0">
-                <a class="navbar-brand mx-auto" href="#" title="You are Already in the Employee Homepage">SampathEmpWeb</a>
+                <a class="navbar-brand mx-auto" href="#" title="Go to Employee Homepage">SampathEmpWeb</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" title="Sign Up">
+                        <a class="nav-link" href="#"><span class="fa fa-user"></span> Sign Up</a>
+                    </li>
                     <li class="nav-item" title="Login">
-                        <a class="nav-link" href="#"><span class="fa fa-sign-in"></span> Sign Out</a>
+                        <a class="nav-link" href="#"><span class="fa fa-sign-in"></span> Login</a>
                     </li>
                 </ul>
             </div>
@@ -58,78 +63,18 @@
                 </a>
                 <div style=" float: right">
                     <div class="container-fluid img_profile_div">
-                        <img src="/SampathBankWebPortal/resources/images/ProfilePlaceholder.png" alt="" class="pro-pic">
+                        <img src="resources/images/ProfilePlaceholder.png" alt="" class="pro-pic">
                     </div>
                     <div class="container-fluid" style="float: right; clear: both;" >
-                        <a href="">Mr. <%=employee.getName().getFirstName()%><br/>
-                        <%=employee.getName().getLastName() %></a>
+                        <a href="">Mr. xxx xxx</a>
                     </div>
                 </div>
+
             </div>
 
-            <div class="container-fluid" style="margin-top:10px;">
+            <div class="container-fluid">
                 <ul class="nav nav-pills nav-fill nav-justified nav-header">
-                <%if(employee.getDesignation().getDesignation().equals("human resource manager")) {%>
-                    <li class="nav-item dropdown" title="Click to See Your Duties">
-                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
-                        <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_RecruitAnEmployee.jsp" style="color:white">Recruit an Employee</a>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/OnlineEmployeeAccountController?abc=check" style="color:white">Create Employee Online Account</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=allActive" style="color:white">Active Employees</a>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=inActive" style="color:white">Inactive Employees</a>
-                            <a class="dropdown-item" href="" style="color:white">Search for Employees</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/HRLeaveRequestManagement?lmanage=getAllLeaveRequests" style="color:white">Leave Request Management</a>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/UpdateProfileDetailsHRSide?upmanage=retrieveAll" style="color:white">Update Details Request Management</a>
-                            <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
-                        </div>
-                    </li>
-                    <%} else if(employee.getDesignation().getDesignation().equals("admin")) {%>
-                    <li class="nav-item dropdown" title="Click to See Your Duties">
-                    	<a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
-                    	<div class="dropdown-menu nav-dropdown">
-	                        <a class="dropdown-item" href="#" style="color:white">admin job 01</a>
-	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">admin job 02</a>
-	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">admin job 03</a>
-	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">admin job 04</a>
-	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">admin job 05</a>
-                    	</div>
-                	</li>
-                    <%} else if(employee.getDesignation().getDesignation().equals("normal employee")) {%>
-                    <li class="nav-item dropdown" title="Click to See Your Duties">
-                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
-                        <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">normal employee job 01</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">normal employee job 02</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">normal employee job 03</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">normal employee job 04</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">normal employee job 05</a>
-                        </div>
-                    </li>
-                   	<%} else if(employee.getDesignation().getDesignation().equals("user manager")) {%>
-                    <li class="nav-item dropdown" title="Click to See Your Duties">
-                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
-                        <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="/SampathBankWebPortal/CustomerRegistrationManagementController?var=getAllRequests" style="color:white">Online Customer Account Management</a>
-                        </div>
-                    </li>
-                    <%} else if(employee.getDesignation().getDesignation().equals("head")) {%>
-                    <li class="nav-item dropdown" title="Click to See Your Duties">
-                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
-                        <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="/SampathBankWebPortal/RetreiveBranchItemServlet" style="color:white">Request Item from Warehouse</a>
-                        </div>
-                    </li>
-                    <%} else if(employee.getDesignation().getDesignation().equals("inventory manager")) {%>
+                    <!--fixed-top-->
                     <li class="nav-item dropdown" title="Click to See Your Duties">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
                         <div class="dropdown-menu nav-dropdown">
@@ -140,16 +85,16 @@
                             <a class="dropdown-item" href="/SampathBankWebPortal/IM_GenerateReports.jsp" style="color:white">Generate Reports</a>
                         </div>
                     </li>
-                    <%} %>
-                    
                     <li class="nav-item dropdown" title="Click to See Leave Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Leave Request Inquiry</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveBase" style="color:white">Apply for Leave</a>
+                            <a class="dropdown-item" href="#" style="color:white">Apply for Leave</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveHistory" style="color:white">Leave History</a>
+                            <a class="dropdown-item" href="#" style="color:white">Leave History</a>
+                            <a class="dropdown-item" href="#" style="color:white">Leave Status</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave Analysis</a>
+                            <a class="dropdown-item" href="#" style="color:white">File a Complaint</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown" title="Click to See Salary Related Options">
@@ -159,6 +104,9 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Salary History</a>
                             <a class="dropdown-item" href="#" style="color:white">Next Salary Details</a>
+                            <a class="dropdown-item" href="#" style="color:white">Personal Salary Details</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" style="color:white">File a Complaint</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown" title="Click to See Skills Related Options">
@@ -182,36 +130,134 @@
                     <li class="nav-item dropdown" title="Click to See Profile Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Profile Related</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_ViewProfile.jsp" style="color:white">Profile Details</a>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_UpdateProfile.jsp" style="color:white">Update Profile</a>
+                            <a class="dropdown-item" href="#" style="color:white">Profile Details</a>
+                            <a class="dropdown-item" href="#" style="color:white">Update Profile</a>
+                            <a class="dropdown-item" href="#" style="color:white">Change History</a>
                         </div>
                     </li>
                 </ul>
             </div>
+
         </header>
 
-<!--
-    BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY
--->
-		<nav aria-label="breadcrumb" class="breadcrumb-stuff">
-		  <ol class="breadcrumb">
-		    <li class="breadcrumb-item active" aria-current="page">EmpHome</li>
-		  </ol>
-		</nav>
-		
-        <div class="container-fluid" style="margin-bottom: 100px; height: 100%">
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		</div>
-		
+
+
+
+
+
+
+        
+        <div class="container" style="overflow: auto;">
+        
+              
+        
+        <% 
+      
+        
+        
+        if(session.getAttribute("IM_indItem")==null){
+        	JOptionPane pane = new JOptionPane("Please Login to continue",JOptionPane.WARNING_MESSAGE);  
+    		JDialog dialog = pane.createDialog("Error");  
+    		dialog.setAlwaysOnTop(true);  
+    		dialog.show(); 
+    		
+    		request.getRequestDispatcher("Login.jsp").forward(request, response);
+        }
+        
+        item i1= (item)  session.getAttribute("IM_indItem"); %> 
+               
+         
+        
+        
+     <br><br><br>
+       <div class="row">
+       
+       			<div class="col-md-6" >
+       	<form id="update" action="updateItemServlet" method="post" >
+       	<table align="center"  style="font-size: 20px" cellpadding="15px" cellspacing="15px">
+              <tr> 
+              	<td>Item ID :</td>
+              	<td><input class="form-control" type="text" name="id" value="<%=i1.getItemId() %>" readonly > </td>
+              </tr>
+             
+              <tr>
+              	<td>Item Name : </td>
+              	<td><input class="form-control" type="text" name="name" pattern= "^[A-Za-z -]+$" title="Enter only letters" required value="<%=i1.getItemName() %>" > </td>
+              </tr>
+              
+              
+              <tr>
+              	<td>Item Quantity :</td>
+              <td><input class="form-control" type="text" name="qty" pattern= "[0-9\s]+" title="Enter a number for the quantity" required value="<%=i1.getItemQty() %>" > </td>
+              </tr>
+              
+              <tr>
+              	<td>Measurement :</td>
+              	<td><input class="form-control" type="text" name="unit"  value="<%=i1.getUnit() %>" > </td>
+              </tr>
+              
+              <tr>
+              	<td>Low Stock Level : </td>
+              	<td><input class="form-control" type="text" name="min" pattern= "[0-9\s]+" title="Enter a number for the Low Stock Level" required  value="<%=i1.getItem_min() %>" > </td>
+              </tr>
+              
+              
+              
+              <tr>
+              	<td>Description : </td>
+              	<td><input class="form-control" type="text" name="description" pattern= "^[A-Za-z0-9 -]+$" title="Enter only letters" required  value="<%=i1.getDescription() %>" > </td>
+              </tr>
+              
+                            
+             </table>  		
+       			<div align="center">
+                    <br> <br>
+                    
+                    
+                    <button    style="font-weight:bold" type="submit" class="btn">Update Item</button>
+                     </form>   
+					<br><br>
+                
+                </div>
+       			
+       			</div>
+				<div class="col-md-6" align="center">
+				<input value=<%=i1.getImage() %> name="path"  hidden >
+				<br><br>
+				<img alt="" src="<%= "resources\\images\\database_images\\"+ i1.getImage() %>" width="300px" height="300px">
+				
+				<div align="center">
+                    <br> <br>
+                    
+                    <form  action="deleteItemServlet"  method="post">
+                    <input name="id" value=<%=i1.getItemId() %> hidden>
+                    <button   style="font-weight:bold" type="submit" class="btn">Delete Item</button>
+                    </form>
+					<br><br>
+                
+                </div>
+				
+				</div>       
+       </div>
+           
+             
+            
+            
+        
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
         <!-- Footer -->
         <footer class="page-footer font-small blue pt-4 footer-all">
             <div class="container-fluid text-center text-md-left">
@@ -291,11 +337,11 @@
 
         </footer>
         <!-- Footer -->
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="/SampathBankWebPortal/resources/css&js&jquery/jquery-3.3.1.slim.min.js"></script>
-        <script src="/SampathBankWebPortal/resources/css&js&jquery/popper.min.js"></script>
-        <script src="/SampathBankWebPortal/resources/css&js&jquery/bootstrap.min.js"></script>
-        <script src="/SampathBankWebPortal/resources/css&js&jquery/customized.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="resources/css&js&jquery/jquery-3.3.1.slim.min.js"></script>
+    <script src="resources/css&js&jquery/popper.min.js"></script>
+    <script src="resources/css&js&jquery/bootstrap.min.js"></script>
+    <script src="resources/css&js&jquery/customized.js"></script>
     </body>
 </html>

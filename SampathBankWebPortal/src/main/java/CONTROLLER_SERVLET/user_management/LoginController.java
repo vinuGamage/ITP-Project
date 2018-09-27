@@ -15,6 +15,7 @@ import POJO_MODEL.employee_hr_payroll_management.Employee;
 import POJO_MODEL.employee_hr_payroll_management.converters.DateConverter;
 import POJO_MODEL.employee_hr_payroll_management.email_client.EmailClient;
 import POJO_MODEL.employee_hr_payroll_management.managers.CommonEntityManager;
+import POJO_MODEL.inventory_management.loginUser;
 import POJO_MODEL.user_management.Customer;
 import POJO_MODEL.user_management.GenericLogin;
 import POJO_MODEL.user_management.OnlineAccount;
@@ -51,6 +52,14 @@ public class LoginController extends HttpServlet {
 				session.setAttribute("employee", employee);
 				session.setAttribute("commonEntityManager", commonEntityManager);
 				employee.displayEmployee();
+				
+				if(employee.getEmployeeType().equals("inventory manager")) {
+					loginUser lu = new loginUser(employee.getOnlineAccount().getUsername(), employee.getBranch().getBranchAddress().getAddressCity());
+					session.setAttribute("IM_user", lu);
+				} else if(employee.getEmployeeType().equals("head")) {
+					loginUser lu = new loginUser(employee.getOnlineAccount().getUsername(), employee.getBranch().getBranchAddress().getAddressCity());
+					session.setAttribute("IM_user", lu);
+				}
 				
 				response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp");
 			} else {

@@ -143,6 +143,9 @@ CREATE TABLE `designation` (
 '2', 'human resource manager', '2'
 '3', 'admin', '3'
 '4', 'user manager', '1'
+'5', 'head', '3'
+'6', 'inventory manager', '3'
+'7', 'inventory employee', '3'
 
 CREATE TABLE `employee` (
   `employeeId` char(10) NOT NULL,
