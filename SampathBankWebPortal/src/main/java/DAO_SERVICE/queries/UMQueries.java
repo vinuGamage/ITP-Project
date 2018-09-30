@@ -23,4 +23,11 @@ public class UMQueries {
 	public static final String queryUM_21 = "INSERT INTO online_customer_credentials(onlineCustomerId, customerId, username, password, question01, answer01, question02, answer02) VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
 	public static final String queryUM_22 = "UPDATE person SET onlineRegistrationDate=?, onlineSecurityId=? WHERE personId=?;";
 	public static final String queryUM_23 = "DELETE FROM customer_registration_requests WHERE customerId=?;";
+	public static final String queryUM_24 = "SELECT * FROM person p INNER JOIN customer c ON p.personId = c.customerId WHERE personId LIKE ? OR firstName LIKE ? OR middleName LIKE ? OR lastName LIKE ? OR otherNames LIKE ? OR addressStreet01 LIKE ? OR addressStreet02 LIKE ? OR addressCity LIKE ? OR addressProvince LIKE ? OR addressZipCode LIKE ? OR nic LIKE ? OR personalEmail LIKE ? OR branchId LIKE ? OR homeContact LIKE ? OR mobileContact LIKE ?;";
+	public static final String queryUM_25 = "SELECT companyEmail FROM employee WHERE companyEmail = ?;";
+	public static final String queryUM_26 = "INSERT INTO email_company(sender, receiver, subject, content, sentDate) VALUES(?, ?, ?, ?, ?);";
+	public static final String queryUM_27 = "SELECT * FROM email_company WHERE receiver = ?;";
+	public static final String queryUM_28 = "UPDATE email_company SET receiver = NULL WHERE emailId = ?;";
+	public static final String queryUM_29 = "SELECT * FROM email_company WHERE sender = ?;";
+	public static final String queryUM_30 = "UPDATE email_company SET sender = NULL WHERE emailId = ?;";
 }

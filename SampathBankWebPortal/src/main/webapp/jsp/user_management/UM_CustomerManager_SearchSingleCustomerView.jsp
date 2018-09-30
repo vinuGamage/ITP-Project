@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.Collection, java.util.ArrayList" %>
-<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, POJO_MODEL.employee_hr_payroll_management.UpdateRequestManagement,
-	POJO_MODEL.user_management.Updation"%>
+<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, POJO_MODEL.user_management.Customer, java.util.Collection, java.util.ArrayList"%>
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <!-- Required meta tags -->
+<html>
+	<head>
+		<!-- Required meta tags -->
         <meta charset="ISO-8859-1">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -14,18 +12,13 @@
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        <title>Update Requests</title>
+		<title>Customer Search Result View</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
-		
-			if(employee == null || !employee.getDesignation().getDesignation().equals("human resource manager"))
+			if(employee == null || !employee.getDesignation().getDesignation().equals("user manager"))
 				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
-			
-			Collection<UpdateRequestManagement> list = (ArrayList<UpdateRequestManagement>) session.getAttribute("list");
-			if(list == null)
-				response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp");
 		%>
-    </head>
+	</head>
 
     <body>
         <nav class="navbar fixed-top navbar-expand-md navbar-dark fixed-stuff">
@@ -69,7 +62,7 @@
                         <img src="/SampathBankWebPortal/resources/images/ProfilePlaceholder.png" alt="" class="pro-pic">
                     </div>
                     <div class="container-fluid" style="float: right; clear: both;" >
-                        <a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_ViewProfile.jsp">Mr. <%=employee.getName().getFirstName()%><br/>
+                        <a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp">Mr. <%=employee.getName().getFirstName()%><br/>
                         <%=employee.getName().getLastName() %></a>
                     </div>
                 </div>
@@ -80,25 +73,18 @@
                     <li class="nav-item dropdown" title="Click to See Your Duties">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_RecruitAnEmployee.jsp" style="color:white">Recruit an Employee</a>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/OnlineEmployeeAccountController?abc=check" style="color:white">Create Employee Online Account</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/CustomerRegistrationManagementController?var=getAllRequests" style="color:white">Online Customer Account Management</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=allActive" style="color:white">Active Employees</a>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=inActive" style="color:white">Inactive Employees</a>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_SearchForEmployees.jsp" style="color:white">Search for Employees</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/HRLeaveRequestManagement?lmanage=getAllLeaveRequests" style="color:white">Leave Request Management</a>
-                            <a class="dropdown-item" href="#" style="color:white">Update Details Request Management</a>
-                            <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/user_management/UM_CustomerManager_SearchForCustomer.jsp" style="color:white">Search For Customers</a>
                         </div>
                     </li>
+                    
                     <li class="nav-item dropdown" title="Click to See Leave Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Leave Request Inquiry</a>
                         <div class="dropdown-menu nav-dropdown">
                             <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveBase" style="color:white">Apply for Leave</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveHistory" style="color:white">Leave History</a>
-                            <a class="dropdown-item" href="#" style="color:white">Leave Status</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave Analysis</a>
                         </div>
@@ -144,49 +130,124 @@
 <!--
     BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY
 -->
+		<% Customer cus = (Customer) request.getAttribute("cus"); %>
 		<nav aria-label="breadcrumb" class="breadcrumb-stuff">
 		  <ol class="breadcrumb">
 		    <li class="breadcrumb-item"><a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp">EmpHome</a></li>
 		    <li class="breadcrumb-item active">Employee Duties</li>
-		    <li class="breadcrumb-item active" aria-current="page">Update Details Request Management</li>
+		    <li class="breadcrumb-item active">Search For Customer</li>
+		    <%if(cus != null) {%>
+		    <li class="breadcrumb-item active" aria-current="page"><%=cus.getPersonId() %></li>
+		    <%} else { %>
+		    <li class="breadcrumb-item active" aria-current="page">XXXXX</li>
+		    <%} %>
 		  </ol>
 		</nav>
+		
+		
+        <div class="container-fluid" style="margin-bottom: 100px; height: 1000px;">
+        
+		<%if(cus != null) {%>
+		<h3 style="font-weight: bold;"><%=cus.getPersonId() %> : <%=cus.getName().getFullName() %></h3>
+					<div style="float: left; margin-right: 15px; margin-left: 22px;">
+                        <div style="width: 700px; float: left; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
+                            <h5>Basic Details</h5>
+                            <table class="table table-borderless">
+                            	<tbody>
+                            		<tr>
+                            			<th scope="row">Full Name: </th>
+                            			<td><%=cus.getName().getFullName()%></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Gender: </th>
+                            			<td><%=cus.getGender().getGender() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Nationality: </th>
+                            			<td><%=cus.getNationality().getNationality() %></td>
+                            		</tr>
+                            	</tbody>
+                            </table>
+                        </div>
 
-        <div class="container" style="margin-bottom: 100px; height: auto;">
+                        <div style="width: 700px; padding: 5px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; clear: both">
+                            <h5>Contact Details</h5>
+                            <table class="table table-borderless">
+                            	<tbody>
+                            	<%if(cus.getAddress().getAddressStreet02() != null && cus.getAddress().getAddressStreet02().trim().length() != 0) {%>
+                            		<tr>
+                            			<th scope="row">Street Address (Line 01): </th>
+                            			<td><%=cus.getAddress().getAddressStreet01() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Street Address (Line 02): </th>
+                            			<td><%=cus.getAddress().getAddressStreet02() %></td>
+                            		</tr>
+                            	<%} else {%>
+                            		<tr>
+                            			<th scope="row">Street Address: </th>
+                            			<td><%=cus.getAddress().getAddressStreet01() %></td>
+                            		</tr>
+                            	<%} %>
+                            		<tr>
+                            			<th scope="row">City: </th>
+                            			<td><%=cus.getAddress().getAddressCity() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Province: </th>
+                            			<td><%=cus.getAddress().getAddressProvince() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">ZIP Code: </th>
+                            			<td><%=cus.getAddress().getAddressZIPCode() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Contact Number </br>(Home): </th>
+                            			<td><%=cus.getHomeContact() %></td>
+                            		</tr>
+								<%if(cus.getMobileContact() != null && cus.getMobileContact().trim().length() != 0) {%>
+                            		<tr>
+                            			<th scope="row">Contact Number (Mobile): </th>
+                            			<td><%=cus.getMobileContact() %></td>
+                            		</tr>
+                            	<%} %>
+                            		<tr>
+                            			<th scope="row">Personal Email: </th>
+                            			<td><%=cus.getPersonalEmail() %></td>
+                            		</tr>
+                            	</tbody>
+                            </table>
+                        </div>
+                    </div>
 
-		<%if(list != null) {%>
-			<table class="table table-hover" style="margin-top: 40px;">
-			  <thead class="thead-light">
-			    <tr>
-			      <th style="width: 30px;" scope="col">Employee Id</th>
-			      <th style="width: 350px;" scope="col">Requested Field To Be Changed</th>
-			      <th style="width: 60px;" scope="col">####</th>
-			      <th style="width: 60px;" scope="col">####</th>
-			      <th style="width: 60px;" scope="col">####</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			  <% for(UpdateRequestManagement URM: list) { %>
-			    <tr>
-			    <form action="/SampathBankWebPortal/UpdateProfileDetailsHRSide" method="post">
-					<td style="width: 30px; font-weight: bold;"><%=URM.getEmployee().getPersonId() %></td>
-					<td style="width: 350px; font-weight: bold;"><%=URM.getDiffStuff() %></td>
-			      	<input style="width: 70px;" type="hidden" name="employeetId" value="<%=URM.getEmployee().getPersonId() %>">
-					<td><input type="submit" name="updateShow" value="Show" style="width: full; margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/></td>
-					<td><input type="submit" name="updateApprove" value="Approve" style="width: full; margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/></td>
-					<td><input type="submit" name="updateReject" value="Reject" style="width: full; margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/></td>
-			  	</form>
-			    </tr>
-			  <%} %>
-			  </tbody>
-			</table>
+                    <div style="float: left;">
+                        <div style="width: 700px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
+                            <h5>Identification</h5>
+                            <table class="table table-borderless">
+                            	<tbody>
+                            		<tr class="table-danger">
+                            			<th scope="row">Customer ID: </th>
+                            			<td><%=cus.getPersonId() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">NIC: </th>
+                            			<td><%=cus.getNic() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Date of Birth: </th>
+                            			<td><%=cus.getDateOfBirth() %></td>
+                            		</tr>
+                            	</tbody>
+                            </table>
+                        </div>
+                    </div>
+			
 		<%} else { %>
-			There are no update requests to manage.
+			Some Error!
 		<%} %>
 
-
-        </div>
-
+		</div>
+		
         <!-- Footer -->
         <footer class="page-footer font-small blue pt-4 footer-all">
             <div class="container-fluid text-center text-md-left">
@@ -272,5 +333,192 @@
         <script src="/SampathBankWebPortal/resources/css&js&jquery/popper.min.js"></script>
         <script src="/SampathBankWebPortal/resources/css&js&jquery/bootstrap.min.js"></script>
         <script src="/SampathBankWebPortal/resources/css&js&jquery/customized.js"></script>
+
+<!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
+		<style>
+			body {font-family: Arial, Helvetica, sans-serif;}
+		
+			/* Full-width input fields */
+			input[type=text], input[type=password] {
+			    width: 100%;
+			    padding: 12px 20px;
+			    margin: 8px 0;
+			    display: inline-block;
+			    border: 1px solid #ccc;
+			    box-sizing: border-box;
+			}
+			
+			/* Set a style for all buttons */
+			button {
+			    background-color: #4CAF50;
+			    color: white;
+			    padding: 14px 20px;
+			    margin: 8px 0;
+			    border: none;
+			    cursor: pointer;
+			    width: 100%;
+			}
+			
+			button:hover {
+			    opacity: 0.8;
+			}
+			
+			/* Extra styles for the cancel button */
+			.cancelbtn {
+			    width: auto;
+			    padding: 10px 18px;
+			    background-color: #f44336;
+			}
+			
+			/* Center the image and position the close button */
+			.imgcontainer {
+			    text-align: center;
+			    margin: 24px 0 12px 0;
+			    position: relative;
+			}
+			
+			img.avatar {
+			    width: 40%;
+			    border-radius: 50%;
+			}
+			
+			.container {
+			    padding: 16px;
+			}
+			
+			span.psw {
+			    float: right;
+			    padding-top: 16px;
+			}
+			
+			/* The Modal (background) */
+			.modal {
+			    display: none; /* Hidden by default */
+			    position: fixed; /* Stay in place */
+			    z-index: 1; /* Sit on top */
+			    left: 0;
+			    top: 0;
+			    width: 100%; /* Full width */
+			    height: 100%; /* Full height */
+			    overflow: auto; /* Enable scroll if needed */
+			    background-color: rgb(0,0,0); /* Fallback color */
+			    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+			    padding-top: 60px;
+			}
+			
+			/* Modal Content/Box */
+			.modal-content {
+			    background-color: #fefefe;
+			    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+			    border: 1px solid #888;
+			    width: 80%; /* Could be more or less, depending on screen size */
+			}
+			
+			/* The Close Button (x) */
+			.close {
+			    position: absolute;
+			    right: 25px;
+			    top: 0;
+			    color: #000;
+			    font-size: 35px;
+			    font-weight: bold;
+			}
+			
+			.close:hover,
+			.close:focus {
+			    color: red;
+			    cursor: pointer;
+			}
+			
+			/* Add Zoom Animation */
+			.animate {
+			    -webkit-animation: animatezoom 0.6s;
+			    animation: animatezoom 0.6s
+			}
+			
+			@-webkit-keyframes animatezoom {
+			    from {-webkit-transform: scale(0)} 
+			    to {-webkit-transform: scale(1)}
+			}
+			    
+			@keyframes animatezoom {
+			    from {transform: scale(0)} 
+			    to {transform: scale(1)}
+			}
+			
+			/* Change styles for span and cancel button on extra small screens */
+			@media screen and (max-width: 300px) {
+			    span.psw {
+			       display: block;
+			       float: none;
+			    }
+			    .cancelbtn {
+			       width: 100%;
+			    }
+			}
+		</style>
+<!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
+<!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
+        <div id="id01" class="modal">
+		  <form class="modal-content animate" action="/SampathBankWebPortal/ActiveInactiveEmployeeManupulation" method="post">
+		    <div class="imgcontainer">
+		      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+		      <img src="/SampathBankWebPortal/resources/images/avatar_sure.png" alt="Avatar" class="avatar">
+		    </div>
+		
+		    <div class="container">
+		      	<label for="psw"><b>Enter Your Online Security Key: </b></label>
+		      	<input type="password" placeholder="Online Security Key" name="onlineSecKey" required>
+		        
+		        
+		        <input type="hidden" value="removeOnlineAccount" name="anotherDeed"/>
+		      	<button type="submit" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 19px; margin-right:10px;">Remove Online</button>
+		    </div>
+		
+		    <div class="container">
+		      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+		    </div>
+		  </form>
+		</div>
+		
+        <div id="id02" class="modal">
+		  <form class="modal-content animate" action="/SampathBankWebPortal/ActiveInactiveEmployeeManupulation" method="post">
+		    <div class="imgcontainer">
+		      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+		      <img src="/SampathBankWebPortal/resources/images/avatar_sure.png" alt="Avatar" class="avatar">
+		    </div>
+		
+		    <div class="container">
+		    	<label for="psw"><b>Reason for Inactivating: </b></label>
+		      	<input type="text" name="reason" required>
+		      	
+		      	<label for="psw"><b>Enter Your Online Security Key: </b></label>
+		      	<input type="password" placeholder="Online Security Key" name="onlineSecKey" required>
+		      
+		      
+		      	<input type="hidden" value="inactivate" name="anotherDeed"/>
+		      	<button type="submit" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 19px; margin-right:10px;">Inactivate</button>
+		    </div>
+		
+		    <div class="container">
+		      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+		    </div>
+		  </form>
+		</div>
+<!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
+		<script>
+			// Get the modal
+			var modal = document.getElementById('id01');
+			var modal2 = document.getElementById('id02');
+			
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+			    if (event.target == modal || event.target == modal2) {
+			        modal.style.display = "none";
+			        modal2.style.display = "none";
+			    }
+			}
+		</script>
+<!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
     </body>
 </html>

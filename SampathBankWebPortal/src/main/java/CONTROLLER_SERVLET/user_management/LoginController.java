@@ -63,10 +63,18 @@ public class LoginController extends HttpServlet {
 				
 				response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp");
 			} else {
-				out.println("NOT FOUND1");
+				PrintWriter out1 = response.getWriter();
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('NOT FOUND1');");
+				out.println("</script>");
+				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
 			}
 		} else {
-			out.println("NOT FOUND2");
+			PrintWriter out2 = response.getWriter();
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('NOT FOUND2');");
+			out.println("</script>");
+			response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
 		}
 	}
 }

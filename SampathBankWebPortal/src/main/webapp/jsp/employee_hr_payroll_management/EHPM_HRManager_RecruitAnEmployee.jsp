@@ -23,6 +23,34 @@ POJO_MODEL.employee_hr_payroll_management.Designation"%>
 			if(employee == null || !employee.getDesignation().getDesignation().equals("human resource manager"))
 				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
 		%>
+		<script type="text/javascript">
+		  function autoFill() {
+			  var date = new Date();
+			  var currentDate = date.toISOString().slice(0,10);
+			  
+		    document.getElementById('EmpForm01BasicDetails02').value = "Gihan";
+		    document.getElementById('EmpForm01BasicDetails03').value = "Abc";
+		    document.getElementById('EmpForm01BasicDetails04').value = "Jayaweera";
+		    document.getElementById('EmpForm01BasicDetails05').value = "Deflaunta";
+		    document.getElementById('EmpForm01BasicDetails06').value = "male";
+		    document.getElementById('EmpForm01ContactDetails01').value = "78/2 Karawita Road";
+		    document.getElementById('EmpForm01ContactDetails02').value = "Bambaraella";
+		    document.getElementById('EmpForm01ContactDetails03').value = "Pannipitya";
+		    document.getElementById('EmpForm01ContactDetails04').value = "western";
+		    document.getElementById('EmpForm01ContactDetails05').value = "10280";
+		    document.getElementById('EmpForm01ContactDetails06').value = "0112333333";
+		    document.getElementById('EmpForm01ContactDetails07').value = "0770057735";
+		    document.getElementById('EmpForm01ContactDetails08').value = "jayaweera@gmail.com";
+		    document.getElementById('EmpForm01Identification01').value = "969999999v";
+		    document.getElementById('EmpForm01Identification03').value = "sinhalese";
+		    document.getElementById('EmpForm01Identification04').value = "1996-02-02";
+		    document.getElementById('EmpForm01CompanyRelated01').value = "branch 01 city";
+		    document.getElementById('EmpForm01CompanyRelated02').value = "human resource";
+		    document.getElementById('EmpForm01CompanyRelated03').value = "normal employee";
+		    document.getElementById('EmpForm01CompanyRelated05').value = currentDate;
+		    document.getElementById('EmpForm01CompanyRelated05').disabled = true;
+		  }
+		</script>
     </head>
 
     <body>
@@ -33,10 +61,10 @@ POJO_MODEL.employee_hr_payroll_management.Designation"%>
                         <a class="nav-link" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp" title="Go to Employee Homepage">EmpHome</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" title="View Profile">MyProfile</a>
+                        <a class="nav-link" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_ViewProfile.jsp" title="View Profile">MyProfile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" title="View Company Messages">MyInbox</a>
+                        <a class="nav-link" href="/SampathBankWebPortal/EmailInboxController" title="View Company Messages">MyInbox</a>
                     </li>
                 </ul>
             </div>
@@ -67,7 +95,7 @@ POJO_MODEL.employee_hr_payroll_management.Designation"%>
                         <img src="/SampathBankWebPortal/resources/images/ProfilePlaceholder.png" alt="" class="pro-pic">
                     </div>
                     <div class="container-fluid" style="float: right; clear: both;" >
-                        <a href="">Mr. <%=employee.getName().getFirstName()%><br/>
+                        <a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_ViewProfile.jsp">Mr. <%=employee.getName().getFirstName()%><br/>
                         <%=employee.getName().getLastName() %></a>
                     </div>
                 </div>
@@ -83,7 +111,7 @@ POJO_MODEL.employee_hr_payroll_management.Designation"%>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=allActive" style="color:white">Active Employees</a>
                             <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=inActive" style="color:white">Inactive Employees</a>
-                            <a class="dropdown-item" href="#" style="color:white">Search for Employees</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_SearchForEmployees.jsp" style="color:white">Search for Employees</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/HRLeaveRequestManagement?lmanage=getAllLeaveRequests" style="color:white">Leave Request Management</a>
                             <a class="dropdown-item" href="/SampathBankWebPortal/UpdateProfileDetailsHRSide?upmanage=retrieveAll" style="color:white">Update Details Request Management</a>
@@ -122,9 +150,9 @@ POJO_MODEL.employee_hr_payroll_management.Designation"%>
                     <li class="nav-item dropdown" title="Click to See Mail Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Mailing System</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Inbox</a>
-                            <a class="dropdown-item" href="#" style="color:white">Outbox</a>
-                            <a class="dropdown-item" href="#" style="color:white">New Message</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/EmailInboxController" style="color:white">Inbox</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/EmailOutboxController" style="color:white">Outbox</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/user_management/UM_EmailCompose.jsp" style="color:white">New Message</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown" title="Click to See Profile Related Options">
@@ -144,7 +172,7 @@ POJO_MODEL.employee_hr_payroll_management.Designation"%>
 		<nav aria-label="breadcrumb" class="breadcrumb-stuff">
 		  <ol class="breadcrumb">
 		    <li class="breadcrumb-item"><a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp">EmpHome</a></li>
-		    <li class="breadcrumb-item active">Employee Duties</a></li>
+		    <li class="breadcrumb-item">Employee Duties</li>
 		    <li class="breadcrumb-item active" aria-current="page">Recruit An Employee</li>
 		  </ol>
 		</nav>
@@ -332,9 +360,9 @@ POJO_MODEL.employee_hr_payroll_management.Designation"%>
                                 </div>
                             </div>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px">
-                                <label class="col-4 col-form-label" for="EmpForm01BasicDetails01">Recruitment Date:*</label>
+                                <label class="col-4 col-form-label" for="EmpForm01CompanyRelated05">Recruitment Date:*</label>
                                 <div class="col-8">
-                                    <input type="date" class="form-control" id="EmpForm01CompanyRelated05" name="empPhyRegDate">
+                                    <input type="date" class="form-control" id="EmpForm01CompanyRelated05" name="empPhyRegDate" disabled>
                                 </div>
                             </div>
                         </div>
@@ -349,6 +377,7 @@ POJO_MODEL.employee_hr_payroll_management.Designation"%>
                     </div>
                         
                 </form>
+                <button onClick="autoFill();" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 22px; margin-right: 20px;">Demo</button>
             </div>
         </div>
 

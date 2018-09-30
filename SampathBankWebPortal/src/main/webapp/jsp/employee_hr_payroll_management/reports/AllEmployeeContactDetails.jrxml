@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AllEmployeeDetails" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="5608d0e0-c9c7-4aaa-9632-7f10a88144aa">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ITP-Database_Schema-Isuru-Keshi"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#FD4F00">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#FBFDFF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="EmployeeDetailsBasic" uuid="aff6f8c1-2efb-4547-90ea-8d719aaf5128">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ITP-Database_Schema-Isuru-Keshi"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT *
+FROM person p INNER JOIN employee e on p.personId = e.employeeId LEFT OUTER JOIN gender g ON p.genderId = g.genderId LEFT OUTER JOIN nationality n ON p.nationalityId = n.nationalityId]]>
+		</queryString>
+		<field name="firstName" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="firstName"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+		</field>
+		<field name="middleName" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="middleName"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+		</field>
+		<field name="lastName" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="lastName"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+		</field>
+		<field name="otherNames" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="otherNames"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+		</field>
+		<field name="nic" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="nic"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+		</field>
+		<field name="dateOfBirth" class="java.sql.Date">
+			<property name="com.jaspersoft.studio.field.label" value="dateOfBirth"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+		</field>
+		<field name="gender" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="gender"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="gender"/>
+		</field>
+		<field name="nationality" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="nationality"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="nationality"/>
+		</field>
+		<group name="gender">
+			<groupExpression><![CDATA[$F{gender}]]></groupExpression>
+		</group>
+		<group name="nationality">
+			<groupExpression><![CDATA[$F{nationality}]]></groupExpression>
+		</group>
+	</subDataset>
+	<subDataset name="BasicEmployeeDetails" uuid="c0c5baad-0240-4d3d-b52f-93cb823a0c26">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ITP-Database_Schema-Isuru-Keshi"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT *
+FROM person p INNER JOIN employee e on p.personId = e.employeeId LEFT OUTER JOIN gender g ON p.genderId = g.genderId LEFT OUTER JOIN nationality n ON p.nationalityId = n.nationalityId]]>
+		</queryString>
+		<field name="firstName" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="firstName"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+		</field>
+		<field name="middleName" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="middleName"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+		</field>
+		<field name="lastName" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="lastName"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+		</field>
+		<field name="otherNames" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="otherNames"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+		</field>
+		<field name="nic" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="nic"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+		</field>
+		<field name="dateOfBirth" class="java.sql.Date">
+			<property name="com.jaspersoft.studio.field.label" value="dateOfBirth"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+		</field>
+		<field name="employeeId" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="employeeId"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+		</field>
+		<field name="gender" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="gender"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="gender"/>
+		</field>
+		<field name="nationality" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="nationality"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="nationality"/>
+		</field>
+	</subDataset>
+	<subDataset name="EmployeeDetailsContact" uuid="3083f284-9a68-4d77-949c-6043007a59a9">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ITP-Database_Schema-Isuru-Keshi"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT *
+FROM person p INNER JOIN employee e on p.personId = e.employeeId]]>
+		</queryString>
+		<field name="addressStreet01" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="addressStreet01"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+		</field>
+		<field name="addressStreet02" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="addressStreet02"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+		</field>
+		<field name="addressCity" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="addressCity"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+		</field>
+		<field name="addressProvince" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="addressProvince"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+		</field>
+		<field name="addressZipCode" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="addressZipCode"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+		</field>
+		<field name="personalEmail" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="personalEmail"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+		</field>
+		<field name="homeContact" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="homeContact"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+		</field>
+		<field name="mobileContact" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="mobileContact"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+		</field>
+		<field name="employeeId" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="employeeId"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+		</field>
+	</subDataset>
+	<queryString language="SQL">
+		<![CDATA[SELECT *
+FROM person p INNER JOIN employee e ON p.personId = e.employeeId]]>
+	</queryString>
+	<field name="personId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="personId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="firstName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="firstName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="middleName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="middleName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="lastName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="lastName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="otherNames" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="otherNames"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="addressStreet01" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="addressStreet01"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="addressStreet02" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="addressStreet02"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="addressCity" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="addressCity"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="addressProvince" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="addressProvince"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="addressZipCode" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="addressZipCode"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="nic" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nic"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="dateOfBirth" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="dateOfBirth"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="personalEmail" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="personalEmail"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="physicalRegistrationDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="physicalRegistrationDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="onlineRegistrationDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="onlineRegistrationDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="genderId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="genderId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="nationalityId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="nationalityId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="branchId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="branchId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="onlineSecurityId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="onlineSecurityId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="homeContact" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="homeContact"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="mobileContact" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mobileContact"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="employeeId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="employeeId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+	</field>
+	<field name="departmentId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="departmentId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+	</field>
+	<field name="companyEmail" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="companyEmail"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+	</field>
+	<field name="designationId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="designationId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+	</field>
+	<field name="employeeType" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="employeeType"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="123" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="10" y="12" width="821" height="111" backcolor="#D9D4D4" uuid="b4389076-e68d-4aac-8c53-57362c1f0dca"/>
+			</rectangle>
+			<image>
+				<reportElement x="23" y="40" width="230" height="74" uuid="ef5af049-b34a-4e1e-9008-a6ba6ffc6a77"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<topPen lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<imageExpression><![CDATA["../../resources/images/sampathbanklogo/SampathBankLogo01.png"]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement stretchType="RelativeToTallestObject" x="10" y="12" width="821" height="20" backcolor="#FFFFFF" uuid="68bffe94-aeb9-4aff-855e-898bb74461bb"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="18" y="11" width="80" height="20" uuid="2ebb268d-8fd9-4a79-9197-2020f7b6d828"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Confidential]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="11" width="80" height="20" uuid="4e34f149-78c6-4206-998b-cc07cdece491"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Confidential]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="11" width="80" height="20" uuid="53d7b7db-ea1e-480a-b841-2aab4c51e2c3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Confidential]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="338" y="11" width="80" height="20" uuid="8fdf4e9f-f187-436b-a6c0-7585ee5fa91a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Confidential]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="178" y="11" width="80" height="20" uuid="168697b4-5f8b-48ff-90d0-252d30e59659"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Confidential]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="418" y="11" width="80" height="20" uuid="d640bd57-5703-497f-9784-e12dcecafc20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Confidential]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="498" y="11" width="80" height="20" uuid="83fa6909-c2a4-4ee3-a994-669f815fd94b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Confidential]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="658" y="11" width="80" height="20" uuid="e1cbe35a-0aed-4e23-8e97-2f5464f76b11"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Confidential]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="738" y="11" width="80" height="20" uuid="163ab5a4-d3a9-4617-bca2-538df2726527"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Confidential]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="578" y="11" width="80" height="20" uuid="6ae0c266-1476-465c-81d3-1845c9372473"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Confidential]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="294" y="58" width="328" height="30" forecolor="#FD4F00" uuid="4360f9e9-d621-442f-92ed-0e519c6225ff"/>
+				<box>
+					<pen lineColor="#D9D4D4"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[For the Use of HR Manager ONLY!]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="615" y="99" width="212" height="20" uuid="a170ecce-c091-4422-b593-bc71e9686392"/>
+				<box>
+					<pen lineColor="#D9D4D4"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[All Employee Personal Details]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="293">
+			<componentElement>
+				<reportElement x="10" y="10" width="820" height="90" uuid="2d70603c-6e1b-4cb1-95f0-aa1d74f4db4e">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+					<property name="com.jaspersoft.studio.components.autoresize.proportional" value="true"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" whenNoDataType="Blank">
+					<datasetRun subDataset="EmployeeDetailsContact" uuid="104536dd-177c-4581-9ba8-f333b0108c29">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="110" uuid="abd01b7b-4add-4ddf-9b05-927ded107d8e">
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="110" height="30" uuid="333e394b-354a-4594-a956-1364d2415203"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Century Gothic" size="14"/>
+								</textElement>
+								<text><![CDATA[Emp ID]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="110" height="30" uuid="1f36e2e9-268d-4847-aa53-54459cef34fe"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Century Gothic" size="14"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{employeeId}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="218" uuid="de5257f3-b377-498c-ad77-993245307593">
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="218" height="30" uuid="a904fb7a-20ce-4146-a946-3d615ad97dda"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Century Gothic" size="14"/>
+								</textElement>
+								<text><![CDATA[Address]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField isStretchWithOverflow="true">
+								<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="218" height="30" isPrintWhenDetailOverflows="true" uuid="d869a863-06d2-4c7d-b355-32a9a688d676"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Century Gothic" size="14"/>
+									<paragraph leftIndent="4"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{addressStreet01} + ", " +  ($F{addressStreet02}!=null?$F{addressStreet02} + ", ":"") + $F{addressCity} + ", " + $F{addressProvince} + ", " + $F{addressZipCode}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="164" uuid="cdd1fbd1-e0ed-44b2-831c-7590774c3938">
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="164" height="30" uuid="bf28d6b8-5e38-4ea9-bbe8-60d9f94255b7"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Century Gothic" size="14"/>
+								</textElement>
+								<text><![CDATA[Personal Email]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="164" height="30" uuid="67dd3f80-472e-4f89-a0ed-97609e8c885d"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Century Gothic" size="14"/>
+									<paragraph leftIndent="4"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{personalEmail}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="164" uuid="95302100-3416-43e7-96ab-4b109281e74a">
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="164" height="30" uuid="127d3084-6713-42df-ba6b-bf0fcf06dada"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Century Gothic" size="14"/>
+								</textElement>
+								<text><![CDATA[Home]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="164" height="30" uuid="7b533ee4-a027-45c4-bf9c-b7dd7efa5263"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Century Gothic" size="14"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{homeContact}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="164" uuid="8500a4cd-46fe-418f-bf74-4319eca13299">
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="164" height="30" uuid="28adba46-4791-4d78-8749-c42854a4e963"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Century Gothic" size="14"/>
+								</textElement>
+								<text><![CDATA[Mobile]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="164" height="30" uuid="e11d26fc-b199-4be5-afe1-56c1e12eb07c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Century Gothic" size="14"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{mobileContact}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</columnHeader>
+	<pageFooter>
+		<band height="32" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="6" y="2" width="96" height="14" uuid="61731454-37f1-457c-b7da-0e9c41f94e15"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="2" width="100" height="14" uuid="cb09779c-7a03-4a67-8dc1-5ed4cde8447c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="740" y="2" width="100" height="14" uuid="3200bc35-0032-4bf6-b621-a07e41801404"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sampath Bank PLC.]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -17,19 +17,19 @@ import POJO_MODEL.employee_hr_payroll_management.Employee;
 import POJO_MODEL.user_management.Email;
 
 /**
- * Servlet implementation class EmailInboxController
+ * Servlet implementation class EmailOutboxController
  */
-public class EmailInboxController extends HttpServlet {
+public class EmailOutboxController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Employee employee =  (Employee) session.getAttribute("employee");
 		
-		Collection<Email> inboxRetrieve = EmailDAO.inboxRetrieve(employee.getCompanyEmail());
+		Collection<Email> outboxRetrieve = EmailDAO.outboxRetrieve(employee.getCompanyEmail());
 		
-		session.setAttribute("inboxRetrieve", inboxRetrieve);
-		response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_EmailInbox.jsp");
+		session.setAttribute("outboxRetrieve", outboxRetrieve);
+		response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_EmailOutbox.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,12 +44,12 @@ public class EmailInboxController extends HttpServlet {
 	
 	private void viewEmail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		Collection<Email> inboxRetrieve = (ArrayList<Email>) session.getAttribute("inboxRetrieve");
+		Collection<Email> outboxRetrieve = (ArrayList<Email>) session.getAttribute("outboxRetrieve");
 		
 		int emailId = Integer.parseInt(request.getParameter("emailId"));
 		
 		Email em = null;
-		for(Email email: inboxRetrieve) {
+		for(Email email: outboxRetrieve) {
 			if(email.getEmailId() == emailId) {
 				em = email;
 				break;
@@ -63,21 +63,21 @@ public class EmailInboxController extends HttpServlet {
 
 	private void deleteEmail(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
-		Collection<Email> inboxRetrieve = (ArrayList<Email>) session.getAttribute("inboxRetrieve");
+		Collection<Email> outboxRetrieve = (ArrayList<Email>) session.getAttribute("outboxRetrieve");
 		
 		int emailId = Integer.parseInt(request.getParameter("emailId"));
 		
-		if(EmailDAO.deleteFromInbox(emailId)) {
+		if(EmailDAO.deleteFromOutbox(emailId)) {
 			PrintWriter out = response.getWriter();
 			out.println("<script type=\"text/javascript\">");
-			out.println("alert('Email deleted from inbox!');");
-			out.println("location='/SampathBankWebPortal/EmailInboxController';");
+			out.println("alert('Email deleted from outbox!');");
+			out.println("location='/SampathBankWebPortal/EmailOutboxController';");
 			out.println("</script>");
 		} else {
 			PrintWriter out = response.getWriter();
 			out.println("<script type=\"text/javascript\">");
-			out.println("alert('Email was not deleted from inbox!');");
-			out.println("location='/SampathBankWebPortal/EmailInboxController';");
+			out.println("alert('Email was not deleted from outbox!');");
+			out.println("location='/SampathBankWebPortal/EmailOutboxController';");
 			out.println("</script>");
 		}
 		

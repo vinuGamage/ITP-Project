@@ -57,4 +57,5 @@ public class EHPMQueries {
 	public static final String EHPMquery0054 = "SELECT * FROM person WHERE personId=?;";
 	public static final String EHPMquery0055 = "UPDATE person SET addressStreet01=?, addressStreet02=?, addressCity=?, addressProvince=?, addressZipCode=?, personalEmail=?, homeContact=?, mobileContact=? WHERE personId=?;";
 	public static final String EHPMquery0056 = "DELETE FROM employee_update_requests WHERE employeeId=?;";
+	public static final String EHPMquery0057 = "SELECT * FROM person p INNER JOIN employee e ON p.personId = e.employeeId WHERE personId LIKE ? OR firstName LIKE ? OR middleName LIKE ? OR lastName LIKE ? OR otherNames LIKE ? OR addressStreet01 LIKE ? OR addressStreet02 LIKE ? OR addressCity LIKE ? OR addressProvince LIKE ? OR addressZipCode LIKE ? OR nic LIKE ? OR personalEmail LIKE ? OR branchId LIKE ? OR homeContact LIKE ? OR mobileContact LIKE ? OR departmentId LIKE ? OR companyEmail LIKE ? OR employeeType LIKE ?;";
 }

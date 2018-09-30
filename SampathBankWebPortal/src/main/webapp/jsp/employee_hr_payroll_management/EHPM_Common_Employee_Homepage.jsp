@@ -15,11 +15,15 @@
 		<title>Employee Homepage</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
-			if(employee == null)
+			
+			if(null == employee)
 				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
 		%>
 	</head>
 	<body>
+	<%
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	%>
         <nav class="navbar fixed-top navbar-expand-md navbar-dark fixed-stuff">
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav mr-auto">
@@ -30,7 +34,7 @@
                         <a class="nav-link" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_ViewProfile.jsp" title="View Profile">MyProfile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" title="View Company Messages">MyInbox</a>
+                        <a class="nav-link" href="/SampathBankWebPortal/EmailInboxController" title="View Company Messages">MyInbox</a>
                     </li>
                 </ul>
             </div>
@@ -43,7 +47,7 @@
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item" title="Login">
-                        <a class="nav-link" href="#"><span class="fa fa-sign-in"></span> Sign Out</a>
+                        <a class="nav-link" href="/SampathBankWebPortal/Logout"><span class="fa fa-sign-in"></span> Sign Out</a>
                     </li>
                 </ul>
             </div>
@@ -61,7 +65,7 @@
                         <img src="/SampathBankWebPortal/resources/images/ProfilePlaceholder.png" alt="" class="pro-pic">
                     </div>
                     <div class="container-fluid" style="float: right; clear: both;" >
-                        <a href="">Mr. <%=employee.getName().getFirstName()%><br/>
+                        <a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_ViewProfile.jsp">Mr. <%=employee.getName().getFirstName()%><br/>
                         <%=employee.getName().getLastName() %></a>
                     </div>
                 </div>
@@ -78,7 +82,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=allActive" style="color:white">Active Employees</a>
                             <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=inActive" style="color:white">Inactive Employees</a>
-                            <a class="dropdown-item" href="" style="color:white">Search for Employees</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_SearchForEmployees.jsp" style="color:white">Search for Employees</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/HRLeaveRequestManagement?lmanage=getAllLeaveRequests" style="color:white">Leave Request Management</a>
                             <a class="dropdown-item" href="/SampathBankWebPortal/UpdateProfileDetailsHRSide?upmanage=retrieveAll" style="color:white">Update Details Request Management</a>
@@ -120,6 +124,8 @@
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
                         <div class="dropdown-menu nav-dropdown">
                             <a class="dropdown-item" href="/SampathBankWebPortal/CustomerRegistrationManagementController?var=getAllRequests" style="color:white">Online Customer Account Management</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/user_management/UM_CustomerManager_SearchForCustomer.jsp" style="color:white">Search For Customers</a>
                         </div>
                     </li>
                     <%} else if(employee.getDesignation().getDesignation().equals("head")) {%>
@@ -161,6 +167,18 @@
                             <a class="dropdown-item" href="#" style="color:white">Next Salary Details</a>
                         </div>
                     </li>
+                <%if(employee.getDesignation().getDesignation().equals("human resource manager")) {%>
+                    <li class="nav-item dropdown" title="Click to See Skills Related Options">
+                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
+                        <div class="dropdown-menu nav-dropdown">
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_AllEmployeeDetailsDocumentation.jsp" style="color:white">All Employee Details</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="" style="color:white">Create Employee Online Account</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="" style="color:white">Create Employee Online Account</a>
+                        </div>
+                    </li>
+                    <%} else { %>
                     <li class="nav-item dropdown" title="Click to See Skills Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Skills Management</a>
                         <div class="dropdown-menu nav-dropdown">
@@ -171,12 +189,13 @@
                             <a class="dropdown-item" href="#" style="color:white">Separated link</a>
                         </div>
                     </li>
+                    <%} %>
                     <li class="nav-item dropdown" title="Click to See Mail Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Mailing System</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Inbox</a>
-                            <a class="dropdown-item" href="#" style="color:white">Outbox</a>
-                            <a class="dropdown-item" href="#" style="color:white">New Message</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/EmailInboxController" style="color:white">Inbox</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/EmailOutboxController" style="color:white">Outbox</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/user_management/UM_EmailCompose.jsp" style="color:white">New Message</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown" title="Click to See Profile Related Options">

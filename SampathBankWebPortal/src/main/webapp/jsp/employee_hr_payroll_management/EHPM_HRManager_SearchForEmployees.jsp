@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.Collection, java.util.ArrayList" %>
-<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, POJO_MODEL.employee_hr_payroll_management.UpdateRequestManagement,
-	POJO_MODEL.user_management.Updation"%>
+<%@ page  import="java.util.Collection, java.util.ArrayList"%>
+<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee"%>
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <!-- Required meta tags -->
+<html>
+	<head>
+		<!-- Required meta tags -->
         <meta charset="ISO-8859-1">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -14,20 +13,55 @@
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        <title>Update Requests</title>
+		<title>Search for Employees</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
-		
-			if(employee == null || !employee.getDesignation().getDesignation().equals("human resource manager"))
+			if(employee == null)
 				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
-			
-			Collection<UpdateRequestManagement> list = (ArrayList<UpdateRequestManagement>) session.getAttribute("list");
-			if(list == null)
-				response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp");
+				
+				Collection<Employee> employeeSearchList01 = (ArrayList<Employee>) session.getAttribute("employeeSearchList01");
+				String value = (String) request.getAttribute("value");
 		%>
-    </head>
-
-    <body>
+		
+		<style>			
+			* {
+			    box-sizing: border-box;
+			}
+			
+			form.example input[type=text] {
+			    padding: 10px;
+			    font-size: 17px;
+			    border: 1px solid grey;
+			    float: center;
+			    width: 70%;
+			    background: #f1f1f1;
+			    margin-left: 9%;
+			}
+			
+			form.example button {
+			    float: center;
+			    width: 10%;
+			    padding: 10px;
+			    background: #FD4F00;
+			    color: white;
+			    font-size: 17px;
+			    border: 1px solid grey;
+			    border-left: none;
+			    cursor: pointer;
+			}
+			
+			form.example button:hover {
+			    background: grey;
+			}
+			
+			form.example::after {
+			    content: "";
+			    clear: both;
+			    display: table;
+			}
+		</style>
+	</head>
+	<body>
         <nav class="navbar fixed-top navbar-expand-md navbar-dark fixed-stuff">
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav mr-auto">
@@ -85,20 +119,20 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=allActive" style="color:white">Active Employees</a>
                             <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=inActive" style="color:white">Inactive Employees</a>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_SearchForEmployees.jsp" style="color:white">Search for Employees</a>
+                            <a class="dropdown-item" href="#" style="color:white">Search for Employees</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/HRLeaveRequestManagement?lmanage=getAllLeaveRequests" style="color:white">Leave Request Management</a>
-                            <a class="dropdown-item" href="#" style="color:white">Update Details Request Management</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/UpdateProfileDetailsHRSide?upmanage=retrieveAll" style="color:white">Update Details Request Management</a>
                             <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
                         </div>
                     </li>
+                    
                     <li class="nav-item dropdown" title="Click to See Leave Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Leave Request Inquiry</a>
                         <div class="dropdown-menu nav-dropdown">
                             <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveBase" style="color:white">Apply for Leave</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveHistory" style="color:white">Leave History</a>
-                            <a class="dropdown-item" href="#" style="color:white">Leave Status</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" style="color:white">Leave Analysis</a>
                         </div>
@@ -147,46 +181,68 @@
 		<nav aria-label="breadcrumb" class="breadcrumb-stuff">
 		  <ol class="breadcrumb">
 		    <li class="breadcrumb-item"><a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp">EmpHome</a></li>
-		    <li class="breadcrumb-item active">Employee Duties</li>
-		    <li class="breadcrumb-item active" aria-current="page">Update Details Request Management</li>
+		    <li class="breadcrumb-item">Employee Duties</li>
+		    <li class="breadcrumb-item active" aria-current="page">Search for Employees</li>
 		  </ol>
 		</nav>
+		
+        <div class="container-fluid" style="margin-bottom: 100px; height: 100%">
+		
+			<div style="width: 800px; float: center; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin: 0 auto;">
+               <h5>Search for Employees</h5>
+				<form class="example" action="/SampathBankWebPortal/SearchForEmployee" method="post">
+				  <input type="text" placeholder="Search.." name="search">
+				  <button type="submit"><i class="fa fa-search"></i></button>
+				</form>
+           </div>
 
-        <div class="container" style="margin-bottom: 100px; height: auto;">
-
-		<%if(list != null) {%>
-			<table class="table table-hover" style="margin-top: 40px;">
-			  <thead class="thead-light">
-			    <tr>
-			      <th style="width: 30px;" scope="col">Employee Id</th>
-			      <th style="width: 350px;" scope="col">Requested Field To Be Changed</th>
-			      <th style="width: 60px;" scope="col">####</th>
-			      <th style="width: 60px;" scope="col">####</th>
-			      <th style="width: 60px;" scope="col">####</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			  <% for(UpdateRequestManagement URM: list) { %>
-			    <tr>
-			    <form action="/SampathBankWebPortal/UpdateProfileDetailsHRSide" method="post">
-					<td style="width: 30px; font-weight: bold;"><%=URM.getEmployee().getPersonId() %></td>
-					<td style="width: 350px; font-weight: bold;"><%=URM.getDiffStuff() %></td>
-			      	<input style="width: 70px;" type="hidden" name="employeetId" value="<%=URM.getEmployee().getPersonId() %>">
-					<td><input type="submit" name="updateShow" value="Show" style="width: full; margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/></td>
-					<td><input type="submit" name="updateApprove" value="Approve" style="width: full; margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/></td>
-					<td><input type="submit" name="updateReject" value="Reject" style="width: full; margin:0px; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px;"/></td>
-			  	</form>
-			    </tr>
-			  <%} %>
-			  </tbody>
-			</table>
-		<%} else { %>
-			There are no update requests to manage.
-		<%} %>
-
-
-        </div>
-
+			<div class="container-fluid" style="margin-top: 40px;">
+				<%if(employeeSearchList01 != null && value != null) {%>
+					<table class="table table-hover">
+					  <thead class="thead-light">
+					    <tr>
+					      <th scope="col">Employee Id</th>
+					      <th scope="col">Employee Name</th>
+					      <th scope="col">Branch Id</th>
+					      <th scope="col">Employee Type</th>
+					      <th scope="col">Company Induction Date</th>
+					      <th scope="col">Online Account</th>
+					      <th scope="col">####</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  <%for(Employee emp: employeeSearchList01) {%>
+					    <tr>
+					      <th scope="row"><%=emp.getPersonId() %></th>
+					      <td style="font-weight: bold;"><%=emp.getName().getFullName() %></td>
+					      <td style="font-weight: bold;"><%=emp.getBranch().getBranchId() %></td>
+					      <td style="font-weight: bold;"><%=emp.getEmployeeType() %></td>
+					      <td style="font-weight: bold;"><%=emp.getRegistrationDates().getPhysicalRegistrationDate() %></td>
+					      <td style="font-weight: bold;">
+					      	<%if(emp.getOnlineSecurityKey() == null) {%>
+					      		No
+					      	<%} else {%>
+					      		Yes
+					      	<%} %>
+					      </td>
+					      <td>
+					      	<form action="/SampathBankWebPortal/SearchForEmployee" method="post">
+					      		<input type="hidden" value="<%=emp.getPersonId()%>" name="employeeId"/>
+					      		<input type="submit" name="show" value="View Details" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; margin-right: 20px;"/>
+					      	</form>
+					      </td>
+					    </tr>
+					    <%} %>
+					  </tbody>
+					</table>
+				<%} else if(employeeSearchList01 == null && value != null){ %>
+					<div style="margin-left: 30%;">
+						<h4>There were no search results to be matching!</h4>
+					</div>
+				<%}%>
+			</div>
+		</div>
+		
         <!-- Footer -->
         <footer class="page-footer font-small blue pt-4 footer-all">
             <div class="container-fluid text-center text-md-left">

@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        <title>Update Requests</title>
+        <title>Update Request</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
 		
@@ -35,10 +35,10 @@
                         <a class="nav-link" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp" title="Go to Employee Homepage">EmpHome</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" title="View Profile">MyProfile</a>
+                        <a class="nav-link" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp" title="View Profile">MyProfile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" title="View Company Messages">MyInbox</a>
+                        <a class="nav-link" href="/SampathBankWebPortal/EmailInboxController" title="View Company Messages">MyInbox</a>
                     </li>
                 </ul>
             </div>
@@ -69,7 +69,7 @@
                         <img src="/SampathBankWebPortal/resources/images/ProfilePlaceholder.png" alt="" class="pro-pic">
                     </div>
                     <div class="container-fluid" style="float: right; clear: both;" >
-                        <a href="">Mr. <%=employee.getName().getFirstName()%><br/>
+                        <a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_ViewProfile.jsp">Mr. <%=employee.getName().getFirstName()%><br/>
                         <%=employee.getName().getLastName() %></a>
                     </div>
                 </div>
@@ -148,7 +148,7 @@
 		  <ol class="breadcrumb">
 		    <li class="breadcrumb-item"><a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp">EmpHome</a></li>
 		    <li class="breadcrumb-item active">Employee Duties</li>
-		    <li class="breadcrumb-item active" aria-current="page">Leave Request Management</li>
+		    <li class="breadcrumb-item active">Update Details Request Management</li>
 		  </ol>
 		</nav>
 

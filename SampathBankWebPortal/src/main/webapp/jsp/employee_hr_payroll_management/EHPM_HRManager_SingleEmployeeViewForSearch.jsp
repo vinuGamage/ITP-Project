@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee"%>
+<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, java.util.Collection, java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,22 +12,23 @@
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<title>Employee Profile</title>
+		<title>Employee</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
-			if(employee == null)
+			if(employee == null || !employee.getDesignation().getDesignation().equals("human resource manager"))
 				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
 		%>
 	</head>
-	<body>
+
+    <body>
         <nav class="navbar fixed-top navbar-expand-md navbar-dark fixed-stuff">
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp" title="Go To Employee Homepage">EmpHome</a>
-                    </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#" title="You are already viewing profile">MyProfile</a>
+                        <a class="nav-link" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp" title="Go to Employee Homepage">EmpHome</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_ViewProfile.jsp" title="View Profile">MyProfile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/SampathBankWebPortal/EmailInboxController" title="View Company Messages">MyInbox</a>
@@ -35,7 +36,7 @@
                 </ul>
             </div>
             <div class="mx-auto order-0">
-                <a class="navbar-brand mx-auto" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp" title="Go To Employee Homepage">SampathEmpWeb</a>
+                <a class="navbar-brand mx-auto" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp" title="Go to Employee Homepage">SampathEmpWeb</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -61,7 +62,7 @@
                         <img src="/SampathBankWebPortal/resources/images/ProfilePlaceholder.png" alt="" class="pro-pic">
                     </div>
                     <div class="container-fluid" style="float: right; clear: both;" >
-                        <a href="#">Mr. <%=employee.getName().getFirstName()%><br/>
+                        <a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_ViewProfile.jsp">Mr. <%=employee.getName().getFirstName()%><br/>
                         <%=employee.getName().getLastName() %></a>
                     </div>
                 </div>
@@ -69,7 +70,6 @@
 
             <div class="container-fluid" style="margin-top:10px;">
                 <ul class="nav nav-pills nav-fill nav-justified nav-header">
-                <%if(employee.getDesignation().getDesignation().equals("human resource manager")) {%>
                     <li class="nav-item dropdown" title="Click to See Your Duties">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
                         <div class="dropdown-menu nav-dropdown">
@@ -85,65 +85,6 @@
                             <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
                         </div>
                     </li>
-                    <%} else if(employee.getDesignation().getDesignation().equals("admin")) {%>
-                    <li class="nav-item dropdown" title="Click to See Your Duties">
-                    	<a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
-                    	<div class="dropdown-menu nav-dropdown">
-	                        <a class="dropdown-item" href="#" style="color:white">admin job 01</a>
-	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">admin job 02</a>
-	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">admin job 03</a>
-	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">admin job 04</a>
-	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" style="color:white">admin job 05</a>
-                    	</div>
-                	</li>
-                    <%} else if(employee.getDesignation().getDesignation().equals("normal employee")) {%>
-                    <li class="nav-item dropdown" title="Click to See Your Duties">
-                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
-                        <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">normal employee job 01</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">normal employee job 02</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">normal employee job 03</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">normal employee job 04</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">normal employee job 05</a>
-                        </div>
-                    </li>
-                   	<%} else if(employee.getDesignation().getDesignation().equals("user manager")) {%>
-                    <li class="nav-item dropdown" title="Click to See Your Duties">
-                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
-                        <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="/SampathBankWebPortal/CustomerRegistrationManagementController?var=getAllRequests" style="color:white">Online Customer Account Management</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/user_management/UM_CustomerManager_SearchForCustomer.jsp" style="color:white">Search For Customers</a>
-                        </div>
-                    </li>
-                    <%} else if(employee.getDesignation().getDesignation().equals("head")) {%>
-                    <li class="nav-item dropdown" title="Click to See Your Duties">
-                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
-                        <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="/SampathBankWebPortal/RetreiveBranchItemServlet" style="color:white">Request Item from Warehouse</a>
-                        </div>
-                    </li>
-                    <%} else if(employee.getDesignation().getDesignation().equals("inventory manager")) {%>
-                    <li class="nav-item dropdown" title="Click to See Your Duties">
-                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
-                        <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="/SampathBankWebPortal/RetreiveItemServlet" style="color:white">Item List</a>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/RetreiveHistoryServlet" style="color:white">History</a>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/RetreiveRequestServlet" style="color:white">Show Branch Request</a>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/IM_ShowWarehouse-Branch.jsp" style="color:white">Warehouse - Branch</a>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/IM_GenerateReports.jsp" style="color:white">Generate Reports</a>
-                        </div>
-                    </li>
-                    <%} %>
-                    
                     <li class="nav-item dropdown" title="Click to See Leave Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Leave Request Inquiry</a>
                         <div class="dropdown-menu nav-dropdown">
@@ -184,7 +125,7 @@
                     <li class="nav-item dropdown" title="Click to See Profile Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Profile Related</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Profile Details</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_ViewProfile.jsp" style="color:white">Profile Details</a>
                             <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_UpdateProfile.jsp" style="color:white">Update Profile</a>
                         </div>
                     </li>
@@ -195,67 +136,154 @@
 <!--
     BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY
 -->
+		<% Employee searchEmp = (Employee) request.getAttribute("searchEmp"); %>
 		<nav aria-label="breadcrumb" class="breadcrumb-stuff">
 		  <ol class="breadcrumb">
-		    <li class="breadcrumb-item" aria-current="page"><a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp">EmpHome</a></li>
-		    <li class="breadcrumb-item acive">Employee Profile</li>
-		    <li class="breadcrumb-item acive" aria-current="page"><%=employee.getPersonId() %></li>
+		    <li class="breadcrumb-item"><a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp">EmpHome</a></li>
+		    <li class="breadcrumb-item active">Employee Duties</li>
+		    <li class="breadcrumb-item active">Search For Employees</li>
+		    <%if(searchEmp != null) {%>
+		    <li class="breadcrumb-item active" aria-current="page"><%=searchEmp.getPersonId() %></li>
+		    <%} else { %>
+		    <li class="breadcrumb-item active" aria-current="page">XXXXX</li>
+		    <%} %>
 		  </ol>
 		</nav>
 		
-        <div class="container-fluid" style="margin-bottom: 100px; height: auto">
-			<div class="container" style="height: 400px; background-color: lightgrey; border-width: 1px; border-style: solid; border-color: #FD4F00;">
-				<div class="container" style="float: left; width: 250px; padding: 0px; margin-right: 50px;">
-					<img src="/SampathBankWebPortal/resources/images/ProfilePlaceholder.png" class="img-circle pro-pic" alt="Cinque Terre" width="100%" style="border-width: 2px; border-style: solid; border-color: #FD4F00;">
-				</div>
-				<div class="container" style="float: left; width: auto; padding: 0px; font-family: century-gothic; color: black;">
-					<table class="table table-borderless">
-						<tbody>
-							<tr>
-								<th scope="row" style="font-size: 28px;"><%=employee.getName().getFullName() %> (<%=employee.getPersonId() %>)</th>
-							</tr>
-							<tr>
-								<td style="font-size: 20px;"><%=employee.getDesignation().getDesignation().toUpperCase() %></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<div class="container" style="height: auto; background-color: white; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-top: 10px; padding: 2px;">
-				<div style="height: 40px; font-size: 26px; padding-left: 10px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #FD4F00;">
-					Basic Information
-				</div>
-				<div>
-					<table class="table table-borderless" style="margin: 20px; width: 1100px;">
-					  <tbody>
-					    <tr style="color: #FD4F00; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #FD4F00;">
-					      <th colspan="2">Contact Info</th>
-					      <th>Other Info</th>
-					    </tr>
-					    <tr style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">
-					      <td style="width: 240px; font-weight: bold;">Personal Email</td>
-					      <td style="width: 550px"><%=employee.getPersonalEmail() %></td>
-					      <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id01').style.display='block'" style="width:full; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Personal</button></td>
-					    </tr>
-					    <tr style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">
-					      <td style="width: 240px; font-weight: bold;">Company Email</td>
-					      <td style="width: 550px"><%=employee.getCompanyEmail() %></td>
-						  <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id02').style.display='block'" style="width:full; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Employment</button></td>
-					    </tr>
-					    <tr style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">
-					      <td style="width: 240px; font-weight: bold;">Home</td>
-					      <td style="width: 550px"><%=employee.getHomeContact() %></td>
-					      <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id03').style.display='block'" style="width:full; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Branch</button></td>
-					    </tr>
-					    <tr>
-					      <td style="width: 240px; font-weight: bold;">Mobile</td>
-					      <td style="width: 550px"><%=employee.getMobileContact() %></td>
-					      <td><button type="button" class="btn btn-sm" onclick="document.getElementById('id04').style.display='block'" style="width:full; background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; width: full; margin: 0px;">Department</button></td>
-					    </tr>
-					  </tbody>
-					</table>
-				</div>
-			</div>
+		
+        <div class="container-fluid" style="margin-bottom: 100px; height: 1000px;">
+        
+		<%if(searchEmp != null) {%>
+		<h3 style="font-weight: bold;"><%=searchEmp.getPersonId() %> : <%=searchEmp.getName().getFullName() %></h3>
+					<div style="float: left; margin-right: 15px; margin-left: 22px;">
+                        <div style="width: 700px; float: left; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
+                            <h5>Basic Details</h5>
+                            <table class="table table-borderless">
+                            	<tbody>
+                            		<tr>
+                            			<th scope="row">Full Name: </th>
+                            			<td><%=searchEmp.getName().getFullName()%></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Gender: </th>
+                            			<td><%=searchEmp.getGender().getGender() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Nationality: </th>
+                            			<td><%=searchEmp.getNationality().getNationality() %></td>
+                            		</tr>
+                            	</tbody>
+                            </table>
+                        </div>
+
+                        <div style="width: 700px; padding: 5px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; clear: both">
+                            <h5>Contact Details</h5>
+                            <table class="table table-borderless">
+                            	<tbody>
+                            	<%if(searchEmp.getAddress().getAddressStreet02() != null && searchEmp.getAddress().getAddressStreet02().trim().length() != 0) {%>
+                            		<tr>
+                            			<th scope="row">Street Address (Line 01): </th>
+                            			<td><%=searchEmp.getAddress().getAddressStreet01() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Street Address (Line 02): </th>
+                            			<td><%=searchEmp.getAddress().getAddressStreet02() %></td>
+                            		</tr>
+                            	<%} else {%>
+                            		<tr>
+                            			<th scope="row">Street Address: </th>
+                            			<td><%=searchEmp.getAddress().getAddressStreet01() %></td>
+                            		</tr>
+                            	<%} %>
+                            		<tr>
+                            			<th scope="row">City: </th>
+                            			<td><%=searchEmp.getAddress().getAddressCity() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Province: </th>
+                            			<td><%=searchEmp.getAddress().getAddressProvince() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">ZIP Code: </th>
+                            			<td><%=searchEmp.getAddress().getAddressZIPCode() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Contact Number </br>(Home): </th>
+                            			<td><%=searchEmp.getHomeContact() %></td>
+                            		</tr>
+								<%if(searchEmp.getMobileContact() != null && searchEmp.getMobileContact().trim().length() != 0) {%>
+                            		<tr>
+                            			<th scope="row">Contact Number (Mobile): </th>
+                            			<td><%=searchEmp.getMobileContact() %></td>
+                            		</tr>
+                            	<%} %>
+                            		<tr>
+                            			<th scope="row">Personal Email: </th>
+                            			<td><%=searchEmp.getPersonalEmail() %></td>
+                            		</tr>
+                            	</tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div style="float: left;">
+                        <div style="width: 700px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
+                            <h5>Identification</h5>
+                            <table class="table table-borderless">
+                            	<tbody>
+                            		<tr class="table-warning">
+                            			<th scope="row">Employee ID: </th>
+                            			<td><%=searchEmp.getPersonId() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">NIC: </th>
+                            			<td><%=searchEmp.getNic() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Date of Birth: </th>
+                            			<td><%=searchEmp.getDateOfBirth() %></td>
+                            		</tr>
+                            	</tbody>
+                            </table>
+                        </div>
+
+                        <div style="width: 700px; padding: 5px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; clear: both; margin-bottom: 5px;">
+                            <h5>Company Related</h5>
+                            <table class="table table-borderless">
+                            	<tbody>
+                            		<tr>
+                            			<th scope="row">Branch: </th>
+                            			<td><%=searchEmp.getBranch().getBranchAddress().getAddressCity() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Department: </th>
+                            			<td><%=searchEmp.getDepartment().getDepartmentName() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Designation: </th>
+                            			<td><%=searchEmp.getDesignation().getDesignation() %></td>
+                            		</tr>
+									<tr>
+                            			<th scope="row">Recruitment Date: </th>
+                            			<td><%=searchEmp.getRegistrationDates().getPhysicalRegistrationDate() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Company Email: </th>
+                            			<td><%=searchEmp.getCompanyEmail() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Employee Type: </th>
+                            			<td><%=searchEmp.getEmployeeType() %></td>
+                            		</tr>
+                            	</tbody>
+                            </table>
+                        </div>
+                    </div>
+			
+		<%} else { %>
+			Some Error!
+		<%} %>
+
 		</div>
 		
         <!-- Footer -->
@@ -343,7 +371,7 @@
         <script src="/SampathBankWebPortal/resources/css&js&jquery/popper.min.js"></script>
         <script src="/SampathBankWebPortal/resources/css&js&jquery/bootstrap.min.js"></script>
         <script src="/SampathBankWebPortal/resources/css&js&jquery/customized.js"></script>
-        
+
 <!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
 		<style>
 			body {font-family: Arial, Helvetica, sans-serif;}
@@ -377,7 +405,7 @@
 			.cancelbtn {
 			    width: auto;
 			    padding: 10px 18px;
-			    background-color: #FD4F00;
+			    background-color: #f44336;
 			}
 			
 			/* Center the image and position the close button */
@@ -470,161 +498,48 @@
 <!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
 <!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
         <div id="id01" class="modal">
-		  <form class="modal-content animate" action="#" method="#">
+		  <form class="modal-content animate" action="/SampathBankWebPortal/ActiveInactiveEmployeeManupulation" method="post">
 		    <div class="imgcontainer">
 		      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+		      <img src="/SampathBankWebPortal/resources/images/avatar_sure.png" alt="Avatar" class="avatar">
 		    </div>
 		
 		    <div class="container">
-				<div style="float: left;">
-	                <div style="width: 500px; float: left; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
-	                    <table class="table table-borderless table-hover">
-	                    	<tbody>
-	                    		<tr>
-	                    			<th style="width: 150px;" scope="row">Full Name: </th>
-	                    			<td style="width: 350px;"><%=employee.getName().getFullName()%></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<th style="width: 150px;" scope="row">NIC: </th>
-	                    			<td style="width: 350px;"><%=employee.getNic() %></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<th style="width: 150px;" scope="row">Gender: </th>
-	                    			<td style="width: 350px;"><%=employee.getGender().getGender() %></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<th style="width: 150px;" scope="row">Nationality: </th>
-	                    			<td style="width: 350px;"><%=employee.getNationality().getNationality() %></td>
-	                    		</tr>
-	                    	</tbody>
-	                    </table>
-	            	</div>
-		    	</div>
-				<div style="float: left; margin-left: 10px;">
-	                <div style="width: 500px; float: left; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
-	                    <table class="table table-borderless table-hover">
-	                    	<tbody>
-	                    		<tr>
-	                    			<th style="width: 150px;" scope="row">Birth Date: </th>
-	                    			<td style="width: 350px;"><%=employee.getDateOfBirth()%></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<th style="width: 150px;" scope="row">Address: </th>
-	                    			<td style="width: 350px;"><%=employee.getAddress().getFullAddress()%></td>
-	                    		</tr>
-	                    	</tbody>
-	                    </table>
-	            	</div>
-		    	</div>
+		      	<label for="psw"><b>Enter Your Online Security Key: </b></label>
+		      	<input type="password" placeholder="Online Security Key" name="onlineSecKey" required>
+		        
+		        
+		        <input type="hidden" value="removeOnlineAccount" name="anotherDeed"/>
+		      	<button type="submit" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 19px; margin-right:10px;">Remove Online</button>
 		    </div>
 		
 		    <div class="container">
-		      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Done</button>
+		      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
 		    </div>
 		  </form>
 		</div>
 		
         <div id="id02" class="modal">
-		  <form class="modal-content animate" action="#" method="#">
+		  <form class="modal-content animate" action="/SampathBankWebPortal/ActiveInactiveEmployeeManupulation" method="post">
 		    <div class="imgcontainer">
 		      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+		      <img src="/SampathBankWebPortal/resources/images/avatar_sure.png" alt="Avatar" class="avatar">
 		    </div>
 		
 		    <div class="container">
-				<div style="float: left;">
-	                <div style="width: 1000px; float: center; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
-	                    <table class="table table-borderless table-hover">
-	                    	<tbody>
-	                    		<tr>
-	                    			<th style="width: 300px;" scope="row">Registration Date (Physical): </th>
-	                    			<td style="width: full;"><%=employee.getRegistrationDates().getPhysicalRegistrationDate()%></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<th style="width: 300px;" scope="row">Registration Date (Online): </th>
-	                    			<td style="width: full;"><%=employee.getRegistrationDates().getOnlineRegistrationDate() %></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<th style="width: 300px;" scope="row">Designation: </th>
-	                    			<td style="width: full;"><%=employee.getDesignation().getDesignation() %></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<th style="width: 300px;" scope="row">Type: </th>
-	                    			<td style="width: full;"><%=employee.getEmployeeType() %></td>
-	                    		</tr>
-	                    	</tbody>
-	                    </table>
-	            	</div>
-		    	</div>
+		    	<label for="psw"><b>Reason for Inactivating: </b></label>
+		      	<input type="text" name="reason" required>
+		      	
+		      	<label for="psw"><b>Enter Your Online Security Key: </b></label>
+		      	<input type="password" placeholder="Online Security Key" name="onlineSecKey" required>
+		      
+		      
+		      	<input type="hidden" value="inactivate" name="anotherDeed"/>
+		      	<button type="submit" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 19px; margin-right:10px;">Inactivate</button>
 		    </div>
 		
 		    <div class="container">
 		      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
-		    </div>
-		  </form>
-		</div>
-		
-        <div id="id03" class="modal">
-		  <form class="modal-content animate" action="#" method="#">
-		    <div class="imgcontainer">
-		      <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
-		    </div>
-		
-		    <div class="container">
-				<div style="float: left;">
-	                <div style="width: 1000px; float: center; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
-	                    <table class="table table-borderless table-hover">
-	                    	<tbody>
-	                    		<tr>
-	                    			<th style="width: 250px;" scope="row">Branch ID: </th>
-	                    			<td style="width: full;"><%=employee.getBranch().getBranchId()%></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<th style="width: 250px;" scope="row">Branch Address: </th>
-	                    			<td style="width: full;"><%=employee.getBranch().getBranchAddress().getFullAddress() %></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<th style="width: 250px;" scope="row">Branch Email: </th>
-	                    			<td style="width: full;"><%=employee.getBranch().getBranchEmail() %></td>
-	                    		</tr>
-	                    	</tbody>
-	                    </table>
-	            	</div>
-		    	</div>
-		    </div>
-		
-		    <div class="container">
-		      <button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">Done</button>
-		    </div>
-		  </form>
-		</div>
-		
-        <div id="id04" class="modal">
-		  <form class="modal-content animate" action="#" method="#">
-		    <div class="imgcontainer">
-		      <span onclick="document.getElementById('id04').style.display='none'" class="close" title="Close Modal">&times;</span>
-		    </div>
-		
-		    <div class="container">
-				<div style="float: left;">
-	                <div style="width: 1000px; float: center; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
-	                    <table class="table table-borderless table-hover">
-	                    	<tbody>
-	                    		<tr>
-	                    			<th style="width: 250px;" scope="row">Department ID: </th>
-	                    			<td style="width: full;"><%=employee.getDepartment().getDepartmentId()%></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<th style="width: 250px;" scope="row">Department Name: </th>
-	                    			<td style="width: full;"><%=employee.getDepartment().getDepartmentName() %></td>
-	                    		</tr>
-	                    	</tbody>
-	                    </table>
-	            	</div>
-		    	</div>
-		    </div>
-		
-		    <div class="container">
-		      <button type="button" onclick="document.getElementById('id04').style.display='none'" class="cancelbtn">Cancel</button>
 		    </div>
 		  </form>
 		</div>
@@ -633,22 +548,14 @@
 			// Get the modal
 			var modal = document.getElementById('id01');
 			var modal2 = document.getElementById('id02');
-			var modal3 = document.getElementById('id03');
-			var modal4 = document.getElementById('id04');
 			
 			// When the user clicks anywhere outside of the modal, close it
 			window.onclick = function(event) {
-			    if (event.target == modal) {
+			    if (event.target == modal || event.target == modal2) {
 			        modal.style.display = "none";
-			    } else if(event.target == modal2) {
-			    	modal2.style.display = "none";
-			    } else if(event.target == modal3) {
-			    	modal3.style.display = "none";
-			    } else if(event.target == modal4) {
-			    	modal4.style.display = "none";
+			        modal2.style.display = "none";
 			    }
 			}
-		</script>
 		</script>
 <!-- POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP POP UP -->
     </body>
