@@ -98,7 +98,7 @@
 
 
 
-        <div class="container-fluid" style="height: 850px ">
+        <div class="container-fluid" style="height: auto ">
             
             <div class="row">
                 <div class="col-md-2" style="height: 450px;background-color:#fd4f00 ;border-radius: 10px 10px 10px 10px;margin-top:5px;">
@@ -181,7 +181,8 @@
 									 <input type="submit" value="CURRENT BALANCE" class="btn btn-secondary btn-bg"> 
 								</form>
 								<br><br>
-								<img src="Coins-PNG-Photos.png" width="350px" height="350px">
+								<img src="/SampathBankWebPortal/resources/images/transaction_mangement/Coins-PNG-Photos.png" width="350px" height="350px">
+							<br><br><br><br><br><br><br><br>
 							</div>
 						</div>
 					</div>	

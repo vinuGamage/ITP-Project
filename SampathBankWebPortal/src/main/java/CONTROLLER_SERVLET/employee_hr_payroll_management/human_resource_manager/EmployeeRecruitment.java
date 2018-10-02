@@ -78,7 +78,7 @@ public class EmployeeRecruitment extends HttpServlet {
 			else if(regEmp.getDesignation().getDesignation().equalsIgnoreCase("admin"))
 				regEmp.setEmployeeType("admin");
 			else if(regEmp.getDesignation().getDesignation().equalsIgnoreCase("user manager"))
-				regEmp.setEmployeeType("normal employee");
+				regEmp.setEmployeeType("user manager");
 			else if(regEmp.getDesignation().getDesignation().equalsIgnoreCase("head"))
 				regEmp.setEmployeeType("head");
 			else if(regEmp.getDesignation().getDesignation().equalsIgnoreCase("inventory manager"))

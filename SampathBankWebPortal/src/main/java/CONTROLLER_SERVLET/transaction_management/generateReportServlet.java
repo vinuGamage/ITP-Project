@@ -47,6 +47,7 @@ public class generateReportServlet extends HttpServlet {
 		if(request.getParameter("submit1")!=null) {
 			try {
 				GenerateReports.fullTransactionHistory(request.getParameter("path"));
+				request.getRequestDispatcher("jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp").forward(request, response);
 				//request.getRequestDispatcher("TM_empGenerateReports.jsp").forward(request, response);
 			} catch (DocumentException e) {
 				// TODO Auto-generated catch block
@@ -64,6 +65,7 @@ public class generateReportServlet extends HttpServlet {
 				System.out.println(t1.getDate());
 				System.out.println(t1.getAmount());
 				System.out.println(t1.getStatus());
+				request.getRequestDispatcher("jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp").forward(request, response);
 			} catch (DocumentException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

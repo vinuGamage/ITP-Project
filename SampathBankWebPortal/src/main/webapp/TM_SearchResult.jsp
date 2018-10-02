@@ -179,7 +179,8 @@
                     
                     
                      
-    <div class="container text-center">    
+    <div class="container text-center">   
+    <br><br> 
   <h1>Transaction History</h1><br>
   
   		<div class="row justify-content-center">
@@ -266,6 +267,7 @@
 							%>
 							
 							</table>
+							<br><br>
                               
     </div>
     <div class="col-sm-5"> 
@@ -335,6 +337,8 @@
 							%>
 							
 							</table>  
+							
+							<br><br>
     </div>
    
       

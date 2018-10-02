@@ -48,6 +48,9 @@ public class approveInterServlet extends HttpServlet {
 		if(updateDAO.approvingTransactions(t1)) {
 			updateDAO.transactions(t1);
 			JOptionPane.showMessageDialog(null, "Transaction was successfully approved.");
+			request.getRequestDispatcher("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp").forward(request, response);
+			
+			
 		}else {
 			JOptionPane.showMessageDialog(null, "Transaction was not successfully approved.");
 			

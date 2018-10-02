@@ -169,13 +169,13 @@
                 
                 </div>
                 
-                <div class="col-md-10"  style="background-color:white;border-radius:30px;margin-left:0px ">
+                <div class="col-md-10"  style="background-color:white;border-radius:30px;margin-left:0px " >
                     <!-- Include your stuff here-->
                     
                     
                     
                     
-           <div class="col-md-10">
+           <div class="col-md-10" >
                    <div class = "container" >
  						<div align="center">
 							<br><br><br><br>		

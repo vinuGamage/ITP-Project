@@ -270,6 +270,7 @@ public class retreiveDAO {
 			
 			while(rst.next()) {
 				Transaction t1 =new Transaction(rst.getLong(2), rst.getLong(3), rst.getString(4), rst.getDouble(5),rst.getInt(1));
+				t1.setStatus(rst.getString(6));
 				disApprovedList.add(t1);
 			}
 			
@@ -297,6 +298,7 @@ public class retreiveDAO {
 			
 			while(rst.next()) {
 				Transaction t1 =new Transaction(rst.getLong(2), rst.getLong(3), rst.getString(5), rst.getDouble(4),rst.getInt(1));
+				t1.setStatus(rst.getString(6));
 				disApprovedList.add(t1);
 			}
 			

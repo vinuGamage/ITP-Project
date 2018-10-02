@@ -76,16 +76,11 @@
                     <li class="nav-item dropdown" title="Click to See Your Duties">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
                             <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Show Item - Warehouse</a>
-                            <a class="dropdown-item" href="#" style="color:white">Create Employee Online Account</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Leave Request Management</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Update Details of Employees</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Inactive Employees</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/showAllTransactDetailsServlet" style="color:white">Display Transaction</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/approveTransactservlet" style="color:white">Approve Transactions</a>
+                            
+                            <a class="dropdown-item" href="TM_empGenerateReports.jsp" style="color:white">Generate Reports</a>
+                            
                         </div>
                     </li>
                     <li class="nav-item dropdown" title="Click to See Leave Related Options">
@@ -150,6 +145,7 @@
 
 
         <div class="container" style="overflow: auto">
+        <br>
 
 				<p>Generate Transaction History Report</p>
 			<form method="post" action="generateReportServlet">

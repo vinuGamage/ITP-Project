@@ -100,7 +100,7 @@
 
 
 
-        <div class="container-fluid" style="height: 100% ">
+        <div class="container-fluid" style="height: auto ">
             
             <div class="row">
                 <div class="col-md-2" style="height: 450px;background-color:#fd4f00 ;border-radius: 10px 10px 10px 10px;margin-top:5px;">
@@ -221,7 +221,7 @@
                             </tr>
                         
                             </table>
-                        	   <br><br><br><br>
+                        	   <br><br><br><br><br><br><br><br>
                         </form>
                        
                         </div>  
