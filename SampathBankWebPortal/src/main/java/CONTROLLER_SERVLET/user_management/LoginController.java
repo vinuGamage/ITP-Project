@@ -16,6 +16,7 @@ import POJO_MODEL.employee_hr_payroll_management.converters.DateConverter;
 import POJO_MODEL.employee_hr_payroll_management.email_client.EmailClient;
 import POJO_MODEL.employee_hr_payroll_management.managers.CommonEntityManager;
 import POJO_MODEL.inventory_management.loginUser;
+import POJO_MODEL.transaction_management.Login;
 import POJO_MODEL.user_management.Customer;
 import POJO_MODEL.user_management.GenericLogin;
 import POJO_MODEL.user_management.OnlineAccount;
@@ -44,8 +45,11 @@ public class LoginController extends HttpServlet {
 		if(genericLogin.getFound()) {
 			if(genericLogin.getType().equals("customer")) {
 				Customer customer = genericLogin.getCustomer();
+				session.setAttribute("customer", customer);
+				Login l = new Login(customer.getOnlineAccount().getUsername(), customer.getAccountNo());
+				session.setAttribute("username", l);
 				customer.displayCustomer();
-				out.print("CUSTOMER");
+				response.sendRedirect("/SampathBankWebPortal/TM_interBankTransacts.jsp");
 				
 			} else if(genericLogin.getType().equals("employee")) {
 				Employee employee = genericLogin.getEmployee();
