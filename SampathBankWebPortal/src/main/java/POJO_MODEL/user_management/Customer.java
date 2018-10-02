@@ -1,6 +1,8 @@
 package POJO_MODEL.user_management;
 
 public class Customer extends Person {
+	private int accountNo;
+	
 	public Customer() {
 		super();
 	}
@@ -29,6 +31,15 @@ public class Customer extends Person {
 //		System.out.println("\tCustomer Permission Details : ");
 //		this.getPermission().displayPermission();
 		System.out.println("\tOnline Customer Account Details : ");
+		System.out.println("VINUUUUUUUUUUUUUUUUUUU====" + this.getAccountNo());
 		this.getOnlineAccount().displayOnlineAccount();
+	}
+
+	public int getAccountNo() {
+		return accountNo;
+	}
+
+	public void setAccountNo(int accountNo) {
+		this.accountNo = accountNo;
 	}
 }

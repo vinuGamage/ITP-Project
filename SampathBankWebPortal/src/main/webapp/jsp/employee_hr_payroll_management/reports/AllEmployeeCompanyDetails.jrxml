@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AllEmployeeCompanyDetails" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="81e578c6-0d32-47da-b276-d9fb457d774b">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ITP-Database_Schema-Isuru-Keshi"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT *
+FROM person p INNER JOIN employee e ON p.personId = e.employeeId LEFT OUTER JOIN branch b ON p.branchId = b.branchId LEFT OUTER JOIN department d ON e.departmentId = d.departmentId LEFT OUTER JOIN designation de ON e.designationId = de.designationId]]>
+	</queryString>
+	<field name="personId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="personId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="firstName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="firstName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="middleName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="middleName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="lastName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="lastName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="otherNames" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="otherNames"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="addressStreet01" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="addressStreet01"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="addressStreet02" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="addressStreet02"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="addressCity" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="addressCity"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="addressProvince" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="addressProvince"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="addressZipCode" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="addressZipCode"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="nic" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nic"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="dateOfBirth" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="dateOfBirth"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="personalEmail" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="personalEmail"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="physicalRegistrationDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="physicalRegistrationDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="onlineRegistrationDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="onlineRegistrationDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="genderId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="genderId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="nationalityId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="nationalityId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="branchId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="branchId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="onlineSecurityId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="onlineSecurityId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="homeContact" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="homeContact"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="mobileContact" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mobileContact"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="employeeId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="employeeId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+	</field>
+	<field name="departmentId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="departmentId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+	</field>
+	<field name="companyEmail" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="companyEmail"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+	</field>
+	<field name="designationId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="designationId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+	</field>
+	<field name="employeeType" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="employeeType"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+	</field>
+	<field name="COLUMN_27" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="branchId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="branch"/>
+	</field>
+	<field name="branchAddressStreet01" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="branchAddressStreet01"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="branch"/>
+	</field>
+	<field name="branchAddressStreet02" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="branchAddressStreet02"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="branch"/>
+	</field>
+	<field name="branchAddressCity" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="branchAddressCity"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="branch"/>
+	</field>
+	<field name="branchAddressProvince" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="branchAddressProvince"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="branch"/>
+	</field>
+	<field name="branchAddressZipCode" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="branchAddressZipCode"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="branch"/>
+	</field>
+	<field name="branchEmail" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="branchEmail"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="branch"/>
+	</field>
+	<field name="COLUMN_34" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="branchId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="department"/>
+	</field>
+	<field name="COLUMN_35" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="departmentId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="department"/>
+	</field>
+	<field name="departmentName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="departmentName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="department"/>
+	</field>
+	<field name="COLUMN_37" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="designationId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="designation"/>
+	</field>
+	<field name="designation" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="designation"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="designation"/>
+	</field>
+	<field name="leaveDaysId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="leaveDaysId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="designation"/>
+	</field>
+	<group name="Branch">
+		<groupExpression><![CDATA[$F{branchId}]]></groupExpression>
+		<groupHeader>
+			<band height="31">
+				<rectangle>
+					<reportElement x="-10" y="0" width="820" height="30" backcolor="#6E671F" uuid="88ee5be3-7dd5-44e2-9368-43044097b823"/>
+				</rectangle>
+				<textField>
+					<reportElement positionType="Float" x="-10" y="0" width="70" height="30" uuid="c16ec62e-65ae-4b9e-974e-11be0bfca345"/>
+					<textFieldExpression><![CDATA[$F{branchId}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="60" y="0" width="90" height="30" uuid="96c83d41-a4df-4052-9da6-a81028efcd0a"/>
+					<textFieldExpression><![CDATA[$F{branchAddressCity}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Department">
+		<groupExpression><![CDATA[$F{departmentId}]]></groupExpression>
+		<groupHeader>
+			<band height="33">
+				<rectangle>
+					<reportElement positionType="Float" x="148" y="0" width="662" height="30" backcolor="#C2241F" uuid="72744be1-8031-48e5-adf8-7867adf4342f"/>
+				</rectangle>
+				<textField>
+					<reportElement x="220" y="0" width="90" height="30" uuid="754e32c3-deed-4704-abd4-6b9f577307fe"/>
+					<textFieldExpression><![CDATA[$F{departmentName}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="150" y="0" width="70" height="30" uuid="0524bb0e-ad9f-4b51-8472-5f7cf442ae8b"/>
+					<textFieldExpression><![CDATA[$F{departmentId}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="101" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-10" y="0" width="822" height="89" backcolor="#D9D4D4" uuid="e4e14cd7-0c5d-4ef4-913c-499eab1e9d97"/>
+			</rectangle>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-11" y="0" width="821" height="30" backcolor="#FD4F00" uuid="ba38880d-cee1-4dea-a745-a7be07015f98"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="310" y="0" width="70" height="30" uuid="5c5cf5db-58c8-4545-ab42-0093a912ea40">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2d71b366-2401-463f-b3d3-7d2a930ca1ac"/>
+				</reportElement>
+				<text><![CDATA[employeeId]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="0" width="100" height="30" uuid="c67632f0-c98d-4f80-8e4e-b312ed75c327">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0948e5dd-ef81-4921-b7f0-0a7b90b6b302"/>
+				</reportElement>
+				<text><![CDATA[companyEmail]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="0" width="100" height="30" uuid="8b25fc8a-e38b-438d-94dd-4647cafa08db">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ea15d1df-87dc-4d05-a340-4bf2558b6e19"/>
+				</reportElement>
+				<text><![CDATA[employeeType]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="38" splitType="Stretch">
+			<textField>
+				<reportElement x="310" y="0" width="70" height="30" uuid="608cb345-23a1-4350-b9c2-f73424fb21ec">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2d71b366-2401-463f-b3d3-7d2a930ca1ac"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{employeeId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="100" height="30" uuid="0feabcd1-fd43-4b71-ade5-bcc3cd35ceba">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0948e5dd-ef81-4921-b7f0-0a7b90b6b302"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{companyEmail}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="0" width="100" height="30" uuid="8f3fc188-0caa-4878-b7ab-cee3d4e22260">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ea15d1df-87dc-4d05-a340-4bf2558b6e19"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{employeeType}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

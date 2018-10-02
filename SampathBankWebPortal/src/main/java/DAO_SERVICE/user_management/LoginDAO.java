@@ -201,6 +201,7 @@ public class LoginDAO {
 				customer.setBranch(commonEntityManager.getBranch(UM_ResultSet0006.getString("branchId")));
 				customer.setHomeContact(UM_ResultSet0006.getString("homeContact"));
 				customer.setMobileContact(UM_ResultSet0006.getString("mobileContact"));
+				customer.setAccountNo(UM_ResultSet0006.getInt("accountNo"));
 				
 				//starting setting customer specific attributes
 				

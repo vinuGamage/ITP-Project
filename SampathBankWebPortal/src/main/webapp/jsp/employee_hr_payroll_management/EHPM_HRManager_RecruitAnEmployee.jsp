@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, POJO_MODEL.employee_hr_payroll_management.managers.CommonEntityManager,
@@ -362,7 +363,7 @@ POJO_MODEL.employee_hr_payroll_management.Designation"%>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px">
                                 <label class="col-4 col-form-label" for="EmpForm01CompanyRelated05">Recruitment Date:*</label>
                                 <div class="col-8">
-                                    <input type="date" class="form-control" id="EmpForm01CompanyRelated05" name="empPhyRegDate" disabled>
+                                    <input type="date" class="form-control" id="EmpForm01CompanyRelated05" name="empPhyRegDate">
                                 </div>
                             </div>
                         </div>

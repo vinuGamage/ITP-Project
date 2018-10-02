@@ -23,7 +23,6 @@ public abstract class Person {
 	private String homeContact;
 	private String mobileContact;
 	
-	
 	public Person() {}
 	
 	public String getPersonId() {

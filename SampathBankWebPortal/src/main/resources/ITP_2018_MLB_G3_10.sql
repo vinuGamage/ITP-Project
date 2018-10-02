@@ -44,8 +44,13 @@ CREATE TABLE `online_security_key` (
   UNIQUE KEY `onlineSecurityId_UNIQUE` (`onlineSecurityId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-'1', 'abcd1234e5'
-'2', 'abcd4567f8'
+'1', 'abcd1111f1'
+'2', 'abcd1234e5'
+'3', 'abcd1111f2'
+'4', 'abcd2222e2'
+'5', 'abcd2222e3'
+'6', 'abcd3333g3'
+'7', 'abcd3333g4'
 
 CREATE TABLE `person` (
   `personId` char(10) NOT NULL,
@@ -84,8 +89,13 @@ CREATE TABLE `person` (
   CONSTRAINT `fk03_person_to_online_security_key` FOREIGN KEY (`onlineSecurityId`) REFERENCES `online_security_key` (`onlineSecurityId`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-'CUST000001', 'Keshi', '', 'Bogahawatte', '', '123', '', 'abc', 'Western', '11111', '961111111v', '1001-01-01', 'kb@gmail.com', '2018-09-07', '2018-09-07', '2', '1', 'BRAN000001', '1', '0112874874', '077847847'
-'EMPL000001', 'Isuru', NULL, 'Samarasekara', NULL, '83/2 Piliyandala Road', NULL, 'Maharagama', 'eastern', '10280', '964444444v', '1001-01-01', 'isuru@gmail.com', '2018-09-07', '2018-09-18', '1', '1', 'BRAN000001', '2', '0112844830', '0772841580'
+'CUST000001', 'KeshiA', 'Customer', 'BogahawatteA', '', '10 Pamunuwa', '', 'Maharagama', 'Western', '10280', '968052031v', '1996-10-31', 'keshaniA@gmail.com', '2018-10-02', '2018-10-02', '2', '1', 'BRAN000001', '1', '0112848701', '0779979351'
+'CUST000002', 'VinuA', 'Customer', 'GamageA', NULL, '10 Dehiwela Road', NULL, 'Papiliyana', 'Western', '10005', '985011211v', '1998-01-01', 'sahanigamageA@gmail.com', '2018-10-02', '2018-10-02', '2', '1', 'BRAN000001', '6', '0112731051', '0776950591'
+'EMPL000001', 'Isuru', 'HRManager', 'Samarasekara', NULL, '10 Piliyandala Road', NULL, 'Maharagama', 'Western', '10280', '961370211v', '1001-01-01', 'isurusamarasekaraA@gmail.com', '2018-09-07', '2018-09-07', '1', '1', 'BRAN000001', '2', '0112844830', '0772841580'
+'EMPL000002', 'KeshiB', 'Manager', 'BogahawatteB', NULL, '20 Pamunuwa', NULL, 'Maharagama', 'Western', '10280', '968052032v', '1996-10-31', 'keshaniB@gmail.com', '2018-10-02', '2018-10-02', '2', '1', 'BRAN000001', '3', '0112848702', '0779979352'
+'EMPL000003', 'AtheeqA', 'Head', 'MaharoofA', NULL, '10 st.peter\'s Place', NULL, 'Bambalapitiya', 'Western', '10004', '973451181v', '1997-12-10', 'atheeqrcA@gmail.com', '2018-10-02', '2018-10-02', '1', '2', 'BRAN000001', '4', '0112503381', '0716346041'
+'EMPL000004', 'AtheeqB', 'Manager', 'MaharoofB', NULL, '20 st.peter\'s Place', NULL, 'Bambalapitiya', 'Western', '10004', '973451182v', '1997-12-10', 'atheeqrcB@gmail.com', '2018-10-02', '2018-10-02', '1', '2', 'BRAN000001', '5', '0112503382', '0716346042'
+'EMPL000005', 'VinuB', 'Manager', 'GamageB', NULL, '20 Dehiwela Road', NULL, 'Papiliyana', 'western', '10005', '985011212v', '1998-01-01', 'sahanigamageB@gmail.com', '2018-10-02', '2018-10-02', '2', '1', 'BRAN000001', '7', '0112731052', '0776950592'
 
 CREATE TABLE `customer` (
   `customerId` char(10) NOT NULL,
@@ -95,6 +105,7 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 'CUST000001'
+'CUST000002'
 
 CREATE TABLE `department` (
   `branchId` char(10) NOT NULL,
@@ -145,7 +156,7 @@ CREATE TABLE `designation` (
 '4', 'user manager', '1'
 '5', 'head', '3'
 '6', 'inventory manager', '3'
-'7', 'inventory employee', '3'
+'7', 'transaction manager', '3'
 
 CREATE TABLE `employee` (
   `employeeId` char(10) NOT NULL,
@@ -164,6 +175,10 @@ CREATE TABLE `employee` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 'EMPL000001', 'DEPT000001', 'isuru@Company.com', '2', 'manager'
+'EMPL000002', 'DEPT000001', 'BogahawatteB96@Company.com', '4', 'normal employee'
+'EMPL000003', 'DEPT000002', 'MaharoofA97@Company.com', '5', 'head'
+'EMPL000004', 'DEPT000002', 'MaharoofB97@Company.com', '6', 'inventory manager'
+'EMPL000005', 'DEPT000003', 'GamageB98@Company.com', '7', 'transaction manager'
 
 CREATE TABLE `leave_details` (
   `employeeId` char(10) NOT NULL,
@@ -175,6 +190,10 @@ CREATE TABLE `leave_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 'EMPL000001', '30', '2018-09-18'
+'EMPL000002', '20', '2018-10-02'
+'EMPL000003', '35', '2018-10-02'
+'EMPL000004', '35', '2018-10-02'
+'EMPL000005', '35', '2018-10-02'
 
 CREATE TABLE `leave_request` (
   `employeeId` char(10) NOT NULL,
@@ -207,7 +226,8 @@ CREATE TABLE `online_customer_credentials` (
   CONSTRAINT `fk01_online_customer_credentials_to_customer` FOREIGN KEY (`customerId`) REFERENCES `customer` (`customerId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-'CUON000001', 'CUST000001', 'KESHI', 'keshi', 'a?', 'a', 'b?', 'b'
+'CUON000001', 'CUST000001', 'KESHIA', 'keshia', 'a?', 'a', 'b?', 'b'
+'CUON000002', 'CUST000002', 'VINUA', 'vinua', 'v?', 'v', 'v?', 'v'
 
 CREATE TABLE `online_employee_credentials` (
   `onlineEmployeeId` char(10) NOT NULL,
@@ -221,7 +241,11 @@ CREATE TABLE `online_employee_credentials` (
   CONSTRAINT `fk01_online_employee_credentials_to_employee` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`employeeId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-'EMON000001', 'EMPL000001', 'ISURU', 'isuru'
+'EMON000001', 'EMPL000001', 'ISURUA', 'isurua'
+'EMON000002', 'EMPL000002', 'KESHIB', 'keshib'
+'EMON000003', 'EMPL000003', 'ATHEEQA', 'atheeqa'
+'EMON000004', 'EMPL000004', 'ATHEEQB', 'atheeqb'
+'EMON000005', 'EMPL000005', 'VINUB', 'vinub'
 
 CREATE TABLE `accounts` (
   `personId` char(10) NOT NULL,
@@ -233,6 +257,7 @@ CREATE TABLE `accounts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 'CUST000001', '202121212'
+'CUST000002', '303131313'
 
 CREATE TABLE `customer_registration_requests` (
   `customerId` char(10) NOT NULL,
@@ -279,7 +304,7 @@ CREATE TABLE `next_primary_keys` (
   UNIQUE KEY `primaryKey_UNIQUE` (`primaryKey`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-'1', 'EMPL00002', 'EMON000002', '3', '1', 'CUON000002'
+'1', 'EMPL000006', 'EMON000006', '8', '1', 'CUON000003'
 
 CREATE TABLE `temp_customer_online_reg_pins` (
   `customerId` char(10) NOT NULL,
@@ -288,4 +313,19 @@ CREATE TABLE `temp_customer_online_reg_pins` (
   UNIQUE KEY `custId_UNIQUE` (`customerId`),
   CONSTRAINT `fk01_temp_customer_online_reg_pins_to_customer` FOREIGN KEY (`customerId`) REFERENCES `customer` (`customerId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `email_company` (
+  `emailId` int(11) NOT NULL AUTO_INCREMENT,
+  `sender` varchar(100) DEFAULT NULL,
+  `receiver` varchar(100) DEFAULT NULL,
+  `subject` varchar(100) NOT NULL,
+  `content` varchar(1000) NOT NULL,
+  `sentDate` date NOT NULL,
+  PRIMARY KEY (`emailId`),
+  UNIQUE KEY `emailId_UNIQUE` (`emailId`),
+  KEY `email_company_to_employee_idx` (`sender`),
+  KEY `fk02_email_company_to_employee_idx` (`receiver`),
+  CONSTRAINT `fk01_email_company_to_employee` FOREIGN KEY (`sender`) REFERENCES `employee` (`companyEmail`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `fk02_email_company_to_employee` FOREIGN KEY (`receiver`) REFERENCES `employee` (`companyEmail`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 

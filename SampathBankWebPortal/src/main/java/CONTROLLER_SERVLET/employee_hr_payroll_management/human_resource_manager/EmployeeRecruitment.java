@@ -83,6 +83,8 @@ public class EmployeeRecruitment extends HttpServlet {
 				regEmp.setEmployeeType("head");
 			else if(regEmp.getDesignation().getDesignation().equalsIgnoreCase("inventory manager"))
 				regEmp.setEmployeeType("inventory manager");
+			else if(regEmp.getDesignation().getDesignation().equalsIgnoreCase("transaction manager"))
+				regEmp.setEmployeeType("transaction manager");
 			
 			boolean bool = RegisterEmployeeDAO.regitserEmployee(regEmp);
 			

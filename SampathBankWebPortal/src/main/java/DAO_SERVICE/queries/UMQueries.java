@@ -5,7 +5,7 @@ public class UMQueries {
 	public static final String queryUM_02 = "SELECT * FROM online_employee_credentials WHERE username=? AND password=?;";
 	public static final String queryUM_03 = "SELECT * FROM person p INNER JOIN employee e ON p.personId = e.employeeId WHERE e.employeeId=?;";
 	public static final String queryUM_04 = "SELECT * FROM online_security_key WHERE onlineSecurityId=?;";
-	public static final String queryUM_06 = "SELECT * FROM person p INNER JOIN customer c ON p.personId = c.customerId WHERE c.customerId=?;";
+	public static final String queryUM_06 = "SELECT * FROM person p INNER JOIN customer c ON p.personId = c.customerId INNER JOIN accounts a ON c.customerId = a.personId WHERE c.customerId=?;";
 	public static final String queryUM_07 = "SELECT * FROM person p INNER JOIN customer c ON p.personId = c.customerId INNER JOIN accounts a ON c.customerId=a.personId WHERE p.nic=? AND p.dateOfBirth=? AND p.addressZipCode=? AND p.personalEmail=? AND a.accountNo=?;";
 	public static final String queryUM_08 = "SELECT * FROM online_customer_credentials WHERE customerId=?;";
 	public static final String queryUM_09 = "SELECT * FROM customer_registration_requests WHERE customerId=?;";
