@@ -1,5 +1,7 @@
 package POJO_MODEL.employee_hr_payroll_management;
 
+import java.sql.Date;
+
 public class Salary {
 	private String employeeId;
 	// TAXABLE INCOME
@@ -24,14 +26,14 @@ public class Salary {
 	private double totalNonTaxableIncome;
 	private double totalDeductions;
 	private double netSalary;
-	
+	private Date date;
 	//
 	private Employee hrmanager;
 	
 	public Salary(String employeeId, double tMonthlySalary, double tOvertimeHrs, double tOvertimeRate,
 			double tCarAllowance, double tBonus, double tax, double ntSubsistenceAllowanceDays,
 			double ntSubsistenceAllowanceRate, double ntMedical, double dEpf, double dMedical, double dLoanRepayment,
-			double dOtherDeductions) {
+			double dOtherDeductions, Date date) {
 		this.employeeId = employeeId;
 		this.tMonthlySalary = tMonthlySalary;
 		this.tOvertimeHrs = tOvertimeHrs;
@@ -46,6 +48,7 @@ public class Salary {
 		this.dMedical = dMedical;
 		this.dLoanRepayment = dLoanRepayment;
 		this.dOtherDeductions = dOtherDeductions;
+		this.date = date;
 	}
 	
 	public void calculateTotalOT() {
@@ -193,5 +196,11 @@ public class Salary {
 	}
 	public void setHrmanager(Employee hrmanager) {
 		this.hrmanager = hrmanager;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
 	}
 }

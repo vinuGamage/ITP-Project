@@ -93,11 +93,27 @@ public class HRSalaryDAO {
 		
 		try {
 			EHPM_Prst0001 = con.prepareStatement(EHPMQueries.EHPMquery0059);
-			
-			
-			
-			
-			
+			EHPM_Prst0001.setString(1, salary.getEmployeeId());
+			EHPM_Prst0001.setDouble(2, salary.gettMonthlySalary());
+			EHPM_Prst0001.setDouble(3, salary.gettOvertimeHrs());
+			EHPM_Prst0001.setDouble(4, salary.gettOvertimeRate());
+			EHPM_Prst0001.setDouble(5, salary.gettCarAllowance());
+			EHPM_Prst0001.setDouble(6, salary.gettBonus());
+			EHPM_Prst0001.setDouble(7, salary.getTax());
+			EHPM_Prst0001.setDouble(8, salary.getNtSubsistenceAllowanceDays());
+			EHPM_Prst0001.setDouble(9, salary.getNtSubsistenceAllowanceRate());
+			EHPM_Prst0001.setDouble(10, salary.getNtMedical());
+			EHPM_Prst0001.setDouble(11, salary.getdEpf());
+			EHPM_Prst0001.setDouble(12, salary.getdMedical());
+			EHPM_Prst0001.setDouble(13, salary.getdLoanRepayment());
+			EHPM_Prst0001.setDouble(14, salary.getdOtherDeductions());
+			EHPM_Prst0001.setDouble(15, salary.getTotalOT());
+			EHPM_Prst0001.setDouble(16, salary.getTotalTaxableIncome());
+			EHPM_Prst0001.setDouble(17, salary.getTotalNonTaxableIncome());
+			EHPM_Prst0001.setDouble(18, salary.getTotalDeductions());
+			EHPM_Prst0001.setDouble(19, salary.getNetSalary());
+			EHPM_Prst0001.setString(20, employeeId);
+			EHPM_Prst0001.setDate(21, salary.getDate());
 			i = EHPM_Prst0001.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -147,19 +163,29 @@ public class HRSalaryDAO {
 		
 		try {
 			EHPM_Prst0001 = con.prepareStatement(EHPMQueries.EHPMquery0060);
-
-
-			
-			
-			
-			
-			
-			
-			
-			
+			EHPM_Prst0001.setDouble(1, salary.gettMonthlySalary());
+			EHPM_Prst0001.setDouble(2, salary.gettOvertimeHrs());
+			EHPM_Prst0001.setDouble(3, salary.gettOvertimeRate());
+			EHPM_Prst0001.setDouble(4, salary.gettCarAllowance());
+			EHPM_Prst0001.setDouble(5, salary.gettBonus());
+			EHPM_Prst0001.setDouble(6, salary.getTax());
+			EHPM_Prst0001.setDouble(7, salary.getNtSubsistenceAllowanceDays());
+			EHPM_Prst0001.setDouble(8, salary.getNtSubsistenceAllowanceRate());
+			EHPM_Prst0001.setDouble(9, salary.getNtMedical());
+			EHPM_Prst0001.setDouble(10, salary.getdEpf());
+			EHPM_Prst0001.setDouble(11, salary.getdMedical());
+			EHPM_Prst0001.setDouble(12, salary.getdLoanRepayment());
+			EHPM_Prst0001.setDouble(13, salary.getdOtherDeductions());
+			EHPM_Prst0001.setDouble(14, salary.getTotalOT());
+			EHPM_Prst0001.setDouble(15, salary.getTotalTaxableIncome());
+			EHPM_Prst0001.setDouble(16, salary.getTotalNonTaxableIncome());
+			EHPM_Prst0001.setDouble(17, salary.getTotalDeductions());
+			EHPM_Prst0001.setDouble(18, salary.getNetSalary());
+			EHPM_Prst0001.setString(19, employeeId);
+			EHPM_Prst0001.setDate(20, salary.getDate());
+			EHPM_Prst0001.setString(21, salary.getEmployeeId());
 			
 			i = EHPM_Prst0001.executeUpdate();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

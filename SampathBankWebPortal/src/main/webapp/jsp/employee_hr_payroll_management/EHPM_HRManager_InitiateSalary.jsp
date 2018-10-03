@@ -1,9 +1,7 @@
 <%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, POJO_MODEL.employee_hr_payroll_management.managers.CommonEntityManager,
-POJO_MODEL.user_management.Gender, POJO_MODEL.user_management.Nationality, POJO_MODEL.employee_hr_payroll_management.Branch, 
-POJO_MODEL.employee_hr_payroll_management.Designation"%>
+<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee"%>
 <%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +17,6 @@ POJO_MODEL.employee_hr_payroll_management.Designation"%>
         <title>Employee Salary Initial</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
-			CommonEntityManager cem = (CommonEntityManager) session.getAttribute("commonEntityManager");
 		
 			if(employee == null || !employee.getDesignation().getDesignation().equals("human resource manager"))
 				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");

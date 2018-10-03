@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DAO_SERVICE.employee_hr_payroll_management.human_resource_manager.HRSalaryDAO;
+import POJO_MODEL.employee_hr_payroll_management.Employee;
 import POJO_MODEL.employee_hr_payroll_management.Salary;
+import POJO_MODEL.employee_hr_payroll_management.converters.DateConverter;
 
 public class SalaryInitiation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -48,7 +50,7 @@ public class SalaryInitiation extends HttpServlet {
 		
 		// Validation goes here
 		if(true) {
-			Salary salary = new Salary(empId, Double.parseDouble(basicSalaryPerMonth), Double.parseDouble(overTimeHrs), Double.parseDouble(overTimeRate), Double.parseDouble(carAllowance), Double.parseDouble(bonus), Double.parseDouble(tax), Double.parseDouble(nonTaxSubAllowDays), Double.parseDouble(nonTaxSubAllowRate), Double.parseDouble(nonTaxMedical), Double.parseDouble(epf), Double.parseDouble(medical), Double.parseDouble(loanRepayment), Double.parseDouble(otherDeductions));
+			Salary salary = new Salary(empId, Double.parseDouble(basicSalaryPerMonth), Double.parseDouble(overTimeHrs), Double.parseDouble(overTimeRate), Double.parseDouble(carAllowance), Double.parseDouble(bonus), Double.parseDouble(tax), Double.parseDouble(nonTaxSubAllowDays), Double.parseDouble(nonTaxSubAllowRate), Double.parseDouble(nonTaxMedical), Double.parseDouble(epf), Double.parseDouble(medical), Double.parseDouble(loanRepayment), Double.parseDouble(otherDeductions), DateConverter.getCurrentSqlDate());
 			salary.calculateTotalOT();
 			salary.calculateTotalTaxableIncome();
 			salary.calculateTotalNonTaxableIncome();
@@ -79,16 +81,34 @@ public class SalaryInitiation extends HttpServlet {
 		String reject = request.getParameter("reject");
 		
 		HttpSession session = request.getSession();
+		Employee employee = (Employee) session.getAttribute("employee");
 		
 		if(submit != null) {
 			Salary salary = (Salary) session.getAttribute("salary");
 			String doo = (String) session.getAttribute("doo");
 			if(salary != null && doo.equals("update")) {
-				
+				if(HRSalaryDAO.UpdateEmpSalary(salary, employee.getPersonId())) {
+					PrintWriter out = response.getWriter();
+					out.println("<script type=\"text/javascript\">");
+					out.println("alert('Salary Details were updated for the employee!');");
+					out.println("location='/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp';");
+					out.println("</script>");
+				} else {
+					System.out.println("Some Error");
+				}
 			} else if(salary != null && doo.equals("insert")) {
-				
+				if(HRSalaryDAO.InsertEmpSalary(salary, employee.getPersonId())) {
+					System.out.println("inserted");
+					PrintWriter out = response.getWriter();
+					out.println("<script type=\"text/javascript\">");
+					out.println("alert('Salary Details were initiated for the employee!');");
+					out.println("location='/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp';");
+					out.println("</script>");
+				} else {
+					System.out.println("Some Error");
+				}
 			} else {
-				
+
 			}
 		} else if (reject != null) {
 			session.removeAttribute("salary");
