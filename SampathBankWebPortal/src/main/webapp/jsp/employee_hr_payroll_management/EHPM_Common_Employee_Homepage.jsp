@@ -86,7 +86,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/HRLeaveRequestManagement?lmanage=getAllLeaveRequests" style="color:white">Leave Request Management</a>
                             <a class="dropdown-item" href="/SampathBankWebPortal/UpdateProfileDetailsHRSide?upmanage=retrieveAll" style="color:white">Update Details Request Management</a>
-                            <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_InitiateSalary.jsp" style="color:white">Salary Management</a>
                         </div>
                     </li>
                     <%} else if(employee.getDesignation().getDesignation().equals("admin")) {%>
@@ -176,15 +176,11 @@
                             <a class="dropdown-item" href="#" style="color:white">Next Salary Details</a>
                         </div>
                     </li>
-                <%if(employee.getDesignation().getDesignation().equals("human resource manager")) {%>
+                	<%if(employee.getDesignation().getDesignation().equals("human resource manager")) {%>
                     <li class="nav-item dropdown" title="Click to See Skills Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
                         <div class="dropdown-menu nav-dropdown">
                             <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_AllEmployeeDetailsDocumentation.jsp" style="color:white">All Employee Details</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="" style="color:white">Create Employee Online Account</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="" style="color:white">Create Employee Online Account</a>
                         </div>
                     </li>
                     <%} else { %>

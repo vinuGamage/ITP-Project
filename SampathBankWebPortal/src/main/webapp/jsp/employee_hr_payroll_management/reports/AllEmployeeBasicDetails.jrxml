@@ -352,11 +352,11 @@ FROM person p INNER JOIN employee e ON p.personId = e.employeeId]]>
 					<datasetRun subDataset="BasicEmployeeDetails" uuid="c30575e4-338f-453f-9534-8c77da41df87">
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="100" uuid="a704d0fd-b975-45c0-8b98-2d816b9a6700">
+					<jr:column width="110" uuid="a704d0fd-b975-45c0-8b98-2d816b9a6700">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
 						<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="100" height="30" uuid="d0ca5422-a0a7-486b-91ef-b663f8072744"/>
+								<reportElement x="0" y="0" width="110" height="30" uuid="d0ca5422-a0a7-486b-91ef-b663f8072744"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Century Gothic" size="14" isBold="true"/>
 								</textElement>
@@ -365,7 +365,7 @@ FROM person p INNER JOIN employee e ON p.personId = e.employeeId]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table 1_TD" height="30">
 							<textField>
-								<reportElement x="0" y="0" width="100" height="30" uuid="6251efd2-354a-461d-9200-faa5a9cd68a7"/>
+								<reportElement x="0" y="0" width="110" height="30" uuid="6251efd2-354a-461d-9200-faa5a9cd68a7"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Century Gothic" size="14"/>
 								</textElement>
@@ -373,11 +373,11 @@ FROM person p INNER JOIN employee e ON p.personId = e.employeeId]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="219" uuid="f7813aa0-810d-4ec5-9563-7475e86d86dd">
+					<jr:column width="235" uuid="f7813aa0-810d-4ec5-9563-7475e86d86dd">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
 						<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="219" height="30" uuid="bcf52532-4548-464f-a9d6-0b9a14b2a6be"/>
+								<reportElement x="0" y="0" width="235" height="30" uuid="bcf52532-4548-464f-a9d6-0b9a14b2a6be"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Century Gothic" size="14" isBold="true"/>
 								</textElement>
@@ -385,8 +385,8 @@ FROM person p INNER JOIN employee e ON p.personId = e.employeeId]]>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="Table 1_TD" height="30">
-							<textField isBlankWhenNull="true">
-								<reportElement x="0" y="0" width="219" height="30" uuid="7e8229a3-1277-42e0-85b6-fd88b4fe4cca"/>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="235" height="30" isPrintWhenDetailOverflows="true" uuid="7e8229a3-1277-42e0-85b6-fd88b4fe4cca"/>
 								<textElement verticalAlignment="Middle">
 									<font fontName="Century Gothic" size="14"/>
 									<paragraph leftIndent="4"/>
@@ -395,11 +395,11 @@ FROM person p INNER JOIN employee e ON p.personId = e.employeeId]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="123" uuid="2b4af96a-673e-48f3-a28f-156ee0cd2dbd">
+					<jr:column width="117" uuid="2b4af96a-673e-48f3-a28f-156ee0cd2dbd">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
 						<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="123" height="30" uuid="b393ad68-871b-4763-bc4c-3585db16f4aa"/>
+								<reportElement x="0" y="0" width="117" height="30" uuid="b393ad68-871b-4763-bc4c-3585db16f4aa"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Century Gothic" size="14" isBold="true"/>
 								</textElement>
@@ -408,7 +408,7 @@ FROM person p INNER JOIN employee e ON p.personId = e.employeeId]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table 1_TD" height="30">
 							<textField>
-								<reportElement x="0" y="0" width="123" height="30" uuid="38c79995-6e74-415b-acc6-622c938c3f5e"/>
+								<reportElement x="0" y="0" width="117" height="30" uuid="38c79995-6e74-415b-acc6-622c938c3f5e"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Century Gothic" size="14"/>
 								</textElement>
@@ -416,11 +416,11 @@ FROM person p INNER JOIN employee e ON p.personId = e.employeeId]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="128" uuid="6d03683a-fef8-4e2c-a2dd-c17583032fa8">
+					<jr:column width="121" uuid="6d03683a-fef8-4e2c-a2dd-c17583032fa8">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
 						<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="128" height="30" uuid="58c7b64b-f7b7-49eb-8aee-d28dae66e726"/>
+								<reportElement x="0" y="0" width="121" height="30" uuid="58c7b64b-f7b7-49eb-8aee-d28dae66e726"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Century Gothic" size="14" isBold="true"/>
 								</textElement>
@@ -429,7 +429,7 @@ FROM person p INNER JOIN employee e ON p.personId = e.employeeId]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table 1_TD" height="30">
 							<textField>
-								<reportElement x="0" y="0" width="128" height="30" uuid="6d4e35d5-8070-4a9a-8e66-19a3d60e464d"/>
+								<reportElement x="0" y="0" width="121" height="30" uuid="6d4e35d5-8070-4a9a-8e66-19a3d60e464d"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Century Gothic" size="14"/>
 								</textElement>
@@ -437,11 +437,11 @@ FROM person p INNER JOIN employee e ON p.personId = e.employeeId]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="124" uuid="891112c3-61fd-47c6-ad99-c95d7ab54109">
+					<jr:column width="118" uuid="891112c3-61fd-47c6-ad99-c95d7ab54109">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
 						<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="124" height="30" uuid="3d17f3a3-5d4a-449b-97c5-17694d385561"/>
+								<reportElement x="0" y="0" width="118" height="30" uuid="3d17f3a3-5d4a-449b-97c5-17694d385561"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Century Gothic" size="14" isBold="true"/>
 								</textElement>
@@ -450,7 +450,7 @@ FROM person p INNER JOIN employee e ON p.personId = e.employeeId]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table 1_TD" height="30">
 							<textField>
-								<reportElement x="0" y="0" width="124" height="30" uuid="9c3e5348-3195-4299-ae16-14b6a6f4ac92"/>
+								<reportElement x="0" y="0" width="118" height="30" uuid="9c3e5348-3195-4299-ae16-14b6a6f4ac92"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Century Gothic" size="14"/>
 								</textElement>
@@ -458,11 +458,11 @@ FROM person p INNER JOIN employee e ON p.personId = e.employeeId]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="127" uuid="2cceeec6-5ca9-4caf-a0b9-10b2321952cb">
+					<jr:column width="120" uuid="2cceeec6-5ca9-4caf-a0b9-10b2321952cb">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column6"/>
 						<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="127" height="30" uuid="f5e5f270-af72-43b6-af58-f153022d4f7f"/>
+								<reportElement x="0" y="0" width="120" height="30" uuid="f5e5f270-af72-43b6-af58-f153022d4f7f"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Century Gothic" size="14" isBold="true"/>
 								</textElement>
@@ -471,7 +471,7 @@ FROM person p INNER JOIN employee e ON p.personId = e.employeeId]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table 1_TD" height="30">
 							<textField>
-								<reportElement x="0" y="0" width="127" height="30" uuid="15973f72-75d4-4537-85ea-4205c4f60923"/>
+								<reportElement x="0" y="0" width="120" height="30" uuid="15973f72-75d4-4537-85ea-4205c4f60923"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Century Gothic" size="14"/>
 								</textElement>

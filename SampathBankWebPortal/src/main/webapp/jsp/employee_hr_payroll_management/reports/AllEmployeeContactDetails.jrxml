@@ -441,10 +441,10 @@ FROM person p INNER JOIN employee e ON p.personId = e.employeeId]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="218" uuid="de5257f3-b377-498c-ad77-993245307593">
+					<jr:column width="273" uuid="de5257f3-b377-498c-ad77-993245307593">
 						<jr:columnHeader style="Table_CH" height="30">
 							<staticText>
-								<reportElement x="0" y="0" width="218" height="30" uuid="a904fb7a-20ce-4146-a946-3d615ad97dda"/>
+								<reportElement x="0" y="0" width="273" height="30" uuid="a904fb7a-20ce-4146-a946-3d615ad97dda"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Century Gothic" size="14"/>
 								</textElement>
@@ -453,7 +453,7 @@ FROM person p INNER JOIN employee e ON p.personId = e.employeeId]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30">
 							<textField isStretchWithOverflow="true">
-								<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="218" height="30" isPrintWhenDetailOverflows="true" uuid="d869a863-06d2-4c7d-b355-32a9a688d676"/>
+								<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="273" height="30" isPrintWhenDetailOverflows="true" uuid="d869a863-06d2-4c7d-b355-32a9a688d676"/>
 								<textElement verticalAlignment="Middle">
 									<font fontName="Century Gothic" size="14"/>
 									<paragraph leftIndent="4"/>
@@ -462,10 +462,10 @@ FROM person p INNER JOIN employee e ON p.personId = e.employeeId]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="164" uuid="cdd1fbd1-e0ed-44b2-831c-7590774c3938">
+					<jr:column width="166" uuid="cdd1fbd1-e0ed-44b2-831c-7590774c3938">
 						<jr:columnHeader style="Table_CH" height="30">
 							<staticText>
-								<reportElement x="0" y="0" width="164" height="30" uuid="bf28d6b8-5e38-4ea9-bbe8-60d9f94255b7"/>
+								<reportElement x="0" y="0" width="166" height="30" uuid="bf28d6b8-5e38-4ea9-bbe8-60d9f94255b7"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Century Gothic" size="14"/>
 								</textElement>
@@ -473,8 +473,8 @@ FROM person p INNER JOIN employee e ON p.personId = e.employeeId]]>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30">
-							<textField>
-								<reportElement x="0" y="0" width="164" height="30" uuid="67dd3f80-472e-4f89-a0ed-97609e8c885d"/>
+							<textField isStretchWithOverflow="true">
+								<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="166" height="30" uuid="67dd3f80-472e-4f89-a0ed-97609e8c885d"/>
 								<textElement verticalAlignment="Middle">
 									<font fontName="Century Gothic" size="14"/>
 									<paragraph leftIndent="4"/>
@@ -483,10 +483,10 @@ FROM person p INNER JOIN employee e ON p.personId = e.employeeId]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="164" uuid="95302100-3416-43e7-96ab-4b109281e74a">
+					<jr:column width="140" uuid="95302100-3416-43e7-96ab-4b109281e74a">
 						<jr:columnHeader style="Table_CH" height="30">
 							<staticText>
-								<reportElement x="0" y="0" width="164" height="30" uuid="127d3084-6713-42df-ba6b-bf0fcf06dada"/>
+								<reportElement x="0" y="0" width="140" height="30" uuid="127d3084-6713-42df-ba6b-bf0fcf06dada"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Century Gothic" size="14"/>
 								</textElement>
@@ -495,7 +495,7 @@ FROM person p INNER JOIN employee e ON p.personId = e.employeeId]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30">
 							<textField>
-								<reportElement x="0" y="0" width="164" height="30" uuid="7b533ee4-a027-45c4-bf9c-b7dd7efa5263"/>
+								<reportElement x="0" y="0" width="140" height="30" uuid="7b533ee4-a027-45c4-bf9c-b7dd7efa5263"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Century Gothic" size="14"/>
 								</textElement>
@@ -503,10 +503,10 @@ FROM person p INNER JOIN employee e ON p.personId = e.employeeId]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="164" uuid="8500a4cd-46fe-418f-bf74-4319eca13299">
+					<jr:column width="131" uuid="8500a4cd-46fe-418f-bf74-4319eca13299">
 						<jr:columnHeader style="Table_CH" height="30">
 							<staticText>
-								<reportElement x="0" y="0" width="164" height="30" uuid="28adba46-4791-4d78-8749-c42854a4e963"/>
+								<reportElement x="0" y="0" width="131" height="30" uuid="28adba46-4791-4d78-8749-c42854a4e963"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Century Gothic" size="14"/>
 								</textElement>
@@ -515,7 +515,7 @@ FROM person p INNER JOIN employee e ON p.personId = e.employeeId]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30">
 							<textField isBlankWhenNull="true">
-								<reportElement x="0" y="0" width="164" height="30" uuid="e11d26fc-b199-4be5-afe1-56c1e12eb07c"/>
+								<reportElement x="0" y="0" width="131" height="30" uuid="e11d26fc-b199-4be5-afe1-56c1e12eb07c"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Century Gothic" size="14"/>
 								</textElement>

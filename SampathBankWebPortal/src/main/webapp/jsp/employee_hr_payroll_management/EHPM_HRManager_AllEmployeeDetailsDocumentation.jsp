@@ -167,20 +167,11 @@
                             <a class="dropdown-item" href="#" style="color:white">Next Salary Details</a>
                         </div>
                     </li>
-                <%if(employee.getDesignation().getDesignation().equals("human resource manager")) {%>
+                	<%if(employee.getDesignation().getDesignation().equals("human resource manager")) {%>
                     <li class="nav-item dropdown" title="Click to See Skills Related Options">
-                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents and Reports</a>
+                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="" style="color:white">All Employee Details</a>
-                            <a class="dropdown-item" href="" style="color:white">Create Employee Online Account</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="" style="color:white">Active Employees</a>
-                            <a class="dropdown-item" href="" style="color:white">Inactive Employees</a>
-                            <a class="dropdown-item" href="" style="color:white">Search for Employees</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="" style="color:white">Leave Request Management</a>
-                            <a class="dropdown-item" href="" style="color:white">Update Details Request Management</a>
-                            <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
+                            <a class="dropdown-item" href="#" style="color:white">All Employee Details</a>
                         </div>
                     </li>
                     <%} else { %>
@@ -237,13 +228,18 @@
 			  <tbody>
 			    <tr>
 			      <th scope="row">Employee Basic Details</th>
-			      <td style="font-weight: bold;">PDF containing all the basic details of employees</td>
+			      <td style="font-weight: bold;">PDF containing all the basic details of employees.</td>
 			      <td style="font-weight: bold; text-align: center;"><button type="button" onclick="window.open('EHPM_HRManager_BasicDetails_PDF.jsp')" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; margin-right: 20px;">Generate Document</button></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">Employee Contact Details</th>
-			      <td style="font-weight: bold;">PDF containing all the contact details of employees</td>
+			      <td style="font-weight: bold;">PDF containing all the contact details of employees.</td>
 			      <td style="font-weight: bold; text-align: center;"><button type="button" onclick="window.open('EHPM_HRManager_ContactDetails_PDF.jsp')" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; margin-right: 20px;">Generate Document</button></td>
+			    </tr>
+			    <tr>
+			      <th scope="row">Employee Company Details</th>
+			      <td style="font-weight: bold;">PDF containing all the company related details of employees.</td>
+			      <td style="font-weight: bold; text-align: center;"><button type="button" onclick="window.open('EHPM_HRManager_CompanyDetails_PDF.jsp')" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; margin-right: 20px;">Generate Document</button></td>
 			    </tr>
 			  </tbody>
 			</table>
