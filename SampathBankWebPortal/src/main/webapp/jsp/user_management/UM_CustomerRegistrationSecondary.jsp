@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
 		<link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized03.css" type="text/css">
 	    <title>Customer Registration</title>
 	    <%	String custId = (String)session.getAttribute("custId"); 
 	    	if(custId == null)
@@ -88,17 +89,18 @@
 <!-- 
 	FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM
  -->    
- 			<h4 style="color: red; text-align: center;">Please Enter the 5 digit pin you received via email!</h4>
- 			
- 			<form action="/SampathBankWebPortal/CustomerRegistrationController" method="post">
-	 			<input type="number" name="regOnlinePin" placeholder="00000"/>
-	 			<input type="submit" name="submitSecondaryegistration"/>
- 			</form>
- 
- 
- 
-         
-
+			<h4 style="color: orange; text-align: center;">Please Enter the 5 digit pin you received via email!</h4>
+ 				 <div style="align-content: center; margin-right: 5px; padding-left:250px">
+	                <div style="width: 500px; align: center; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
+	                	<form action="/SampathBankWebPortal/CustomerRegistrationController" method="post">
+							<input type="number" name="regOnlinePin" placeholder="00000"/>
+	 						<div class="clearfix">
+	 							<button type="submit" name="submitSecondaryegistration" class="signupbtn">Submit</button>
+	 							<!-- <input type="submit" name="submitSecondaryegistration" class="signupbtn"/> -->
+	 						</div>
+	 					</form>
+ 					</div>
+				</div>		
 		 </div>
 
         <!-- Footer -->

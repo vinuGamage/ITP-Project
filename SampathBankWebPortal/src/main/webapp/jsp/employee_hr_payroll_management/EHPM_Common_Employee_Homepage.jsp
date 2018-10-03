@@ -19,6 +19,188 @@
 			if(null == employee)
 				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
 		%>
+		
+	<style>
+	.body{
+	font-family: "Ariel", Times, serif;
+	}
+	/* Stylings for Slideshow*/
+	* {box-sizing: border-box;}
+
+	.mySlides {display: none;}
+	 img {vertical-align: middle;
+	 height:480px;};
+
+	/* Slideshow container */
+	.slideshow-container {
+ 	max-width: 800px;
+  	position: relative;
+  	margin: auto;
+  	padding: 10px 12px;
+	}
+
+	/* Caption text */
+	.text {
+ 	color: #ffffff;
+	font-size: 45px;
+  	padding: 10px 12px;
+  	position: absolute;
+  	bottom: 8px;
+ 	width: 100%;
+ 	text-align: center;
+	}
+
+	/* Number text (1/3 etc) */
+	.numbertext {
+  	color: #f2f2f2;
+  	font-size: 12px;
+ 	padding: 8px 12px;
+  	position: absolute;
+  	top: 0;
+	}
+
+	/* The dots/bullets/indicators */
+	.dot {
+	height: 8px;
+	width: 8px;
+	margin: 0 2px;
+	background-color: #000000;
+ 	border-radius: 50%;
+  	display: inline-block;
+  	transition: background-color 0.6s ease;
+	}
+
+	.act {
+ 	 background-color: #717171;
+	}
+
+	/* Fading animation */
+	.fade {
+  	-webkit-animation-name: fade;
+  	-webkit-animation-duration: 1.5s;
+  	animation-name: fade;
+  	animation-duration: 1.5s;
+	}
+
+	@-webkit-keyframes fade {
+ 	 from {opacity: .4} 
+  	to {opacity: 1}
+	}
+
+	@keyframes fade {
+  	from {opacity: .4} 
+  	to {opacity: 1}
+	}
+
+	/* On smaller screens, decrease text size */
+	@media only screen and (max-width: 300px) {
+  	.text {font-size: 11px}
+	}
+	/* End of Stylings for Slideshow*/	
+	
+	/*Styings for News Section*/
+	.section {
+    padding: 70px;
+    
+		}
+		/*End of News Section*/
+	
+	/*Stylings for panels*/
+  .item h3 {
+      font-size: 10px;
+   
+      line-height: 1.375em;
+      font-weight: 400;
+      font-style: italic;
+      margin: 70px 0;
+  }
+  .item span {
+      font-style: normal;
+  }
+  .panel {
+      border: 1px solid #fd4f00; 
+      border-radius:0 !important;
+      transition: box-shadow 0.5s;
+  }
+  .panel:hover {
+      box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+  }
+  .panel-footer .btn:hover {
+      border: 1px solid #fd4f00;
+      background-color: #fff !important;
+      color: #f4511e;
+  }
+  .panel-heading {
+  	  height:12px;
+      color: #fff !important;
+      background-color: #FF8C00 !important;
+      padding: 25px;
+      border-bottom: 1px solid transparent;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+  }
+  .panel-footer {
+      background-color: white !important;
+  }
+  .panel-footer h3 {
+      font-size: 25px;
+  }
+  .panel-footer h4 {
+      color: #aaa;
+      font-size: 12px;
+  }
+  .panel-footer .btn {
+      margin: 10px 0;
+      height: 8px;
+      background-color: #fd4f00;
+      color: #fff;
+  }
+  @media screen and (max-width: 768px) {
+    .col-sm-4 {
+      text-align: center;
+      margin: 25px 0;
+    }
+  }
+  /*Ending of Styling for panels*/
+  
+  /*Calender*/
+ {
+    box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 240px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+    
+    .calenderP1{
+    width:100px;
+    padding-left:100%;
+    
+    }
+
+  /*End of Calender*/
+  
+  
+</style>
 	</head>
 	<body>
 	<%

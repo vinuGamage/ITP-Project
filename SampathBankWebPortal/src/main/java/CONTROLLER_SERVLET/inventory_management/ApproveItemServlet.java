@@ -19,6 +19,7 @@ import DAO_SERVICE.inventory_management.GeneratePrimaryKey;
 import DAO_SERVICE.inventory_management.InsertDAO;
 import DAO_SERVICE.inventory_management.OtherMethods;
 import DAO_SERVICE.inventory_management.RetreiveDAO;
+import POJO_MODEL.employee_hr_payroll_management.email_client.EmailClient;
 import POJO_MODEL.inventory_management.HistoryItem;
 import POJO_MODEL.inventory_management.headRequestItem;
 import POJO_MODEL.inventory_management.item;
@@ -76,6 +77,11 @@ public class ApproveItemServlet extends HttpServlet {
 					
 					HistoryItem i1 = new HistoryItem(GeneratePrimaryKey.generateHistoryId(), u1.getUsername(), r1.getItemName(), r1.getItemId(), "Approved Request", r1.getReqAmount(), oldItem.getItemQty(), newItem.getItemQty());
 					InsertDAO.insertAddAmountHistory(i1);
+					
+					if(newItem.getItemQty()<newItem.getItem_min()) {
+						EmailClient.sendMail("atheeqrc@gmail.com", "Low Stock Level Request", "Please restock the item : " + newItem.getItemName() + " \n Current Quantity is : " + newItem.getItemQty() + " \n Low Stock Level is : " + newItem.getItem_min() );
+					}
+					
 					JOptionPane pane = new JOptionPane("Successfully approved (Approve request will be deleted)",JOptionPane.WARNING_MESSAGE);  
 					JDialog dialog = pane.createDialog("Status");  
 					dialog.setAlwaysOnTop(true);  

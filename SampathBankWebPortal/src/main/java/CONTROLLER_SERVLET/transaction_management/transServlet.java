@@ -12,9 +12,11 @@ import javax.swing.JOptionPane;
 
 import DAO_SERVICE.transaction_management.otherDAO;
 import DAO_SERVICE.transaction_management.validateDAO;
+import POJO_MODEL.employee_hr_payroll_management.email_client.EmailClient;
 import POJO_MODEL.transaction_management.Login;
 import POJO_MODEL.transaction_management.StandingOrder;
 import POJO_MODEL.transaction_management.Transaction;
+import POJO_MODEL.user_management.Customer;
 
 /**
  * Servlet implementation class transServlet
@@ -47,7 +49,11 @@ public class transServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Login l = (Login)session.getAttribute("username");
+		Customer customer = (Customer)session.getAttribute("customer");
 		int pin = otherDAO.generatePin(l);
+		
+		EmailClient.sendMail(customer.getPersonalEmail(), "Sampath Bank Temperory Transaction Pin", "  "+pin+"");
+		
 		System.out.println(pin);
 		
 		//request.getRequestDispatcher("/TM_transactDetails.jsp").forward(request, response);

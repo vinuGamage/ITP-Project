@@ -203,7 +203,7 @@ Document document = new Document();
 		Font pfont = new Font(base, 12, Font.BOLD ,BaseColor.DARK_GRAY);
 		Font hfont = new Font(base, 10, Font.BOLD);
 		Font dfont = new Font(base, 10, Font.NORMAL);
-		Image img  = Image.getInstance("D:\\Sampath Bank\\SampathBank-InventoryManagementSystem\\Inventory\\src\\main\\webapp\\resources\\images\\sampath-logo.png"); 
+		Image img  = Image.getInstance("C:\\Users\\isuru\\git\\ITP-2018-MLB-G3-10\\SampathBankWebPortal\\src\\main\\webapp\\resources\\images\\sampathbanklogo\\SampathBankLogo01.png"); 
 		img.scaleToFit(110,110);
 		img.setAlignment(Element.ALIGN_RIGHT);
 //         img.setAbsolutePosition(390, 720);

@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
 		<link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized03.css" type="text/css">		
 	    <title>Customer Registration</title>
     </head>
 
@@ -80,12 +81,12 @@
             </div>
         </header>
 
-        <div class="container" style="height: 1000px; padding-top: 40px;">
+        <div class="container" style="height: 600px; padding-top: 40px;">
 <!-- 
 	FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM
  -->    
- 			<h4 style="color: red; text-align: center;">This is for customer registration only!</h4>
- 			<h4 style="color: red; text-align: center;">Customers who are registering needs to have a physical account in the bank itself!!</h4>
+ 			<h4 style="color: orange; text-align: center;">This is for customer registration only!</h4>
+ 			<h4 style="color: orange; text-align: center;">Customers who are registering must to have a physical account in the bank itself!!</h4>
  			
  			
 <!-- 	 			<input type="text" name="regNic" placeholder="NIC"/>
@@ -96,8 +97,8 @@
 	 			<input type="submit" name="submitInitialRegistration"/> -->
  			
  			<form action="/SampathBankWebPortal/CustomerRegistrationController" method="post">
-	 			<div style="float: center; margin-right: 5px;">
-	                <div style="width: 550px; align: center; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
+	 			<div style="align-content: center; margin-right: 5px;  padding-left:250px">
+	                <div style="width: 550px; align: center; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px">
 	                    <div class="form-group row" style="padding: 4px; padding-left: 16px">
 	                        <label class="col-4 col-form-label" for="reg01">NIC: *</label>
 	                        <div class="col-8">
@@ -128,9 +129,12 @@
 	                            <input type="number" class="form-control" id="reg05" name="regAccountNo">
 	                        </div>
 	                    </div>
+	                    <div class="clearfix">
+	                    	<button type="submit" name="submitInitialRegistration">Submit</button>
+	                    </div>	                    
 	                </div>
+	                
 				</div>
-				<input type="submit" name="submitInitialRegistration"/>
  			</form>
          
 

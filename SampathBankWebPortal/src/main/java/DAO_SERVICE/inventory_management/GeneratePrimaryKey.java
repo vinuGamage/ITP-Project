@@ -25,7 +25,7 @@ public class GeneratePrimaryKey {
 		ResultSet rst= pst.executeQuery();
 		
 		if (rst.next()==false) {
-			return "AAO1";
+			return "AA01";
 		}
 		else {
 			ResultSet rst2 = pst.executeQuery(query1);

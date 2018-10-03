@@ -16,7 +16,7 @@ POJO_MODEL.employee_hr_payroll_management.Designation"%>
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        <title>Employee Salary Initiation</title>
+        <title>Employee Salary Initial</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
 			CommonEntityManager cem = (CommonEntityManager) session.getAttribute("commonEntityManager");
@@ -96,7 +96,7 @@ POJO_MODEL.employee_hr_payroll_management.Designation"%>
 			  var nonTotTaxableInc = parseFloat(document.getElementById('SalaryFormTotNonTaxableIncome').value);
 			  var totDeductions = parseFloat(document.getElementById('SalaryFormTotDeductions').value);
 			  
-			  var netSalary = ((totTaxableInc * (100 - taxR)) / 100 ) + nonTotTaxableInc - totDeductions;
+			  var netSalary = ((totTaxableInc * (100 + taxR)) / 100 ) + nonTotTaxableInc - totDeductions;
 
 			  document.getElementById('SalaryFormNetSalary').value = netSalary.toFixed(2);
 		  }

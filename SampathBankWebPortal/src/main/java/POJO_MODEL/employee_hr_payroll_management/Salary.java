@@ -4,13 +4,13 @@ public class Salary {
 	private String employeeId;
 	// TAXABLE INCOME
 	private double tMonthlySalary;
-	private float tOvertimeHrs;
+	private double tOvertimeHrs;
 	private double tOvertimeRate;
 	private double tCarAllowance;
 	private double tBonus; // Percentage
 	private double tax; // Percentage
 	//NON-TAXABLE INCOME
-	private float ntSubsistenceAllowanceDays;
+	private double ntSubsistenceAllowanceDays;
 	private double ntSubsistenceAllowanceRate;
 	private double ntMedical;
 	//DEDUCTIONS
@@ -25,8 +25,11 @@ public class Salary {
 	private double totalDeductions;
 	private double netSalary;
 	
-	public Salary(String employeeId, double tMonthlySalary, float tOvertimeHrs, double tOvertimeRate,
-			double tCarAllowance, double tBonus, double tax, float ntSubsistenceAllowanceDays,
+	//
+	private Employee hrmanager;
+	
+	public Salary(String employeeId, double tMonthlySalary, double tOvertimeHrs, double tOvertimeRate,
+			double tCarAllowance, double tBonus, double tax, double ntSubsistenceAllowanceDays,
 			double ntSubsistenceAllowanceRate, double ntMedical, double dEpf, double dMedical, double dLoanRepayment,
 			double dOtherDeductions) {
 		this.employeeId = employeeId;
@@ -83,10 +86,10 @@ public class Salary {
 	public void settMonthlySalary(double tMonthlySalary) {
 		this.tMonthlySalary = tMonthlySalary;
 	}
-	public float gettOvertimeHrs() {
+	public double gettOvertimeHrs() {
 		return tOvertimeHrs;
 	}
-	public void settOvertimeHrs(float tOvertimeHrs) {
+	public void settOvertimeHrs(double tOvertimeHrs) {
 		this.tOvertimeHrs = tOvertimeHrs;
 	}
 	public double gettOvertimeRate() {
@@ -113,10 +116,10 @@ public class Salary {
 	public void setTax(double tax) {
 		this.tax = tax;
 	}
-	public float getNtSubsistenceAllowanceDays() {
+	public double getNtSubsistenceAllowanceDays() {
 		return ntSubsistenceAllowanceDays;
 	}
-	public void setNtSubsistenceAllowanceDays(float ntSubsistenceAllowanceDays) {
+	public void setNtSubsistenceAllowanceDays(double ntSubsistenceAllowanceDays) {
 		this.ntSubsistenceAllowanceDays = ntSubsistenceAllowanceDays;
 	}
 	public double getNtSubsistenceAllowanceRate() {
@@ -184,5 +187,11 @@ public class Salary {
 	}
 	public void setNetSalary(double netSalary) {
 		this.netSalary = netSalary;
+	}
+	public Employee getHrmanager() {
+		return hrmanager;
+	}
+	public void setHrmanager(Employee hrmanager) {
+		this.hrmanager = hrmanager;
 	}
 }

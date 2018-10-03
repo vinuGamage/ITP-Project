@@ -14,6 +14,12 @@
     <link rel="stylesheet" href="resources/css&js&jquery/customized.css" type="text/css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <title>Inter-Bank Transaction</title>
+    <script type="text/javascript"> 
+    	function autoFill(){
+    		document.getElementById("Taccountno").value="201212121";
+    		document.getElementById("amount").value="1000";
+    	} 
+    </script>
 </head>
 <body>
 
@@ -182,7 +188,7 @@
                             
                         </div>
                         <div align="center">
-                            <form  name="interBankTransaction" action = "transactionServlet" method="POST" >
+                             <form  name="interBankTransaction" action = "transactionServlet" method="POST" >
                         
                             <table align="center" style="color:black;center: 10%;font-size:20px;margin-left:370px;width:400px" cellpadding="5px" cellspacing="5px" >
                         
@@ -195,7 +201,7 @@
                             </tr>
                             
                             <tr><th style="text-align:left" >Target Account No   :<span style="color: #e32;content: ' *';display:inline;">*</span> </th>
-                                <td colspan="2" align="right"><input class = "form-control form-control-sm" type="text" name="Taccountno" placeholder="Target Account No" pattern="[0-9]{9,9}" title="Must contain 8 numbers." required> 
+                                <td colspan="2" align="right"><input class = "form-control form-control-sm" type="text" id="Taccountno" name="Taccountno" placeholder="Target Account No" pattern="[0-9]{9,9}" title="Must contain 8 numbers." required> 
                             </td>
                             </tr>
                             
@@ -210,20 +216,25 @@
                             
                                   
                             <tr><th style="text-align:left">Amount &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp     :<span style="color: #e32;content: ' *';display:inline;">*</span> </th>
-                                <td colspan="2" align="right"><input class = "form-control form-control-sm" type="text" name="amount" placeholder="LKR/=" pattern="[0-9\s]+" title="please enter a valid amount between 100 - 100000." required>
+                                <td colspan="2" align="right"><input class = "form-control form-control-sm" type="text" id="amount" name="amount" placeholder="LKR/=" pattern="[0-9\s]+" title="please enter a valid amount between 100 - 100000." required>
                             </td>
                             </tr>
                           
+                          	<tr>
+                          		<td><br></td>
+                          	</tr>
                             
-                     <tr>
-                                <td colspan="2" align="right"> <input type="reset" value="Reset" class="btn"  style="background-color:#D3D3D3	;color:black;font-weight:bold"> <input type="submit" value="Submit"  class="btn"  style="background-color:#D3D3D3	;color:black;font-weight:bold""> 
-                            </td>
+                     		<tr>
+                     			<br><br>
+                                <td colspan="2" align="right"> <input type="reset" value="Reset" class="btn"  style="background-color:#D3D3D3	;color:black;font-weight:bold"> <input type="submit" value="Submit"  class="btn"  style="background-color:#D3D3D3	;color:black;font-weight:bold""> </td>
+                            	 <td colspan="2" align="left"> <input type="button" onClick="autoFill();" value="DEMO" class="btn"  style="background-color:#D3D3D3	;color:black;font-weight:bold"></td>
                             </tr>
                         
+                        	
+                        
                             </table>
-                        	   <br><br><br><br><br><br><br><br>
+                        	   <br><br><br><br>
                         </form>
-                       
                         </div>  
                     </div>
                 </div>

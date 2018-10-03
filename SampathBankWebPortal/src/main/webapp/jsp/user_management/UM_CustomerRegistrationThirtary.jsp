@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
 		<link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized03.css" type="text/css">
 	    <title>Customer Registration</title>
 	    <%	String custId = (String)session.getAttribute("custId"); 
 	    	if(custId == null)
@@ -88,21 +89,50 @@
 <!-- 
 	FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM
  -->    
- 			<h4 style="color: red; text-align: center;">Please fill the necessary details!</h4>
- 			
- 			<form action="/SampathBankWebPortal/CustomerRegistrationController" method="post">
-	 			<input type="text" name="question01" placeholder="Who am I ?"/>
-	 			<input type="text" name="answer01" placeholder="me"/>
-	 			<input type="text" name="question02" placeholder="Who are you ?"/>
-	 			<input type="text" name="answer02" placeholder="you"/>
-	 			<input type="submit" name="submitThirtaryegistration" value="Finish"/>
- 			</form>
- 
- 
- 
-         
+			<h4 style="color: orange; text-align: center;">Please fill the necessary details!</h4>
+			<div style="align-content: center; margin-right: 5px; padding-left:170px">
+                <div style="width: 750px; align: center; padding: 22px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
+                	<form action="/SampathBankWebPortal/CustomerRegistrationController" class="form-horizontal" style="border:1px solid #ccc method="post">
+						<p>In case you forget Vishwa password, you can reset on your own without contacting bank officers based on following sensitive information.</br>
+						Hence, you are kindly requested to carefully update the below information as you will not be able to change once submitted</p>
 
-		 </div>
+		   				<div class="control-group a">
+							<label class="control-label" for="inputSecretquestion01">Secret Question 01<sup>*</sup></label>
+								<div class="controls">
+									<input type="text" id="inputSecretquestion01" placeholder="Who am I ?"  name="question01" required="required">
+								</div>
+						</div>
+						
+						<div class="control-group a">
+							<label class="control-label" for="inputAnswer01">Answer for Secret Question 01<sup>*</sup></label>
+								<div class="controls">
+									<input type="text" id="inputAnswer01" placeholder="Me"  name="answer01" required="required">
+								</div>
+						</div>
+						
+						 <div class="control-group a">
+							<label class="control-label" for="inputSecretquestion01">Secret Question 02<sup>*</sup></label>
+								<div class="controls">
+									<input type="text" id="inputSecretquestion02" placeholder="Who are you?"  name="question02" required="required">
+								</div>
+						</div>
+						
+						<div class="control-group a">
+							<label class="control-label" for="inputAnswer02">Answer for Secret Question 02<sup>*</sup></label>
+								<div class="controls">
+									<input type="text" id="inputAnswer02" placeholder="You"  name="answer02" required="required">
+								</div>
+						</div>
+						
+						<p>By creating an account you agree to our <a href="https://policies.google.com/privacy" style="color:dodgerblue">Terms & Privacy</a>.</p>
+		
+		    			<div class="clearfix">
+		      				<button type="submit" class="signupbtn" name="submitThirtaryegistration">Sign Up</button>
+		   				 </div>
+					</form>
+				</div>
+			</div>
+		</div>
 
         <!-- Footer -->
         <footer class="page-footer font-small blue pt-4 footer-all">
