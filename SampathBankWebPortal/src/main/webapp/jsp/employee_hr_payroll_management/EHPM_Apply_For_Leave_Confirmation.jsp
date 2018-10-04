@@ -46,7 +46,7 @@
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item" title="Login">
-                        <a class="nav-link" href="#"><span class="fa fa-sign-in"></span> Sign Out</a>
+                        <a class="nav-link" href="/SampathBankWebPortal/Logout"><span class="fa fa-sign-in"></span> Sign Out</a>
                     </li>
                 </ul>
             </div>
@@ -85,7 +85,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/HRLeaveRequestManagement?lmanage=getAllLeaveRequests" style="color:white">Leave Request Management</a>
                             <a class="dropdown-item" href="/SampathBankWebPortal/UpdateProfileDetailsHRSide?upmanage=retrieveAll" style="color:white">Update Details Request Management</a>
-                            <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_InitiateSalary.jsp" style="color:white">Salary Management</a>
                         </div>
                     </li>
                     <%} else if(employee.getDesignation().getDesignation().equals("admin")) {%>
@@ -153,30 +153,52 @@
                             <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveBase" style="color:white">Apply for Leave</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveHistory" style="color:white">Leave History</a>
-                            <a class="dropdown-item" href="#" style="color:white">Leave Status</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Leave Analysis</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown" title="Click to See Salary Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Salary Inquiry</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Calculate Salary</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_CalculateSalary.jsp" style="color:white">Calculate Salary</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Salary History</a>
-                            <a class="dropdown-item" href="#" style="color:white">Next Salary Details</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Employee_Salary_Pay_Slip_PDF.jsp" style="color:white">Pay Slip</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown" title="Click to See Skills Related Options">
-                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Skills Management</a>
+                	<%if(employee.getDesignation().getDesignation().equals("human resource manager")) {%>
+                    <li class="nav-item dropdown" title="Click to See Documentation Related Options">
+                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Action</a>
-                            <a class="dropdown-item" href="#" style="color:white">Another action</a>
-                            <a class="dropdown-item" href="#" style="color:white">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Separated link</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_AllEmployeeDetailsDocumentation.jsp" style="color:white">All Employee Details</a>
                         </div>
                     </li>
+                    <%} else if(employee.getDesignation().getDesignation().equals("user manager")) { %>
+                    <li class="nav-item dropdown" title="Click to See Documentation Related Options">
+                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
+                        <div class="dropdown-menu nav-dropdown">
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/user_management/UM_CustomerDetailsDocumentation.jsp" style="color:white">Customer Details</a>
+                        </div>
+                    </li>
+                    <%} else if(employee.getDesignation().getDesignation().equals("inventory manager")) { %>
+                    <li class="nav-item dropdown" title="Click to See Documentation Related Options">
+                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
+                        <div class="dropdown-menu nav-dropdown">
+                            <a class="dropdown-item" href="/SampathBankWebPortal/IM_GenerateReports.jsp" style="color:white">Inventory Details</a>
+                        </div>
+                    </li>
+                    <%} else if(employee.getDesignation().getDesignation().equals("transaction manager")) { %>
+                    <li class="nav-item dropdown" title="Click to See Documentation Related Options">
+                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
+                        <div class="dropdown-menu nav-dropdown">
+                            <a class="dropdown-item" href="/SampathBankWebPortal/TM_empGenerateReports.jsp" style="color:white">Transaction Details</a>
+                        </div>
+                    </li>
+                    <%} else {%>
+                    <li class="nav-item dropdown" title="Click to See Documentation Related Options">
+                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
+                        <div class="dropdown-menu nav-dropdown">
+                            <a class="dropdown-item" href="#" style="color:white">Nothing to see here</a>
+                        </div>
+                    </li>
+                    <%} %>
                     <li class="nav-item dropdown" title="Click to See Mail Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Mailing System</a>
                         <div class="dropdown-menu nav-dropdown">

@@ -17,9 +17,7 @@ public class DBConnection {
 				Class.forName("com.mysql.jdbc.Driver");
 				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/itp_2018_mlb_g3_10_sampath_web_portal_vinu", "ITP", "thisstuff");
 				System.out.println("connected");
-			}else
-				System.out.println("not connected");
-			
+			}
 			return connection;
 		} 
 		

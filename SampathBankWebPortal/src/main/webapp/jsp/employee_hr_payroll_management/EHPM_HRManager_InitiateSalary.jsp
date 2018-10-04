@@ -97,6 +97,24 @@
 
 			  document.getElementById('SalaryFormNetSalary').value = netSalary.toFixed(2);
 		  }
+		  
+			  function autoFill() {
+				  
+			    document.getElementById('SalaryFormID').value = "EMPL000002";
+			    document.getElementById('SalaryFormBasicSalaryPerMonth').value = "260000.23";
+			    document.getElementById('SalaryFormOvertime').value = "10.25";
+			    document.getElementById('SalaryFormOvertimeRate').value = "260.36";
+			    document.getElementById('SalaryFormCarAllowance').value = "50250.06";
+			    document.getElementById('SalaryFormBonus').value = "10";
+			    document.getElementById('SalaryFormTax').value = "8.95";
+			    document.getElementById('SalaryFormNonTaxSubAllowDays').value = "12";
+			    document.getElementById('SalaryFormNonTaxSubAllowRate').value = "565.26";
+			    document.getElementById('SalaryFormNonTaxMedical').value = "16056.36";
+			    document.getElementById('SalaryFormEPF').value = "8000.65";
+			    document.getElementById('SalaryFormMedical').value = "1000.26";
+			    document.getElementById('SalaryFormLoanRepayment').value = "12256.36";
+			    document.getElementById('SalaryFormOtherDeductions').value = "2506.36";
+			  }
 		</script>
     </head>
 
@@ -124,7 +142,7 @@
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item" title="Login">
-                        <a class="nav-link" href="#"><span class="fa fa-sign-in"></span> Sign Out</a>
+                        <a class="nav-link" href="/SampathBankWebPortal/Logout"><span class="fa fa-sign-in"></span> Sign Out</a>
                     </li>
                 </ul>
             </div>
@@ -153,7 +171,7 @@
                     <li class="nav-item dropdown" title="Click to See Your Duties">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Recruit an Employee</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_RecruitAnEmployee.jsp" style="color:white">Recruit an Employee</a>
                             <a class="dropdown-item" href="/SampathBankWebPortal/OnlineEmployeeAccountController?abc=check" style="color:white">Create Employee Online Account</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=allActive" style="color:white">Active Employees</a>
@@ -171,27 +189,20 @@
                             <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveBase" style="color:white">Apply for Leave</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveHistory" style="color:white">Leave History</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Leave Analysis</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown" title="Click to See Salary Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Salary Inquiry</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Calculate Salary</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_CalculateSalary.jsp" style="color:white">Calculate Salary</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Salary History</a>
-                            <a class="dropdown-item" href="#" style="color:white">Next Salary Details</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Employee_Salary_Pay_Slip_PDF.jsp" style="color:white">Pay Slip</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown" title="Click to See Skills Related Options">
-                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Skills Management</a>
+                    <li class="nav-item dropdown" title="Click to See Documentation Related Options">
+                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Action</a>
-                            <a class="dropdown-item" href="#" style="color:white">Another action</a>
-                            <a class="dropdown-item" href="#" style="color:white">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Separated link</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_AllEmployeeDetailsDocumentation.jsp" style="color:white">All Employee Details</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown" title="Click to See Mail Related Options">
@@ -224,7 +235,7 @@
 		  </ol>
 		</nav>
 
-        <div class="container-fluid" style="margin-bottom: 100px; height: auto;">
+        <div class="container-fluid" style="margin-bottom: 100px; height: 1100px;">
             <br><h3>Salary Initiation</h3>
             <div class="container" style="margin-top: 50px">
             
@@ -252,13 +263,13 @@
                             </div>
                             <div style="border-width: 1px; border-style: solid; border-color: #FD4F00;">
 	                            <div class="form-group row" style="padding: 4px; padding-left: 16px">
-	                                <label class="col-5 col-form-label" for="SalaryFormBasicSalaryPerMonth">Overtime Hrs: *</label>
+	                                <label class="col-5 col-form-label" for="SalaryFormOvertime">Overtime Hrs: *</label>
 	                                <div class="col-5">
 	                                    <input type="text" class="form-control" id="SalaryFormOvertime" name="overTimeHrs" title="####">
 	                                </div>
 	                            </div>
 	                            <div class="form-group row" style="padding: 4px; padding-left: 16px">
-	                                <label class="col-5 col-form-label" for="SalaryFormBasicSalaryPerMonth">Overtime R: *</label>
+	                                <label class="col-5 col-form-label" for="SalaryFormOvertimeRate">Overtime R: *</label>
 	                                <div class="col-5">
 	                                    Rs. <input type="text" class="form-control" id="SalaryFormOvertimeRate" name="overTimeRate" title="####" onchange="updateTotalOT();">
 	                                </div>
@@ -271,13 +282,13 @@
 	                            </div>
 	                        </div>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px">
-                                <label class="col-5 col-form-label" for="SalaryFormBasicSalaryPerMonth">Car Allowance: *</label>
+                                <label class="col-5 col-form-label" for="SalaryFormCarAllowance">Car Allowance: *</label>
                                 <div class="col-5">
                                     Rs. <input type="text" class="form-control" id="SalaryFormCarAllowance" name="carAllowance" title="####">
                                 </div>
                             </div>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px">
-                                <label class="col-5 col-form-label" for="SalaryFormBasicSalaryPerMonth">Bonus: *</label>
+                                <label class="col-5 col-form-label" for="SalaryFormBonus">Bonus: *</label>
                                 <div class="col-5">
                                     % <input type="text" class="form-control" id="SalaryFormBonus" name="bonus" title="####" onchange="updateTotTaxableInc();">
                                 </div>
@@ -375,13 +386,13 @@
 			                    <div>
 			                    	<input type="reset" value="Reset" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 22px; margin-right:10px;"/>
 			                        <input type="submit" value="Submit" name="HRManagerSalaryInitiate" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 22px; margin-right: 20px;"/>
+			                        <button type="button" onClick="autoFill();" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 22px; margin-right: 20px;">Demo</button>
 			                    </div>
 			                </div>
 			            </div>
                     </div>
                         
                 </form>
-                <button onClick="autoFill();" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 22px; margin-right: 20px;">Demo</button>
             </div>
         </div>
 

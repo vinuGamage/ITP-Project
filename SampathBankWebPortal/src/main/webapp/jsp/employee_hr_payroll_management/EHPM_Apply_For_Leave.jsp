@@ -22,6 +22,18 @@
 			if(leaveDetails == null)
 				response.sendRedirect("/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveBase");
 		%>
+		<script type="text/javascript">
+		  function autoFill() {
+			  var date = new Date();
+			  var currentDate = date.toISOString().slice(0,10);
+			  
+		    document.getElementById('L01').value = currentDate;
+		    document.getElementById('L02').value = 10;
+		    document.getElementById('L03').value = "sick leave";
+		    document.getElementById('L04').value = "emergency";
+		    document.getElementById('L05').value = "I need a leave because of this reason, so I need the leave, obviously!";
+		  }
+		</script>
 	</head>
 	<body>
         <nav class="navbar fixed-top navbar-expand-md navbar-dark fixed-stuff">
@@ -47,7 +59,7 @@
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item" title="Login">
-                        <a class="nav-link" href="#"><span class="fa fa-sign-in"></span> Sign Out</a>
+                        <a class="nav-link" href="/SampathBankWebPortal/Logout"><span class="fa fa-sign-in"></span> Sign Out</a>
                     </li>
                 </ul>
             </div>
@@ -86,7 +98,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/HRLeaveRequestManagement?lmanage=getAllLeaveRequests" style="color:white">Leave Request Management</a>
                             <a class="dropdown-item" href="/SampathBankWebPortal/UpdateProfileDetailsHRSide?upmanage=retrieveAll" style="color:white">Update Details Request Management</a>
-                            <a class="dropdown-item" href="#" style="color:white">Salary Management</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_InitiateSalary.jsp" style="color:white">Salary Management</a>
                         </div>
                     </li>
                     <%} else if(employee.getDesignation().getDesignation().equals("admin")) {%>
@@ -154,29 +166,54 @@
                             <a class="dropdown-item" href="#" style="color:white">Apply for Leave</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/SampathBankWebPortal/LeaveHandlingEmployee?xyz=retrieveHistory" style="color:white">Leave History</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Leave Analysis</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown" title="Click to See Salary Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Salary Inquiry</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Calculate Salary</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_CalculateSalary.jsp" style="color:white">Calculate Salary</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Salary History</a>
-                            <a class="dropdown-item" href="#" style="color:white">Next Salary Details</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Employee_Salary_Pay_Slip_PDF.jsp" style="color:white">Pay Slip</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown" title="Click to See Skills Related Options">
-                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Skills Management</a>
+                    
+                	<%if(employee.getDesignation().getDesignation().equals("human resource manager")) {%>
+                    <li class="nav-item dropdown" title="Click to See Documentation Related Options">
+                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Action</a>
-                            <a class="dropdown-item" href="#" style="color:white">Another action</a>
-                            <a class="dropdown-item" href="#" style="color:white">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Separated link</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_AllEmployeeDetailsDocumentation.jsp" style="color:white">All Employee Details</a>
                         </div>
                     </li>
+                    <%} else if(employee.getDesignation().getDesignation().equals("user manager")) { %>
+                    <li class="nav-item dropdown" title="Click to See Documentation Related Options">
+                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
+                        <div class="dropdown-menu nav-dropdown">
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/user_management/UM_CustomerDetailsDocumentation.jsp" style="color:white">Customer Details</a>
+                        </div>
+                    </li>
+                    <%} else if(employee.getDesignation().getDesignation().equals("inventory manager")) { %>
+                    <li class="nav-item dropdown" title="Click to See Documentation Related Options">
+                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
+                        <div class="dropdown-menu nav-dropdown">
+                            <a class="dropdown-item" href="/SampathBankWebPortal/IM_GenerateReports.jsp" style="color:white">Inventory Details</a>
+                        </div>
+                    </li>
+                    <%} else if(employee.getDesignation().getDesignation().equals("transaction manager")) { %>
+                    <li class="nav-item dropdown" title="Click to See Documentation Related Options">
+                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
+                        <div class="dropdown-menu nav-dropdown">
+                            <a class="dropdown-item" href="/SampathBankWebPortal/TM_empGenerateReports.jsp" style="color:white">Transaction Details</a>
+                        </div>
+                    </li>
+                    <%} else {%>
+                    <li class="nav-item dropdown" title="Click to See Documentation Related Options">
+                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
+                        <div class="dropdown-menu nav-dropdown">
+                            <a class="dropdown-item" href="#" style="color:white">Nothing to see here</a>
+                        </div>
+                    </li>
+                    <%} %>
+                    
                     <li class="nav-item dropdown" title="Click to See Mail Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Mailing System</a>
                         <div class="dropdown-menu nav-dropdown">
@@ -248,15 +285,15 @@
 					 <div class="form-row">
 					    <div class="col-md-3 mb-3">
 					      <label for="validationCustom01" style="font-weight: bold;">Leave Start Date (Requested):</label>
-					      <input type="date" class="form-control" style="font-weight: bold;" name="leaveStart" required/>
+					      <input type="date" class="form-control" style="font-weight: bold;" name="leaveStart" id="L01" required/>
 					    </div>
 					    <div class="col-md-3 mb-3">
 					      <label for="validationCustom02" style="font-weight: bold;">Leave Duration (Requested):</label>
-					      <input type="number" class="form-control" style="text-transform: uppercase; font-weight: bold;" name="leaveDuration" required/>
+					      <input type="number" class="form-control" style="text-transform: uppercase; font-weight: bold;" name="leaveDuration" id="L02" required/>
 					    </div>
 					    <div class="col-md-3 mb-3">
 					      <label for="validationCustom02" style="font-weight: bold;">Leave Type:</label>
-					      <select class="custom-select mr-sm-2" name="leaveType" required>
+					      <select class="custom-select mr-sm-2" name="leaveType" id="L03" required>
 					      	<option value="" disabled selected hidden="true">Choose...</option>
                             <option value="sick leave">sick leave</option>
                             <option value="family emergency">family emergency</option>
@@ -266,7 +303,7 @@
 					    </div>
 					    <div class="col-md-3 mb-3">
 					      <label for="validationCustom02" style="font-weight: bold;">Review Speed:</label>
-					      <select class="custom-select mr-sm-2" name="leaveReviewSpeed" required>
+					      <select class="custom-select mr-sm-2" name="leaveReviewSpeed" id="L04" required>
 					      	<option value="" disabled selected hidden="true">Choose...</option>
                             <option value="emergency">emergency</option>
                             <option value="average">average</option>
@@ -277,7 +314,7 @@
 					 <div class="form-row" style="margin-top: 20px;">
 					    <div class="col" style="padding-bottom: 20px;">
 					      <label for="validationCustom01" style="font-weight: bold;">Leave Description:</label>
-					      <textarea class="form-control col" rows="15" name="leaveDescription"></textarea>
+					      <textarea class="form-control col" rows="15" name="leaveDescription" id="L05"></textarea>
 					    </div>
 					</div>
                     <div style="clear: both; float: right; margin-top: 20px;">
@@ -290,6 +327,7 @@
                     </div>
 		    	</form>
             </div>
+            <button onClick="autoFill();" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 22px; margin-right: 20px;">Demo</button>
 		<%} else { %>
 			Some Error!
 		<%} %>

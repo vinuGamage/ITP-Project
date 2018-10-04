@@ -181,7 +181,7 @@
              					 </button>
           					</span>
           					
-        					  <input type="text" style="width:25px" name="quant[<%=x%>]" class="form-control input-number" value="100" min="1" max="100000" pattern= "[0-9\s]+" title="Enter a number for the Amount">
+        					  <input type="text" style="width:25px" name="quant[<%=x%>]" class="form-control input-number" value="10" min="1" max="100000" pattern= "[0-9\s]+" title="Enter a number for the Amount">
           						<input type="text" name="name" value="quant[<%=x%>]" hidden>
           						<input type="text" name="value" value="<%=x%>" hidden>
           					<span class="input-group-btn">

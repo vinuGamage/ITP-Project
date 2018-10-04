@@ -358,35 +358,35 @@
                     
 <!-- DOCUMENTATION GENERATION -->
                 	<%if(employee.getDesignation().getDesignation().equals("human resource manager")) {%>
-                    <li class="nav-item dropdown" title="Click to See Skills Related Options">
+                    <li class="nav-item dropdown" title="Click to See Documentation Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
                         <div class="dropdown-menu nav-dropdown">
                             <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_AllEmployeeDetailsDocumentation.jsp" style="color:white">All Employee Details</a>
                         </div>
                     </li>
                     <%} else if(employee.getDesignation().getDesignation().equals("user manager")) { %>
-                    <li class="nav-item dropdown" title="Click to See Skills Related Options">
+                    <li class="nav-item dropdown" title="Click to See Documentation Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
                         <div class="dropdown-menu nav-dropdown">
                             <a class="dropdown-item" href="/SampathBankWebPortal/jsp/user_management/UM_CustomerDetailsDocumentation.jsp" style="color:white">Customer Details</a>
                         </div>
                     </li>
                     <%} else if(employee.getDesignation().getDesignation().equals("inventory manager")) { %>
-                    <li class="nav-item dropdown" title="Click to See Skills Related Options">
+                    <li class="nav-item dropdown" title="Click to See Documentation Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
                         <div class="dropdown-menu nav-dropdown">
                             <a class="dropdown-item" href="/SampathBankWebPortal/IM_GenerateReports.jsp" style="color:white">Inventory Details</a>
                         </div>
                     </li>
                     <%} else if(employee.getDesignation().getDesignation().equals("transaction manager")) { %>
-                    <li class="nav-item dropdown" title="Click to See Skills Related Options">
+                    <li class="nav-item dropdown" title="Click to See Documentation Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
                         <div class="dropdown-menu nav-dropdown">
                             <a class="dropdown-item" href="/SampathBankWebPortal/TM_empGenerateReports.jsp" style="color:white">Transaction Details</a>
                         </div>
                     </li>
                     <%} else {%>
-                    <li class="nav-item dropdown" title="Click to See Skills Related Options">
+                    <li class="nav-item dropdown" title="Click to See Documentation Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
                         <div class="dropdown-menu nav-dropdown">
                             <a class="dropdown-item" href="#" style="color:white">Nothing to see here</a>

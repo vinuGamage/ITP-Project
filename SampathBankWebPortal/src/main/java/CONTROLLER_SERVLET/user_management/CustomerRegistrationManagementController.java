@@ -134,7 +134,8 @@ public class CustomerRegistrationManagementController extends HttpServlet {
 															"\tUsername: " + username + "\n" + 
 															"\tPassword: " + password + "\n" +
 															"\tOnline Security Key: " + cust.getOnlineSecurityKey().getOnlineSecurityKey();
-										//EmailClient.sendMail(cust.getPersonalEmail(), "Credentials For Online Account on Sampath Bank", content);
+//EMAILLLLLLLLLLLLLLLLLLLLLLLLLL
+										EmailClient.sendMail(cust.getPersonalEmail(), "Credentials For Online Account on Sampath Bank", content);
 										
 										PrintWriter out = response.getWriter();
 										out.println("<script type=\"text/javascript\">");
@@ -187,7 +188,8 @@ public class CustomerRegistrationManagementController extends HttpServlet {
 					String content = 	"Your request for an online account has been rejected.\n" + 
 										"\tPlease contact your associated branch for more details.\n" + 
 										"\t\tAssociated Branch: " + cust.getBranch().getBranchAddress().getFullAddress();
-					//EmailClient.sendMail(cust.getPersonalEmail(), "Regarding You Request for an Online Account", content);
+//EMAILLLLLLLLLLLLLLLLLLLLLLLLLL
+					EmailClient.sendMail(cust.getPersonalEmail(), "Regarding You Request for an Online Account", content);
 					
 					PrintWriter out = response.getWriter();
 					out.println("<script type=\"text/javascript\">");

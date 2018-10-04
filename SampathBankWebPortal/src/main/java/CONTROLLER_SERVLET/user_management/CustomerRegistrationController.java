@@ -57,7 +57,8 @@ public class CustomerRegistrationController extends HttpServlet {
 						HttpSession session = request.getSession();
 						if(CustomerRegistrationDAO.checkForTempOnlinePinData(custId)) {
 							if(CustomerRegistrationDAO.insertOnlinePinData(custId, regPin)) {
-								//EmailClient.sendMail(regPersonalEmail, "Sampath Bank Online Registration PIN!", "Your Registration Pin is : " +  regPin);
+//EMAILLLLLLLLLLLLLLLLLLLLLLLLLL
+								EmailClient.sendMail(regPersonalEmail, "Sampath Bank Online Registration PIN!", "Your Registration Pin is : " +  regPin);
 								session.setAttribute("custId", custId);
 								
 								PrintWriter out = response.getWriter();
@@ -70,7 +71,8 @@ public class CustomerRegistrationController extends HttpServlet {
 							}
 						} else {
 							if(CustomerRegistrationDAO.updateOnlinePinData(custId, regPin)) {
-								//EmailClient.sendMail(regPersonalEmail, "Sampath Bank Online Registration PIN!", "Your Registration Pin is : " +  regPin);
+//EMAILLLLLLLLLLLLLLLLLLLLLLLLLL
+								EmailClient.sendMail(regPersonalEmail, "Sampath Bank Online Registration PIN!", "Your Registration Pin is : " +  regPin);
 								session.setAttribute("custId", custId);
 								
 								PrintWriter out = response.getWriter();

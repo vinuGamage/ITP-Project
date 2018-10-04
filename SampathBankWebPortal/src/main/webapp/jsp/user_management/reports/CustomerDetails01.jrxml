@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CustomerDetails01" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="24079a4f-309f-4cfb-9e77-98d00f27beca">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ITP-Database_Schema-Isuru-Keshi"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM person p INNER JOIN customer c on p.personId = c.customerId INNER JOIN gender g ON p.genderId = g.genderId INNER JOIN nationality n ON p.nationalityId = n.nationalityId]]>
+	</queryString>
+	<field name="personId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="personId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="firstName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="firstName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="middleName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="middleName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="lastName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="lastName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="otherNames" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="otherNames"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="addressStreet01" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="addressStreet01"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="addressStreet02" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="addressStreet02"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="addressCity" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="addressCity"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="addressProvince" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="addressProvince"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="addressZipCode" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="addressZipCode"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="nic" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nic"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="dateOfBirth" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="dateOfBirth"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="personalEmail" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="personalEmail"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="physicalRegistrationDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="physicalRegistrationDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="onlineRegistrationDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="onlineRegistrationDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="genderId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="genderId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="nationalityId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="nationalityId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="branchId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="branchId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="onlineSecurityId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="onlineSecurityId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="homeContact" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="homeContact"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="mobileContact" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mobileContact"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="customerId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="customerId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="COLUMN_23" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="genderId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="gender"/>
+	</field>
+	<field name="gender" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="gender"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="gender"/>
+	</field>
+	<field name="COLUMN_25" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="nationalityId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="nationality"/>
+	</field>
+	<field name="nationality" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nationality"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="nationality"/>
+	</field>
+	<variable name="personalEmail1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{personalEmail}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="91" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="12" width="800" height="50" backcolor="#FD4F00" uuid="0281c629-9c5c-43f3-9156-6b85713d24a3"/>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="120" y="20" width="160" height="30" uuid="fcf6d08b-1834-4f82-98f4-8a5ad411f526"/>
+				<textElement>
+					<font fontName="Century Gothic" size="22" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Sampath Bank]]></text>
+			</staticText>
+			<image>
+				<reportElement x="10" y="20" width="100" height="32" uuid="7ca0bccc-46e9-49a2-94a1-15a96e53c411"/>
+				<imageExpression><![CDATA["../../resources/images/user_management/SampathBankLogo01.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="60" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="1" width="800" height="28" backcolor="#FD4F00" uuid="ac32034a-0dc0-49f3-b292-79e0150e8037"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="70" y="10" width="110" height="20" uuid="970d6812-b4c3-4657-abc4-554fdab5796c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="385647d3-85cd-4200-895b-975b60bbef12"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Customer Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="10" width="70" height="19" uuid="1e70fcfe-fba5-493b-ab88-d30353785960">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c091c0ec-eded-47b6-8e9f-e84d8d506c2e"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Person ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="10" width="60" height="20" uuid="f7e4a851-0881-49a5-ad6b-d81df3025364">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d5534f08-8efc-4eb3-8869-747915d2b011"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Gender]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="10" width="70" height="20" uuid="81ef2405-fb61-4149-99f7-ae94ce5a39a8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="aeb6a2b0-4783-47ce-a670-4b534b7dc96a"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[NIC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="10" width="70" height="20" uuid="0697321a-3423-4a03-9417-9faf1e0041f0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d8a374ec-9d71-4b01-aca7-d8613af859d9"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Nationality]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="10" width="100" height="19" uuid="6f46f39a-5d99-405d-8f9d-1b115607f8e9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c672b47d-f937-4880-b5a9-fb02097d772b"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Address]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="10" width="100" height="19" uuid="fae708e6-8c53-4a95-aba1-b2c1305d6c32">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="29613f43-c563-40c2-a0f5-ed79a4367fad"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Home Contact]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="610" y="10" width="100" height="20" uuid="88a55829-d64a-461c-8e3d-668e2cf592b7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e2a05478-8e36-41fe-9397-1f48c5f5f415"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Mobile Contact]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="710" y="10" width="90" height="20" uuid="fcde8d5f-5d31-4c70-832c-b799c5968eb8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="710e50bf-7fe1-46d1-ae89-431d3befd5cc"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Customer ID]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="71" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="70" y="0" width="110" height="30" uuid="841005a1-dc11-4c29-a7ba-87ac74e329fa">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="385647d3-85cd-4200-895b-975b60bbef12"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{firstName}+ " " + $F{lastName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="70" height="30" uuid="360f061c-b3a3-46c0-a34a-f429e6c8af7c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c091c0ec-eded-47b6-8e9f-e84d8d506c2e"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{personId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="0" width="60" height="30" uuid="3d1f2f0a-6a9b-4177-a886-b686c2eb9c75">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d5534f08-8efc-4eb3-8869-747915d2b011"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gender}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="0" width="70" height="30" uuid="8303b7c6-d67a-429b-8109-8d5f663be050">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="aeb6a2b0-4783-47ce-a670-4b534b7dc96a"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nic}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="0" width="70" height="30" uuid="6c942b0f-0f37-4b89-9c6a-6678c47fd7df">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d8a374ec-9d71-4b01-aca7-d8613af859d9"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nationality}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="100" height="30" uuid="32557426-ec62-4aee-87d0-1eee3b06f3ad">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c672b47d-f937-4880-b5a9-fb02097d772b"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{addressStreet01} + " "  + $F{addressCity} + " " + $F{addressProvince}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="510" y="0" width="90" height="30" uuid="1bdf6a77-1e89-4d53-a7ef-46f52d835bb3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="29613f43-c563-40c2-a0f5-ed79a4367fad"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{homeContact}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="730" y="0" width="70" height="30" uuid="3b937ba4-eb36-419a-b7f7-d06225096104">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="710e50bf-7fe1-46d1-ae89-431d3befd5cc"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customerId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="620" y="0" width="100" height="30" uuid="06d7d095-8b2f-49cd-b359-9c3826bacf89">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e2a05478-8e36-41fe-9397-1f48c5f5f415"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mobileContact}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="29" width="801" height="1" uuid="69825ccd-c54c-4c71-9f30-acbeab4641d1"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="30" width="100" height="30" uuid="421af7dd-ee88-4f8e-be50-679ad0e67652"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Sampath Bank PLC 04-10-2018]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

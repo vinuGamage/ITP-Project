@@ -11,6 +11,17 @@
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized03.css" type="text/css">		
 	    <title>Customer Registration</title>
+	    <script type="text/javascript">
+	    	function autoFill() {
+	    		
+	    		document.getElementById('reg01').value = "968052039v";
+			   <!-- document.getElementById('reg02').value = "Abc"; -->
+			    document.getElementById('reg03').value = "10280";
+			    document.getElementById('reg04').value = "keshanibogahawatte96@gmail.com";
+			    document.getElementById('reg05').value = "808080808";
+	    	}
+	    
+	    </script>
     </head>
 
     <body>
@@ -131,6 +142,7 @@
 	                    </div>
 	                    <div class="clearfix">
 	                    	<button type="submit" name="submitInitialRegistration">Submit</button>
+	                    	<button type="button" onClick="autoFill();"  >Demo</button>
 	                    </div>	                    
 	                </div>
 	                

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CustomerDetails02" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="85799c37-6bd7-432f-9991-3849ce6ed053">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ITP-Database_Schema-Isuru-Keshi02"/>
+	<queryString language="SQL">
+		<![CDATA[select * from online_customer_credentials]]>
+	</queryString>
+	<field name="onlineCustomerId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="onlineCustomerId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="online_customer_credentials"/>
+	</field>
+	<field name="customerId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="customerId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="online_customer_credentials"/>
+	</field>
+	<field name="username" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="username"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="online_customer_credentials"/>
+	</field>
+	<field name="password" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="password"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="online_customer_credentials"/>
+	</field>
+	<field name="question01" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="question01"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="online_customer_credentials"/>
+	</field>
+	<field name="answer01" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="answer01"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="online_customer_credentials"/>
+	</field>
+	<field name="question02" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="question02"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="online_customer_credentials"/>
+	</field>
+	<field name="answer02" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="answer02"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="online_customer_credentials"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="10" width="801" height="61" backcolor="#FD4F00" uuid="53abe6a8-0011-4251-b01f-b0b91f858638"/>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="120" y="24" width="160" height="30" uuid="48f6c31b-cfa7-4ce0-a8c1-92bebc6e70f0"/>
+				<textElement>
+					<font fontName="Century Gothic" size="22" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Sampath Bank]]></text>
+			</staticText>
+			<image>
+				<reportElement x="10" y="24" width="100" height="32" uuid="da813674-0c9f-4502-8cb1-c7c75e9162df"/>
+				<imageExpression><![CDATA["../../resources/images/user_management/SampathBankLogo01.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="50" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="11" width="800" height="28" backcolor="#FD4F00" uuid="da72a945-f108-4321-83a6-36cd3edc3680"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="19" width="100" height="20" backcolor="#FD4F00" uuid="6f7c4d90-f8ed-457a-ba24-8de98540ea54">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d4ee2b2f-e1af-491f-b154-422fc1ead888"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[onlineCustomerId]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="19" width="100" height="20" uuid="e4912d0b-1498-4c76-b163-9273c178ba14">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7fe08ff2-dcd6-420e-9ce9-71d7c1c21427"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[username]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="20" width="120" height="20" uuid="a2e9f0fc-a2f3-465e-9310-643ebf187935">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3d1222b9-08c4-408f-96ba-0fdc742cbfdc"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Secret Question 01]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="19" width="100" height="20" uuid="f54be942-9779-449a-a3d4-869421bd4fe6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ce41ca63-33f6-45c5-a54e-b77f16ca02f9"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Answer 01]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="20" width="110" height="20" uuid="dac2415f-381c-46ad-a47c-f90cc02acb50">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a33f6ded-2e54-486f-a94a-fc3d66f0ab3b"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Secret Question 02]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="20" width="100" height="19" uuid="9479ac12-9552-48fa-8248-38eccee0438a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8e9e9f82-d179-4ed3-8f9c-62b69bebe666"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Answer 02]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="710" y="20" width="79" height="20" uuid="afc4ac15-2703-4d0d-91f8-6ab565bf7eb3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d24bacf5-db19-4892-9d4c-87dc4ca427d6"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Customer ID]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="39" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="0" width="100" height="20" uuid="f4b548f6-9758-4bd8-907b-d6f44ef66a0a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d4ee2b2f-e1af-491f-b154-422fc1ead888"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{onlineCustomerId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="-1" width="80" height="20" uuid="cdafc5df-2ddc-4af8-b727-1b6efe7bda16">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7fe08ff2-dcd6-420e-9ce9-71d7c1c21427"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{username}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="250" y="0" width="80" height="30" uuid="03f9dba2-3f87-4d92-a669-231b92306782">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3d1222b9-08c4-408f-96ba-0fdc742cbfdc"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{question01}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="0" width="70" height="19" uuid="a2ebf1cd-ee61-4eb5-a02d-e5c13d90fb4f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ce41ca63-33f6-45c5-a54e-b77f16ca02f9"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{answer01}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="510" y="0" width="80" height="19" uuid="9b901987-2d95-4856-ba6e-2c0b77a20b6f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a33f6ded-2e54-486f-a94a-fc3d66f0ab3b"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{question02}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="640" y="1" width="50" height="19" uuid="cb3b6e4d-3e1c-429e-ad11-8aa9063ad3c4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8e9e9f82-d179-4ed3-8f9c-62b69bebe666"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{answer02}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="720" y="0" width="79" height="20" uuid="dd2f55df-ef06-4856-8b15-4d1c58124ad6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d24bacf5-db19-4892-9d4c-87dc4ca427d6"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{customerId}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="19" width="801" height="1" uuid="bb4c243d-0b14-43b8-94c6-d068c6f3072a"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="24" width="100" height="30" uuid="e38c1726-c7a9-41f2-bcb2-841116dcbca1"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Sampath Bank PLC 04-10-2018]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

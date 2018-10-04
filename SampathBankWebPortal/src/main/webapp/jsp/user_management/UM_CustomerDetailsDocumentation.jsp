@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, java.util.Collection, java.util.ArrayList"%>
+<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,20 +12,24 @@
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<title>Active Employees</title>
+        <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized03.css" type="text/css">
+		<title>Employee Details Documentations</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
-			if(employee == null || !employee.getDesignation().getDesignation().equals("human resource manager"))
+			
+			if(null == employee)
 				response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
 		%>
 	</head>
-
-    <body>
+	<body>
+	<%
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	%>
         <nav class="navbar fixed-top navbar-expand-md navbar-dark fixed-stuff">
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp" title="Go to Employee Homepage">EmpHome</a>
+                        <a class="nav-link" href="#" title="You are Already in the Employee Homepage">EmpHome</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_ViewProfile.jsp" title="View Profile">MyProfile</a>
@@ -36,7 +40,7 @@
                 </ul>
             </div>
             <div class="mx-auto order-0">
-                <a class="navbar-brand mx-auto" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp" title="Go to Employee Homepage">SampathEmpWeb</a>
+                <a class="navbar-brand mx-auto" href="#" title="You are Already in the Employee Homepage">SampathEmpWeb</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -73,18 +77,12 @@
                     <li class="nav-item dropdown" title="Click to See Your Duties">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Employee Duties</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_RecruitAnEmployee.jsp" style="color:white">Recruit an Employee</a>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/OnlineEmployeeAccountController?abc=check" style="color:white">Create Employee Online Account</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/CustomerRegistrationManagementController?var=getAllRequests" style="color:white">Online Customer Account Management</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Active Employees</a>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/ActiveInactiveSearchEmployees?deed=inActive" style="color:white">Inactive Employees</a>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_SearchForEmployees.jsp" style="color:white">Search for Employees</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/HRLeaveRequestManagement?lmanage=getAllLeaveRequests" style="color:white">Leave Request Management</a>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/UpdateProfileDetailsHRSide?upmanage=retrieveAll" style="color:white">Update Details Request Management</a>
-                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_InitiateSalary.jsp" style="color:white">Salary Management</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/user_management/UM_CustomerManager_SearchForCustomer.jsp" style="color:white">Search For Customers</a>
                         </div>
                     </li>
+
                     <li class="nav-item dropdown" title="Click to See Leave Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Leave Request Inquiry</a>
                         <div class="dropdown-menu nav-dropdown">
@@ -104,7 +102,7 @@
                     <li class="nav-item dropdown" title="Click to See Documentation Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_AllEmployeeDetailsDocumentation.jsp" style="color:white">All Employee Details</a>
+                            <a class="dropdown-item" href="#" style="color:white">Customer Details</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown" title="Click to See Mail Related Options">
@@ -132,57 +130,21 @@
 		<nav aria-label="breadcrumb" class="breadcrumb-stuff">
 		  <ol class="breadcrumb">
 		    <li class="breadcrumb-item"><a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp">EmpHome</a></li>
-		    <li class="breadcrumb-item">Employee Duties</a></li>
-		    <li class="breadcrumb-item active" aria-current="page">All Active Employees</li>
+		    <li class="breadcrumb-item">Documents & Reports</a></li>
+		    <li class="breadcrumb-item active" aria-current="page">Customer Details</li>
 		  </ol>
 		</nav>
 		
-		
-        <div class="container-fluid" style="margin-bottom: 100px; height: 1000px">
-        <% Collection<Employee> activeEmployeeList = (ArrayList<Employee>) session.getAttribute("activeEmployeeList"); %>
-		<%if(activeEmployeeList != null) {%>
-			<table class="table table-hover">
-			  <thead class="thead-light">
-			    <tr>
-			      <th scope="col">Employee Id</th>
-			      <th scope="col">Employee Name</th>
-			      <th scope="col">Branch Id</th>
-			      <th scope="col">Employee Type</th>
-			      <th scope="col">Company Induction Date</th>
-			      <th scope="col">Online Account</th>
-			      <th scope="col">####</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			  <%for(Employee emp: activeEmployeeList) {%>
-			    <tr>
-			      <th scope="row"><%=emp.getPersonId() %></th>
-			      <td style="font-weight: bold;"><%=emp.getName().getFirstName() %> <%=emp.getName().getLastName() %></td>
-			      <td style="font-weight: bold;"><%=emp.getBranch().getBranchId() %></td>
-			      <td style="font-weight: bold;"><%=emp.getEmployeeType() %></td>
-			      <td style="font-weight: bold;"><%=emp.getRegistrationDates().getPhysicalRegistrationDate() %></td>
-			      <td style="font-weight: bold;">
-			      	<%if(emp.getOnlineSecurityKey() == null) {%>
-			      		No
-			      	<%} else {%>
-			      		Yes
-			      	<%} %>
-			      </td>
-			      <td>
-			      	<form action="/SampathBankWebPortal/ActiveInactiveEmployeeManupulation" method="post">
-			      		<input type="hidden" value="activeView" name="anotherDeed"/>
-			      		<input type="hidden" value="<%=emp.getPersonId()%>" name="employeeId"/>
-			      		<input type="submit" value="View Details" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; margin-right: 20px;"/>
-			      	</form>
-			      </td>
-			    </tr>
-			    <%} %>
-			  </tbody>
-			</table>
-		<%} else { %>
-			There are no active employees as of now.
-		<%} %>
-
+        <div class="container" style="margin-bottom: 100px; height: 100%">
+			<div class="container" height="300px" align="center"> 
+					<h4>This page represents reports generated according to customer details</h4>
+                    <div class="clearfix" align="center" padding-top="100px" width="150px">
+                    	<h4>Customer basic details</h4>
+                    		<button type="submit"  name="" onclick="window.open('UM_CustomerBasicDetailsPDF.jsp')">Report 01</button></a>
+                    	<h4>Customer online account details</h4>
+                    		<button  type="submit" name="" onclick="window.open('UM_CustomerOnlineAccountDetailsPDF.jsp')">Report 02</button>
+                    </div>
+			</div> 
 		</div>
 		
         <!-- Footer -->
