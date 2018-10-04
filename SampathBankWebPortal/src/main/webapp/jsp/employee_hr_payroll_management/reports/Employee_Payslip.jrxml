@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Employee_Payslip" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d414c70c-5685-4a2e-9647-07470ad930f9">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ITP-Database_Schema-Isuru-Keshi"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM Person p INNER JOIN employee e ON p.personId=e.employeeId INNER JOIN salary s ON e.employeeId=s.employeeId WHERE s.employeeId='EMPL000001']]>
+	</queryString>
+	<field name="personId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="personId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="firstName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="firstName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="middleName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="middleName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="lastName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="lastName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="otherNames" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="otherNames"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="addressStreet01" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="addressStreet01"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="addressStreet02" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="addressStreet02"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="addressCity" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="addressCity"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="addressProvince" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="addressProvince"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="addressZipCode" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="addressZipCode"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="nic" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nic"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="dateOfBirth" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="dateOfBirth"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="personalEmail" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="personalEmail"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="physicalRegistrationDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="physicalRegistrationDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="onlineRegistrationDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="onlineRegistrationDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="genderId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="genderId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="nationalityId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="nationalityId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="branchId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="branchId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="onlineSecurityId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="onlineSecurityId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="homeContact" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="homeContact"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="mobileContact" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mobileContact"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="employeeId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="employeeId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+	</field>
+	<field name="departmentId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="departmentId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+	</field>
+	<field name="companyEmail" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="companyEmail"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+	</field>
+	<field name="designationId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="designationId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+	</field>
+	<field name="employeeType" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="employeeType"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+	</field>
+	<field name="COLUMN_27" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="employeeId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="salary"/>
+	</field>
+	<field name="basicSalary" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="basicSalary"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="salary"/>
+	</field>
+	<field name="otHrs" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="otHrs"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="salary"/>
+	</field>
+	<field name="otRate" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="otRate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="salary"/>
+	</field>
+	<field name="carAllowance" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="carAllowance"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="salary"/>
+	</field>
+	<field name="bonusPrecentage" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="bonusPrecentage"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="salary"/>
+	</field>
+	<field name="taxPercentage" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="taxPercentage"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="salary"/>
+	</field>
+	<field name="ntSubAllowDays" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="ntSubAllowDays"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="salary"/>
+	</field>
+	<field name="ntSubAllowRate" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="ntSubAllowRate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="salary"/>
+	</field>
+	<field name="ntMedicalAllowance" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="ntMedicalAllowance"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="salary"/>
+	</field>
+	<field name="dEpf" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="dEpf"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="salary"/>
+	</field>
+	<field name="dMedical" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="dMedical"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="salary"/>
+	</field>
+	<field name="dLoanRepayment" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="dLoanRepayment"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="salary"/>
+	</field>
+	<field name="dOtherDeductions" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="dOtherDeductions"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="salary"/>
+	</field>
+	<field name="totalOT" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="totalOT"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="salary"/>
+	</field>
+	<field name="totalTaxableIncome" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="totalTaxableIncome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="salary"/>
+	</field>
+	<field name="totalNonTaxableIncome" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="totalNonTaxableIncome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="salary"/>
+	</field>
+	<field name="totalDeductions" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="totalDeductions"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="salary"/>
+	</field>
+	<field name="netSalary" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="netSalary"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="salary"/>
+	</field>
+	<field name="approvedBy" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="approvedBy"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="salary"/>
+	</field>
+	<field name="date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="salary"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="90" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-11" y="0" width="581" height="89" backcolor="#D9D4D4" uuid="ae871afe-66d0-464d-a7ec-739f3b4c29cf"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="-10" y="0" width="579" height="20" uuid="f19bbf7f-d173-4939-8e97-51f43393b5cb"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="80" y="0" width="80" height="20" uuid="e85f8be7-6e73-4057-9d5e-caa252c03ab8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Confidential]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="0" width="80" height="20" uuid="93810f09-6ee8-4841-abfc-72ba1edd14bf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Confidential]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="0" width="80" height="20" uuid="a04de0a7-2c2f-47c0-bb3e-7b679aaf2774"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Confidential]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="0" width="80" height="20" uuid="63cc85b9-3c7b-499a-bfb3-3117d1697775"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Confidential]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="0" width="80" height="20" uuid="cfc161f7-59a4-4b7e-aa63-415c28a1d2b5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Confidential]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="0" width="80" height="20" uuid="4fa185dc-0332-4537-b08e-1c31662df9c7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Confidential]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="80" height="20" uuid="28ee095b-2485-479a-b5fc-05b05fec2166"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Confidential]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="157" y="37" width="240" height="30" uuid="d48ffd51-739f-429d-9676-db05a5f19b23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Employee Pay Slip]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="-10" y="0" width="70" height="30" uuid="c777b4e8-7771-479f-8389-c669e9f8f388"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Employee ID:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="0" width="100" height="30" uuid="01f2c19c-5c0b-41c6-9e15-b5683eacdc67"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Employee Name:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="60" y="0" width="96" height="30" uuid="2e8c1cc2-f638-414c-bd98-f705e19dfc5f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{personId}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="280" y="1" width="288" height="30" isPrintWhenDetailOverflows="true" uuid="8b7dec02-d92c-4cf8-984a-082aa2fdecd7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($F{otherNames}!=null?$F{otherNames} + " ":"") + $F{firstName} + " " + ($F{middleName}!=null?$F{middleName} + " ":"") + $F{lastName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="159" splitType="Stretch"/>
+	</detail>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="230" y="0" width="100" height="20" uuid="1e99b246-bf97-4b92-a0a6-46a2cbc252e4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="-10" y="0" width="100" height="20" uuid="fa937f51-87a8-409b-b982-c7190fab488d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="470" y="2" width="100" height="18" uuid="07c2c194-0a0b-46b7-9fe7-f3d05725fb42"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Sampath Bank PLC.]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="-10" y="0" width="90" height="24" uuid="83e2e193-c36e-4fa0-8dae-8d262b3bb1d3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+					<font size="13" isBold="true"/>
+					<paragraph leftIndent="4"/>
+				</textElement>
+				<text><![CDATA[Approved By:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="166" y="0" width="104" height="24" uuid="9275549e-f157-4e59-81a8-1a20ef20bd70"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[(HR Manager)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="0" width="106" height="24" uuid="626daf61-eaa1-4a4c-a6a9-741433a7100e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Approved Date:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="436" y="0" width="120" height="24" uuid="0fa41e15-5860-42a8-8638-82011d3df597"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13"/>
+					<paragraph leftIndent="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date}.toLocalDate()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="0" width="86" height="24" uuid="d95352a0-1fff-4f71-8231-683fbaa54c57"/>
+				<textElement verticalAlignment="Middle" markup="styled">
+					<font size="13"/>
+					<paragraph leftIndent="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{approvedBy}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized02.css" type="text/css">
 		<title>Email</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
@@ -210,20 +211,61 @@
 		</nav>
 		
         <div class="container-fluid" style="margin-bottom: 100px; height: 100%">
-			
-			To : <%=email.getReceiver() %>
-			From : <%=email.getSender() %>
-			Date : <%=email.getSentDate() %>
-			Subject : <%=email.getSubject() %>
-			Content : <%=email.getContent() %>
-		
-		
-		
-		
-		
-		
-		
-		
+<!-- DONE -->
+
+				<div class="container-fluid">
+					<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+					<div class="mail-box">
+						<aside class="sm-side">
+							<div class="user-head">
+
+							</div>
+							<div class="inbox-body">
+								<ul class="inbox-nav inbox-divider">
+									<li>
+										<a href="/SampathBankWebPortal/EmailInboxController"><i class="fa fa-inbox"></i> Inbox </a>
+									</li>
+									<li>
+										<a href="/SampathBankWebPortal/EmailOutboxController"><i class="fa fa-envelope-o"></i> Sent Mail</a>
+									</li>
+									<li>
+										<a href="/SampathBankWebPortal/jsp/user_management/UM_EmailCompose.jsp"><i class="fa fa-bookmark-o"></i> Compose</a>
+									</li>
+								</ul>
+							</div>
+						</aside>
+						<aside class="lg-side">
+							<div class="inbox-head">
+								<h3>Mail</h3>
+								<form action="#" class="pull-right position">
+									<div class="input-append">
+										<input type="text" class="sr-input" placeholder="Search Mail">
+										<button class="btn sr-btn" type="button"><i class="fa fa-search"></i></button>
+									</div>
+								</form>
+							</div>
+							<div class="inbox-body">
+								<table class="table table-inbox table-hover">
+									<tbody>
+										<tr class="unread">
+											<td class="inbox-small-cells">
+												<div class="container" style="margin-bottom: 100px; height: 100%">
+													To : <%if(email.getReceiver() == null) { %>Confidential<%} else { %> <%=email.getReceiver()%> <%} %></br>
+													From : <%if(email.getSender() == null) { %>Confidential<%} else { %> <%=email.getSender()%> <%} %></br>
+													Date : <%=email.getSentDate() %></br>
+													Subject : <%=email.getSubject() %></br>
+													Content : <%=email.getContent() %></br>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</aside>
+					</div>
+				</div>
+
+<!-- DONE -->
 		</div>
 		
         <!-- Footer -->

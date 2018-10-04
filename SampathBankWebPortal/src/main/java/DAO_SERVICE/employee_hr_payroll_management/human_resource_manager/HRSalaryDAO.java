@@ -115,7 +115,6 @@ public class HRSalaryDAO {
 			EHPM_Prst0001.setString(20, employeeId);
 			EHPM_Prst0001.setDate(21, salary.getDate());
 			i = EHPM_Prst0001.executeUpdate();
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized.css" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/SampathBankWebPortal/resources/css&js&jquery/customized02.css" type="text/css">
 		<title>Employee Inbox</title>
 		<%
 			Employee employee = (Employee) session.getAttribute("employee");
@@ -204,54 +205,99 @@
 		  </ol>
 		</nav>
 		
-        <div class="container" style="margin-bottom: 100px; height: 100%">
-		<%Collection<Email> inboxRetrieve = (ArrayList<Email>)session.getAttribute("inboxRetrieve");%>
-		<%if(inboxRetrieve != null) {%>
-					<table class="table table-hover">
-					  <thead class="thead-light">
-					    <tr>
-					      <th scope="col">From</th>
-					      <th scope="col">Subject</th>
-					      <th scope="col">SentDate</th>
-					      <th scope="col">####</th>
-					      <th scope="col">####</th>
-					    </tr>
-					  </thead>
-					  <tbody>
-					  <%for(Email email: inboxRetrieve) {%>
-					    <tr>
-					      <th scope="row"><%=email.getSender() %></th>
-					      <td style="font-weight: bold;"><%=email.getSubject() %></td>
-					      <td style="font-weight: bold;"><%=email.getSentDate() %></td>
-					      <td>
-					      	<form action="/SampathBankWebPortal/EmailInboxController" method="post">
-					      		<input type="hidden" value="<%=email.getEmailId() %>" name="emailId"/>
-					      		<input type="submit" name="view" value="View" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; margin-right: 20px;"/>
-					      	</form>
-					      </td>
-					      <td>
-					      	<form action="/SampathBankWebPortal/EmailInboxController" method="post">
-					      		<input type="hidden" value="<%=email.getEmailId() %>" name="emailId"/>
-					      		<input type="submit" name="delete" value="Delete" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; margin-right: 20px;"/>
-					      	</form>
-					      </td>
-					    </tr>
-					    <%} %>
-					  </tbody>
-					</table>
-		
-		<%} else { %>
-		Inbox is empty
-		<%} %>
-		
-		
-		
-		
-		
-		
-		
-		
-		
+        <div class="container-fluid" style="margin-bottom: 100px; height: 100%">
+<!-- DONE -->
+				<div class="container-fluid">
+					<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+					<div class="mail-box">
+						<aside class="sm-side">
+							<div class="user-head">
+
+							</div>
+							<div class="inbox-body">
+								<ul class="inbox-nav inbox-divider">
+									<li class="active">
+										<a href="#"><i class="fa fa-inbox"></i> Inbox </a>
+									</li>
+									<li>
+										<a href="/SampathBankWebPortal/EmailOutboxController"><i class="fa fa-envelope-o"></i> Sent Mail</a>
+									</li>
+									<li>
+										<a href="/SampathBankWebPortal/jsp/user_management/UM_EmailCompose.jsp"><i class="fa fa-bookmark-o"></i> Compose</a>
+									</li>
+								</ul>
+							</div>
+						</aside>
+						<aside class="lg-side">
+							<div class="inbox-head">
+								<h3>Inbox</h3>
+								<form action="#" class="pull-right position">
+									<div class="input-append">
+										<input type="text" class="sr-input" placeholder="Search Mail">
+										<button class="btn sr-btn" type="button"><i class="fa fa-search"></i></button>
+									</div>
+								</form>
+							</div>
+							<div class="inbox-body">
+								<table class="table table-inbox table-hover">
+									<tbody>
+										<tr class="unread">
+											<td class="inbox-small-cells">
+												<div class="container" style="margin-bottom: 100px; height: 100%">
+													<%Collection<Email> inboxRetrieve = (ArrayList<Email>)session.getAttribute("inboxRetrieve");%>
+													<%if(inboxRetrieve != null) {%>
+													<table class="table table-hover">
+														<thead class="thead-light">
+															<tr>
+															  <th scope="col" style="width: 100px;">From</th>
+															  <th scope="col" style="width: 300px;">Subject</th>
+															  <th scope="col" style="width: 80px;">Received Date</th>
+															  <th scope="col" style="width: 80px;">####</th>
+															  <th scope="col" style="width: 80px;">####</th>
+															</tr>
+														</thead>
+														<tbody>
+															<%for(Email email: inboxRetrieve) {%>
+															<tr>
+															  <th scope="row">
+															  	<%if(email.getSender() == null) {%>
+															  		Confidential
+															  	<%} else {%>
+															  		<%=email.getSender() %>
+															  	<%} %>
+															  </th>
+															  <td style="font-weight: bold;"><%=email.getSubject() %></td>
+															  <td style="font-weight: bold;"><%=email.getSentDate() %></td>
+															  <td>
+																<form action="/SampathBankWebPortal/EmailInboxController" method="post">
+																	<input type="hidden" value="<%=email.getEmailId() %>" name="emailId"/>
+																	<input type="submit" name="view" value="View" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; margin-right: 20px;"/>
+																</form>
+															  </td>
+															  <td>
+																<form action="/SampathBankWebPortal/EmailInboxController" method="post">
+																	<input type="hidden" value="<%=email.getEmailId() %>" name="emailId"/>
+																	<input type="submit" name="delete" value="Delete" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 1px; border-style: solid; font-size: 19px; margin-right: 20px;"/>
+																</form>
+															  </td>
+															</tr>
+															<%} %>
+														</tbody>
+													</table>
+													<%} else { %>
+													Inbox is empty
+													<%} %>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</aside>
+					</div>
+				</div>
+
+<!-- DONE -->
 		</div>
 		
         <!-- Footer -->

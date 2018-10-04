@@ -93,7 +93,7 @@
 			  var nonTotTaxableInc = parseFloat(document.getElementById('SalaryFormTotNonTaxableIncome').value);
 			  var totDeductions = parseFloat(document.getElementById('SalaryFormTotDeductions').value);
 			  
-			  var netSalary = ((totTaxableInc * (100 + taxR)) / 100 ) + nonTotTaxableInc - totDeductions;
+			  var netSalary = ((totTaxableInc * (100 - taxR)) / 100 ) + nonTotTaxableInc - totDeductions;
 
 			  document.getElementById('SalaryFormNetSalary').value = netSalary.toFixed(2);
 		  }
@@ -233,8 +233,8 @@
  -->
                 <form action="/SampathBankWebPortal/SalaryInitiation" method="post">
                     <div style="float: left; margin-right: 5px;">
-                        <div class="bg-secondary" style="width: 550px; float: left; padding: 7px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
-                            <h5 style="color: white;">Employee ID</h5>
+                        <div style="width: 550px; float: left; padding: 7px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px; background-color: lightgrey;">
+                            <h5>Employee ID</h5>
                             <div class="form-group row" style="padding: 4px; padding-left: 16px;">
                                 <div class="col">
                                 	<input type="text" class="form-control" id="SalaryFormID" name="empId">
@@ -263,7 +263,7 @@
 	                                    Rs. <input type="text" class="form-control" id="SalaryFormOvertimeRate" name="overTimeRate" title="####" onchange="updateTotalOT();">
 	                                </div>
 	                            </div>
-	                            <div class="form-group row bg-warning" style="padding: 4px; padding-left: 16px">
+	                            <div class="form-group row" style="padding: 4px; padding-left: 16px; background-color: lightgrey;">
 	                                <label class="col-5 col-form-label" for="SalaryFormTotOT">Total OT: </label>
 	                                <div class="col-5">
 	                                    Rs. <input type="text" class="form-control" id="SalaryFormTotOT" title="####" disabled>
@@ -290,7 +290,7 @@
 	                                </div>
 	                            </div>
                             </div>
-                            <div class="form-group row bg-warning" style="padding: 4px; padding-left: 16px">
+                            <div class="form-group row" style="padding: 4px; padding-left: 16px; background-color: lightgrey;">
                                 <label class="col-5 col-form-label" for="SalaryFormTotTaxableIncome">Total Taxable Income: </label>
                                 <div class="col-5">
                                     Rs. <input type="text" class="form-control" id="SalaryFormTotTaxableIncome" title="####" disabled>
@@ -323,7 +323,7 @@
                                     Rs. <input type="text" class="form-control" id="SalaryFormNonTaxMedical" name="nonTaxMedical" title="####" onchange="updateTotNonTaxaInx();">
                                 </div>
                             </div>
-                            <div class="form-group row bg-warning" style="padding: 4px; padding-left: 16px">
+                            <div class="form-group row" style="padding: 4px; padding-left: 16px; background-color: lightgrey;">
                                 <label class="col-5 col-form-label" for="SalaryFormTotNonTaxableIncome">Total Non Taxable Income: </label>
                                 <div class="col-5">
                                     Rs. <input type="text" class="form-control" id="SalaryFormTotNonTaxableIncome" title="####" disabled>
@@ -357,13 +357,13 @@
                                     Rs. <input type="text" class="form-control" id="SalaryFormOtherDeductions" name="otherDeductions" title="####" onchange="updateTotDeductions();">
                                 </div>
                             </div>
-                            <div class="form-group row bg-warning" style="padding: 4px; padding-left: 16px">
+                            <div class="form-group row" style="padding: 4px; padding-left: 16px; background-color: lightgrey;">
                                 <label class="col-5 col-form-label" for="SalaryFormTotDeductions">Total Deductions: </label>
                                 <div class="col-5">
                                     Rs. <input type="text" class="form-control" id="SalaryFormTotDeductions" title="####" disabled>
                                 </div>
 	                        </div>
-	                        <div class="form-group row bg-warning" style="padding: 4px; padding-left: 16px">
+	                        <div class="form-group row" style="padding: 4px; padding-left: 16px; background-color: lightgrey;">
                                 <label class="col-5 col-form-label" for="SalaryFormNetSalary">Net Salary: </label>
                                 <div class="col-5">
                                     Rs. <input type="text" class="form-control" id="SalaryFormNetSalary" title="####" disabled>

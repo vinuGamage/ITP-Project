@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee, POJO_MODEL.employee_hr_payroll_management.Salary"%>
-<%@ page import="java.util.*" %>
+<%@ page import="java.util.*, java.text.DecimalFormat" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -24,6 +24,8 @@
 			Salary salary = (Salary) session.getAttribute("salary");
 			if(salary == null)
 				response.sendRedirect("/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_InitiateSalary.jsp");
+			
+			DecimalFormat df = new DecimalFormat("#.00");
 		%>
 
     </head>
@@ -148,23 +150,135 @@
 		  <ol class="breadcrumb">
 		    <li class="breadcrumb-item"><a href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Common_Employee_Homepage.jsp">EmpHome</a></li>
 		    <li class="breadcrumb-item">Employee Duties</li>
-		    <li class="breadcrumb-item active" aria-current="page">Salary Management</li>
+		    <li class="breadcrumb-item active">Salary Management</li>
+		    <li class="breadcrumb-item active" aria-current="page"><%=salary.getEmployeeId() %></li>
 		  </ol>
 		</nav>
 
-        <div class="container-fluid" style="margin-bottom: 100px; height: auto;">
-            <br><h3>Salary Initiation</h3>
-            <div class="container" style="margin-top: 50px">
-            
+        <div class="container-fluid" style="margin-bottom: 100px; height: 1000px;">
 <!-- 
 	FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM FORM
  -->
-                <form action="/SampathBankWebPortal/SalaryInitiation" method="post">
-                	<input type="hidden" name="salarySeconded">
- 					<input type="submit" name="reject" value="Reject">
- 					<input type="submit" name="submit" value="Submit">
-                </form>
-            </div>
+ 
+ 		<h3 style="font-weight: bold;">Salary Initiation of Emp: <%=salary.getEmployeeId() %></h3>
+					<div style="float: left; margin-right: 15px; margin-left: 22px;">
+                        <div style="width: 700px; float: left; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
+                            <h5>TAXABLE INCOME</h5>
+                            <table class="table table-borderless">
+                            	<tbody>
+                            		<tr>
+                            			<th scope="row" style="width: 500px;">Monthly Salary: </th>
+                            			<td><%=salary.gettMonthlySalary()%></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Overtime Hours: </th>
+                            			<td><%=salary.gettOvertimeHrs() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Overtime Rate: </th>
+                            			<td><%=salary.gettOvertimeRate() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Car Allowance: </th>
+                            			<td><%=salary.gettCarAllowance() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Bonus: </th>
+                            			<td><%=salary.gettBonus() %></td>
+                            		</tr>
+                            	</tbody>
+                            </table>
+                        </div>
+
+                        <div style="backwidth: 700px; padding: 5px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; clear: both; margin-bottom: 5px;">
+                            <h5>NON-TAXABLE INCOME</h5>
+                            <table class="table table-borderless">
+                            	<tbody>
+                            		<tr>
+                            			<th scope="row" style="width: 500px;">Subsistence Allowance Days: </th>
+                            			<td><%=salary.getNtSubsistenceAllowanceDays() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Subsistence Allowance Rate: </th>
+                            			<td><%=salary.getNtSubsistenceAllowanceRate() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Medical: </th>
+                            			<td><%=salary.getNtMedical() %></td>
+                            		</tr>
+                            	</tbody>
+                            </table>
+                        </div>
+                        
+                        <div style="backwidth: 700px; padding: 5px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; clear: both">
+                            <h5>DEDUCTIONS</h5>
+                            <table class="table table-borderless">
+                            	<tbody>
+                            		<tr>
+                            			<th scope="row" style="width: 500px;">EPF: </th>
+                            			<td><%=salary.getdEpf() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Medical: </th>
+                            			<td><%=salary.getdMedical() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Loan Repayments: </th>
+                            			<td><%=salary.getdLoanRepayment() %></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Other Deductions: </th>
+                            			<td><%=salary.getdOtherDeductions() %></td>
+                            		</tr>
+                            	</tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div style="float: left;">
+						<div style="background-color: lightgrey; width: 700px; padding: 5px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; clear: both; margin-bottom: 5px;">
+                            <table class="table table-borderless">
+                            	<tbody>
+                            		<tr>
+                            			<th scope="row" style="width: 500px;">Overtime Total: </th>
+                            			<td><b><%=df.format(salary.getTotalOT()) %></b></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Total Taxable Income: </th>
+                            			<td><b><%=df.format(salary.getTotalTaxableIncome()) %></b></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Total Non-Taxable Income: </th>
+                            			<td><b><%=df.format(salary.getTotalNonTaxableIncome()) %></b></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Total Deductions: </th>
+                            			<td><b><%=df.format(salary.getTotalDeductions()) %></b></td>
+                            		</tr>
+                            		<tr>
+                            			<th scope="row">Tax upon Taxable Income: </th>
+                            			<td><b><%=df.format(salary.getTax()) %></b></td>
+                            		</tr>
+                            	</tbody>
+                            </table>
+                        </div>
+                        
+                        <div style="width: 700px; padding: 5px; padding: 5px; border-width: 1px; border-style: solid; border-color: #FD4F00; clear: both; margin-bottom: 5px;">
+                            <table class="table table-borderless">
+                            	<tbody>
+	                   				<tr>
+	                   					<th scope="row" style="width: 500px;">Net Salary: </th>
+	                   					<td><b><%=df.format(salary.getNetSalary()) %></b></td>
+	                  				</tr>
+                            	</tbody>
+                            </table>
+                        </div>
+                        <form action="/SampathBankWebPortal/SalaryInitiation" method="post">
+		                	<input type="hidden" name="salarySeconded">
+		 					<input type="submit" name="reject" value="Reject" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 22px; margin-right:10px;">
+		 					<input type="submit" name="submit" value="Submit" style="background-color: white; border-radius: 10px; color: black; border-color: #FD4F00; border-width: 2px; border-style: solid; font-size: 22px; margin-right:20px;">
+                		</form>
+            		</div>
         </div>
 
         <!-- Footer -->
