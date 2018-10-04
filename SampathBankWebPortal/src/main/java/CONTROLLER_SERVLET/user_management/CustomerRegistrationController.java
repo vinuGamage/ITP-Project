@@ -25,14 +25,16 @@ public class CustomerRegistrationController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String submitInitialRegistration = request.getParameter("submitInitialRegistration");
 		String submitSecondaryegistration = request.getParameter("submitSecondaryegistration");
-		String submitThirtaryegistration = request.getParameter("submitThirtaryegistration");
+		String submitThirtaryregistration = request.getParameter("submitThirtaryregistration");
 		
 		if(submitInitialRegistration != null)
 			initialRegistration(request, response);
 		else if(submitSecondaryegistration != null)
 			secondaryRegistration(request, response);
-		else if(submitThirtaryegistration != null)
+		else if(submitThirtaryregistration != null) {
+			System.out.println("123456234567");
 			thirtaryRegistration(request, response);
+		}
 	}
 	
 	public void initialRegistration(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -144,9 +146,10 @@ public class CustomerRegistrationController extends HttpServlet {
 		if(true) {
 			HttpSession session = request.getSession();
 			String custId = (String)session.getAttribute("custId");
-			
+			System.out.println("3456789056789");
 			if(CustomerRegistrationDAO.storeRequestForCustomerOnlineAccount(custId, question01, answer01, question02, answer02)) {
 				if(CustomerRegistrationDAO.deleteFromTempOnlineRegPins(custId)) {
+					System.out.println("abcdefgh");
 					PrintWriter out = response.getWriter();
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('Your request for an online account has been submitted! If you do not receive the credentials within 1 week, please kindly visit the nearest sampath bank!');");

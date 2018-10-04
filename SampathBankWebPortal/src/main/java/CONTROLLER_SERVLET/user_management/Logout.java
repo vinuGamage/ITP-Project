@@ -14,7 +14,7 @@ public class Logout extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.removeAttribute("employee");
-		
+		session.removeAttribute("customer");
 		session.invalidate();
 		response.sendRedirect("/SampathBankWebPortal/jsp/user_management/UM_Login.jsp");
 	}

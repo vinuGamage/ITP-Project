@@ -1,3 +1,7 @@
+
+ 	Script of,
+		IT17137492 (Atheeq M.M.M.)
+
 CREATE DATABASE `itp_2018_mlb_g3_10_sampath_web_portal_atheeq` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
 CREATE TABLE `im_branch_item` (

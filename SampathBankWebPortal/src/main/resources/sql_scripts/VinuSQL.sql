@@ -1,3 +1,8 @@
+
+ 	Script of,
+		IT17134668 (Gamage V.S.)
+
+
 CREATE DATABASE `itp_2018_mlb_g3_10_sampath_web_portal_vinu` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
 CREATE TABLE `bankaccount` (

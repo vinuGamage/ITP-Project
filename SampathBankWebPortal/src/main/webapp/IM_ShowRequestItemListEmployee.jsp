@@ -47,11 +47,8 @@
             </div>
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item" title="Sign Up">
-                        <a class="nav-link" href="#"><span class="fa fa-user"></span> Sign Up</a>
-                    </li>
                     <li class="nav-item" title="Login">
-                        <a class="nav-link" href="#"><span class="fa fa-sign-in"></span> Login</a>
+                        <a class="nav-link" href="/SampathBankWebPortal/Logout"><span class="fa fa-sign-in"></span> Sign Out</a>
                     </li>
                 </ul>
             </div>

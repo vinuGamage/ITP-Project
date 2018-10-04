@@ -92,7 +92,7 @@
 			<h4 style="color: orange; text-align: center;">Please fill the necessary details!</h4>
 			<div style="align-content: center; margin-right: 5px; padding-left:170px">
                 <div style="width: 750px; align: center; padding: 22px; border-width: 1px; border-style: solid; border-color: #FD4F00; margin-bottom: 5px;">
-                	<form action="/SampathBankWebPortal/CustomerRegistrationController" class="form-horizontal" style="border:1px solid #ccc method="post">
+                	<form action="/SampathBankWebPortal/CustomerRegistrationController" class="form-horizontal" style="border:1px solid #ccc" method="post">
 						<p>In case you forget Vishwa password, you can reset on your own without contacting bank officers based on following sensitive information.</br>
 						Hence, you are kindly requested to carefully update the below information as you will not be able to change once submitted</p>
 
@@ -127,7 +127,7 @@
 						<p>By creating an account you agree to our <a href="https://policies.google.com/privacy" style="color:dodgerblue">Terms & Privacy</a>.</p>
 		
 		    			<div class="clearfix">
-		      				<button type="submit" class="signupbtn" name="submitThirtaryegistration">Sign Up</button>
+		      				<button type="submit" class="signupbtn" name="submitThirtaryregistration">Sign Up</button>
 		   				 </div>
 					</form>
 				</div>

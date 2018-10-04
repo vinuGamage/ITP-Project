@@ -1,3 +1,9 @@
+
+Script of,
+		IT17395588 (Samarasekara S.A.M.I.D.)
+						&
+		IT17139786 (Bogahawatte W.W.M.K.A)
+
 CREATE DATABASE `itp_2018_mlb_g3_10_sampath_web_portal` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
 CREATE TABLE `gender` (
@@ -329,3 +335,11 @@ CREATE TABLE `email_company` (
   CONSTRAINT `fk02_email_company_to_employee` FOREIGN KEY (`receiver`) REFERENCES `employee` (`companyEmail`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
+CREATE TABLE `accounts` (
+  `personId` char(10) NOT NULL,
+  `accountNo` int(9) NOT NULL,
+  PRIMARY KEY (`accountNo`),
+  UNIQUE KEY `personId_UNIQUE` (`personId`),
+  UNIQUE KEY `accountNo_UNIQUE` (`accountNo`),
+  CONSTRAINT `fk01_account_to_person` FOREIGN KEY (`personId`) REFERENCES `person` (`personId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

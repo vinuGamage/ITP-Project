@@ -42,11 +42,8 @@
             </div>
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item" title="Sign Up">
-                        <a class="nav-link" href="#"><span class="fa fa-user"></span> Sign Up</a>
-                    </li>
                     <li class="nav-item" title="Login">
-                        <a class="nav-link" href="#"><span class="fa fa-sign-in"></span> Login</a>
+                        <a class="nav-link" href="/SampathBankWebPortal/Logout"><span class="fa fa-sign-in"></span> Sign Out</a>
                     </li>
                 </ul>
             </div>
@@ -197,55 +194,7 @@
 			
 			
 						
-   				 <div class="col-sm-8">
-					<h3 align="left">Other Bank Transactions</h3>
-     	
-                           <table class="table-striped"  align="center" cellpadding="10%" style="font-size: 110%;color:#404350;margin-left:10px" > 
-							<tr style ="font-size:115%;">
-								<th>Transaction ID</th>
-								<th>Debit Account</th>
-								<th>Credit Account</th>
-								<th>Date</th>
-								<th>Amount</th>
-								<th>Status</th>
-								<th>Approve</th>
-							</tr>
-							<%
-							ArrayList<Transaction> list1 = (ArrayList<Transaction>) session.getAttribute("allIntraTransacts");
-							
-							
-							int y =0;
-							while(y<list1.size()){
-								Transaction t = list1.get(y);
-							
-							%>
-							<tr >
-							<td align=center><%=t.getTid() %></td>
-							<td align="center"><%=t.getAccountNo() %></td>
-							<td align=center><%=t.getTaccountNo() %></td>
-							<td align=center><%=t.getDate() %></td>
-							<td align=center><%=t.getAmount() %></td>
-							<td align="center"><%=t.getStatus() %></td>
-							<td align="center">
-								<form action="approveIntraServlet" method="post">
-									<input name="approve1" type="hidden" value=<%=y %>>
-									<input type="submit" value="Approve">
-								</form>
-							</td>
-							</tr>
-					
-			
-							<%
-							y++;
-							}
-							%>
-							
-							
-							
-							</table>
-							  <br><br>
-					
-				</div>
+   				 
 			</div>
 			
 			
