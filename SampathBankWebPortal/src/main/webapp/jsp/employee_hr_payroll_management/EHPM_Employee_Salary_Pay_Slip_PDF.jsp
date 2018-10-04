@@ -9,8 +9,14 @@
 <%@ page import="DAO_SERVICE.common_service.ConnectionPoolManager"%>
 <%@ page import="java.sql.SQLException"%>
 <%@ page import="java.sql.Connection"%>
+<%@page import="net.sf.jasperreports.engine.design.JRDesignQuery"%>
+<%@page import="net.sf.jasperreports.engine.design.JasperDesign"%>
+<%@page import="net.sf.jasperreports.engine.xml.JRXmlLoader"%>
+<%@ page  import="POJO_MODEL.employee_hr_payroll_management.Employee"%>
 
 <%
+	Employee employee = (Employee) session.getAttribute("employee");
+	String employeeId = employee.getPersonId();
 	Connection con = null;
 
 	//Conneciton Managing Start
@@ -29,13 +35,17 @@
 	//Conneciton Managing End
 	
 	try {
-		String file = session.getServletContext().getRealPath("/jsp/employee_hr_payroll_management/reports/AllEmployeeContactDetails.jrxml");
-		InputStream input = new FileInputStream(new File(file));
-		
-		JasperReport jr = JasperCompileManager.compileReport(input);
-		JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
-		
-		JasperExportManager.exportReportToPdfStream(jp, response.getOutputStream());
+		String file = session.getServletContext().getRealPath("/jsp/employee_hr_payroll_management/reports/Employee_Payslip.jrxml");
+	 	JasperDesign jd= JRXmlLoader.load(new File(file));
+		JRDesignQuery newQuery = new JRDesignQuery();
+	 	newQuery.setText("SELECT * FROM Person p INNER JOIN employee e ON p.personId=e.employeeId INNER JOIN salary s ON e.employeeId=s.employeeId WHERE s.employeeId='"+employeeId+"'");
+	 	jd.setQuery(newQuery);
+	  
+	 	
+	 	JasperReport jasperReport = JasperCompileManager.compileReport(jd);
+	 	JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null,con);
+	 	
+	 	JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
 		
 		response.getOutputStream().flush();
 		response.getOutputStream().close();

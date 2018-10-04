@@ -80,14 +80,19 @@
             </div>
         </header>
 
-        <div class="container-fluid" style="height: 1000px">
-<!-- KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI
- KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI -->
+        <div class="container-fluid" style="height: 100%; padding-top: 10px; padding-bottom: 10px;">
 
-        
+			<div class="row">
+				<div class="col-md-6"> 
+					<img alt="Sampath Bank" src="/SampathBankWebPortal/resources/images/Homepage.jpg"">
+				</div>
+				<div class="col-md-6"> 
+					<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+					<p style="font-weight: bold;font-size: 30px" >&nbsp &nbsp &nbsp &nbsp Welcome to Sampath Bank Webpage</p>
+					<p style="font-weight: bold;font-size: 30px" >Please Login to access the further functionalities</p>
+				</div>
+			</div>
  		
-<!-- KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI
- KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI KESHI --> 		
  		</div>
 
         <!-- Footer -->

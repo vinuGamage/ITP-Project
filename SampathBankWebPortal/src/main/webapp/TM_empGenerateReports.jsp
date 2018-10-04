@@ -79,7 +79,7 @@
                             <a class="dropdown-item" href="/SampathBankWebPortal/showAllTransactDetailsServlet" style="color:white">Display Transaction</a>
                             <a class="dropdown-item" href="/SampathBankWebPortal/approveTransactservlet" style="color:white">Approve Transactions</a>
                             
-                            <a class="dropdown-item" href="TM_empGenerateReports.jsp" style="color:white">Generate Reports</a>
+                            <a class="dropdown-item" href="#" style="color:white">Generate Reports</a>
                             
                         </div>
                     </li>

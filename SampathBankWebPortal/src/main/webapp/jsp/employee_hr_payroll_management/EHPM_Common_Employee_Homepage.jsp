@@ -355,6 +355,8 @@
                             <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_Employee_Salary_Pay_Slip_PDF.jsp" style="color:white">Pay Slip</a>
                         </div>
                     </li>
+                    
+<!-- DOCUMENTATION GENERATION -->
                 	<%if(employee.getDesignation().getDesignation().equals("human resource manager")) {%>
                     <li class="nav-item dropdown" title="Click to See Skills Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
@@ -362,18 +364,36 @@
                             <a class="dropdown-item" href="/SampathBankWebPortal/jsp/employee_hr_payroll_management/EHPM_HRManager_AllEmployeeDetailsDocumentation.jsp" style="color:white">All Employee Details</a>
                         </div>
                     </li>
-                    <%} else { %>
+                    <%} else if(employee.getDesignation().getDesignation().equals("user manager")) { %>
                     <li class="nav-item dropdown" title="Click to See Skills Related Options">
-                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Skills Management</a>
+                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
                         <div class="dropdown-menu nav-dropdown">
-                            <a class="dropdown-item" href="#" style="color:white">Action</a>
-                            <a class="dropdown-item" href="#" style="color:white">Another action</a>
-                            <a class="dropdown-item" href="#" style="color:white">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" style="color:white">Separated link</a>
+                            <a class="dropdown-item" href="/SampathBankWebPortal/jsp/user_management/UM_CustomerDetailsDocumentation.jsp" style="color:white">Customer Details</a>
+                        </div>
+                    </li>
+                    <%} else if(employee.getDesignation().getDesignation().equals("inventory manager")) { %>
+                    <li class="nav-item dropdown" title="Click to See Skills Related Options">
+                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
+                        <div class="dropdown-menu nav-dropdown">
+                            <a class="dropdown-item" href="/SampathBankWebPortal/IM_GenerateReports.jsp" style="color:white">Inventory Details</a>
+                        </div>
+                    </li>
+                    <%} else if(employee.getDesignation().getDesignation().equals("transaction manager")) { %>
+                    <li class="nav-item dropdown" title="Click to See Skills Related Options">
+                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
+                        <div class="dropdown-menu nav-dropdown">
+                            <a class="dropdown-item" href="/SampathBankWebPortal/TM_empGenerateReports.jsp" style="color:white">Transaction Details</a>
+                        </div>
+                    </li>
+                    <%} else {%>
+                    <li class="nav-item dropdown" title="Click to See Skills Related Options">
+                        <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; text-align: center; background-color: #FD4F00">Documents & Reports</a>
+                        <div class="dropdown-menu nav-dropdown">
+                            <a class="dropdown-item" href="#" style="color:white">Nothing to see here</a>
                         </div>
                     </li>
                     <%} %>
+                    
                     <li class="nav-item dropdown" title="Click to See Mail Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Mailing System</a>
                         <div class="dropdown-menu nav-dropdown">
@@ -382,6 +402,7 @@
                             <a class="dropdown-item" href="/SampathBankWebPortal/jsp/user_management/UM_EmailCompose.jsp" style="color:white">New Message</a>
                         </div>
                     </li>
+                    
                     <li class="nav-item dropdown" title="Click to See Profile Related Options">
                         <a class="nav-link nav-change" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border-radius: 15px; background-color: #FD4F00">Profile Related</a>
                         <div class="dropdown-menu nav-dropdown">
@@ -403,16 +424,19 @@
 		</nav>
 		
         <div class="container-fluid" style="margin-bottom: 100px; height: 100%">
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+			<div class="row">
+				<div class="col-md-6"> 
+					<br><br>
+					<img alt="Sampath Bank" src="/SampathBankWebPortal/resources/images/employee.png"">
+					<br><br>
+				</div>
+				<div class="col-md-6"> 
+					<br><br><br><br><br><br><br><br><br><br>
+					<p style="font-weight: bold;font-size: 30px" >&nbsp &nbsp &nbsp &nbsp Welcome to Sampath Bank Employee &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  Interface</p>
+				</div>
+			</div>
+
 		</div>
 		
         <!-- Footer -->
